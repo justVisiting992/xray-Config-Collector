@@ -1,9 +1,9 @@
 name: Hybrid Config Collector
 
 on:
-  workflow_dispatch: # Allows manual trigger
+  workflow_dispatch:
   schedule:
-    - cron: '0 */2 * * *' # Runs every 2 hours
+    - cron: '0 */2 * * *'
 
 jobs:
   collect-and-test:
@@ -17,7 +17,6 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.10'
-        # Removed the cache line that caused the error
 
     - name: 🐍 Run Python Scout (Telegram API)
       env:
@@ -43,6 +42,8 @@ jobs:
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
-        git add *.txt report.md summary.md
+        # We only add files that actually exist to avoid Error 128
+        git add *.txt || true
+        git add report.md || true
         git commit -m "Update configs: $(date -u +'%Y-%m-%d %H:%M:%S') UTC" || exit 0
         git push
