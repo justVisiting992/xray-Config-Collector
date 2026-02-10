@@ -62,10 +62,15 @@ func main() {
 	var reports []ChannelReport
 	totalRaw := 0
 
-	gologger.Info().Msg("🚀 Starting Smart Scraper...")
-	for _, channelURL := range channels {
+	gologger.Info().Msg("🚀 Starting Smart Scraper Engine...")
+	
+	for i, channelURL := range channels {
 		uParts := strings.Split(strings.TrimSuffix(channelURL, "/"), "/")
 		channelName := uParts[len(uParts)-1]
+		
+		// Instant progress feedback
+		gologger.Info().Msgf("[%d/%d] Working on: %s", i+1, len(channels), channelName)
+		
 		report := ChannelReport{Name: channelName, Status: "✅ Active", Message: "Found configs"}
 		
 		req, _ := http.NewRequest("GET", "https://t.me/s/"+channelName, nil)
@@ -74,11 +79,13 @@ func main() {
 		resp, err := client.Do(req)
 		if err != nil {
 			report.Status, report.Message = "❌ Error", "Timeout"
+			gologger.Error().Msgf("   └─ Failed: Connection timeout")
 			reports = append(reports, report); continue
 		}
 
 		if resp.StatusCode == 404 {
 			report.Status, report.Message = "🚫 Dead", "Not Found"
+			gologger.Error().Msgf("   └─ Failed: Channel username doesn't exist")
 			reports = append(reports, report); resp.Body.Close(); continue
 		}
 
@@ -89,7 +96,8 @@ func main() {
 		doc.Find(".tgme_widget_message_wrap").Each(func(i int, s *goquery.Selection) { msgCount++ })
 
 		if msgCount == 0 {
-			report.Status, report.Message = "🔒 Private", "Private/Restricted"
+			report.Status, report.Message = "🔒 Private", "Private or Restricted"
+			gologger.Warning().Msgf("   └─ Warning: Channel is private/locked")
 		} else {
 			count := 0
 			doc.Find(".tgme_widget_message_text").Each(func(j int, s *goquery.Selection) {
@@ -103,47 +111,60 @@ func main() {
 				}
 			})
 			report.Count = count
-			if count == 0 { report.Status, report.Message = "⚠️ Inactive", "No links in batch" }
+			if count == 0 { 
+				report.Status, report.Message = "⚠️ Inactive", "No links in batch" 
+				gologger.Debug().Msgf("   └─ Info: No configs found in recent posts")
+			} else {
+				gologger.Info().Msgf("   └─ Success: Collected %d configs", count)
+			}
 		}
 		totalRaw += report.Count
 		reports = append(reports, report)
+		
+		// Safety delay
 		time.Sleep(1200 * time.Millisecond)
 	}
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
 
-	// Generate the dual reports
+	// Generate reports
 	finalMarkdown := generateReports(reports, totalRaw)
 	_ = os.WriteFile("summary.md", []byte(finalMarkdown), 0644)
 	_ = os.WriteFile("report.md", []byte(finalMarkdown), 0644)
 
 	// Test and Save
 	for _, proto := range protocols {
+		gologger.Info().Msgf("🧪 Testing %s configs...", strings.ToUpper(proto))
 		healthy := fastPingTest(removeDuplicates(rawConfigs[proto]))
 		limit := len(healthy)
 		if limit > maxLimit { limit = maxLimit }
 		saveToFile(proto+"_iran.txt", healthy[:limit])
 	}
+	
+	// Mixed Unlimited
+	var allMixed []string
+	for _, p := range protocols {
+		allMixed = append(allMixed, rawConfigs[p]...)
+	}
+	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
+
 	gologger.Info().Msg("✨ Reports generated and configs updated.")
 }
 
 // --- Report & Time Logic ---
 
 func generateReports(reports []ChannelReport, total int) string {
-	// 1. Time Calculations
 	utcNow := time.Now().UTC()
 	loc, _ := time.LoadLocation("Asia/Tehran")
 	tehranNow := utcNow.In(loc)
-
-	// 2. Simple Jalali Convert (approximate logic for minimal dependency)
 	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
 
 	var sb strings.Builder
 	sb.WriteString("# 📊 Collector Diagnostic Report\n\n")
 	sb.WriteString("### 🕒 Generation Time\n")
-	sb.WriteString(fmt.Sprintf("- **Tehran:** %d/%02d/%02d | %02d:%02d:%02d\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
-	sb.WriteString(fmt.Sprintf("- **International:** %s\n", tehranNow.Format("Monday, 02 Jan 2006")))
-	sb.WriteString(fmt.Sprintf("- **UTC:** %s\n\n", utcNow.Format("15:04:05")))
+	sb.WriteString(fmt.Sprintf("- **Tehran:** `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
+	sb.WriteString(fmt.Sprintf("- **International:** `%s`\n", tehranNow.Format("Monday, 02 Jan 2006")))
+	sb.WriteString(fmt.Sprintf("- **UTC:** `%s`\n\n", utcNow.Format("15:04:05")))
 	
 	sb.WriteString(fmt.Sprintf("### ⚡ Statistics\n- Total Raw Configs Found: `%d`\n\n", total))
 	
@@ -155,7 +176,6 @@ func generateReports(reports []ChannelReport, total int) string {
 	return sb.String()
 }
 
-// Minimal Jalali converter logic
 func toJalali(gy, gm, gd int) (int, int, int) {
 	gDays := []int{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334}
 	gy2 := gy
@@ -169,7 +189,7 @@ func toJalali(gy, gm, gd int) (int, int, int) {
 	return jy, jm, jd
 }
 
-// --- Standard Helpers (Same as before) ---
+// --- Standard Helpers ---
 
 func loadChannelsFromCSV(p string) ([]string, error) {
 	f, err := os.Open(p); if err != nil { return nil, err }; defer f.Close()
