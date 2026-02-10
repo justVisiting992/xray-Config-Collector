@@ -48,10 +48,13 @@ func main() {
 	flag.Parse()
 
 	db, _ = geoip2.Open("Country.mmdb")
-	channels, err := loadChannelsFromCSV("channels.csv")
+	
+	// 1. Load and UNIQUE-ify channels
+	rawChannels, err := loadChannelsFromCSV("channels.csv")
 	if err != nil {
 		gologger.Fatal().Msg("CSV Error: " + err.Error())
 	}
+	channels := removeDuplicates(rawChannels)
 
 	rawConfigs := make(map[string][]string)
 	protocols := []string{"ss", "vmess", "trojan", "vless", "hy2"}
@@ -62,13 +65,12 @@ func main() {
 	var reports []ChannelReport
 	totalRaw := 0
 
-	gologger.Info().Msg("🚀 Starting Smart Scraper Engine...")
+	gologger.Info().Msgf("🚀 Starting Smart Scraper Engine... (Processing %d unique channels)", len(channels))
 	
 	for i, channelURL := range channels {
 		uParts := strings.Split(strings.TrimSuffix(channelURL, "/"), "/")
 		channelName := uParts[len(uParts)-1]
 		
-		// Instant progress feedback
 		gologger.Info().Msgf("[%d/%d] Working on: %s", i+1, len(channels), channelName)
 		
 		report := ChannelReport{Name: channelName, Status: "✅ Active", Message: "Found configs"}
@@ -79,13 +81,11 @@ func main() {
 		resp, err := client.Do(req)
 		if err != nil {
 			report.Status, report.Message = "❌ Error", "Timeout"
-			gologger.Error().Msgf("   └─ Failed: Connection timeout")
 			reports = append(reports, report); continue
 		}
 
 		if resp.StatusCode == 404 {
 			report.Status, report.Message = "🚫 Dead", "Not Found"
-			gologger.Error().Msgf("   └─ Failed: Channel username doesn't exist")
 			reports = append(reports, report); resp.Body.Close(); continue
 		}
 
@@ -97,7 +97,6 @@ func main() {
 
 		if msgCount == 0 {
 			report.Status, report.Message = "🔒 Private", "Private or Restricted"
-			gologger.Warning().Msgf("   └─ Warning: Channel is private/locked")
 		} else {
 			count := 0
 			doc.Find(".tgme_widget_message_text").Each(func(j int, s *goquery.Selection) {
@@ -113,35 +112,26 @@ func main() {
 			report.Count = count
 			if count == 0 { 
 				report.Status, report.Message = "⚠️ Inactive", "No links in batch" 
-				gologger.Debug().Msgf("   └─ Info: No configs found in recent posts")
-			} else {
-				gologger.Info().Msgf("   └─ Success: Collected %d configs", count)
 			}
 		}
 		totalRaw += report.Count
 		reports = append(reports, report)
-		
-		// Safety delay
 		time.Sleep(1200 * time.Millisecond)
 	}
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
 
-	// Generate reports
 	finalMarkdown := generateReports(reports, totalRaw)
 	_ = os.WriteFile("summary.md", []byte(finalMarkdown), 0644)
 	_ = os.WriteFile("report.md", []byte(finalMarkdown), 0644)
 
-	// Test and Save
 	for _, proto := range protocols {
-		gologger.Info().Msgf("🧪 Testing %s configs...", strings.ToUpper(proto))
 		healthy := fastPingTest(removeDuplicates(rawConfigs[proto]))
 		limit := len(healthy)
 		if limit > maxLimit { limit = maxLimit }
 		saveToFile(proto+"_iran.txt", healthy[:limit])
 	}
 	
-	// Mixed Unlimited
 	var allMixed []string
 	for _, p := range protocols {
 		allMixed = append(allMixed, rawConfigs[p]...)
@@ -194,7 +184,17 @@ func toJalali(gy, gm, gd int) (int, int, int) {
 func loadChannelsFromCSV(p string) ([]string, error) {
 	f, err := os.Open(p); if err != nil { return nil, err }; defer f.Close()
 	r := csv.NewReader(f); var u []string
-	for { row, err := r.Read(); if err == io.EOF { break }; if len(row) > 0 { u = append(u, row[0]) } }
+	for { 
+		row, err := r.Read()
+		if err == io.EOF { break }
+		if len(row) > 0 { 
+			cleaned := strings.TrimSpace(row[0])
+			if cleaned != "" && strings.HasPrefix(cleaned, "http") {
+				// Normalize: remove trailing slashes
+				u = append(u, strings.TrimSuffix(cleaned, "/")) 
+			}
+		} 
+	}
 	return u, nil
 }
 
@@ -236,7 +236,9 @@ func labelWithGeo(config string, index int) string {
 
 func removeDuplicates(slice []string) []string {
 	m := make(map[string]bool); var list []string
-	for _, v := range slice { if !m[v] { m[v] = true; list = append(list, v) } }
+	for _, v := range slice {
+		if !m[v] { m[v] = true; list = append(list, v) }
+	}
 	return list
 }
 
