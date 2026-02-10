@@ -25,11 +25,9 @@ jobs:
 
     - name: Build and run Collector
       run: |
-        # Initialize and tidy up dependencies
         go mod init github.com/justVisiting992/xray-Config-Collector || true
         go mod tidy
         go build -o myapp main.go
-        # Running the app (it now accepts the -sort flag we added)
         ./myapp -sort
     
     - name: Generate Workflow Summary
@@ -43,7 +41,6 @@ jobs:
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
-        # Add the generated text files
-        git add *.txt
-        # Only commit if there are actual changes to the files
-        git diff --quiet && git diff --staged --quiet || (git commit -m "✔️ $(date '+%Y-%m-%d %H:%M:%S') Collected" && git push origin main)
+        # Adding text files AND the new report.md
+        git add *.txt report.md
+        git diff --quiet && git diff --staged --quiet || (git commit -m "📊 Report Updated: $(date '+%Y-%m-%d %H:%M')" && git push origin main)
