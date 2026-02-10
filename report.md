@@ -3,11 +3,11 @@
 This page is a tribute to the channel admins providing free configurations. Data is updated every 2 hours.
 
 ### 🕒 Last Update
-- **Tehran:** `1404/11/22` | `19:09:17`
+- **Tehran:** `1404/11/22` | `19:22:03`
 - **International:** `Tuesday, 10 Feb 2026`
 
 ### ⚡ Global Stats
-- **Total Working Configs Harvested:** `1946`
+- **Total Working Configs Harvested:** `1947`
 
 | Source Channel | Available Protocols | Harvest Status |
 | :--- | :--- | :--- |
@@ -20,8 +20,8 @@ This page is a tribute to the channel admins providing free configurations. Data
 | [configV2rayNG](https://t.me/s/configV2rayNG) | SS, Trojan, Vless, Vmess | ✅ 46 Xray configs found |
 | [mftizi](https://t.me/s/mftizi) | SS, Trojan, Vmess | ✅ 45 Xray configs found |
 | [vpnowl](https://t.me/s/vpnowl) | SS, Vless, Vmess | ✅ 42 Xray configs found |
+| [Hope_Net](https://t.me/s/Hope_Net) | SS, Vless | ✅ 42 Xray configs found |
 | [mrsoulb](https://t.me/s/mrsoulb) | SS, Trojan, Vless | ✅ 41 Xray configs found |
-| [Hope_Net](https://t.me/s/Hope_Net) | SS, Vless | ✅ 40 Xray configs found |
 | [vless_vmess](https://t.me/s/vless_vmess) | SS, Vless | ✅ 40 Xray configs found |
 | [vmess_vless_v2rayng](https://t.me/s/vmess_vless_v2rayng) | SS, Trojan, Vless, Vmess | ✅ 39 Xray configs found |
 | [V2ray_Alpha](https://t.me/s/V2ray_Alpha) | Hy2, SS, Trojan, Vless, Vmess | ✅ 39 Xray configs found |
@@ -39,8 +39,8 @@ This page is a tribute to the channel admins providing free configurations. Data
 | [V2rayNg_madam](https://t.me/s/V2rayNg_madam) | SS, Trojan, Vless, Vmess | ✅ 32 Xray configs found |
 | [vmess_iran](https://t.me/s/vmess_iran) | SS, Vless | ✅ 31 Xray configs found |
 | [customv2ray](https://t.me/s/customv2ray) | SS, Vless, Vmess | ✅ 28 Xray configs found |
-| [IP_CF_Config](https://t.me/s/IP_CF_Config) | SS, Trojan, Vless, Vmess | ✅ 28 Xray configs found |
 | [oneclickvpnkeys](https://t.me/s/oneclickvpnkeys) | SS, Trojan, Vless, Vmess | ✅ 28 Xray configs found |
+| [IP_CF_Config](https://t.me/s/IP_CF_Config) | SS, Trojan, Vless, Vmess | ✅ 27 Xray configs found |
 | [v2rayvpn2](https://t.me/s/v2rayvpn2) | SS, Vless | ✅ 26 Xray configs found |
 | [V2rayi_net](https://t.me/s/V2rayi_net) | SS, Vless | ✅ 24 Xray configs found |
 | [icv2ray](https://t.me/s/icv2ray) | Hy2, SS, Trojan, Vless | ✅ 23 Xray configs found |
