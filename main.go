@@ -22,10 +22,10 @@ import (
 )
 
 type ChannelReport struct {
-	Name    string
-	Count   int
-	Status  string
-	Message string
+	Name      string
+	Protocols []string
+	Count     int
+	Message   string
 }
 
 var (
@@ -33,11 +33,11 @@ var (
 	maxLimit = 200
 	db       *geoip2.Reader
 	myregex  = map[string]string{
-		"ss":     `ss://[A-Za-z0-9./:=?#-_@!%]+`,
-		"vmess":  `vmess://[A-Za-z0-9./:=?#-_@!%]+`,
-		"trojan": `trojan://[A-Za-z0-9./:=?#-_@!%]+`,
-		"vless":  `vless://[A-Za-z0-9./:=?#-_@!%]+`,
-		"hy2":    `hysteria2://[A-Za-z0-9./:=?#-_@!%]+`,
+		"SS":     `ss://[A-Za-z0-9./:=?#-_@!%]+`,
+		"Vmess":  `vmess://[A-Za-z0-9./:=?#-_@!%]+`,
+		"Trojan": `trojan://[A-Za-z0-9./:=?#-_@!%]+`,
+		"Vless":  `vless://[A-Za-z0-9./:=?#-_@!%]+`,
+		"Hy2":    `hysteria2://[A-Za-z0-9./:=?#-_@!%]+`,
 	}
 )
 
@@ -48,45 +48,39 @@ func main() {
 	flag.Parse()
 
 	db, _ = geoip2.Open("Country.mmdb")
-	
 	rawChannels, err := loadChannelsFromCSV("channels.csv")
 	if err != nil {
 		gologger.Fatal().Msg("CSV Error: " + err.Error())
 	}
-	
-	// Deduplicate in memory
 	channels := removeDuplicates(rawChannels)
 
 	rawConfigs := make(map[string][]string)
-	protocols := []string{"ss", "vmess", "trojan", "vless", "hy2"}
-	for _, p := range protocols {
+	for p := range myregex {
 		rawConfigs[p] = []string{}
 	}
 
 	var reports []ChannelReport
 	totalRaw := 0
 
-	gologger.Info().Msgf("🚀 Starting Engine... (Processing %d unique channels)", len(channels))
+	gologger.Info().Msgf("🚀 Starting Engine... (Processing %d unique sources)", len(channels))
 	
 	for i, channelURL := range channels {
 		uParts := strings.Split(strings.TrimSuffix(channelURL, "/"), "/")
 		channelName := uParts[len(uParts)-1]
 		
-		gologger.Info().Msgf("[%d/%d] Scraping: %s", i+1, len(channels), channelName)
-		
-		report := ChannelReport{Name: channelName, Status: "✅ Active", Message: "Found configs"}
+		gologger.Info().Msgf("[%d/%d] Analyzing: %s", i+1, len(channels), channelName)
+		report := ChannelReport{Name: channelName, Protocols: []string{}}
 		
 		req, _ := http.NewRequest("GET", "https://t.me/s/"+channelName, nil)
 		req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
 		
 		resp, err := client.Do(req)
 		if err != nil {
-			report.Status, report.Message = "❌ Error", "Timeout"
+			report.Message = "❌ Connection Timeout"
 			reports = append(reports, report); continue
 		}
-
 		if resp.StatusCode == 404 {
-			report.Status, report.Message = "🚫 Dead", "Not Found"
+			report.Message = "🚫 Channel Not Found"
 			reports = append(reports, report); resp.Body.Close(); continue
 		}
 
@@ -97,22 +91,41 @@ func main() {
 		doc.Find(".tgme_widget_message_wrap").Each(func(i int, s *goquery.Selection) { msgCount++ })
 
 		if msgCount == 0 {
-			report.Status, report.Message = "🔒 Private", "Private or Restricted"
+			report.Message = "🔒 Private/Restricted"
 		} else {
-			count := 0
+			foundProtos := make(map[string]bool)
+			hasAlt := false
+			
 			doc.Find(".tgme_widget_message_text").Each(func(j int, s *goquery.Selection) {
-				for proto, reg := range myregex {
+				text := s.Text()
+				for pName, reg := range myregex {
 					re := regexp.MustCompile(reg)
-					matches := re.FindAllString(s.Text(), -1)
-					for _, m := range matches {
-						rawConfigs[proto] = append(rawConfigs[proto], m)
-						count++
+					matches := re.FindAllString(text, -1)
+					if len(matches) > 0 {
+						foundProtos[pName] = true
+						rawConfigs[pName] = append(rawConfigs[pName], matches...)
+						report.Count += len(matches)
 					}
 				}
+				lowText := strings.ToLower(text)
+				if strings.Contains(lowText, "tg:proxy") || strings.Contains(lowText, ".npv2") || 
+				   strings.Contains(lowText, ".sks") || strings.Contains(lowText, "mtproto") {
+					hasAlt = true
+				}
 			})
-			report.Count = count
-			if count == 0 { 
-				report.Status, report.Message = "⚠️ Inactive", "No links in batch" 
+			
+			for p := range foundProtos {
+				report.Protocols = append(report.Protocols, p)
+			}
+			sort.Strings(report.Protocols)
+
+			if report.Count > 0 {
+				report.Message = fmt.Sprintf("✅ %d Xray configs found", report.Count)
+			} else if hasAlt {
+				report.Protocols = append(report.Protocols, "MTProto/Files")
+				report.Message = "📂 Active (Non-Xray content)"
+			} else {
+				report.Message = "💤 No recent configs found"
 			}
 		}
 		totalRaw += report.Count
@@ -122,30 +135,26 @@ func main() {
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
 
-	// NEW: Report generation with hyperlinks
 	finalMarkdown := generateReports(reports, totalRaw)
 	_ = os.WriteFile("summary.md", []byte(finalMarkdown), 0644)
 	_ = os.WriteFile("report.md", []byte(finalMarkdown), 0644)
 
-	// Testing and Saving
-	for _, proto := range protocols {
-		gologger.Info().Msgf("🧪 Testing %s configs...", strings.ToUpper(proto))
-		healthy := fastPingTest(removeDuplicates(rawConfigs[proto]))
+	// Ping Test and Save (unchanged logic)
+	for p := range myregex {
+		healthy := fastPingTest(removeDuplicates(rawConfigs[p]))
 		limit := len(healthy)
 		if limit > maxLimit { limit = maxLimit }
-		saveToFile(proto+"_iran.txt", healthy[:limit])
+		saveToFile(strings.ToLower(p)+"_iran.txt", healthy[:limit])
 	}
 	
 	var allMixed []string
-	for _, p := range protocols {
+	for p := range myregex {
 		allMixed = append(allMixed, rawConfigs[p]...)
 	}
 	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
 
-	gologger.Info().Msg("✨ Reports generated and configs updated.")
+	gologger.Info().Msg("✨ Tribute report and configs generated.")
 }
-
-// --- Hyperlinked Report Logic ---
 
 func generateReports(reports []ChannelReport, total int) string {
 	utcNow := time.Now().UTC()
@@ -154,20 +163,21 @@ func generateReports(reports []ChannelReport, total int) string {
 	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
 
 	var sb strings.Builder
-	sb.WriteString("# 📊 Collector Diagnostic Report\n\n")
-	sb.WriteString("### 🕒 Generation Time\n")
+	sb.WriteString("# 💠 Xray Source Tribute & Report\n\n")
+	sb.WriteString("This page is a tribute to the channel admins providing free configurations. Data is updated every 2 hours.\n\n")
+	sb.WriteString("### 🕒 Last Update\n")
 	sb.WriteString(fmt.Sprintf("- **Tehran:** `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
 	sb.WriteString(fmt.Sprintf("- **International:** `%s`\n", tehranNow.Format("Monday, 02 Jan 2006")))
-	sb.WriteString(fmt.Sprintf("- **UTC:** `%s`\n\n", utcNow.Format("15:04:05")))
 	
-	sb.WriteString(fmt.Sprintf("### ⚡ Statistics\n- Total Raw Configs Found: `%d`\n\n", total))
+	sb.WriteString(fmt.Sprintf("\n### ⚡ Global Stats\n- **Total Working Configs Harvested:** `%d`\n\n", total))
 	
-	sb.WriteString("| Channel Name | Status | Qty | Diagnostic |\n")
-	sb.WriteString("| :--- | :---: | :---: | :--- |\n")
+	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
+	sb.WriteString("| :--- | :--- | :--- |\n")
 	for _, r := range reports {
-		// Hyperlink added here: [Name](URL)
 		channelLink := fmt.Sprintf("[%s](https://t.me/s/%s)", r.Name, r.Name)
-		sb.WriteString(fmt.Sprintf("| %s | %s | %d | %s |\n", channelLink, r.Status, r.Count, r.Message))
+		protos := strings.Join(r.Protocols, ", ")
+		if protos == "" { protos = "—" }
+		sb.WriteString(fmt.Sprintf("| %s | %s | %s |\n", channelLink, protos, r.Message))
 	}
 	return sb.String()
 }
@@ -184,8 +194,6 @@ func toJalali(gy, gm, gd int) (int, int, int) {
 	if days < 186 { jm = 1 + days/31; jd = 1 + days%31 } else { jm = 7 + (days-186)/30; jd = 1 + (days-186)%30 }
 	return jy, jm, jd
 }
-
-// --- Helpers ---
 
 func loadChannelsFromCSV(p string) ([]string, error) {
 	f, err := os.Open(p); if err != nil { return nil, err }; defer f.Close()
