@@ -36,6 +36,10 @@ var (
 
 func main() {
 	gologger.DefaultLogger.SetMaxLevel(levels.LevelDebug)
+	
+	// FIX: Added the missing flags that your GitHub Action is sending
+	_ = flag.Bool("sort", false, "sort configs") 
+	_ = flag.String("p", "", "unused platform flag")
 	flag.Parse()
 
 	// 1. Load GeoIP Database
@@ -47,7 +51,7 @@ func main() {
 		defer db.Close()
 	}
 
-	// 2. Load Channels using built-in CSV logic
+	// 2. Load Channels
 	channels, err := loadChannelsFromCSV("channels.csv")
 	if err != nil {
 		gologger.Fatal().Msg("Could not read channels.csv: " + err.Error())
@@ -97,23 +101,22 @@ func main() {
 		totalFound += countForThisChannel
 		gologger.Info().Msgf("✅ Scraped %d configs from [%s]", countForThisChannel, channelName)
 		
-		// Anti-ban delay
 		time.Sleep(1200 * time.Millisecond)
 	}
 
-	// 4. Print Summary to GitHub Logs
+	// 4. Print Summary
 	printFinalReport(channelStats, totalFound)
 
 	// 5. Test and Save
 	var allHealthyConfigs []string
-	for proto, configs := range rawConfigs {
+	for _, proto := range protocols {
+		configs := rawConfigs[proto]
 		uniqueConfigs := removeDuplicates(configs)
 		gologger.Info().Msgf("🧪 Testing %d unique %s configs...", len(uniqueConfigs), strings.ToUpper(proto))
 		
 		healthy := fastPingTest(uniqueConfigs)
 		allHealthyConfigs = append(allHealthyConfigs, healthy...)
 
-		// Save categorized (Top 200)
 		limit := len(healthy)
 		if limit > maxLimit {
 			limit = maxLimit
@@ -121,12 +124,11 @@ func main() {
 		saveToFile(proto+"_iran.txt", healthy[:limit])
 	}
 
-	// Save Unlimited Mixed
 	saveToFile("mixed_iran.txt", allHealthyConfigs)
-	gologger.Info().Msg("✨ Task completed successfully. Configs updated.")
+	gologger.Info().Msg("✨ Task completed successfully.")
 }
 
-// --- Helper Functions ---
+// --- Helpers (Same as before but integrated) ---
 
 func loadChannelsFromCSV(filename string) ([]string, error) {
 	f, err := os.Open(filename)
@@ -143,9 +145,8 @@ func loadChannelsFromCSV(filename string) ([]string, error) {
 			break
 		}
 		if err != nil {
-			return nil, err
+			continue // Skip bad lines
 		}
-		// Assuming URL is in the first column
 		if len(record) > 0 && strings.HasPrefix(record[0], "http") {
 			channels = append(channels, strings.TrimSpace(record[0]))
 		}
@@ -186,11 +187,11 @@ func checkTCP(config string) bool {
 	host := u.Hostname()
 	port := u.Port()
 	if port == "" {
-		port = "443" // Default for most TLS configs
+		port = "443"
 	}
 	
 	address := net.JoinHostPort(host, port)
-	conn, err := net.DialTimeout("tcp", address, 3*time.Second)
+	conn, err := net.DialTimeout("tcp", address, 2*time.Second)
 	if err != nil {
 		return false
 	}
@@ -242,17 +243,14 @@ func printFinalReport(stats map[string]int, total int) {
 	fmt.Println("\n" + strings.Repeat("=", 45))
 	fmt.Println("📊 TELEGRAM SCRAPER SUMMARY")
 	fmt.Println(strings.Repeat("-", 45))
-	
 	keys := make([]string, 0, len(stats))
 	for k := range stats {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
-
 	for _, name := range keys {
 		fmt.Printf("%-25s : %d\n", name, stats[name])
 	}
-	fmt.Println(strings.Repeat("-", 45))
-	fmt.Printf("TOTAL RAW CONFIGS FOUND: %d\n", total)
+	fmt.Printf("TOTAL FOUND: %d\n", total)
 	fmt.Println(strings.Repeat("=", 45) + "\n")
 }
