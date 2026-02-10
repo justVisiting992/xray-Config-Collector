@@ -19,7 +19,7 @@ import (
 	"github.com/oschwald/geoip2-golang"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
-	"main.go/collector"
+	"github.com/justVisiting992/xray-Config-Collector/collector"
 )
 
 type ChannelsType struct {
