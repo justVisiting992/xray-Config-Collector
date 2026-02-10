@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"encoding/csv"
 	"flag"
 	"fmt"
@@ -43,13 +42,13 @@ func main() {
 	var err error
 	db, err = geoip2.Open("Country.mmdb")
 	if err != nil {
-		gologger.Warning().Msg("GeoIP database not found. Labels will be generic.")
+		gologger.Warning().Msg("Country.mmdb not found. IP labeling will be skipped.")
 	} else {
 		defer db.Close()
 	}
 
-	// 2. Load Channels manually (No external CSV lib needed)
-	channels, err := loadChannels("channels.csv")
+	// 2. Load Channels using built-in CSV logic
+	channels, err := loadChannelsFromCSV("channels.csv")
 	if err != nil {
 		gologger.Fatal().Msg("Could not read channels.csv: " + err.Error())
 	}
@@ -64,7 +63,7 @@ func main() {
 	totalFound := 0
 
 	// 3. Scraper Engine
-	gologger.Info().Msg("Starting Scraper Engine...")
+	gologger.Info().Msg("🚀 Starting Scraper Engine...")
 	for _, channelURL := range channels {
 		uParts := strings.Split(strings.TrimSuffix(channelURL, "/"), "/")
 		channelName := uParts[len(uParts)-1]
@@ -74,7 +73,7 @@ func main() {
 		resp, err := client.Do(req)
 		
 		if err != nil || resp.StatusCode != 200 {
-			gologger.Error().Msgf("Failed: %s", channelName)
+			gologger.Error().Msgf("Failed to reach: %s", channelName)
 			continue
 		}
 		
@@ -96,34 +95,41 @@ func main() {
 		
 		channelStats[channelName] = countForThisChannel
 		totalFound += countForThisChannel
-		gologger.Info().Msgf("Collected %d from [%s]", countForThisChannel, channelName)
+		gologger.Info().Msgf("✅ Scraped %d configs from [%s]", countForThisChannel, channelName)
+		
+		// Anti-ban delay
 		time.Sleep(1200 * time.Millisecond)
 	}
 
-	// 4. Print Summary
-	printSummary(channelStats, totalFound)
+	// 4. Print Summary to GitHub Logs
+	printFinalReport(channelStats, totalFound)
 
-	// 5. Test & Save
+	// 5. Test and Save
 	var allHealthyConfigs []string
 	for proto, configs := range rawConfigs {
 		uniqueConfigs := removeDuplicates(configs)
+		gologger.Info().Msgf("🧪 Testing %d unique %s configs...", len(uniqueConfigs), strings.ToUpper(proto))
+		
 		healthy := fastPingTest(uniqueConfigs)
 		allHealthyConfigs = append(allHealthyConfigs, healthy...)
 
+		// Save categorized (Top 200)
 		limit := len(healthy)
 		if limit > maxLimit {
 			limit = maxLimit
 		}
 		saveToFile(proto+"_iran.txt", healthy[:limit])
 	}
+
+	// Save Unlimited Mixed
 	saveToFile("mixed_iran.txt", allHealthyConfigs)
-	gologger.Info().Msg("Success! Files updated.")
+	gologger.Info().Msg("✨ Task completed successfully. Configs updated.")
 }
 
-// --- Logic Helpers ---
+// --- Helper Functions ---
 
-func loadChannels(path string) ([]string, error) {
-	f, err := os.Open(path)
+func loadChannelsFromCSV(filename string) ([]string, error) {
+	f, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +137,6 @@ func loadChannels(path string) ([]string, error) {
 
 	var channels []string
 	reader := csv.NewReader(f)
-	// Skip header if necessary, but here we assume first col is URL
 	for {
 		record, err := reader.Read()
 		if err == io.EOF {
@@ -140,8 +145,9 @@ func loadChannels(path string) ([]string, error) {
 		if err != nil {
 			return nil, err
 		}
+		// Assuming URL is in the first column
 		if len(record) > 0 && strings.HasPrefix(record[0], "http") {
-			channels = append(channels, record[0])
+			channels = append(channels, strings.TrimSpace(record[0]))
 		}
 	}
 	return channels, nil
@@ -160,9 +166,8 @@ func fastPingTest(configs []string) []string {
 			sem <- struct{}{}
 			defer func() { <-sem }()
 
-			// Simple TCP Check
-			if isHealthy(c) {
-				labeled := labelConfig(c, idx+1)
+			if checkTCP(c) {
+				labeled := labelWithGeo(c, idx+1)
 				mu.Lock()
 				healthy = append(healthy, labeled)
 				mu.Unlock()
@@ -173,7 +178,7 @@ func fastPingTest(configs []string) []string {
 	return healthy
 }
 
-func isHealthy(config string) bool {
+func checkTCP(config string) bool {
 	u, err := url.Parse(config)
 	if err != nil {
 		return false
@@ -181,8 +186,9 @@ func isHealthy(config string) bool {
 	host := u.Hostname()
 	port := u.Port()
 	if port == "" {
-		port = "443"
+		port = "443" // Default for most TLS configs
 	}
+	
 	address := net.JoinHostPort(host, port)
 	conn, err := net.DialTimeout("tcp", address, 3*time.Second)
 	if err != nil {
@@ -192,7 +198,7 @@ func isHealthy(config string) bool {
 	return true
 }
 
-func labelConfig(config string, index int) string {
+func labelWithGeo(config string, index int) string {
 	u, _ := url.Parse(config)
 	host := u.Hostname()
 	country := "🏴 Dynamic"
@@ -216,29 +222,37 @@ func labelConfig(config string, index int) string {
 	return u.String()
 }
 
-func removeDuplicates(s []string) []string {
-	m := make(map[string]bool)
-	var res []string
-	for _, v := range s {
-		if !m[v] {
-			m[v] = true
-			res = append(res, v)
+func removeDuplicates(slice []string) []string {
+	keys := make(map[string]bool)
+	var list []string
+	for _, entry := range slice {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
 		}
 	}
-	return res
+	return list
 }
 
-func saveToFile(name string, data []string) {
-	os.WriteFile(name, []byte(strings.Join(data, "\n")), 0644)
+func saveToFile(filename string, configs []string) {
+	_ = os.WriteFile(filename, []byte(strings.Join(configs, "\n")), 0644)
 }
 
-func printSummary(stats map[string]int, total int) {
+func printFinalReport(stats map[string]int, total int) {
 	fmt.Println("\n" + strings.Repeat("=", 45))
 	fmt.Println("📊 TELEGRAM SCRAPER SUMMARY")
 	fmt.Println(strings.Repeat("-", 45))
-	for name, count := range stats {
-		fmt.Printf("%-25s : %d\n", name, count)
+	
+	keys := make([]string, 0, len(stats))
+	for k := range stats {
+		keys = append(keys, k)
 	}
-	fmt.Printf("TOTAL FOUND: %d\n", total)
+	sort.Strings(keys)
+
+	for _, name := range keys {
+		fmt.Printf("%-25s : %d\n", name, stats[name])
+	}
+	fmt.Println(strings.Repeat("-", 45))
+	fmt.Printf("TOTAL RAW CONFIGS FOUND: %d\n", total)
 	fmt.Println(strings.Repeat("=", 45) + "\n")
 }
