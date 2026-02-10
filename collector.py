@@ -5,73 +5,70 @@ import time
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
 
-# Load credentials from GitHub Secrets
+# Credentials
 api_id = int(os.environ['TELEGRAM_API_ID'])
 api_hash = os.environ['TELEGRAM_API_HASH']
 session_str = os.environ['TELEGRAM_SESSION_STRING']
 
-# Protocols to search for
-regex = r"(vless|vmess|trojan|ss|hysteria2)://[A-Za-z0-9./:=?#-_@!%]+"
+# ULTRA-GREEDY REGEX: If it starts with a protocol, we take it.
+regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s'\"<>\(\)\[\]]+"
 
 def get_channels():
     channel_names = []
     try:
         with open('channels.csv', mode='r', encoding='utf-8') as f:
-            reader = csv.reader(f)
-            next(reader) # Skip header
-            for row in reader:
-                if row:
-                    url = row[0].strip().rstrip('/')
-                    username = url.split('/')[-1]
-                    if username:
-                        channel_names.append(username)
+            for line in f:
+                line = line.strip()
+                # Skip header or empty lines
+                if not line or "URL,AllMessagesFlag" in line:
+                    continue
+                # Extract username: works for 'https://t.me/name' or 'name,false'
+                part = line.split(',')[0].strip()
+                username = part.split('/')[-1].replace('@', '')
+                if username:
+                    channel_names.append(username)
     except Exception as e:
-        print(f"❌ Error reading CSV: {e}")
-    return list(set(channel_names))
+        print(f"❌ CSV Read Error: {e}")
+    return list(dict.fromkeys(channel_names)) # Unique while preserving order
 
 channels = get_channels()
-
-print(f"🚀 Starting Hybrid Scout. Safety Cap: 100 posts/channel.")
+print(f"📡 Found {len(channels)} targets in CSV. Starting Engine...")
 
 with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
     all_links = set()
     
     for target in channels:
-        print(f"📡 Scrutinizing: {target}")
+        print(f"🔍 Checking: {target}...", end=" ", flush=True)
+        count_before = len(all_links)
         try:
-            # Safe Cap: 100 messages. This is deep enough to catch 
-            # everything from the last 24-48 hours usually.
-            for message in client.iter_messages(target, limit=100):
-                # 1. Check text
-                if message.text:
-                    found = re.findall(regex, message.text, re.IGNORECASE)
-                    for link in found:
-                        all_links.add(link)
+            # We use limit=200. Captions + Text + Files.
+            for message in client.iter_messages(target, limit=200):
+                content = ""
+                if message.text: content += message.text + " "
+                if message.caption: content += message.caption
                 
-                # 2. Check inside files (.txt or .json)
-                if message.file and (message.file.ext in ['.txt', '.json']):
+                # Scrape text/caption
+                if content:
+                    matches = re.findall(regex, content, re.IGNORECASE)
+                    for m in matches: all_links.add(m.strip())
+                
+                # Scrape files
+                if message.file and any(ext in (message.file.ext or "").lower() for ext in ['.txt', '.json', '.conf']):
                     try:
                         path = client.download_media(message)
                         with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-                            content = f.read()
-                            found_in_file = re.findall(regex, content, re.IGNORECASE)
-                            for link in found_in_file:
-                                all_links.add(link)
+                            f_matches = re.findall(regex, f.read(), re.IGNORECASE)
+                            for m in f_matches: all_links.add(m.strip())
                         os.remove(path)
-                    except:
-                        continue
+                    except: continue
             
-            # Safety breather: 1 second delay between channels
-            time.sleep(1) 
+            print(f"Found {len(all_links) - count_before} new.")
+            time.sleep(0.3) 
             
         except Exception as e:
-            print(f"⚠️ Skipped {target}: {e}")
-            # If we hit a FloodWait error, the script will tell us here
-            if "flood" in str(e).lower():
-                print("🛑 Telegram is rate-limiting us. Stopping for safety.")
-                break
+            print(f"Error: {str(e)[:50]}")
 
     with open('raw_collected.txt', 'w', encoding='utf-8') as f:
         f.write('\n'.join(all_links))
     
-    print(f"✅ Finished. Found {len(all_links)} links.")
+    print(f"🏁 TOTAL UNIQUE LINKS HARVESTED: {len(all_links)}")
