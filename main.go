@@ -7,7 +7,6 @@ import (
 	"net"
 	"net/url"
 	"os"
-	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -16,12 +15,6 @@ import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
 )
-
-type ChannelReport struct {
-	Name      string
-	Protocols []string
-	Count     int
-}
 
 var (
 	maxLimit = 200
@@ -71,6 +64,7 @@ func main() {
 
 	for _, p := range protos {
 		if len(rawConfigs[p]) > 0 {
+			gologger.Info().Msgf("🧪 Testing %s configs...", strings.ToUpper(p))
 			healthy := fastPingTest(rawConfigs[p])
 			limit := len(healthy)
 			if limit > maxLimit { limit = maxLimit }
@@ -78,7 +72,7 @@ func main() {
 		}
 	}
 
-	// 3. Final Report Generation (Tribute Style)
+	// 3. Final Report Generation
 	generateTributeReport(len(allRawLinks))
 	
 	gologger.Info().Msg("✨ Hybrid Processing Complete.")
@@ -109,8 +103,12 @@ func labelWithGeo(config string, index int) string {
 	u, _ := url.Parse(config)
 	country := "🏴 Dynamic"
 	if db != nil {
-		ip := net.ParseIP(u.Hostname())
-		if ip == nil { ips, _ := net.LookupIP(u.Hostname()); if len(ips) > 0 { ip = ips[0] } }
+		host := u.Hostname()
+		ip := net.ParseIP(host)
+		if ip == nil { 
+			ips, _ := net.LookupIP(host)
+			if len(ips) > 0 { ip = ips[0] } 
+		}
 		if ip != nil {
 			record, _ := db.Country(ip)
 			if record != nil && record.Country.Names["en"] != "" { country = record.Country.Names["en"] }
@@ -124,12 +122,12 @@ func generateTributeReport(total int) {
 	now := time.Now().Format("2006-01-02 15:04:05")
 	var sb strings.Builder
 	sb.WriteString("# 💠 Xray Source Tribute & Report\n\n")
-	sb.WriteString("A tribute to the admins providing free configs. Updated every 2 hours.\n\n")
+	sb.WriteString("A tribute to the admins providing free configs. Updated via Hybrid Scout.\n\n")
 	sb.WriteString(fmt.Sprintf("- **Last Update:** `%s` UTC\n", now))
 	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d`\n\n", total))
-	sb.WriteString("| Source Channel | Protocols Found | Status |\n")
-	sb.WriteString("| :--- | :--- | :--- |\n")
-	sb.WriteString("| *Consolidated Hybrid Data* | Vless, Vmess, Trojan, SS, Hy2 | ✅ Active |\n")
+	sb.WriteString("| Source | Status |\n")
+	sb.WriteString("| :--- | :--- |\n")
+	sb.WriteString("| Telegram API Scout | ✅ Active |\n")
 	
 	_ = os.WriteFile("report.md", []byte(sb.String()), 0644)
 }
