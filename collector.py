@@ -79,31 +79,4 @@ with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
 # Check final file size
 if os.path.exists('raw_collected.txt'):
     size = os.path.getsize('raw_collected.txt')
-    print(f"🏁 Final File Size: {size} bytes")                        all_links.add(l.strip())
-                        current_channel_count += 1
-                
-                # 2. Extract from Files
-                if m.file and any(ext in (m.file.ext or "").lower() for ext in ['.txt', '.json']):
-                    try:
-                        path = client.download_media(m)
-                        with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-                            file_links = re.findall(regex, f.read(), re.IGNORECASE)
-                            for l in file_links:
-                                all_links.add(l.strip())
-                                current_channel_count += 1
-                        os.remove(path)
-                    except: continue
-            
-            print(f"Done (+{current_channel_count})")
-            time.sleep(1)
-
-        except Exception as e:
-            print(f"Skipped: {type(e).__name__}")
-
-    # THE CRITICAL SAVE: Write the master vault to file
-    with open('raw_collected.txt', 'w', encoding='utf-8') as f:
-        # Filter out empty lines and sort for cleanliness
-        clean_list = [l for l in all_links if len(l) > 10] 
-        f.write('\n'.join(clean_list))
-
-print(f"🏁 Final Master Harvest Total: {len(all_links)}")
+    print(f"🏁 Final File Size: {size} bytes")
