@@ -1,9 +1,9 @@
 # 📊 Collector Diagnostic Report
 
 ### 🕒 Generation Time
-- **Tehran:** 1404/11/22 | 17:26:38
-- **International:** Tuesday, 10 Feb 2026
-- **UTC:** 13:56:38
+- **Tehran:** `1404/11/22` | `17:34:53`
+- **International:** `Tuesday, 10 Feb 2026`
+- **UTC:** `14:04:53`
 
 ### ⚡ Statistics
 - Total Raw Configs Found: `2170`
@@ -40,9 +40,9 @@
 | DeamNet_Proxy | ✅ Active | 33 | Found configs |
 | V2rayNg_madam | ✅ Active | 32 | Found configs |
 | vmess_iran | ✅ Active | 31 | Found configs |
-| oneclickvpnkeys | ✅ Active | 29 | Found configs |
+| IP_CF_Config | ✅ Active | 29 | Found configs |
 | customv2ray | ✅ Active | 28 | Found configs |
-| IP_CF_Config | ✅ Active | 28 | Found configs |
+| oneclickvpnkeys | ✅ Active | 28 | Found configs |
 | v2rayvpn2 | ✅ Active | 26 | Found configs |
 | V2rayi_net | ✅ Active | 24 | Found configs |
 | icv2ray | ✅ Active | 23 | Found configs |
@@ -78,27 +78,27 @@
 | Freedomnetir | ✅ Active | 2 | Found configs |
 | Awlix_ir | ✅ Active | 2 | Found configs |
 | shh_proxy | ⚠️ Inactive | 0 | No links in batch |
-| Romax_VPN | 🔒 Private | 0 | Private/Restricted |
+| Romax_VPN | 🔒 Private | 0 | Private or Restricted |
 | eliya_chiter0 | ⚠️ Inactive | 0 | No links in batch |
 | V_2rey | ⚠️ Inactive | 0 | No links in batch |
 | spdnet | ⚠️ Inactive | 0 | No links in batch |
-| V2rayCollectorDonate | 🔒 Private | 0 | Private/Restricted |
+| V2rayCollectorDonate | 🔒 Private | 0 | Private or Restricted |
 | forwardv2ray | ⚠️ Inactive | 0 | No links in batch |
-| URL | 🔒 Private | 0 | Private/Restricted |
-| v2rayNgg_iran | 🔒 Private | 0 | Private/Restricted |
-| https_config_injector | 🔒 Private | 0 | Private/Restricted |
+| URL | 🔒 Private | 0 | Private or Restricted |
+| v2rayNgg_iran | 🔒 Private | 0 | Private or Restricted |
+| https_config_injector | 🔒 Private | 0 | Private or Restricted |
 | OutlineVpnOfficial | ⚠️ Inactive | 0 | No links in batch |
 | ipV2Ray | ⚠️ Inactive | 0 | No links in batch |
 | ghalagyann | ⚠️ Inactive | 0 | No links in batch |
 | XpnTeam | ⚠️ Inactive | 0 | No links in batch |
 | V2RayTz | ⚠️ Inactive | 0 | No links in batch |
-| vpn_xw | 🔒 Private | 0 | Private/Restricted |
+| vpn_xw | 🔒 Private | 0 | Private or Restricted |
 | IRANVPNNET | ⚠️ Inactive | 0 | No links in batch |
 | UnlimitedDev | ⚠️ Inactive | 0 | No links in batch |
 | VPNwedbaz | ⚠️ Inactive | 0 | No links in batch |
 | proxyymeliii | ⚠️ Inactive | 0 | No links in batch |
 | SvnTeam | ⚠️ Inactive | 0 | No links in batch |
-| V2raysFree | 🔒 Private | 0 | Private/Restricted |
+| V2raysFree | 🔒 Private | 0 | Private or Restricted |
 | IRN_VPN | ⚠️ Inactive | 0 | No links in batch |
 | SEVEN_ping | ⚠️ Inactive | 0 | No links in batch |
 | meli_proxyy | ⚠️ Inactive | 0 | No links in batch |
@@ -118,7 +118,7 @@
 | moh3enivx | ⚠️ Inactive | 0 | No links in batch |
 | ultrasurf_12 | ⚠️ Inactive | 0 | No links in batch |
 | ServerNett | ⚠️ Inactive | 0 | No links in batch |
-| v2rayvpnchannel | 🔒 Private | 0 | Private/Restricted |
+| v2rayvpnchannel | 🔒 Private | 0 | Private or Restricted |
 | IraneAzad_Net | ⚠️ Inactive | 0 | No links in batch |
 | VPN_SOLVE | ⚠️ Inactive | 0 | No links in batch |
 | v2rayngvpn | ⚠️ Inactive | 0 | No links in batch |
