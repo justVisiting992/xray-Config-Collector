@@ -49,11 +49,12 @@ func main() {
 
 	db, _ = geoip2.Open("Country.mmdb")
 	
-	// 1. Load and UNIQUE-ify channels
 	rawChannels, err := loadChannelsFromCSV("channels.csv")
 	if err != nil {
 		gologger.Fatal().Msg("CSV Error: " + err.Error())
 	}
+	
+	// Deduplicate in memory
 	channels := removeDuplicates(rawChannels)
 
 	rawConfigs := make(map[string][]string)
@@ -65,13 +66,13 @@ func main() {
 	var reports []ChannelReport
 	totalRaw := 0
 
-	gologger.Info().Msgf("🚀 Starting Smart Scraper Engine... (Processing %d unique channels)", len(channels))
+	gologger.Info().Msgf("🚀 Starting Engine... (Processing %d unique channels)", len(channels))
 	
 	for i, channelURL := range channels {
 		uParts := strings.Split(strings.TrimSuffix(channelURL, "/"), "/")
 		channelName := uParts[len(uParts)-1]
 		
-		gologger.Info().Msgf("[%d/%d] Working on: %s", i+1, len(channels), channelName)
+		gologger.Info().Msgf("[%d/%d] Scraping: %s", i+1, len(channels), channelName)
 		
 		report := ChannelReport{Name: channelName, Status: "✅ Active", Message: "Found configs"}
 		
@@ -121,11 +122,14 @@ func main() {
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
 
+	// NEW: Report generation with hyperlinks
 	finalMarkdown := generateReports(reports, totalRaw)
 	_ = os.WriteFile("summary.md", []byte(finalMarkdown), 0644)
 	_ = os.WriteFile("report.md", []byte(finalMarkdown), 0644)
 
+	// Testing and Saving
 	for _, proto := range protocols {
+		gologger.Info().Msgf("🧪 Testing %s configs...", strings.ToUpper(proto))
 		healthy := fastPingTest(removeDuplicates(rawConfigs[proto]))
 		limit := len(healthy)
 		if limit > maxLimit { limit = maxLimit }
@@ -141,7 +145,7 @@ func main() {
 	gologger.Info().Msg("✨ Reports generated and configs updated.")
 }
 
-// --- Report & Time Logic ---
+// --- Hyperlinked Report Logic ---
 
 func generateReports(reports []ChannelReport, total int) string {
 	utcNow := time.Now().UTC()
@@ -161,7 +165,9 @@ func generateReports(reports []ChannelReport, total int) string {
 	sb.WriteString("| Channel Name | Status | Qty | Diagnostic |\n")
 	sb.WriteString("| :--- | :---: | :---: | :--- |\n")
 	for _, r := range reports {
-		sb.WriteString(fmt.Sprintf("| %s | %s | %d | %s |\n", r.Name, r.Status, r.Count, r.Message))
+		// Hyperlink added here: [Name](URL)
+		channelLink := fmt.Sprintf("[%s](https://t.me/s/%s)", r.Name, r.Name)
+		sb.WriteString(fmt.Sprintf("| %s | %s | %d | %s |\n", channelLink, r.Status, r.Count, r.Message))
 	}
 	return sb.String()
 }
@@ -179,7 +185,7 @@ func toJalali(gy, gm, gd int) (int, int, int) {
 	return jy, jm, jd
 }
 
-// --- Standard Helpers ---
+// --- Helpers ---
 
 func loadChannelsFromCSV(p string) ([]string, error) {
 	f, err := os.Open(p); if err != nil { return nil, err }; defer f.Close()
@@ -190,7 +196,6 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 		if len(row) > 0 { 
 			cleaned := strings.TrimSpace(row[0])
 			if cleaned != "" && strings.HasPrefix(cleaned, "http") {
-				// Normalize: remove trailing slashes
 				u = append(u, strings.TrimSuffix(cleaned, "/")) 
 			}
 		} 
