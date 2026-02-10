@@ -1,4 +1,4 @@
-module github.com/mrvcoder/V2rayCollector
+module github.com/justVisiting992/xray-Config-Collector
 
 go 1.22.0
 
