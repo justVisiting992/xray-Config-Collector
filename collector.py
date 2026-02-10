@@ -4,15 +4,15 @@ import csv
 import time
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
-from telethon.tl.functions.messages import CheckChatInviteRequest
+from telethon.tl.functions.channels import JoinChannelRequest
 
 # Credentials
 api_id = int(os.environ['TELEGRAM_API_ID'])
 api_hash = os.environ['TELEGRAM_API_HASH']
 session_str = os.environ['TELEGRAM_SESSION_STRING']
 
-# The most aggressive regex possible
-regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s'\"<>\(\)\[\]]+"
+# Regex: Greedily capture everything starting with protocol until whitespace or end of line
+regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s]+"
 
 def get_channels():
     channel_names = []
@@ -40,22 +40,31 @@ with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
         print(f"🔍 Scanning: {target}...", end=" ", flush=True)
         count_before = len(all_links)
         try:
-            # Force the client to "recognize" the channel first
+            # 1. Get the channel entity
             entity = client.get_entity(target)
             
-            for message in client.iter_messages(entity, limit=100):
-                # Check Text & Captions
-                content = message.text or ""
+            # 2. Try to pull messages
+            messages = client.get_messages(entity, limit=100)
+            
+            # 3. If zero messages, try to JOIN the channel automatically
+            if not messages:
+                print("(Empty/Join Required)...", end=" ")
+                client(JoinChannelRequest(entity))
+                time.sleep(2) # Wait for join to propagate
+                messages = client.get_messages(entity, limit=100)
+
+            for message in messages:
+                # Text/Caption check
+                content = message.message or "" # Use .message for raw text
                 if not content and message.media:
-                    # Fallback for older Telethon versions or specific media types
                     content = getattr(message, 'caption', "") or ""
 
                 if content:
-                    matches = re.findall(regex, content, re.IGNORECASE)
-                    for m in matches:
+                    found = re.findall(regex, content, re.IGNORECASE)
+                    for m in found:
                         all_links.add(m.strip())
                 
-                # Check Files
+                # File check
                 if message.file and any(ext in (message.file.ext or "").lower() for ext in ['.txt', '.json']):
                     try:
                         path = client.download_media(message)
@@ -68,13 +77,13 @@ with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
                         continue
             
             print(f"Success! (+{len(all_links) - count_before})")
-            time.sleep(1) # Important: don't lower this or Telegram will block you
+            time.sleep(1) # Crucial to avoid FloodWait
             
         except Exception as e:
-            print(f"Failed. Reason: {type(e).__name__}")
+            print(f"Failed: {type(e).__name__}")
 
-    # Write to file
+    # Final Save
     with open('raw_collected.txt', 'w', encoding='utf-8') as f:
         f.write('\n'.join(all_links))
     
-    print(f"\n🏁 FINAL HARVEST: {len(all_links)} links saved to raw_collected.txt")
+    print(f"\n🏁 HARVEST COMPLETE: {len(all_links)} unique links found.")
