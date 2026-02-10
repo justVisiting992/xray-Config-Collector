@@ -1,6 +1,4 @@
-import os
-import re
-import time
+import os, re, time
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
 
@@ -9,7 +7,7 @@ api_id = int(os.environ['TELEGRAM_API_ID'])
 api_hash = os.environ['TELEGRAM_API_HASH']
 session_str = os.environ['TELEGRAM_SESSION_STRING']
 
-# The simple, greedy regex that worked before
+# The Regex that actually caught the 6000+
 regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s'\"<>\(\)\[\]]+"
 
 def get_channels():
@@ -21,40 +19,45 @@ def get_channels():
             if u: names.append(u)
     return list(dict.fromkeys(names))
 
+# 1. Start with a fresh file
+with open('raw_collected.txt', 'w', encoding='utf-8') as f:
+    f.write("")
+
 channels = get_channels()
-all_links = set() # THE MASTER VAULT
+total_found = 0
+
+print("🚀 STARTING HIGH-YIELD COLLECTOR...")
 
 with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
     for target in channels:
         print(f"📡 Scoping: {target}...", end=" ", flush=True)
-        count_before = len(all_links)
+        channel_links = []
         try:
-            # Reverting to the simple get_messages that worked
+            # Reverting to the high-limit fetch
             msgs = client.get_messages(target, limit=100)
             
-            for m in msgs:
-                # Get everything: message and caption
-                content = (m.message or "") + " " + (getattr(m, 'caption', "") or "")
+            if msgs:
+                for m in msgs:
+                    content = (m.message or "") + " " + (getattr(m, 'caption', "") or "")
+                    found = re.findall(regex, content, re.IGNORECASE)
+                    for l in found:
+                        channel_links.append(l.strip())
+            
+            # 2. PERSISTENCE: Save immediately if links found
+            if channel_links:
+                with open('raw_collected.txt', 'a', encoding='utf-8') as f:
+                    f.write('\n'.join(channel_links) + '\n')
                 
-                # Extract links
-                found = re.findall(regex, content, re.IGNORECASE)
-                for l in found:
-                    all_links.add(l.strip()) # .add() to a set handles deduplication automatically
-            
-            new_configs = len(all_links) - count_before
-            print(f"Done (+{new_configs})")
-            
+                count = len(channel_links)
+                total_found += count
+                print(f"Done (+{count})")
+            else:
+                print("0 found.")
+
         except Exception as e:
-            print(f"Skipped: {type(e).__name__}")
+            print(f"Bypassed: {type(e).__name__}")
         
-        time.sleep(0.5) # Minimum delay just to be safe
+        # 3. ANTI-GHOSTING: Slow down slightly to keep the session alive
+        time.sleep(2)
 
-# THE ONLY STEP THAT MATTERS: Writing the master vault to the file
-with open('raw_collected.txt', 'w', encoding='utf-8') as f:
-    if all_links:
-        f.write('\n'.join(all_links))
-        print(f"\n✅ SUCCESSFULLY WROTE {len(all_links)} LINKS TO raw_collected.txt")
-    else:
-        print("\n❌ ERROR: Vault is empty.")
-
-print(f"🏁 Final Harvest Total: {len(all_links)}")
+print(f"\n🏁 HARVEST COMPLETE. TOTAL IN FILE: {total_found}")
