@@ -1,0 +1,42 @@
+name: Collector
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */2 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '>=1.21.3'
+
+    - name: Download GeoIP Database
+      run: |
+        wget -q https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb -O Country.mmdb
+
+    - name: Build and run Collector
+      run: |
+          go mod init github.com/mrvcoder/V2rayCollector || true
+          go get github.com/oschwald/geoip2-golang
+          go get github.com/PuerkitoBio/goquery
+          go get github.com/jszwec/csvutil
+          go get github.com/projectdiscovery/gologger
+          go mod tidy
+          go build -o myapp
+          ./myapp -sort
+    
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add *.txt
+        git diff --quiet && git diff --staged --quiet || (git commit -m "✔️ $(date '+%Y-%m-%d %H:%M:%S') Collected" && git push origin main)
