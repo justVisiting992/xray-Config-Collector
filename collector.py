@@ -1,17 +1,14 @@
-import os
-import re
-import time
+import os, re, time
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
-from telethon.errors import FloodWaitError
 
 # Credentials
 api_id = int(os.environ['TELEGRAM_API_ID'])
 api_hash = os.environ['TELEGRAM_API_HASH']
 session_str = os.environ['TELEGRAM_SESSION_STRING']
 
-# Updated Regex to be extremely permissive
-regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s\"'<>]+"
+# The most "Nuclear" regex: Catch anything that looks like a protocol
+regex = r"(vless|vmess|trojan|ss|hy2|hysteria2)://[^\s'\"<>\(\)\[\]]+"
 
 def get_channels():
     names = []
@@ -25,38 +22,42 @@ def get_channels():
 channels = get_channels()
 all_links = set()
 
+print("🏥 STARTING DIAGNOSTIC SCAN...")
+
 with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
-    for target in channels:
-        print(f"📡 Scoping: {target}...", end=" ", flush=True)
-        channel_links = 0
+    for target in channels[:20]: # Only check first 20 for speed
+        print(f"🔍 Checking: {target}")
         try:
-            # removed JoinChannelRequest to avoid getting ghosted
-            # Using iter_messages which is more 'human' than get_messages
-            for m in client.iter_messages(target, limit=50):
+            # We use get_messages directly
+            msgs = client.get_messages(target, limit=10)
+            
+            if not msgs:
+                print(f"   ⚠️  ZERO messages returned. Telegram is ghosting this channel.")
+                continue
+
+            # DEBUG: Show us what the API actually sees
+            sample_text = msgs[0].message or "No text (Media?)"
+            print(f"   ✅ First message snippet: {sample_text[:50]}...")
+
+            for m in msgs:
                 content = (m.message or "") + " " + (getattr(m, 'caption', "") or "")
-                
-                if content:
-                    found = re.findall(regex, content, re.IGNORECASE)
-                    for l in found:
-                        if len(l) > 20: # Filtering out fragments
-                            all_links.add(l.strip())
-                            channel_links += 1
-
-            print(f"Done (+{channel_links})")
-            time.sleep(3) # Heavy sleep to prevent the '0' ghosting effect
-
-        except FloodWaitError as e:
-            print(f"Wait {e.seconds}s")
-            time.sleep(e.seconds)
+                found = re.findall(regex, content, re.IGNORECASE)
+                for l in found:
+                    all_links.add(l.strip())
+            
         except Exception as e:
-            print(f"Skip: {type(e).__name__}")
+            print(f"   ❌ API Error on {target}: {str(e)}")
+        
+        time.sleep(1)
 
-# FINAL DISK WRITE
-with open('raw_collected.txt', 'w', encoding='utf-8') as f:
-    if all_links:
-        f.write('\n'.join(all_links))
-    else:
-        # Emergency debug
-        f.write("DEBUG: NO LINKS FOUND")
+    # Force a physical write and check
+    print(f"\n💾 Attempting to write {len(all_links)} links to disk...")
+    with open('raw_collected.txt', 'w', encoding='utf-8') as f:
+        if all_links:
+            f.write('\n'.join(all_links))
+            f.flush()
+            os.fsync(f.fileno())
+        else:
+            f.write("EMPTY_DATA_CHECK")
 
-print(f"🏁 MASTER TOTAL: {len(all_links)}")
+print(f"🏁 Final Master Total: {len(all_links)}")
