@@ -10,33 +10,33 @@ api_id = int(os.environ['TELEGRAM_API_ID'])
 api_hash = os.environ['TELEGRAM_API_HASH']
 session_str = os.environ['TELEGRAM_SESSION_STRING']
 
-# Greediest Regex
-regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s'\"<>\(\)\[\]]+"
+# BROAD REGEX: Capture the protocol and EVERYTHING until a space, newline, or quote
+# This ensures we don't just get 'vless://' but the whole string.
+regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s\"'<>]+"
 
 def get_channels():
     names = []
-    with open('channels.csv', 'r') as f:
-        for line in f:
-            if "URL,AllMessagesFlag" in line or not line.strip(): continue
-            u = line.split(',')[0].strip().split('/')[-1]
-            if u: names.append(u)
+    try:
+        with open('channels.csv', 'r') as f:
+            for line in f:
+                if "URL,AllMessagesFlag" in line or not line.strip(): continue
+                u = line.split(',')[0].strip().split('/')[-1]
+                if u: names.append(u)
+    except: pass
     return list(dict.fromkeys(names))
 
 channels = get_channels()
-
-# CREATE/WIPE THE FILE AT THE START
-with open('raw_collected.txt', 'w', encoding='utf-8') as f:
-    f.write("") 
+all_links = set()
 
 with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
     for target in channels:
         print(f"📡 Scoping: {target}...", end=" ", flush=True)
-        found_in_channel = []
+        channel_links = 0
         try:
-            # Try to get messages
+            # Get messages (limit 100 is enough for fresh configs)
             msgs = client.get_messages(target, limit=100)
             
-            # If blocked/empty, try to Join
+            # If no messages, try to Join (often required for history visibility)
             if not msgs:
                 try:
                     client(JoinChannelRequest(target))
@@ -46,37 +46,42 @@ with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
 
             if msgs:
                 for m in msgs:
-                    # Extract from Text
+                    # Search entire message object (text + entities)
                     content = (m.message or "") + " " + (getattr(m, 'caption', "") or "")
-                    links = re.findall(regex, content, re.IGNORECASE)
-                    for l in links:
-                        found_in_channel.append(l.strip())
                     
-                    # Extract from Files
+                    # Core Regex Find
+                    found = re.findall(regex, content, re.IGNORECASE)
+                    for l in found:
+                        clean_link = l.strip()
+                        # Only add if it's long enough to be a real config
+                        if len(clean_link) > 15:
+                            all_links.add(clean_link)
+                            channel_links += 1
+                    
+                    # Scrape Files (.txt and .json)
                     if m.file and any(ext in (m.file.ext or "").lower() for ext in ['.txt', '.json']):
                         try:
                             path = client.download_media(m)
                             with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-                                file_links = re.findall(regex, f.read(), re.IGNORECASE)
-                                for l in file_links:
-                                    found_in_channel.append(l.strip())
+                                file_content = f.read()
+                                file_found = re.findall(regex, file_content, re.IGNORECASE)
+                                for fl in file_found:
+                                    if len(fl) > 15:
+                                        all_links.add(fl.strip())
+                                        channel_links += 1
                             os.remove(path)
                         except: continue
-
-            # IMMEDIATE APPEND TO FILE (The "Safety Net")
-            if found_in_channel:
-                with open('raw_collected.txt', 'a', encoding='utf-8') as f:
-                    f.write('\n'.join(found_in_channel) + '\n')
-                print(f"Done (+{len(found_in_channel)})")
-            else:
-                print("No links found.")
-                
+            
+            print(f"Done (+{channel_links})")
             time.sleep(1)
-
         except Exception as e:
-            print(f"Error: {type(e).__name__}")
+            print(f"Failed: {type(e).__name__}")
 
-# Check final file size
-if os.path.exists('raw_collected.txt'):
-    size = os.path.getsize('raw_collected.txt')
-    print(f"🏁 Final File Size: {size} bytes")
+# FINAL WRITE: This replaces the file with the master set
+with open('raw_collected.txt', 'w', encoding='utf-8') as f:
+    if all_links:
+        f.write('\n'.join(sorted(list(all_links))))
+    else:
+        print("⚠️ WARNING: No valid configs found at all!")
+
+print(f"🏁 MASTER TOTAL UNIQUE: {len(all_links)}")
