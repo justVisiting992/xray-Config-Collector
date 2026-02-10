@@ -17,7 +17,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version: '>=1.21.3'
+        go-version: '1.22'
 
     - name: Download GeoIP Database
       run: |
@@ -25,18 +25,25 @@ jobs:
 
     - name: Build and run Collector
       run: |
-          go mod init github.com/mrvcoder/V2rayCollector || true
-          go get github.com/oschwald/geoip2-golang
-          go get github.com/PuerkitoBio/goquery
-          go get github.com/jszwec/csvutil
-          go get github.com/projectdiscovery/gologger
-          go mod tidy
-          go build -o myapp
-          ./myapp -sort
+        # Initialize and tidy up dependencies
+        go mod init github.com/justVisiting992/xray-Config-Collector || true
+        go mod tidy
+        go build -o myapp main.go
+        # Running the app (it now accepts the -sort flag we added)
+        ./myapp -sort
     
+    - name: Generate Workflow Summary
+      if: always()
+      run: |
+        if [ -f summary.md ]; then
+          cat summary.md >> $GITHUB_STEP_SUMMARY
+        fi
+
     - name: Commit and Push Changes
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
+        # Add the generated text files
         git add *.txt
+        # Only commit if there are actual changes to the files
         git diff --quiet && git diff --staged --quiet || (git commit -m "✔️ $(date '+%Y-%m-%d %H:%M:%S') Collected" && git push origin main)
