@@ -1,49 +1,45 @@
-name: Hybrid Config Collector
+name: V2Ray Collector
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 */6 * * *' # Runs every 6 hours
+  workflow_dispatch:
 
 jobs:
-  collect-and-test:
+  build:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: 🐍 Run Python Scout (Telegram API)
-      env:
-        TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
-        TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
-        TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
-      run: |
-        python -m pip install --upgrade pip
-        pip install telethon
-        python collector.py
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.22'
+      - name: Run Collector
+        env:
+          # We don't even need the Telegram Secrets for this version!
+          PYTHONUNBUFFERED: 1
+        run: python collector.py
 
-    - name: 🐹 Run Go Engine (Ping & Label)
-      run: |
-        go mod tidy || go mod init collector
-        go run main.go
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
 
-    - name: 🚀 Commit and Push Results
-      run: |
-        git config --global user.name "GitHub Action"
-        git config --global user.email "action@github.com"
-        # We only add files that actually exist to avoid Error 128
-        git add *.txt || true
-        git add report.md || true
-        git commit -m "Update configs: $(date -u +'%Y-%m-%d %H:%M:%S') UTC" || exit 0
-        git push
+      - name: Run Go Tester
+        run: go run main.go
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update configs [skip ci]" || exit 0
+          git push
