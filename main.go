@@ -2,9 +2,11 @@ package main
 
 import (
 	"bufio"
-	"encoding/json"
+	"encoding/csv"
 	"flag"
 	"fmt"
+	"io"
+	"net"
 	"net/http"
 	"net/url"
 	"os"
@@ -15,20 +17,14 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/js-lucas/csvutil"
 	"github.com/oschwald/geoip2-golang"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
-	"github.com/justVisiting992/xray-Config-Collector/collector"
 )
 
-type ChannelsType struct {
-	URL string `csv:"url"`
-}
-
 var (
-	client   = &http.Client{Timeout: 15 * time.Second}
-	maxLimit = 200 // Cap for categorized files
+	client   = &http.Client{Timeout: 10 * time.Second}
+	maxLimit = 200
 	db       *geoip2.Reader
 	myregex  = map[string]string{
 		"ss":     `ss://[A-Za-z0-9./:=?#-_@!%]+`,
@@ -47,15 +43,15 @@ func main() {
 	var err error
 	db, err = geoip2.Open("Country.mmdb")
 	if err != nil {
-		gologger.Fatal().Msg("Could not load GeoIP database: " + err.Error())
+		gologger.Warning().Msg("GeoIP database not found. Labels will be generic.")
+	} else {
+		defer db.Close()
 	}
-	defer db.Close()
 
-	// 2. Load Channels from CSV
-	fileData, err := collector.ReadFileContent("channels.csv")
-	var channels []ChannelsType
-	if err = csvutil.Unmarshal([]byte(fileData), &channels); err != nil {
-		gologger.Fatal().Msg("CSV Error: " + err.Error())
+	// 2. Load Channels manually (No external CSV lib needed)
+	channels, err := loadChannels("channels.csv")
+	if err != nil {
+		gologger.Fatal().Msg("Could not read channels.csv: " + err.Error())
 	}
 
 	rawConfigs := make(map[string][]string)
@@ -64,22 +60,21 @@ func main() {
 		rawConfigs[p] = []string{}
 	}
 
-	// Stats tracking
 	channelStats := make(map[string]int)
 	totalFound := 0
 
-	// 3. Scraping Phase
+	// 3. Scraper Engine
 	gologger.Info().Msg("Starting Scraper Engine...")
-	for _, channel := range channels {
-		uParts := strings.Split(strings.TrimSuffix(channel.URL, "/"), "/")
+	for _, channelURL := range channels {
+		uParts := strings.Split(strings.TrimSuffix(channelURL, "/"), "/")
 		channelName := uParts[len(uParts)-1]
 		
 		req, _ := http.NewRequest("GET", "https://t.me/s/"+channelName, nil)
-		req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+		req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
 		resp, err := client.Do(req)
 		
 		if err != nil || resp.StatusCode != 200 {
-			gologger.Error().Msgf("Failed to reach Telegram for: %s", channelName)
+			gologger.Error().Msgf("Failed: %s", channelName)
 			continue
 		}
 		
@@ -101,91 +96,73 @@ func main() {
 		
 		channelStats[channelName] = countForThisChannel
 		totalFound += countForThisChannel
-		gologger.Info().Msgf("Scraped %d configs from [%s]", countForThisChannel, channelName)
-		
-		// Anti-spam delay to stay safe from Telegram's rate limit
+		gologger.Info().Msgf("Collected %d from [%s]", countForThisChannel, channelName)
 		time.Sleep(1200 * time.Millisecond)
 	}
 
-	// 4. Print Scraper Summary Report
-	fmt.Println("\n" + strings.Repeat("=", 45))
-	fmt.Println("📊 TELEGRAM SCRAPER SUMMARY REPORT")
-	fmt.Println(strings.Repeat("-", 45))
-	
-	// Sorting names for a cleaner report
-	keys := make([]string, 0, len(channelStats))
-	for k := range channelStats {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
+	// 4. Print Summary
+	printSummary(channelStats, totalFound)
 
-	for _, name := range keys {
-		status := "✅"
-		if channelStats[name] == 0 {
-			status = "❌ EMPTY"
-		}
-		fmt.Printf("%-25s : %d configs %s\n", name, channelStats[name], status)
-	}
-	fmt.Println(strings.Repeat("-", 45))
-	fmt.Printf("TOTAL RAW CONFIGS COLLECTED: %d\n", totalFound)
-	fmt.Println(strings.Repeat("=", 45) + "\n")
-
-	// 5. Deduplication and Testing
+	// 5. Test & Save
 	var allHealthyConfigs []string
 	for proto, configs := range rawConfigs {
 		uniqueConfigs := removeDuplicates(configs)
-		gologger.Info().Msgf("Testing %d unique %s configs...", len(uniqueConfigs), strings.ToUpper(proto))
-		
 		healthy := fastPingTest(uniqueConfigs)
 		allHealthyConfigs = append(allHealthyConfigs, healthy...)
 
-		// Save categorized files with limit (Top 200)
 		limit := len(healthy)
 		if limit > maxLimit {
 			limit = maxLimit
 		}
 		saveToFile(proto+"_iran.txt", healthy[:limit])
 	}
-
-	// 6. Save Unlimited Mixed File
 	saveToFile("mixed_iran.txt", allHealthyConfigs)
-	gologger.Info().Msg("Process completed. Files updated.")
+	gologger.Info().Msg("Success! Files updated.")
 }
 
-// --- Helper Functions ---
+// --- Logic Helpers ---
 
-func removeDuplicates(slice []string) []string {
-	keys := make(map[string]bool)
-	list := []string{}
-	for _, entry := range slice {
-		if _, value := keys[entry]; !value {
-			keys[entry] = true
-			list = append(list, entry)
+func loadChannels(path string) ([]string, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	var channels []string
+	reader := csv.NewReader(f)
+	// Skip header if necessary, but here we assume first col is URL
+	for {
+		record, err := reader.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return nil, err
+		}
+		if len(record) > 0 && strings.HasPrefix(record[0], "http") {
+			channels = append(channels, record[0])
 		}
 	}
-	return list
-}
-
-func saveToFile(filename string, configs []string) {
-	content := strings.Join(configs, "\n")
-	os.WriteFile(filename, []byte(content), 0644)
+	return channels, nil
 }
 
 func fastPingTest(configs []string) []string {
 	var wg sync.WaitGroup
 	var mu sync.Mutex
 	healthy := []string{}
-	sem := make(chan struct{}, 50) // 50 concurrent workers
+	sem := make(chan struct{}, 50) 
 
 	for i, cfg := range configs {
 		wg.Add(1)
-		go func(index int, c string) {
+		go func(idx int, c string) {
 			defer wg.Done()
 			sem <- struct{}{}
 			defer func() { <-sem }()
 
+			// Simple TCP Check
 			if isHealthy(c) {
-				labeled := labelConfig(c, index+1)
+				labeled := labelConfig(c, idx+1)
 				mu.Lock()
 				healthy = append(healthy, labeled)
 				mu.Unlock()
@@ -197,34 +174,71 @@ func fastPingTest(configs []string) []string {
 }
 
 func isHealthy(config string) bool {
-	// For this logic, we assume standard TCP dial check 
-	// (Keeping the logic simple as per your existing structure)
-	return true 
+	u, err := url.Parse(config)
+	if err != nil {
+		return false
+	}
+	host := u.Hostname()
+	port := u.Port()
+	if port == "" {
+		port = "443"
+	}
+	address := net.JoinHostPort(host, port)
+	conn, err := net.DialTimeout("tcp", address, 3*time.Second)
+	if err != nil {
+		return false
+	}
+	conn.Close()
+	return true
 }
 
 func labelConfig(config string, index int) string {
-	u, err := url.Parse(config)
-	if err != nil {
-		return config
-	}
-
-	// Extract IP/Host to find country
+	u, _ := url.Parse(config)
 	host := u.Hostname()
 	country := "🏴 Dynamic"
+	
 	if db != nil {
-		record, err := db.Country(netParseIP(host))
-		if err == nil && record.Country.Names["en"] != "" {
-			country = record.Country.Names["en"]
+		ip := net.ParseIP(host)
+		if ip == nil {
+			ips, _ := net.LookupIP(host)
+			if len(ips) > 0 {
+				ip = ips[0]
+			}
+		}
+		if ip != nil {
+			record, _ := db.Country(ip)
+			if record != nil && record.Country.Names["en"] != "" {
+				country = record.Country.Names["en"]
+			}
 		}
 	}
-
-	// Add emoji/label to the fragment (the part after #)
-	label := fmt.Sprintf("%s | Node-%d", country, index)
-	u.Fragment = url.PathEscape(label)
+	u.Fragment = url.PathEscape(fmt.Sprintf("%s | Node-%d", country, index))
 	return u.String()
 }
 
-func netParseIP(host string) []byte {
-	// Simple wrapper for IP parsing if needed
-	return nil 
+func removeDuplicates(s []string) []string {
+	m := make(map[string]bool)
+	var res []string
+	for _, v := range s {
+		if !m[v] {
+			m[v] = true
+			res = append(res, v)
+		}
+	}
+	return res
+}
+
+func saveToFile(name string, data []string) {
+	os.WriteFile(name, []byte(strings.Join(data, "\n")), 0644)
+}
+
+func printSummary(stats map[string]int, total int) {
+	fmt.Println("\n" + strings.Repeat("=", 45))
+	fmt.Println("📊 TELEGRAM SCRAPER SUMMARY")
+	fmt.Println(strings.Repeat("-", 45))
+	for name, count := range stats {
+		fmt.Printf("%-25s : %d\n", name, count)
+	}
+	fmt.Printf("TOTAL FOUND: %d\n", total)
+	fmt.Println(strings.Repeat("=", 45) + "\n")
 }
