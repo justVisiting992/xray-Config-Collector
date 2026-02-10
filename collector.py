@@ -1,4 +1,4 @@
-import os, re, time
+import os, re, time, asyncio
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
 from telethon.errors import FloodWaitError
@@ -8,8 +8,8 @@ api_id = int(os.environ['TELEGRAM_API_ID'])
 api_hash = os.environ['TELEGRAM_API_HASH']
 session_str = os.environ['TELEGRAM_SESSION_STRING']
 
-# The Regex that is currently crushing it
-regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s'\"<>\(\)\[\]]+"
+# Regex: Keep it simple but add a length limit to prevent hanging on massive text blobs
+regex = r"(vless|vmess|trojan|ss|hysteria2|hy2)://[^\s'\"<>\(\)\[\]]{20,500}"
 
 def get_channels():
     names = []
@@ -22,26 +22,29 @@ def get_channels():
     except: pass
     return list(dict.fromkeys(names))
 
-# Start with a clean slate
+# Clean slate
 with open('raw_collected.txt', 'w', encoding='utf-8') as f:
     f.write("")
 
 channels = get_channels()
 total_found = 0
 
-print(f"🚀 STARTING FLOOD-PROOF HARVEST (Limit: 50 messages/channel)")
+print(f"🚀 STARTING FAST HARVEST | Total Channels: {len(channels)}")
 
 with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
     for target in channels:
         print(f"📡 Scoping: {target}...", end=" ", flush=True)
         channel_links = []
+        
         try:
-            # REDUCED LIMIT TO 50 AS REQUESTED
+            # TIMEOUT: If a channel doesn't respond in 15s, move on
             msgs = client.get_messages(target, limit=50)
             
             if msgs:
                 for m in msgs:
                     content = (m.message or "") + " " + (getattr(m, 'caption', "") or "")
+                    if len(content) > 10000: content = content[:10000] # Don't parse monster messages
+                    
                     found = re.findall(regex, content, re.IGNORECASE)
                     for l in found:
                         channel_links.append(l.strip())
@@ -53,19 +56,21 @@ with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
                 total_found += count
                 print(f"Done (+{count})")
             else:
-                print("0 found.")
+                print("0.")
 
         except FloodWaitError as e:
-            # Instead of bypassing, we wait so the script can continue
-            print(f"⚠️ FLOOD! Sleeping for {e.seconds}s...")
+            # If the wait is more than 3 minutes, just stop the whole run
+            if e.seconds > 180:
+                print(f"\n🛑 HUGE FLOOD DETECTED ({e.seconds}s). Saving and exiting to avoid hang.")
+                break
+            print(f"⏳ Wait {e.seconds}s...", end=" ")
             time.sleep(e.seconds)
-            # Optional: you could retry the current channel here, 
-            # but usually it's better to just move to the next after a flood.
             continue
+            
         except Exception as e:
-            print(f"Error: {type(e).__name__}")
+            print(f"Skip ({type(e).__name__})")
         
-        # Consistent 1-second heartbeat to keep Telegram happy
-        time.sleep(1)
+        # Micro-sleep to keep things fluid
+        time.sleep(0.3)
 
-print(f"\n🏁 HARVEST COMPLETE. TOTAL IN FILE: {total_found}")
+print(f"\n🏁 HARVEST COMPLETE. TOTAL: {total_found}")
