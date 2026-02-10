@@ -1,14 +1,6 @@
-import os, re, time, random
-from telethon.sync import TelegramClient
-from telethon.sessions import StringSession
-from telethon.errors import FloodWaitError
+import os, re, time, random, requests
 
-# Credentials
-api_id = int(os.environ['TELEGRAM_API_ID'])
-api_hash = os.environ['TELEGRAM_API_HASH']
-session_str = os.environ['TELEGRAM_SESSION_STRING']
-
-# THE FIX: (?:...) makes it a NON-CAPTURING group so findall returns the WHOLE match
+# The FIXED Regex (Full links, no protocol-only bullshit)
 regex = r"(?:vless|vmess|trojan|ss|hysteria2|hy2)://[^\s'\"<>\(\)\[\]]+"
 
 def get_channels():
@@ -17,56 +9,54 @@ def get_channels():
         with open('channels.csv', 'r') as f:
             for line in f:
                 if "URL,AllMessagesFlag" in line or not line.strip(): continue
+                # Extract channel name from URL
                 u = line.split(',')[0].strip().split('/')[-1]
                 if u: names.append(u)
     except: pass
-    names = list(dict.fromkeys(names))
-    random.shuffle(names) # Randomize to avoid hitting the same "flood wall"
-    return names
+    return list(dict.fromkeys(names))
 
-# Fresh start
+channels = get_channels()
+random.shuffle(channels)
+total_found = 0
+
+# Fresh start for the raw file
 with open('raw_collected.txt', 'w', encoding='utf-8') as f:
     f.write("")
 
-channels = get_channels()
-total_found = 0
-processed_count = 0
-MAX_CHANNELS = 50 # Batching to stay under the radar
+print(f"🕵️  WEB-SURGE MODE | Bypassing API Ban | Channels: {len(channels)}")
 
-print(f"🚀 COLLECTOR RELOADED | Batch Size: {MAX_CHANNELS}")
+# Use a common Browser User-Agent to avoid being blocked as a script
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+}
 
-with TelegramClient(StringSession(session_str), api_id, api_hash) as client:
-    for target in channels:
-        if processed_count >= MAX_CHANNELS: break
+for i, target in enumerate(channels):
+    print(f"🌐 {i+1}/{len(channels)} | {target}...", end=" ", flush=True)
+    
+    try:
+        # We hit the public preview URL (t.me/s/CHANNELNAME)
+        url = f"https://t.me/s/{target}"
+        response = requests.get(url, headers=headers, timeout=15)
+        
+        if response.status_code == 200:
+            content = response.text
+            found = re.findall(regex, content, re.IGNORECASE)
             
-        print(f"📡 {processed_count+1}/{MAX_CHANNELS} | {target}...", end=" ", flush=True)
-        try:
-            msgs = client.get_messages(target, limit=50)
-            channel_links = []
-            
-            if msgs:
-                for m in msgs:
-                    content = (m.message or "") + " " + (getattr(m, 'caption', "") or "")
-                    # Extracting the FULL link now
-                    found = re.findall(regex, content, re.IGNORECASE)
-                    for l in found:
-                        channel_links.append(l.strip())
-            
-            if channel_links:
+            if found:
+                links = [l.strip() for l in found]
                 with open('raw_collected.txt', 'a', encoding='utf-8') as f:
-                    f.write('\n'.join(channel_links) + '\n')
-                print(f"+{len(channel_links)}")
-                total_found += len(channel_links)
+                    f.write('\n'.join(links) + '\n')
+                print(f"+{len(links)}")
+                total_found += len(links)
             else:
                 print("0")
+        else:
+            print(f"Fail ({response.status_code})")
 
-            processed_count += 1
-            time.sleep(random.uniform(2, 4)) # Anti-spam jitter
+    except Exception as e:
+        print(f"Error ({type(e).__name__})")
+    
+    # Tiny sleep so we don't look like a DDOS attack
+    time.sleep(random.uniform(1, 3))
 
-        except FloodWaitError as e:
-            print(f"\n🛑 FLOOD: {e.seconds}s. Saving and exiting.")
-            break
-        except Exception as e:
-            print(f"Skip ({type(e).__name__})")
-
-print(f"\n🏁 TOTAL FULL CONFIGS SAVED: {total_found}")
+print(f"\n🏁 WEB HARVEST COMPLETE. TOTAL LINKS: {total_found}")
