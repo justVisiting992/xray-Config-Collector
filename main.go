@@ -32,12 +32,13 @@ var (
 	client   = &http.Client{Timeout: 12 * time.Second}
 	maxLimit = 200
 	db       *geoip2.Reader
-	myregex  = map[string]string{
-		"SS":     `ss://[A-Za-z0-9./:=?#-_@!%]+`,
-		"Vmess":  `vmess://[A-Za-z0-9./:=?#-_@!%]+`,
-		"Trojan": `trojan://[A-Za-z0-9./:=?#-_@!%]+`,
-		"Vless":  `vless://[A-Za-z0-9./:=?#-_@!%]+`,
-		"Hy2":    `hysteria2://[A-Za-z0-9./:=?#-_@!%]+`,
+	// FIX: Added (?i) for case-insensitivity and handled both hy2/hysteria2 prefixes
+	myregex = map[string]string{
+		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"Vmess":  `(?i)vmess://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"Trojan": `(?i)trojan://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"Vless":  `(?i)vless://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"Hy2":    `(?i)(?:hysteria2|hy2)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 	}
 )
 
@@ -136,10 +137,9 @@ func main() {
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
 
 	finalMarkdown := generateReports(reports, totalRaw)
-	_ = os.WriteFile("summary.md", []byte(finalMarkdown), 0644)
+	// FIX: Removed summary.md generation
 	_ = os.WriteFile("report.md", []byte(finalMarkdown), 0644)
 
-	// Ping Test and Save (unchanged logic)
 	for p := range myregex {
 		healthy := fastPingTest(removeDuplicates(rawConfigs[p]))
 		limit := len(healthy)
@@ -203,7 +203,10 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 		if err == io.EOF { break }
 		if len(row) > 0 { 
 			cleaned := strings.TrimSpace(row[0])
-			if cleaned != "" && strings.HasPrefix(cleaned, "http") {
+			if cleaned != "" && (strings.HasPrefix(cleaned, "http") || !strings.Contains(cleaned, " ")) {
+				if !strings.HasPrefix(cleaned, "http") {
+					cleaned = "https://t.me/" + cleaned
+				}
 				u = append(u, strings.TrimSuffix(cleaned, "/")) 
 			}
 		} 
@@ -228,12 +231,17 @@ func fastPingTest(configs []string) []string {
 func checkTCP(config string) bool {
 	u, err := url.Parse(config); if err != nil { return false }
 	host := u.Hostname(); port := u.Port(); if port == "" { port = "443" }
+	// Basic validation for vmess which is base64 encoded and might fail simple parsing
+	if host == "" && strings.HasPrefix(config, "vmess://") {
+		return true // Skip ping for raw vmess to avoid false negatives
+	}
 	conn, err := net.DialTimeout("tcp", net.JoinHostPort(host, port), 2*time.Second)
 	if err != nil { return false }; conn.Close(); return true
 }
 
 func labelWithGeo(config string, index int) string {
 	u, _ := url.Parse(config)
+	if u == nil { return config }
 	country := "🏴 Dynamic"
 	if db != nil {
 		ip := net.ParseIP(u.Hostname())
