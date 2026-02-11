@@ -23,10 +23,10 @@ import (
 	"github.com/projectdiscovery/gologger/levels"
 )
 
-// VMessConfig structure for JSON decoding
+// VMessConfig structure for JSON decoding check only
 type VMessConfig struct {
 	Add  string      `json:"add"`
-	Port interface{} `json:"port"` // Can be int or string in JSON
+	Port interface{} `json:"port"`
 }
 
 type ChannelReport struct {
@@ -43,7 +43,7 @@ var (
 	// Updated Regex to be more inclusive
 	myregex = map[string]string{
 		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`, // Simplified for Base64
+		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`, 
 		"Trojan": `(?i)trojan://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 		"VLess":  `(?i)vless://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 		"Hy2":    `(?i)(?:hysteria2|hy2)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
@@ -238,6 +238,7 @@ func fastPingTest(configs []string, protocol string) []string {
 			// Special Handling for VMess & Hy2
 			if checkAlive(c, protocol) {
 				mu.Lock()
+				// This function now handles VMess JSON correctly
 				healthy = append(healthy, labelWithGeo(c, len(healthy)+1))
 				mu.Unlock()
 			}
@@ -299,23 +300,40 @@ func tcpDial(host, port string) bool {
 }
 
 func labelWithGeo(config string, index int) string {
-	// Simple parsing to avoid modifying complex URLs
-	// We just want to append the fragment
-	
-	// Determine Host for GeoIP
+	countryName, emoji := "Dynamic", "🏴"
 	host := ""
-	if strings.HasPrefix(config, "vmess://") {
-		// Extract host from base64 again just for GeoIP? 
-		// Too expensive. Default to dynamic for VMess if not easily parsable
-		// Or assume regex found a standard link. 
-		// Actually, let's just tag it "Dynamic" to be safe and fast.
+
+	// --- STEP 1: Detect Host for GeoIP ---
+	isVMess := strings.HasPrefix(strings.ToLower(config), "vmess://")
+
+	if isVMess {
+		// DECODE VMess to find the Host
+		b64 := strings.TrimPrefix(config, "vmess://")
+		b64 = strings.TrimPrefix(b64, "VMess://")
+		if i := len(b64) % 4; i != 0 {
+			b64 += strings.Repeat("=", 4-i)
+		}
+		decoded, err := base64.StdEncoding.DecodeString(b64)
+		if err != nil {
+			decoded, _ = base64.URLEncoding.DecodeString(b64)
+		}
+		
+		// Use Map to avoid data loss
+		var v map[string]interface{}
+		if err == nil {
+			if json.Unmarshal(decoded, &v) == nil {
+				if h, ok := v["add"].(string); ok {
+					host = h
+				}
+			}
+		}
 	} else {
+		// Standard URL parsing
 		u, _ := url.Parse(config)
 		if u != nil { host = u.Hostname() }
 	}
 
-	countryName, emoji := "Dynamic", "🏴"
-	
+	// --- STEP 2: GeoIP Lookup ---
 	if db != nil && host != "" {
 		ip := net.ParseIP(host)
 		if ip == nil {
@@ -341,10 +359,39 @@ func labelWithGeo(config string, index int) string {
 		}
 	}
 
-	// Fragment Logic for Hiddify
-	// Remove existing fragment/hash
-	cleanConfig := strings.Split(config, "#")[0]
-	return fmt.Sprintf("%s#%s %s | Node-%d", cleanConfig, emoji, countryName, index)
+	// --- STEP 3: Apply Label Correctly ---
+	label := fmt.Sprintf("%s %s | Node-%d", emoji, countryName, index)
+
+	if isVMess {
+		// === CRITICAL FIX FOR VMESS ===
+		// Decode -> Edit JSON "ps" -> Encode -> Return
+		b64 := strings.TrimPrefix(config, "vmess://")
+		b64 = strings.TrimPrefix(b64, "VMess://")
+		if i := len(b64) % 4; i != 0 {
+			b64 += strings.Repeat("=", 4-i)
+		}
+		decoded, err := base64.StdEncoding.DecodeString(b64)
+		if err != nil {
+			decoded, _ = base64.URLEncoding.DecodeString(b64)
+		}
+
+		var v map[string]interface{}
+		if err := json.Unmarshal(decoded, &v); err == nil {
+			// Update the name (remark)
+			v["ps"] = label
+			
+			// Marshal back to JSON
+			newJSON, _ := json.Marshal(v)
+			
+			// Encode back to Base64
+			return "vmess://" + base64.StdEncoding.EncodeToString(newJSON)
+		}
+		return config // Return original if parsing fails
+	} else {
+		// Standard Fragment for VLESS, Trojan, SS
+		cleanConfig := strings.Split(config, "#")[0]
+		return fmt.Sprintf("%s#%s", cleanConfig, label)
+	}
 }
 
 func generateOriginalReportStructure(reports []ChannelReport, total int) string {
