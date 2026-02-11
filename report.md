@@ -3,42 +3,43 @@
 This page is a tribute to the channel admins providing free configurations. Data is updated every 2 hours.
 
 ### 🕒 Last Update
-- **Tehran:** `1404/11/23` | `04:25:29`
+- **Tehran:** `1404/11/23` | `09:19:13`
 - **International:** `Wednesday, 11 Feb 2026`
 
 ### ⚡ Global Stats
-- **Total Working Configs Harvested:** `1887`
+- **Total Working Configs Harvested:** `1913`
 
 | Source Channel | Available Protocols | Harvest Status |
 | :--- | :--- | :--- |
 | [prrofile_purple](https://t.me/s/prrofile_purple) | Hy2, SS, Trojan, Vless, Vmess | ✅ 286 Xray configs found |
-| [DailyV2RY](https://t.me/s/DailyV2RY) | SS, Trojan, Vless, Vmess | ✅ 106 Xray configs found |
+| [DailyV2RY](https://t.me/s/DailyV2RY) | SS, Trojan, Vless, Vmess | ✅ 105 Xray configs found |
 | [shadow_socks1](https://t.me/s/shadow_socks1) | SS | ✅ 94 Xray configs found |
 | [Outline_Vpn](https://t.me/s/Outline_Vpn) | SS, Trojan, Vless, Vmess | ✅ 58 Xray configs found |
 | [iTV2RAY](https://t.me/s/iTV2RAY) | SS, Vless, Vmess | ✅ 57 Xray configs found |
-| [Hope_Net](https://t.me/s/Hope_Net) | SS, Trojan, Vless, Vmess | ✅ 54 Xray configs found |
+| [Hope_Net](https://t.me/s/Hope_Net) | SS, Trojan, Vless, Vmess | ✅ 55 Xray configs found |
 | [Fr33C0nfig](https://t.me/s/Fr33C0nfig) | SS, Trojan, Vless, Vmess | ✅ 50 Xray configs found |
-| [configV2rayNG](https://t.me/s/configV2rayNG) | SS, Trojan, Vless, Vmess | ✅ 46 Xray configs found |
 | [mftizi](https://t.me/s/mftizi) | SS, Trojan, Vmess | ✅ 45 Xray configs found |
+| [configV2rayNG](https://t.me/s/configV2rayNG) | SS, Trojan, Vless, Vmess | ✅ 44 Xray configs found |
+| [FreakConfig](https://t.me/s/FreakConfig) | SS, Trojan, Vless, Vmess | ✅ 43 Xray configs found |
 | [vpnowl](https://t.me/s/vpnowl) | SS, Vless, Vmess | ✅ 42 Xray configs found |
 | [vless_vmess](https://t.me/s/vless_vmess) | SS, Vless | ✅ 40 Xray configs found |
-| [FreakConfig](https://t.me/s/FreakConfig) | SS, Trojan, Vless, Vmess | ✅ 40 Xray configs found |
 | [mrsoulb](https://t.me/s/mrsoulb) | SS, Trojan, Vless | ✅ 40 Xray configs found |
 | [V2ray_Alpha](https://t.me/s/V2ray_Alpha) | Hy2, SS, Trojan, Vless, Vmess | ✅ 39 Xray configs found |
 | [vmess_vless_v2rayng](https://t.me/s/vmess_vless_v2rayng) | SS, Trojan, Vless, Vmess | ✅ 39 Xray configs found |
+| [persianvpnhub](https://t.me/s/persianvpnhub) | SS, Vless, Vmess | ✅ 38 Xray configs found |
 | [V2rayNGX](https://t.me/s/V2rayNGX) | SS, Vless | ✅ 38 Xray configs found |
 | [fhkllvjkll](https://t.me/s/fhkllvjkll) | Hy2, SS, Trojan, Vless, Vmess | ✅ 38 Xray configs found |
 | [NEW_MTProxi2](https://t.me/s/NEW_MTProxi2) | Hy2, SS, Trojan, Vless, Vmess | ✅ 37 Xray configs found |
 | [Lockey_vpn](https://t.me/s/Lockey_vpn) | SS, Vless | ✅ 36 Xray configs found |
 | [Free_HTTPCustom](https://t.me/s/Free_HTTPCustom) | SS, Vless | ✅ 34 Xray configs found |
+| [DeamNet_proxy](https://t.me/s/DeamNet_proxy) | SS, Trojan, Vless, Vmess | ✅ 34 Xray configs found |
+| [DeamNet_Proxy](https://t.me/s/DeamNet_Proxy) | SS, Trojan, Vless, Vmess | ✅ 34 Xray configs found |
+| [IP_CF_Config](https://t.me/s/IP_CF_Config) | SS, Trojan, Vless, Vmess | ✅ 33 Xray configs found |
 | [vpn_ioss](https://t.me/s/vpn_ioss) | SS, Vless | ✅ 33 Xray configs found |
-| [DeamNet_proxy](https://t.me/s/DeamNet_proxy) | SS, Trojan, Vless, Vmess | ✅ 32 Xray configs found |
-| [DeamNet_Proxy](https://t.me/s/DeamNet_Proxy) | SS, Trojan, Vless, Vmess | ✅ 32 Xray configs found |
-| [persianvpnhub](https://t.me/s/persianvpnhub) | SS, Vless, Vmess | ✅ 30 Xray configs found |
-| [IP_CF_Config](https://t.me/s/IP_CF_Config) | SS, Trojan, Vless, Vmess | ✅ 29 Xray configs found |
 | [VlessConfig](https://t.me/s/VlessConfig) | SS, Vless | ✅ 28 Xray configs found |
 | [customv2ray](https://t.me/s/customv2ray) | SS, Vless, Vmess | ✅ 28 Xray configs found |
 | [V2rayNg_madam](https://t.me/s/V2rayNg_madam) | SS, Trojan, Vless, Vmess | ✅ 25 Xray configs found |
+| [V2RAYROZ](https://t.me/s/V2RAYROZ) | SS, Trojan, Vless | ✅ 25 Xray configs found |
 | [V2rayi_net](https://t.me/s/V2rayi_net) | SS, Vless | ✅ 24 Xray configs found |
 | [v2rayvpn2](https://t.me/s/v2rayvpn2) | SS, Vless | ✅ 24 Xray configs found |
 | [icv2ray](https://t.me/s/icv2ray) | Hy2, SS, Trojan, Vless | ✅ 23 Xray configs found |
@@ -46,24 +47,23 @@ This page is a tribute to the channel admins providing free configurations. Data
 | [hddify](https://t.me/s/hddify) | SS, Trojan, Vless, Vmess | ✅ 21 Xray configs found |
 | [oneclickvpnkeys](https://t.me/s/oneclickvpnkeys) | Hy2, SS, Trojan, Vless, Vmess | ✅ 21 Xray configs found |
 | [iP_CF](https://t.me/s/iP_CF) | SS, Trojan, Vless, Vmess | ✅ 19 Xray configs found |
-| [V2rayng_Fast](https://t.me/s/V2rayng_Fast) | SS, Trojan, Vless | ✅ 19 Xray configs found |
 | [V2rayNG_account_free](https://t.me/s/V2rayNG_account_free) | SS, Vless, Vmess | ✅ 19 Xray configs found |
-| [flyv2ray](https://t.me/s/flyv2ray) | SS, Trojan, Vless | ✅ 18 Xray configs found |
-| [FalconPolV2rayNG](https://t.me/s/FalconPolV2rayNG) | SS, Vless, Vmess | ✅ 16 Xray configs found |
+| [V2rayng_Fast](https://t.me/s/V2rayng_Fast) | SS, Trojan, Vless | ✅ 19 Xray configs found |
+| [flyv2ray](https://t.me/s/flyv2ray) | SS, Trojan, Vless | ✅ 17 Xray configs found |
 | [ArV2ray](https://t.me/s/ArV2ray) | SS, Vless | ✅ 16 Xray configs found |
+| [FalconPolV2rayNG](https://t.me/s/FalconPolV2rayNG) | SS, Vless, Vmess | ✅ 16 Xray configs found |
 | [v2raytechadoo](https://t.me/s/v2raytechadoo) | SS, Vless, Vmess | ✅ 16 Xray configs found |
 | [iSeqaro](https://t.me/s/iSeqaro) | SS, Trojan, Vless | ✅ 15 Xray configs found |
 | [DirectVPN](https://t.me/s/DirectVPN) | Trojan | ✅ 14 Xray configs found |
 | [PrivateVPNs](https://t.me/s/PrivateVPNs) | Trojan | ✅ 14 Xray configs found |
-| [V2RAYROZ](https://t.me/s/V2RAYROZ) | SS, Trojan, Vless | ✅ 13 Xray configs found |
 | [iran_v2ray1](https://t.me/s/iran_v2ray1) | SS, Trojan, Vless | ✅ 13 Xray configs found |
 | [fnet00](https://t.me/s/fnet00) | SS, Vless | ✅ 12 Xray configs found |
 | [TunelProV2](https://t.me/s/TunelProV2) | SS, Vless | ✅ 12 Xray configs found |
-| [free1_vpn](https://t.me/s/free1_vpn) | SS, Trojan, Vless | ✅ 10 Xray configs found |
-| [mehrosaboran](https://t.me/s/mehrosaboran) | Hy2, SS, Vless | ✅ 10 Xray configs found |
 | [vmess_iran](https://t.me/s/vmess_iran) | SS, Vless | ✅ 10 Xray configs found |
+| [mehrosaboran](https://t.me/s/mehrosaboran) | Hy2, SS, Vless | ✅ 10 Xray configs found |
 | [Network_442](https://t.me/s/Network_442) | SS, Vless | ✅ 8 Xray configs found |
 | [nofiltering2](https://t.me/s/nofiltering2) | SS, Vless, Vmess | ✅ 8 Xray configs found |
+| [free1_vpn](https://t.me/s/free1_vpn) | SS, Trojan, Vless | ✅ 8 Xray configs found |
 | [V2RAY_VMESS_free](https://t.me/s/V2RAY_VMESS_free) | SS, Vless | ✅ 6 Xray configs found |
 | [nufilter](https://t.me/s/nufilter) | SS, Vless | ✅ 6 Xray configs found |
 | [MehradLearn](https://t.me/s/MehradLearn) | SS, Vless | ✅ 6 Xray configs found |
