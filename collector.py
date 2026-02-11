@@ -12,7 +12,7 @@ SESSION_STRING = os.environ.get('TELEGRAM_SESSION_STRING')
 
 CHANNEL_USERNAME = 'persianvpnhub'
 OUTPUT_FILE = 'telegram_dump.txt'
-HOURS_BACK = 2 
+HOURS_BACK = 1 
 
 async def main():
     print(f"--- Starting Python Collector for {CHANNEL_USERNAME} ---")
