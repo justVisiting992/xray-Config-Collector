@@ -25,6 +25,11 @@ jobs:
           go mod tidy
           go mod download
 
+      - name: Download GeoIP Database
+        run: |
+          # This downloads the fuel for your country labeling engine
+          wget -O Country.mmdb https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
+
       - name: Run Collector
         run: go run main.go
 
@@ -33,17 +38,21 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # 1. Temporarily 'hide' the new configs Go generated
+          # Stage changes so they can be stashed
           git add .
+          
+          # Stash local changes (configs) to allow a clean rebase
           git stash
           
-          # 2. Sync with the remote repository
+          # Sync with any remote changes
           git pull --rebase origin main
           
-          # 3. Bring the new configs back into the folder
+          # Bring the new configs back
           git stash pop || echo "No changes to merge"
           
-          # 4. Finalize the commit
+          # Add everything (including the new configs) and commit
           git add .
           git commit -m "Update configs $(date +'%Y-%m-%d %H:%M')" || exit 0
+          
+          # Push to the main branch
           git push origin main
