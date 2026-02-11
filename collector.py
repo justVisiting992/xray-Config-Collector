@@ -12,7 +12,7 @@ SESSION_STRING = os.environ.get('TELEGRAM_SESSION_STRING')
 
 CHANNEL_USERNAME = 'persianvpnhub'
 OUTPUT_FILE = 'telegram_dump.txt'
-HOURS_BACK = 1 
+MINUTES_BACK = 20 
 
 async def main():
     print(f"--- Starting Python Collector for {CHANNEL_USERNAME} ---")
@@ -24,7 +24,8 @@ async def main():
     try:
         # API_ID must be an integer for Telethon
         async with TelegramClient(StringSession(SESSION_STRING), int(API_ID), API_HASH) as client:
-            cutoff_time = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=HOURS_BACK)
+            # Using the MINUTES_BACK variable here
+            cutoff_time = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=MINUTES_BACK)
             print(f"📅 Fetching messages since: {cutoff_time.strftime('%Y-%m-%d %H:%M:%S')} UTC")
 
             messages_text = []
