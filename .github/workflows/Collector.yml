@@ -3,7 +3,7 @@ name: Xray Config Collector
 on:
   schedule:
     # Runs at 00, 15, 30, and 45 minutes past every hour
-    - cron: '*/30 * * * *'
+    - cron: '*/50 * * * *'
   workflow_dispatch:
   
 jobs:
