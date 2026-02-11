@@ -55,7 +55,6 @@ func main() {
 	newConfigs := make(map[string][]string)
 	historyConfigs := make(map[string][]string)
 
-	// --- STEP 1: LOAD HISTORY ---
 	for p := range myregex {
 		newConfigs[p] = []string{}
 		historyConfigs[p] = []string{}
@@ -67,20 +66,19 @@ func main() {
 				if line == "" { continue }
 				u, err := url.Parse(line)
 				if err == nil {
-					u.Fragment = "" // Strip label for re-testing
+					u.Fragment = ""
 					historyConfigs[p] = append(historyConfigs[p], u.String())
 				}
 			}
 		}
 	}
 
-	// --- STEP 2: SCRAPE NEW CONTENT ---
 	var reports []ChannelReport
 	totalScraped := 0
 	for i, channelURL := range channels {
 		uParts := strings.Split(strings.TrimSuffix(channelURL, "/"), "/")
 		channelName := uParts[len(uParts)-1]
-		gologger.Info().Msgf("[%d/%d] Scraping: %s", i+1, len(channels), channelName)
+		gologger.Info().Msgf("[%d/%d] Analyzing: %s", i+1, len(channels), channelName)
 		
 		report := ChannelReport{Name: channelName}
 		req, _ := http.NewRequest("GET", "https://t.me/s/"+channelName, nil)
@@ -88,10 +86,10 @@ func main() {
 		
 		resp, err := client.Do(req)
 		if err != nil {
-			report.Message = "❌ Timeout"; reports = append(reports, report); continue
+			report.Message = "❌ Connection Timeout"; reports = append(reports, report); continue
 		}
 		if resp.StatusCode != 200 {
-			report.Message = fmt.Sprintf("🚫 Status %d", resp.StatusCode); reports = append(reports, report); resp.Body.Close(); continue
+			report.Message = "🚫 Not Found/Restricted"; reports = append(reports, report); resp.Body.Close(); continue
 		}
 
 		doc, _ := goquery.NewDocumentFromReader(resp.Body)
@@ -113,34 +111,105 @@ func main() {
 		
 		for p := range foundProtos { report.Protocols = append(report.Protocols, p) }
 		sort.Strings(report.Protocols)
-		if report.Count > 0 { report.Message = fmt.Sprintf("✅ Found %d", report.Count) } else { report.Message = "💤 No new" }
+		if report.Count > 0 { report.Message = fmt.Sprintf("✅ %d Xray configs found", report.Count) } else { report.Message = "💤 No recent configs found" }
 		totalScraped += report.Count
 		reports = append(reports, report)
 		time.Sleep(1200 * time.Millisecond)
 	}
 
-	// --- STEP 3: MERGE (FRESH FIRST), TEST, AND SAVE ---
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
-	_ = os.WriteFile("report.md", []byte(generateReports(reports, totalScraped)), 0644)
+	
+	finalMarkdown := generateOriginalReportStructure(reports, totalScraped)
+	_ = os.WriteFile("report.md", []byte(finalMarkdown), 0644)
 
 	var allMixed []string
 	for p := range myregex {
-		// Priority: NEW scraped configs come first in the slice
 		combined := append(newConfigs[p], historyConfigs[p]...)
-		merged := removeDuplicates(combined) // Keeps the first occurrence (the new ones)
-		
+		merged := removeDuplicates(combined)
 		healthy := fastPingTest(merged)
-		
 		limit := len(healthy)
 		if limit > maxLimit { limit = maxLimit }
-		
 		saveToFile(strings.ToLower(p)+"_iran.txt", healthy[:limit])
 		allMixed = append(allMixed, healthy[:limit]...)
-		gologger.Info().Msgf("💾 %s: %d fresh/healthy configs saved", p, limit)
 	}
-	
 	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
-	gologger.Info().Msg("✨ Finished. History preserved and fresh configs prioritized.")
+}
+
+func labelWithGeo(config string, index int) string {
+	u, err := url.Parse(config); if err != nil { return config }
+	countryName := "Dynamic"
+	emoji := "🏴"
+	
+	if db != nil {
+		host := u.Hostname()
+		ip := net.ParseIP(host)
+		if ip == nil {
+			ips, _ := net.LookupIP(host)
+			if len(ips) > 0 { ip = ips[0] }
+		}
+		if ip != nil {
+			record, _ := db.Country(ip)
+			if record != nil {
+				raw := record.Country.Names["en"]
+				code := record.Country.IsoCode
+				
+				// Naming strategy exceptions
+				switch raw {
+				case "United States": countryName = "USA"
+				case "United Kingdom": countryName = "UK"
+				case "United Arab Emirates": countryName = "UAE"
+				case "The Netherlands": countryName = "Netherlands"
+				case "": countryName = "Dynamic"
+				default: countryName = raw
+				}
+
+				if len(code) == 2 {
+					emoji = strings.Map(func(r rune) rune { return r + 127397 }, strings.ToUpper(code))
+				}
+			}
+		}
+	}
+	u.Fragment = url.PathEscape(fmt.Sprintf("%s %s | Node-%d", emoji, countryName, index))
+	return u.String()
+}
+
+func generateOriginalReportStructure(reports []ChannelReport, total int) string {
+	utcNow := time.Now().UTC()
+	loc, _ := time.LoadLocation("Asia/Tehran")
+	tehranNow := utcNow.In(loc)
+	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
+
+	var sb strings.Builder
+	sb.WriteString("# 💠 Xray Source Tribute & Report\n\n")
+	sb.WriteString("This page is a tribute to the channel admins providing free configurations. Data is updated every 2 hours.\n\n")
+	sb.WriteString("### 🕒 Last Update\n")
+	sb.WriteString(fmt.Sprintf("- **Tehran:** `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
+	sb.WriteString(fmt.Sprintf("- **International:** `%s`\n", tehranNow.Format("Monday, 02 Jan 2006")))
+	
+	sb.WriteString(fmt.Sprintf("\n### ⚡ Global Stats\n- **Total Working Configs Harvested:** `%d`\n\n", total))
+	
+	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
+	sb.WriteString("| :--- | :--- | :--- |\n")
+	for _, r := range reports {
+		channelLink := fmt.Sprintf("[%s](https://t.me/s/%s)", r.Name, r.Name)
+		protos := strings.Join(r.Protocols, ", ")
+		if protos == "" { protos = "—" }
+		sb.WriteString(fmt.Sprintf("| %s | %s | %s |\n", channelLink, protos, r.Message))
+	}
+	return sb.String()
+}
+
+func toJalali(gy, gm, gd int) (int, int, int) {
+	gDays := []int{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334}
+	gy2 := gy
+	if gm > 2 { gy2++ }
+	days := 365*(gy-1600) + (gy2-1597)/4 - (gy2-1501)/100 + (gy2-1201)/400 + gd + gDays[gm-1] - 79
+	jy := 979 + 33*(days/12053) + 4*(days%12053/1461)
+	days %= 12053; days %= 1461
+	if days > 365 { jy += (days - 1) / 365; days = (days - 1) % 365 }
+	jm := 0; jd := 0
+	if days < 186 { jm = 1 + days/31; jd = 1 + days%31 } else { jm = 7 + (days-186)/30; jd = 1 + (days-186)%30 }
+	return jy, jm, jd
 }
 
 func fastPingTest(configs []string) []string {
@@ -152,8 +221,10 @@ func fastPingTest(configs []string) []string {
 		wg.Add(1); go func(idx int, c string) {
 			defer wg.Done(); sem <- struct{}{}; defer func() { <-sem }()
 			if checkTCP(c) { 
-				labeled := labelWithGeo(c, idx+1)
-				mu.Lock(); healthy = append(healthy, labeled); mu.Unlock() 
+				mu.Lock()
+				labeled := labelWithGeo(c, len(healthy)+1)
+				healthy = append(healthy, labeled)
+				mu.Unlock() 
 			}
 		}(i, cfg)
 	}
@@ -168,21 +239,6 @@ func checkTCP(config string) bool {
 	if err != nil { return false }; conn.Close(); return true
 }
 
-func labelWithGeo(config string, index int) string {
-	u, err := url.Parse(config); if err != nil { return config }
-	country := "🏴 Dynamic"
-	if db != nil {
-		ip := net.ParseIP(u.Hostname())
-		if ip == nil { ips, _ := net.LookupIP(u.Hostname()); if len(ips) > 0 { ip = ips[0] } }
-		if ip != nil {
-			record, _ := db.Country(ip)
-			if record != nil && record.Country.Names["en"] != "" { country = record.Country.Names["en"] }
-		}
-	}
-	u.Fragment = url.PathEscape(fmt.Sprintf("%s | Node-%d", country, index))
-	return u.String()
-}
-
 func loadChannelsFromCSV(p string) ([]string, error) {
 	f, err := os.Open(p); if err != nil { return nil, err }; defer f.Close()
 	r := csv.NewReader(f); var u []string
@@ -191,23 +247,12 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 		if err == io.EOF { break }
 		if len(row) > 0 { 
 			cleaned := strings.TrimSpace(row[0])
-			if cleaned == "" || strings.Contains(cleaned, "URL") { continue }
+			if cleaned == "" || strings.Contains(strings.ToUpper(cleaned), "URL") { continue }
 			if !strings.HasPrefix(cleaned, "http") { cleaned = "https://t.me/" + cleaned }
 			u = append(u, strings.TrimSuffix(cleaned, "/")) 
 		} 
 	}
 	return u, nil
-}
-
-func generateReports(reports []ChannelReport, total int) string {
-	var sb strings.Builder
-	sb.WriteString("# 💠 Xray Source Report\n\n")
-	sb.WriteString(fmt.Sprintf("Last Update: `%s` (UTC)\n\n", time.Now().UTC().Format("2006-01-02 15:04:05")))
-	sb.WriteString("| Source Channel | Protocols | Status |\n| :--- | :--- | :--- |\n")
-	for _, r := range reports {
-		sb.WriteString(fmt.Sprintf("| [%s](https://t.me/s/%s) | %s | %s |\n", r.Name, r.Name, strings.Join(r.Protocols, ","), r.Message))
-	}
-	return sb.String()
 }
 
 func removeDuplicates(slice []string) []string {
