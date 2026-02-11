@@ -33,14 +33,17 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # 1. Sync with remote first (before staging files)
+          # 1. Temporarily 'hide' the new configs Go generated
+          git add .
+          git stash
+          
+          # 2. Sync with the remote repository
           git pull --rebase origin main
           
-          # 2. Add the newly generated/updated files
+          # 3. Bring the new configs back into the folder
+          git stash pop || echo "No changes to merge"
+          
+          # 4. Finalize the commit
           git add .
-          
-          # 3. Commit only if there are changes
           git commit -m "Update configs $(date +'%Y-%m-%d %H:%M')" || exit 0
-          
-          # 4. Final push
           git push origin main
