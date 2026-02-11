@@ -11,14 +11,16 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Ensures full history for a clean rebase
 
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.21'
-          cache: true
+          cache: false # Disables the cache that caused the tar errors
 
-      - name: Fix Dependencies
+      - name: Initialize Dependencies
         run: |
           go mod tidy
           go mod download
@@ -31,5 +33,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
+          # Rebase ensures your automated changes don't collide with manual edits
+          git pull --rebase origin main
           git commit -m "Update configs $(date +'%Y-%m-%d %H:%M')" || exit 0
-          git push
+          git push origin main
