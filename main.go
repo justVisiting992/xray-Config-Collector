@@ -106,7 +106,7 @@ func main() {
 		totalScraped += count
 	}
 
-	// 2. Web Scraper (Backup and Additional Channels)
+	// 2. Web Scraper
 	for _, channelURL := range channels {
 		uParts := strings.Split(strings.TrimSuffix(channelURL, "/"), "/")
 		channelName := uParts[len(uParts)-1]
@@ -190,7 +190,6 @@ func labelWithGeo(config string, index int) string {
 			}
 		}
 	}
-	// FIX: Remove PathEscape and manually append fragment for Hiddify compatibility
 	u.Fragment = "" 
 	baseConfig := strings.Split(u.String(), "#")[0]
 	return fmt.Sprintf("%s#%s %s | Node-%d", baseConfig, emoji, countryName, index)
@@ -232,7 +231,8 @@ func fastPingTest(configs []string) []string {
 	var mu sync.Mutex
 	healthy := []string{}
 	sem := make(chan struct{}, 50)
-	for i, cfg := range configs {
+	// FIXED: Changed 'i' to '_' because index was unused
+	for _, cfg := range configs {
 		wg.Add(1); go func(c string) {
 			defer wg.Done(); sem <- struct{}{}; defer func() { <-sem }()
 			if checkTCP(c) {
