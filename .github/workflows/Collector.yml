@@ -2,9 +2,10 @@ name: Xray Config Collector
 
 on:
   schedule:
-    - cron: '0 */2 * * *'
+    # Runs at 00, 15, 30, and 45 minutes past every hour
+    - cron: '*/15 * * * *'
   workflow_dispatch:
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
