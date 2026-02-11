@@ -14,45 +14,49 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install telethon requests
+
+      - name: Run Python Collector
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+        run: python collector.py
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.21'
           cache: false
 
-      - name: Initialize Dependencies
+      - name: Initialize Go Dependencies
         run: |
           go mod tidy
           go mod download
 
       - name: Download GeoIP Database
         run: |
-          # This downloads the fuel for your country labeling engine
           wget -O Country.mmdb https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
 
-      - name: Run Collector
+      - name: Run Go Processor
         run: go run main.go
 
       - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
-          # Stage changes so they can be stashed
           git add .
-          
-          # Stash local changes (configs) to allow a clean rebase
           git stash
-          
-          # Sync with any remote changes
           git pull --rebase origin main
-          
-          # Bring the new configs back
           git stash pop || echo "No changes to merge"
-          
-          # Add everything (including the new configs) and commit
           git add .
           git commit -m "Update configs $(date +'%Y-%m-%d %H:%M')" || exit 0
-          
-          # Push to the main branch
           git push origin main
