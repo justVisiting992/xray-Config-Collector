@@ -12,13 +12,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Ensures full history for a clean rebase
+          fetch-depth: 0
 
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.21'
-          cache: false # Disables the cache that caused the tar errors
+          cache: false
 
       - name: Initialize Dependencies
         run: |
@@ -32,8 +32,15 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          # Rebase ensures your automated changes don't collide with manual edits
+          
+          # 1. Sync with remote first (before staging files)
           git pull --rebase origin main
+          
+          # 2. Add the newly generated/updated files
+          git add .
+          
+          # 3. Commit only if there are changes
           git commit -m "Update configs $(date +'%Y-%m-%d %H:%M')" || exit 0
+          
+          # 4. Final push
           git push origin main
