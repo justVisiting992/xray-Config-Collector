@@ -20,9 +20,7 @@ jobs:
           python-version: '3.9'
 
       - name: Install Python Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install telethon requests
+        run: pip install telethon requests
 
       - name: Run Python Collector
         env:
@@ -43,8 +41,7 @@ jobs:
           go mod download
 
       - name: Download GeoIP Database
-        run: |
-          wget -O Country.mmdb https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
+        run: wget -O Country.mmdb https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
 
       - name: Run Go Processor
         run: go run main.go
