@@ -3,67 +3,67 @@
 This page is a tribute to the channel admins providing free configurations. Data is updated every 2 hours.
 
 ### 🕒 Last Update
-- **Tehran:** `1404/11/23` | `09:19:13`
+- **Tehran:** `1404/11/23` | `11:38:41`
 - **International:** `Wednesday, 11 Feb 2026`
 
 ### ⚡ Global Stats
-- **Total Working Configs Harvested:** `1913`
+- **Total Working Configs Harvested:** `1883`
 
 | Source Channel | Available Protocols | Harvest Status |
 | :--- | :--- | :--- |
-| [prrofile_purple](https://t.me/s/prrofile_purple) | Hy2, SS, Trojan, Vless, Vmess | ✅ 286 Xray configs found |
-| [DailyV2RY](https://t.me/s/DailyV2RY) | SS, Trojan, Vless, Vmess | ✅ 105 Xray configs found |
+| [prrofile_purple](https://t.me/s/prrofile_purple) | Hy2, SS, Trojan, Vless, Vmess | ✅ 269 Xray configs found |
+| [DailyV2RY](https://t.me/s/DailyV2RY) | SS, Trojan, Vless, Vmess | ✅ 103 Xray configs found |
 | [shadow_socks1](https://t.me/s/shadow_socks1) | SS | ✅ 94 Xray configs found |
 | [Outline_Vpn](https://t.me/s/Outline_Vpn) | SS, Trojan, Vless, Vmess | ✅ 58 Xray configs found |
 | [iTV2RAY](https://t.me/s/iTV2RAY) | SS, Vless, Vmess | ✅ 57 Xray configs found |
-| [Hope_Net](https://t.me/s/Hope_Net) | SS, Trojan, Vless, Vmess | ✅ 55 Xray configs found |
+| [Hope_Net](https://t.me/s/Hope_Net) | SS, Trojan, Vless, Vmess | ✅ 54 Xray configs found |
 | [Fr33C0nfig](https://t.me/s/Fr33C0nfig) | SS, Trojan, Vless, Vmess | ✅ 50 Xray configs found |
 | [mftizi](https://t.me/s/mftizi) | SS, Trojan, Vmess | ✅ 45 Xray configs found |
 | [configV2rayNG](https://t.me/s/configV2rayNG) | SS, Trojan, Vless, Vmess | ✅ 44 Xray configs found |
 | [FreakConfig](https://t.me/s/FreakConfig) | SS, Trojan, Vless, Vmess | ✅ 43 Xray configs found |
 | [vpnowl](https://t.me/s/vpnowl) | SS, Vless, Vmess | ✅ 42 Xray configs found |
 | [vless_vmess](https://t.me/s/vless_vmess) | SS, Vless | ✅ 40 Xray configs found |
-| [mrsoulb](https://t.me/s/mrsoulb) | SS, Trojan, Vless | ✅ 40 Xray configs found |
-| [V2ray_Alpha](https://t.me/s/V2ray_Alpha) | Hy2, SS, Trojan, Vless, Vmess | ✅ 39 Xray configs found |
 | [vmess_vless_v2rayng](https://t.me/s/vmess_vless_v2rayng) | SS, Trojan, Vless, Vmess | ✅ 39 Xray configs found |
-| [persianvpnhub](https://t.me/s/persianvpnhub) | SS, Vless, Vmess | ✅ 38 Xray configs found |
+| [V2ray_Alpha](https://t.me/s/V2ray_Alpha) | Hy2, SS, Trojan, Vless, Vmess | ✅ 39 Xray configs found |
 | [V2rayNGX](https://t.me/s/V2rayNGX) | SS, Vless | ✅ 38 Xray configs found |
 | [fhkllvjkll](https://t.me/s/fhkllvjkll) | Hy2, SS, Trojan, Vless, Vmess | ✅ 38 Xray configs found |
+| [mrsoulb](https://t.me/s/mrsoulb) | SS, Trojan, Vless | ✅ 38 Xray configs found |
 | [NEW_MTProxi2](https://t.me/s/NEW_MTProxi2) | Hy2, SS, Trojan, Vless, Vmess | ✅ 37 Xray configs found |
 | [Lockey_vpn](https://t.me/s/Lockey_vpn) | SS, Vless | ✅ 36 Xray configs found |
-| [Free_HTTPCustom](https://t.me/s/Free_HTTPCustom) | SS, Vless | ✅ 34 Xray configs found |
-| [DeamNet_proxy](https://t.me/s/DeamNet_proxy) | SS, Trojan, Vless, Vmess | ✅ 34 Xray configs found |
 | [DeamNet_Proxy](https://t.me/s/DeamNet_Proxy) | SS, Trojan, Vless, Vmess | ✅ 34 Xray configs found |
-| [IP_CF_Config](https://t.me/s/IP_CF_Config) | SS, Trojan, Vless, Vmess | ✅ 33 Xray configs found |
+| [DeamNet_proxy](https://t.me/s/DeamNet_proxy) | SS, Trojan, Vless, Vmess | ✅ 34 Xray configs found |
+| [persianvpnhub](https://t.me/s/persianvpnhub) | SS, Vless, Vmess | ✅ 34 Xray configs found |
+| [Free_HTTPCustom](https://t.me/s/Free_HTTPCustom) | SS, Vless | ✅ 34 Xray configs found |
 | [vpn_ioss](https://t.me/s/vpn_ioss) | SS, Vless | ✅ 33 Xray configs found |
-| [VlessConfig](https://t.me/s/VlessConfig) | SS, Vless | ✅ 28 Xray configs found |
 | [customv2ray](https://t.me/s/customv2ray) | SS, Vless, Vmess | ✅ 28 Xray configs found |
-| [V2rayNg_madam](https://t.me/s/V2rayNg_madam) | SS, Trojan, Vless, Vmess | ✅ 25 Xray configs found |
+| [VlessConfig](https://t.me/s/VlessConfig) | SS, Vless | ✅ 28 Xray configs found |
+| [IP_CF_Config](https://t.me/s/IP_CF_Config) | SS, Trojan, Vless, Vmess | ✅ 26 Xray configs found |
 | [V2RAYROZ](https://t.me/s/V2RAYROZ) | SS, Trojan, Vless | ✅ 25 Xray configs found |
+| [V2rayNg_madam](https://t.me/s/V2rayNg_madam) | SS, Trojan, Vless, Vmess | ✅ 25 Xray configs found |
 | [V2rayi_net](https://t.me/s/V2rayi_net) | SS, Vless | ✅ 24 Xray configs found |
 | [v2rayvpn2](https://t.me/s/v2rayvpn2) | SS, Vless | ✅ 24 Xray configs found |
-| [icv2ray](https://t.me/s/icv2ray) | Hy2, SS, Trojan, Vless | ✅ 23 Xray configs found |
+| [oneclickvpnkeys](https://t.me/s/oneclickvpnkeys) | Hy2, SS, Trojan, Vless, Vmess | ✅ 23 Xray configs found |
+| [icv2ray](https://t.me/s/icv2ray) | Hy2, SS, Vless | ✅ 22 Xray configs found |
 | [socks5tobefree](https://t.me/s/socks5tobefree) | SS, Vless, Vmess | ✅ 22 Xray configs found |
 | [hddify](https://t.me/s/hddify) | SS, Trojan, Vless, Vmess | ✅ 21 Xray configs found |
-| [oneclickvpnkeys](https://t.me/s/oneclickvpnkeys) | Hy2, SS, Trojan, Vless, Vmess | ✅ 21 Xray configs found |
-| [iP_CF](https://t.me/s/iP_CF) | SS, Trojan, Vless, Vmess | ✅ 19 Xray configs found |
+| [V2rayng_Fast](https://t.me/s/V2rayng_Fast) | SS, Trojan, Vless | ✅ 21 Xray configs found |
 | [V2rayNG_account_free](https://t.me/s/V2rayNG_account_free) | SS, Vless, Vmess | ✅ 19 Xray configs found |
-| [V2rayng_Fast](https://t.me/s/V2rayng_Fast) | SS, Trojan, Vless | ✅ 19 Xray configs found |
-| [flyv2ray](https://t.me/s/flyv2ray) | SS, Trojan, Vless | ✅ 17 Xray configs found |
+| [iP_CF](https://t.me/s/iP_CF) | SS, Trojan, Vless, Vmess | ✅ 19 Xray configs found |
+| [v2raytechadoo](https://t.me/s/v2raytechadoo) | SS, Vless, Vmess | ✅ 16 Xray configs found |
 | [ArV2ray](https://t.me/s/ArV2ray) | SS, Vless | ✅ 16 Xray configs found |
 | [FalconPolV2rayNG](https://t.me/s/FalconPolV2rayNG) | SS, Vless, Vmess | ✅ 16 Xray configs found |
-| [v2raytechadoo](https://t.me/s/v2raytechadoo) | SS, Vless, Vmess | ✅ 16 Xray configs found |
 | [iSeqaro](https://t.me/s/iSeqaro) | SS, Trojan, Vless | ✅ 15 Xray configs found |
-| [DirectVPN](https://t.me/s/DirectVPN) | Trojan | ✅ 14 Xray configs found |
+| [flyv2ray](https://t.me/s/flyv2ray) | SS, Vless | ✅ 15 Xray configs found |
 | [PrivateVPNs](https://t.me/s/PrivateVPNs) | Trojan | ✅ 14 Xray configs found |
+| [DirectVPN](https://t.me/s/DirectVPN) | Trojan | ✅ 14 Xray configs found |
 | [iran_v2ray1](https://t.me/s/iran_v2ray1) | SS, Trojan, Vless | ✅ 13 Xray configs found |
 | [fnet00](https://t.me/s/fnet00) | SS, Vless | ✅ 12 Xray configs found |
 | [TunelProV2](https://t.me/s/TunelProV2) | SS, Vless | ✅ 12 Xray configs found |
 | [vmess_iran](https://t.me/s/vmess_iran) | SS, Vless | ✅ 10 Xray configs found |
 | [mehrosaboran](https://t.me/s/mehrosaboran) | Hy2, SS, Vless | ✅ 10 Xray configs found |
 | [Network_442](https://t.me/s/Network_442) | SS, Vless | ✅ 8 Xray configs found |
-| [nofiltering2](https://t.me/s/nofiltering2) | SS, Vless, Vmess | ✅ 8 Xray configs found |
 | [free1_vpn](https://t.me/s/free1_vpn) | SS, Trojan, Vless | ✅ 8 Xray configs found |
+| [nofiltering2](https://t.me/s/nofiltering2) | SS, Vless, Vmess | ✅ 8 Xray configs found |
 | [V2RAY_VMESS_free](https://t.me/s/V2RAY_VMESS_free) | SS, Vless | ✅ 6 Xray configs found |
 | [nufilter](https://t.me/s/nufilter) | SS, Vless | ✅ 6 Xray configs found |
 | [MehradLearn](https://t.me/s/MehradLearn) | SS, Vless | ✅ 6 Xray configs found |
@@ -71,47 +71,47 @@ This page is a tribute to the channel admins providing free configurations. Data
 | [GH_v2rayng](https://t.me/s/GH_v2rayng) | SS, Vless | ✅ 4 Xray configs found |
 | [v2ray1_ng](https://t.me/s/v2ray1_ng) | SS, Trojan, Vless | ✅ 3 Xray configs found |
 | [Freedomnetir](https://t.me/s/Freedomnetir) | SS, Vless | ✅ 2 Xray configs found |
+| [ShadowSocks_s](https://t.me/s/ShadowSocks_s) | SS, Vmess | ✅ 2 Xray configs found |
 | [Awlix_ir](https://t.me/s/Awlix_ir) | SS, Vless | ✅ 2 Xray configs found |
 | [shh_proxy](https://t.me/s/shh_proxy) | — | 💤 No recent configs found |
 | [spdnet](https://t.me/s/spdnet) | — | 💤 No recent configs found |
 | [V_2rey](https://t.me/s/V_2rey) | — | 💤 No recent configs found |
 | [eliya_chiter0](https://t.me/s/eliya_chiter0) | — | 💤 No recent configs found |
 | [forwardv2ray](https://t.me/s/forwardv2ray) | — | 💤 No recent configs found |
-| [OutlineVpnOfficial](https://t.me/s/OutlineVpnOfficial) | — | 💤 No recent configs found |
 | [ghalagyann](https://t.me/s/ghalagyann) | — | 💤 No recent configs found |
 | [XpnTeam](https://t.me/s/XpnTeam) | — | 💤 No recent configs found |
+| [OutlineVpnOfficial](https://t.me/s/OutlineVpnOfficial) | — | 💤 No recent configs found |
 | [ipV2Ray](https://t.me/s/ipV2Ray) | — | 💤 No recent configs found |
-| [V2RayTz](https://t.me/s/V2RayTz) | — | 💤 No recent configs found |
 | [IRANVPNNET](https://t.me/s/IRANVPNNET) | — | 💤 No recent configs found |
-| [UnlimitedDev](https://t.me/s/UnlimitedDev) | — | 💤 No recent configs found |
+| [V2RayTz](https://t.me/s/V2RayTz) | — | 💤 No recent configs found |
 | [VPNwedbaz](https://t.me/s/VPNwedbaz) | — | 💤 No recent configs found |
 | [proxyymeliii](https://t.me/s/proxyymeliii) | — | 💤 No recent configs found |
+| [UnlimitedDev](https://t.me/s/UnlimitedDev) | — | 💤 No recent configs found |
 | [SvnTeam](https://t.me/s/SvnTeam) | — | 💤 No recent configs found |
 | [IRN_VPN](https://t.me/s/IRN_VPN) | — | 💤 No recent configs found |
-| [kingofilter](https://t.me/s/kingofilter) | — | 💤 No recent configs found |
 | [SEVEN_ping](https://t.me/s/SEVEN_ping) | — | 💤 No recent configs found |
 | [meli_proxyy](https://t.me/s/meli_proxyy) | — | 💤 No recent configs found |
 | [SafeNetIR](https://t.me/s/SafeNetIR) | — | 💤 No recent configs found |
 | [SafeNet_Server](https://t.me/s/SafeNet_Server) | — | 💤 No recent configs found |
-| [MsV2ray](https://t.me/s/MsV2ray) | — | 💤 No recent configs found |
+| [kingofilter](https://t.me/s/kingofilter) | — | 💤 No recent configs found |
 | [V2Graphy](https://t.me/s/V2Graphy) | — | 💤 No recent configs found |
 | [ViraV2ray](https://t.me/s/ViraV2ray) | — | 💤 No recent configs found |
+| [MsV2ray](https://t.me/s/MsV2ray) | — | 💤 No recent configs found |
 | [ShadowProxy66](https://t.me/s/ShadowProxy66) | — | 💤 No recent configs found |
-| [V2pedia](https://t.me/s/V2pedia) | — | 💤 No recent configs found |
 | [Parsashonam](https://t.me/s/Parsashonam) | — | 💤 No recent configs found |
+| [V2pedia](https://t.me/s/V2pedia) | — | 💤 No recent configs found |
 | [melov2ray](https://t.me/s/melov2ray) | — | 💤 No recent configs found |
 | [ConfigsHUB](https://t.me/s/ConfigsHUB) | — | 💤 No recent configs found |
-| [ServerNett](https://t.me/s/ServerNett) | — | 💤 No recent configs found |
 | [moh3enivx](https://t.me/s/moh3enivx) | — | 💤 No recent configs found |
+| [ServerNett](https://t.me/s/ServerNett) | — | 💤 No recent configs found |
 | [v2rayvpnchannel](https://t.me/s/v2rayvpnchannel) | — | 💤 No recent configs found |
-| [frev2ray](https://t.me/s/frev2ray) | — | 💤 No recent configs found |
 | [IraneAzad_Net](https://t.me/s/IraneAzad_Net) | — | 💤 No recent configs found |
 | [VPN_SOLVE](https://t.me/s/VPN_SOLVE) | — | 💤 No recent configs found |
+| [frev2ray](https://t.me/s/frev2ray) | — | 💤 No recent configs found |
 | [ultrasurf_12](https://t.me/s/ultrasurf_12) | — | 💤 No recent configs found |
 | [FOX_VPN66](https://t.me/s/FOX_VPN66) | — | 💤 No recent configs found |
 | [VPNCUSTOMIZE](https://t.me/s/VPNCUSTOMIZE) | — | 💤 No recent configs found |
 | [vpn_proxy_custom](https://t.me/s/vpn_proxy_custom) | — | 💤 No recent configs found |
-| [ShadowSocks_s](https://t.me/s/ShadowSocks_s) | — | 💤 No recent configs found |
 | [vmessiran](https://t.me/s/vmessiran) | — | 💤 No recent configs found |
 | [V2ray_official](https://t.me/s/V2ray_official) | — | 💤 No recent configs found |
 | [FreeVlessVpn](https://t.me/s/FreeVlessVpn) | — | 💤 No recent configs found |
