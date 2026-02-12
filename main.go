@@ -23,10 +23,11 @@ import (
 	"github.com/projectdiscovery/gologger/levels"
 )
 
-// VMessConfig structure for JSON decoding check only
+// VMessConfig structure updated for accurate deduplication
 type VMessConfig struct {
 	Add  string      `json:"add"`
 	Port interface{} `json:"port"`
+	Id   interface{} `json:"id"` // Added ID to ensure unique server+user identification
 }
 
 type ChannelReport struct {
@@ -69,7 +70,7 @@ func main() {
 
 	// 3. Load Channels
 	rawChannels, _ := loadChannelsFromCSV("channels.csv")
-	channels := removeDuplicates(rawChannels)
+	channels := removeDuplicates(rawChannels) // Keep simple dedupe for URLs
 	gologger.Info().Msgf("📺 Loaded %d Source Channels", len(channels))
 
 	newConfigs := make(map[string][]string)
@@ -116,6 +117,8 @@ func main() {
 		}
 		var pList []string
 		for p := range foundProtos { pList = append(pList, p) }
+		
+		// This block ensures the Python extracted configs are added to the Report Table
 		reports = append(reports, ChannelReport{
 			Name: "Python-API-Collector", Count: count, Message: fmt.Sprintf("✅ %d Configs via API", count), Protocols: pList,
 		})
@@ -180,9 +183,11 @@ func main() {
 		gologger.Info().Msgf("🛡️  Processing Protocol: %s", p)
 		
 		combined := append(newConfigs[p], historyConfigs[p]...)
-		unique := removeDuplicates(combined)
 		
-		gologger.Info().Msgf("   ↳ Testing %d unique configs...", len(unique))
+		// === NEW DEDUPLICATION LOGIC APPLIED HERE ===
+		unique := removeDuplicates(combined) 
+		
+		gologger.Info().Msgf("   ↳ Testing %d unique configs (deduplicated)...", len(unique))
 		
 		healthy := fastPingTest(unique, p)
 		
@@ -197,7 +202,7 @@ func main() {
 	}
 	
 	gologger.Info().Msg("🍹 Saving Mixed Configs...")
-	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
+	saveToFile("mixed_iran.txt", removeDuplicates(allMixed)) // Deduplicate mixed list too
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
 
@@ -369,7 +374,6 @@ func labelWithGeo(config string, index int) string {
 
 	if isVMess {
 		// === CRITICAL FIX FOR VMESS ===
-		// Decode -> Edit JSON "ps" -> Encode -> Return
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
 		if i := len(b64) % 4; i != 0 {
@@ -382,16 +386,11 @@ func labelWithGeo(config string, index int) string {
 
 		var v map[string]interface{}
 		if err := json.Unmarshal(decoded, &v); err == nil {
-			// Update the name (remark)
 			v["ps"] = label
-			
-			// Marshal back to JSON
 			newJSON, _ := json.Marshal(v)
-			
-			// Encode back to Base64
 			return "vmess://" + base64.StdEncoding.EncodeToString(newJSON)
 		}
-		return config // Return original if parsing fails
+		return config 
 	} else {
 		// Standard Fragment for VLESS, Trojan, SS
 		cleanConfig := strings.Split(config, "#")[0]
@@ -406,29 +405,20 @@ func generateOriginalReportStructure(reports []ChannelReport, total int) string 
 	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
 	
 	var sb strings.Builder
-	// Title and Last Update Section
 	sb.WriteString("# 📊 Status Report\n\n")
 	sb.WriteString("### 🕒 Last Update\n")
 	sb.WriteString(fmt.Sprintf("- **Tehran Time:** 🇮🇷 `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
 	sb.WriteString(fmt.Sprintf("- **International:** 🌐 `%s`\n\n", tehranNow.Format("Monday, 02 Jan 2006")))
-	
-	// Stats Section with eye-candy
 	sb.WriteString("### ⚡ Global Statistics\n")
 	sb.WriteString(fmt.Sprintf("- **Active Nodes Found:** ` %d ` 🚀\n", total))
 	sb.WriteString("- **Status:** ` Operational ` ✅\n\n")
-	
-	// Table Section - Fixed Pipes to prevent "Chaos"
 	sb.WriteString("### 📡 Source Analysis\n\n")
 	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
 	sb.WriteString("| :--- | :--- | :--- |\n")
 	
 	for _, r := range reports {
 		protos := strings.Join(r.Protocols, ", ")
-		if protos == "" {
-			protos = "—"
-		}
-		
-		// Each line must have exactly 4 pipes (|) to render as a table
+		if protos == "" { protos = "—" }
 		sb.WriteString(fmt.Sprintf("| 📢 [%s](https://t.me/s/%s) | `%s` | %s |\n", r.Name, r.Name, protos, r.Message))
 	}
 	
@@ -442,27 +432,21 @@ func toJalali(gy, gm, gd int) (int, int, int) {
 	var gDays = []int{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334}
 	var jy, jm, jd int
 	var gDayNo int
-
-	// Precision calculation to fix the "one day ahead" bug
 	gDayNo = 365*(gy-1600) + (gy-1597)/4 - (gy-1501)/100 + (gy-1201)/400
 	gDayNo += gDays[gm-1]
 	if gm > 2 && ((gy%4 == 0 && gy%100 != 0) || (gy%400 == 0)) {
 		gDayNo++
 	}
 	gDayNo += gd - 1
-
 	jDayNo := gDayNo - 79
 	jNp := jDayNo / 12053
 	jDayNo %= 12053
-
 	jy = 979 + 33*jNp + 4*(jDayNo/1461)
 	jDayNo %= 1461
-
 	if jDayNo >= 366 {
 		jy += (jDayNo - 1) / 365
 		jDayNo = (jDayNo - 1) % 365
 	}
-
 	if jDayNo < 186 {
 		jm = 1 + jDayNo/31
 		jd = 1 + jDayNo%31
@@ -470,7 +454,6 @@ func toJalali(gy, gm, gd int) (int, int, int) {
 		jm = 7 + (jDayNo-186)/30
 		jd = 1 + (jDayNo-186)%30
 	}
-
 	return jy, jm, jd
 }
 
@@ -490,10 +473,55 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 	return u, nil
 }
 
+// === IMPROVED DEDUPLICATION LOGIC ===
+// This function now uses a "Fingerprint" method to detect duplicates.
+// It ignores the remark/name (#Name) and compares the actual connection details.
 func removeDuplicates(slice []string) []string {
-	m := make(map[string]bool); var list []string
-	for _, v := range slice { if !m[v] { m[v] = true; list = append(list, v) } }
+	seen := make(map[string]bool)
+	var list []string
+	
+	for _, v := range slice {
+		fingerprint := getConfigFingerprint(v)
+		if !seen[fingerprint] {
+			seen[fingerprint] = true
+			list = append(list, v)
+		}
+	}
 	return list
+}
+
+// Helper to generate a unique key for a config, ignoring the name
+func getConfigFingerprint(config string) string {
+	// 1. Handle VMess specifically (Decode JSON to compare IP+Port+ID)
+	if strings.HasPrefix(strings.ToLower(config), "vmess://") {
+		b64 := strings.TrimPrefix(config, "vmess://")
+		b64 = strings.TrimPrefix(b64, "VMess://")
+		if i := len(b64) % 4; i != 0 {
+			b64 += strings.Repeat("=", 4-i)
+		}
+		decoded, err := base64.StdEncoding.DecodeString(b64)
+		if err != nil {
+			decoded, err = base64.URLEncoding.DecodeString(b64)
+		}
+		
+		if err == nil {
+			var v VMessConfig
+			if json.Unmarshal(decoded, &v) == nil {
+				// Return a composite key of Add+Port+Id
+				return fmt.Sprintf("vmess|%s|%v|%v", v.Add, v.Port, v.Id)
+			}
+		}
+		return config // Fallback to full string if parse fails
+	}
+	
+	// 2. Handle standard URL formats (VLESS, Trojan, SS, Hy2, HTTP/HTTPS)
+	// Strip the fragment (part after #)
+	parts := strings.Split(config, "#")
+	if len(parts) > 0 {
+		return parts[0]
+	}
+	
+	return config
 }
 
 func saveToFile(name string, data []string) { _ = os.WriteFile(name, []byte(strings.Join(data, "\n")), 0644) }
