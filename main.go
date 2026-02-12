@@ -35,7 +35,7 @@ type VMessConfig struct {
 type ChannelReport struct {
 	Name      string
 	Protocols []string
-	Count       int
+	Count     int
 	Message   string
 }
 
@@ -98,7 +98,8 @@ func main() {
 	newConfigs := make(map[string][]string)
 	historyConfigs := make(map[string][]string)
 
-	// 4. Load History
+	// 4. Load History (Restored Log Output)
+	totalHistory := 0
 	for p := range myregex {
 		newConfigs[p] = []string{}
 		historyConfigs[p] = []string{}
@@ -113,8 +114,10 @@ func main() {
 				clean = strings.Split(clean, "|")[0]
 				historyConfigs[p] = append(historyConfigs[p], strings.TrimSpace(clean))
 			}
+			totalHistory += len(historyConfigs[p])
 		}
 	}
+	gologger.Info().Msgf("📜 Loaded %d Historic Configs", totalHistory)
 
 	var reports []ChannelReport
 	totalScraped := 0
@@ -173,7 +176,8 @@ func main() {
 				}
 			}
 			if report.Count > 0 {
-				report.Message = fmt.Sprintf("✅ %d found (Stateful)", report.Count)
+				// REMOVED "(Stateful)" as requested
+				report.Message = fmt.Sprintf("✅ %d found", report.Count)
 				totalScraped += report.Count
 			} else {
 				report.Message = "💤 No new configs"
@@ -192,12 +196,11 @@ func main() {
 
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
 
-	// Generate Report
-	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
-	_ = os.WriteFile("report.md", []byte(generateOriginalReportStructure(reports, totalScraped)), 0644)
-
 	// 7. Testing & Merging
 	var allMixed []string
+	
+	// Map to hold stats: Protocol -> [TotalUnique, Live]
+	protoStats := make(map[string][2]int) 
 	
 	for p := range myregex {
 		gologger.Info().Msgf("🛡️  Processing Protocol: %s", p)
@@ -208,6 +211,9 @@ func main() {
 		healthy := fastPingTest(unique, p)
 		gologger.Info().Msgf("   ✅ Alive: %d", len(healthy))
 		
+		// Record stats for report
+		protoStats[p] = [2]int{len(unique), len(healthy)}
+
 		limit := len(healthy)
 		if limit > maxLimit { limit = maxLimit }
 		
@@ -216,6 +222,10 @@ func main() {
 		allMixed = append(allMixed, finalList...)
 	}
 	
+	// Generate Report with Stats
+	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
+	_ = os.WriteFile("report.md", []byte(generateOriginalReportStructure(reports, protoStats)), 0644)
+
 	gologger.Info().Msg("🍹 Saving Mixed Configs...")
 	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
@@ -396,7 +406,6 @@ func labelWithGeo(config string, index int) string {
 		decoded, err := base64.StdEncoding.DecodeString(b64)
 		if err != nil { decoded, _ = base64.URLEncoding.DecodeString(b64) }
 		var v map[string]interface{}
-		// FIXED SYNTAX HERE
 		if err == nil {
 			err = json.Unmarshal(decoded, &v)
 			if err == nil {
@@ -444,7 +453,6 @@ func labelWithGeo(config string, index int) string {
 		decoded, err := base64.StdEncoding.DecodeString(b64)
 		if err != nil { decoded, _ = base64.URLEncoding.DecodeString(b64) }
 		var v map[string]interface{}
-		// FIXED SYNTAX HERE
 		err = json.Unmarshal(decoded, &v)
 		if err == nil {
 			v["ps"] = label
@@ -458,20 +466,44 @@ func labelWithGeo(config string, index int) string {
 	}
 }
 
-func generateOriginalReportStructure(reports []ChannelReport, total int) string {
+// Updated Function to accept Stats
+func generateOriginalReportStructure(reports []ChannelReport, stats map[string][2]int) string {
 	utcNow := time.Now().UTC()
 	loc, _ := time.LoadLocation("Asia/Tehran")
 	tehranNow := utcNow.In(loc)
 	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
+	
+	// Calculate Global Stats
+	totalUnique := 0
+	totalLive := 0
+	for _, s := range stats {
+		totalUnique += s[0]
+		totalLive += s[1]
+	}
 	
 	var sb strings.Builder
 	sb.WriteString("# 📊 Status Report\n\n")
 	sb.WriteString("### 🕒 Last Update\n")
 	sb.WriteString(fmt.Sprintf("- **Tehran Time:** 🇮🇷 `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
 	sb.WriteString(fmt.Sprintf("- **International:** 🌐 `%s`\n\n", tehranNow.Format("Monday, 02 Jan 2006")))
+	
 	sb.WriteString("### ⚡ Global Statistics\n")
-	sb.WriteString(fmt.Sprintf("- **Active Nodes Found:** ` %d ` 🚀\n", total))
-	sb.WriteString("- **Status:** ` Operational ` ✅\n\n")
+	// Breakdown
+	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d` (Total Unique)\n", totalUnique))
+	sb.WriteString(fmt.Sprintf("- **Total Alive:** `%d` 🚀\n", totalLive))
+	sb.WriteString("\n#### 🔍 Protocol Breakdown:\n")
+	
+	// Sort keys for consistent order
+	keys := make([]string, 0, len(stats))
+	for k := range stats { keys = append(keys, k) }
+	sort.Strings(keys)
+	
+	for _, k := range keys {
+		s := stats[k]
+		sb.WriteString(fmt.Sprintf("- **%s:** %d found (%d live) ⚡\n", k, s[0], s[1]))
+	}
+	
+	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
 	sb.WriteString("### 📡 Source Analysis\n\n")
 	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
 	sb.WriteString("| :--- | :--- | :--- |\n")
@@ -550,7 +582,6 @@ func getConfigFingerprint(config string) string {
 		if err != nil { decoded, err = base64.URLEncoding.DecodeString(b64) }
 		if err == nil {
 			var v VMessConfig
-			// FIXED SYNTAX HERE
 			err = json.Unmarshal(decoded, &v)
 			if err == nil { return fmt.Sprintf("vmess|%s|%v|%v", v.Add, v.Port, v.Id) }
 		}
