@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/base64"
 	"encoding/csv"
 	"encoding/json"
@@ -13,6 +14,7 @@ import (
 	"os"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -23,11 +25,11 @@ import (
 	"github.com/projectdiscovery/gologger/levels"
 )
 
-// VMessConfig structure updated for accurate deduplication
+// VMessConfig structure
 type VMessConfig struct {
 	Add  string      `json:"add"`
 	Port interface{} `json:"port"`
-	Id   interface{} `json:"id"` // Added ID to ensure unique server+user identification
+	Id   interface{} `json:"id"`
 }
 
 type ChannelReport struct {
@@ -37,11 +39,30 @@ type ChannelReport struct {
 	Message   string
 }
 
+// Gist Structure
+type GistFile struct {
+	Content string `json:"content"`
+}
+type GistRequest struct {
+	Files map[string]GistFile `json:"files"`
+}
+type GistResponse struct {
+	Files map[string]GistFile `json:"files"`
+}
+
 var (
 	client   = &http.Client{Timeout: 15 * time.Second}
 	maxLimit = 200
 	db       *geoip2.Reader
-	// Updated Regex to be more inclusive
+	
+	// Secrets for Statefulness
+	gistID    = os.Getenv("GIST_ID")
+	gistToken = os.Getenv("GIST_TOKEN")
+	
+	// Global Checkpoint Map
+	checkpoints = make(map[string]int)
+	checkpointsMu sync.Mutex
+
 	myregex = map[string]string{
 		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`, 
@@ -52,13 +73,11 @@ var (
 )
 
 func main() {
-	// 1. Cool Verbose Setup
 	gologger.DefaultLogger.SetMaxLevel(levels.LevelDebug)
 	flag.Parse()
-
 	printBanner()
 
-	// 2. Load GeoIP
+	// 1. Load GeoIP
 	var err error
 	db, err = geoip2.Open("Country.mmdb")
 	if err != nil {
@@ -68,15 +87,18 @@ func main() {
 		defer db.Close()
 	}
 
+	// 2. Load Checkpoints from Gist
+	loadCheckpoints()
+
 	// 3. Load Channels
 	rawChannels, _ := loadChannelsFromCSV("channels.csv")
-	channels := removeDuplicates(rawChannels) // Keep simple dedupe for URLs
+	channels := removeDuplicates(rawChannels) 
 	gologger.Info().Msgf("📺 Loaded %d Source Channels", len(channels))
 
 	newConfigs := make(map[string][]string)
 	historyConfigs := make(map[string][]string)
 
-	// 4. Load History (Preserve old configs)
+	// 4. Load History
 	for p := range myregex {
 		newConfigs[p] = []string{}
 		historyConfigs[p] = []string{}
@@ -87,19 +109,17 @@ func main() {
 			for _, line := range lines {
 				line = strings.TrimSpace(line)
 				if line == "" { continue }
-				// Strip comments/names for re-verification
 				clean := strings.Split(line, "#")[0]
 				clean = strings.Split(clean, "|")[0]
 				historyConfigs[p] = append(historyConfigs[p], strings.TrimSpace(clean))
 			}
-			gologger.Info().Msgf("📜 [%s] Loaded %d historical configs", p, len(historyConfigs[p]))
 		}
 	}
 
 	var reports []ChannelReport
 	totalScraped := 0
 
-	// 5. Process Python Dump
+	// 5. Process Python Dump (Integrated into Report)
 	gologger.Info().Msg("🐍 Processing Python Collector Dump...")
 	pythonDump, err := os.ReadFile("telegram_dump.txt")
 	if err == nil && len(pythonDump) > 0 {
@@ -117,8 +137,6 @@ func main() {
 		}
 		var pList []string
 		for p := range foundProtos { pList = append(pList, p) }
-		
-		// This block ensures the Python extracted configs are added to the Report Table
 		reports = append(reports, ChannelReport{
 			Name: "Python-API-Collector", Count: count, Message: fmt.Sprintf("✅ %d Configs via API", count), Protocols: pList,
 		})
@@ -128,10 +146,10 @@ func main() {
 		gologger.Warning().Msg("⚠️ No Python dump found or empty.")
 	}
 
-	// 6. Web Scraper
-	gologger.Info().Msg("🕸️  Starting Web Scraper...")
+	// 6. Stateful Web Scraper
+	gologger.Info().Msg("🕸️  Starting Stateful Web Scraper...")
 	var wgScrape sync.WaitGroup
-	semaphore := make(chan struct{}, 10) // Limit concurrency
+	semaphore := make(chan struct{}, 5) // Lower concurrency to be gentle with pagination requests
 
 	for _, channelURL := range channels {
 		wgScrape.Add(1)
@@ -143,7 +161,8 @@ func main() {
 			uParts := strings.Split(strings.TrimSuffix(url, "/"), "/")
 			name := uParts[len(uParts)-1]
 			
-			extracted := scrapeChannel(name)
+			// === STATEFUL SCRAPE CALL ===
+			extracted, count := scrapeChannelStateful(name)
 			
 			mu := &sync.Mutex{}
 			mu.Lock()
@@ -156,10 +175,10 @@ func main() {
 				}
 			}
 			if report.Count > 0 {
-				report.Message = fmt.Sprintf("✅ %d found", report.Count)
+				report.Message = fmt.Sprintf("✅ %d found (Stateful)", report.Count)
 				totalScraped += report.Count
 			} else {
-				report.Message = "💤 No recent configs"
+				report.Message = "💤 No new configs"
 			}
 			reports = append(reports, report)
 			mu.Unlock()
@@ -170,6 +189,10 @@ func main() {
 		}(channelURL)
 	}
 	wgScrape.Wait()
+	
+	// Update Gist with new checkpoints from the scraping session
+	saveCheckpoints()
+
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
 
 	// Generate Report
@@ -181,16 +204,13 @@ func main() {
 	
 	for p := range myregex {
 		gologger.Info().Msgf("🛡️  Processing Protocol: %s", p)
-		
 		combined := append(newConfigs[p], historyConfigs[p]...)
 		
-		// === NEW DEDUPLICATION LOGIC APPLIED HERE ===
+		// Fingerprint Deduplication
 		unique := removeDuplicates(combined) 
 		
-		gologger.Info().Msgf("   ↳ Testing %d unique configs (deduplicated)...", len(unique))
-		
+		gologger.Info().Msgf("   ↳ Testing %d unique configs...", len(unique))
 		healthy := fastPingTest(unique, p)
-		
 		gologger.Info().Msgf("   ✅ Alive: %d", len(healthy))
 		
 		limit := len(healthy)
@@ -202,36 +222,140 @@ func main() {
 	}
 	
 	gologger.Info().Msg("🍹 Saving Mixed Configs...")
-	saveToFile("mixed_iran.txt", removeDuplicates(allMixed)) // Deduplicate mixed list too
+	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
 
-func scrapeChannel(channelName string) map[string][]string {
+// === STATEFUL SCRAPER LOGIC ===
+func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	results := make(map[string][]string)
-	req, _ := http.NewRequest("GET", "https://t.me/s/"+channelName, nil)
-	req.Header.Set("User-Agent", "Mozilla/5.0")
-	resp, err := client.Do(req)
-	if err != nil { return results }
-	defer resp.Body.Close()
+	checkpointsMu.Lock()
+	lastSeenID := checkpoints[channelName]
+	checkpointsMu.Unlock()
 
-	doc, _ := goquery.NewDocumentFromReader(resp.Body)
-	doc.Find(".tgme_widget_message_text").Each(func(j int, s *goquery.Selection) {
-		text := s.Text()
-		for pName, reg := range myregex {
-			matches := regexp.MustCompile(reg).FindAllString(text, -1)
-			if len(matches) > 0 {
-				results[pName] = append(results[pName], matches...)
+	baseURL := "https://t.me/s/" + channelName
+	nextURL := baseURL
+	maxIDFound := lastSeenID
+	totalExtracted := 0
+	pagesScraped := 0
+
+	// Limit depth to avoid infinite loops (max 5 pages back ~100 posts)
+	for pagesScraped < 5 {
+		// 1. Fetch Page
+		req, _ := http.NewRequest("GET", nextURL, nil)
+		req.Header.Set("User-Agent", "Mozilla/5.0")
+		resp, err := client.Do(req)
+		if err != nil { break }
+		
+		doc, _ := goquery.NewDocumentFromReader(resp.Body)
+		resp.Body.Close()
+
+		minIDOnPage := 999999999
+		foundAny := false
+
+		// 2. Parse Messages & IDs
+		doc.Find(".tgme_widget_message").Each(func(i int, s *goquery.Selection) {
+			// Extract ID from data-post="channel/123"
+			dataPost, exists := s.Attr("data-post")
+			if !exists { return }
+			
+			parts := strings.Split(dataPost, "/")
+			if len(parts) < 2 { return }
+			
+			msgID, err := strconv.Atoi(parts[len(parts)-1])
+			if err != nil { return }
+
+			// Track IDs
+			if msgID > maxIDFound { maxIDFound = msgID }
+			if msgID < minIDOnPage { minIDOnPage = msgID }
+
+			// Only extract if this message is NEWER than our checkpoint
+			if msgID > lastSeenID {
+				foundAny = true
+				text := s.Find(".tgme_widget_message_text").Text()
+				for pName, reg := range myregex {
+					matches := regexp.MustCompile(reg).FindAllString(text, -1)
+					if len(matches) > 0 {
+						results[pName] = append(results[pName], matches...)
+						totalExtracted += len(matches)
+					}
+				}
 			}
+		})
+
+		// 3. Logic for Pagination (The "Scroll")
+		// If the oldest message on this page is still newer than our checkpoint, 
+		// we must go deeper (back in time).
+		if foundAny && minIDOnPage > lastSeenID {
+			nextURL = fmt.Sprintf("%s?before=%d", baseURL, minIDOnPage)
+			pagesScraped++
+			time.Sleep(2 * time.Second) // Polite delay to avoid 429
+		} else {
+			// We have reached the checkpoint or end of history
+			break
 		}
-	})
-	return results
+	}
+
+	// Update local map with the highest ID seen this run
+	if maxIDFound > lastSeenID {
+		checkpointsMu.Lock()
+		checkpoints[channelName] = maxIDFound
+		checkpointsMu.Unlock()
+	}
+
+	return results, totalExtracted
 }
 
+// === GIST FUNCTIONS ===
+func loadCheckpoints() {
+	if gistID == "" || gistToken == "" { return }
+	
+	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
+	req.Header.Set("Authorization", "token "+gistToken)
+	resp, err := client.Do(req)
+	if err != nil { return }
+	defer resp.Body.Close()
+	
+	var gistResp GistResponse
+	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
+		if file, ok := gistResp.Files["checkpoints.json"]; ok {
+			_ = json.Unmarshal([]byte(file.Content), &checkpoints)
+			gologger.Info().Msg("🧠 State loaded from Gist.")
+		}
+	}
+}
+
+func saveCheckpoints() {
+	if gistID == "" || gistToken == "" { return }
+	
+	checkpointsMu.Lock()
+	data, _ := json.Marshal(checkpoints)
+	checkpointsMu.Unlock()
+
+	payload := GistRequest{
+		Files: map[string]GistFile{
+			"checkpoints.json": {Content: string(data)},
+		},
+	}
+	body, _ := json.Marshal(payload)
+	
+	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
+	req.Header.Set("Authorization", "token "+gistToken)
+	req.Header.Set("Content-Type", "application/json")
+	
+	resp, err := client.Do(req)
+	if err == nil {
+		resp.Body.Close()
+		gologger.Info().Msg("💾 State saved to Gist.")
+	}
+}
+
+// === EXISTING UTILS (DEDUPE, REPORT, ETC) ===
 func fastPingTest(configs []string, protocol string) []string {
 	var wg sync.WaitGroup
 	var mu sync.Mutex
 	healthy := []string{}
-	sem := make(chan struct{}, 100) // Higher concurrency for speed
+	sem := make(chan struct{}, 100) 
 
 	for _, cfg := range configs {
 		wg.Add(1)
@@ -240,10 +364,8 @@ func fastPingTest(configs []string, protocol string) []string {
 			sem <- struct{}{}
 			defer func() { <-sem }()
 
-			// Special Handling for VMess & Hy2
 			if checkAlive(c, protocol) {
 				mu.Lock()
-				// This function now handles VMess JSON correctly
 				healthy = append(healthy, labelWithGeo(c, len(healthy)+1))
 				mu.Unlock()
 			}
@@ -254,43 +376,24 @@ func fastPingTest(configs []string, protocol string) []string {
 }
 
 func checkAlive(config string, protocol string) bool {
-	// 1. Handle VMess (Base64 Decode)
 	if strings.HasPrefix(strings.ToLower(config), "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		
-		// Fix Base64 padding
-		if i := len(b64) % 4; i != 0 {
-			b64 += strings.Repeat("=", 4-i)
-		}
-		
+		if i := len(b64) % 4; i != 0 { b64 += strings.Repeat("=", 4-i) }
 		decoded, err := base64.StdEncoding.DecodeString(b64)
-		if err != nil {
-			decoded, err = base64.URLEncoding.DecodeString(b64)
-			if err != nil { return false }
-		}
-		
+		if err != nil { decoded, err = base64.URLEncoding.DecodeString(b64) }
+		if err != nil { return false }
 		var v VMessConfig
 		if err := json.Unmarshal(decoded, &v); err != nil { return false }
-		
-		portStr := fmt.Sprintf("%v", v.Port)
-		return tcpDial(v.Add, portStr)
+		return tcpDial(v.Add, fmt.Sprintf("%v", v.Port))
 	}
-
-	// 2. Handle Hysteria2 (UDP/QUIC - Fallback to DNS check)
 	if strings.Contains(strings.ToLower(protocol), "hy2") {
 		u, err := url.Parse(config)
 		if err != nil { return false }
-		
-		// Try TCP first (some servers support it)
 		if tcpDial(u.Hostname(), u.Port()) { return true }
-		
-		// Fallback: If DNS resolves, keep it (Hy2 is UDP, can't easily ping)
 		ips, err := net.LookupIP(u.Hostname())
 		return err == nil && len(ips) > 0
 	}
-
-	// 3. Standard TCP Check for everything else
 	u, err := url.Parse(config)
 	if err != nil { return false }
 	return tcpDial(u.Hostname(), u.Port())
@@ -307,38 +410,23 @@ func tcpDial(host, port string) bool {
 func labelWithGeo(config string, index int) string {
 	countryName, emoji := "Dynamic", "🏴"
 	host := ""
-
-	// --- STEP 1: Detect Host for GeoIP ---
 	isVMess := strings.HasPrefix(strings.ToLower(config), "vmess://")
 
 	if isVMess {
-		// DECODE VMess to find the Host
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		if i := len(b64) % 4; i != 0 {
-			b64 += strings.Repeat("=", 4-i)
-		}
+		if i := len(b64) % 4; i != 0 { b64 += strings.Repeat("=", 4-i) }
 		decoded, err := base64.StdEncoding.DecodeString(b64)
-		if err != nil {
-			decoded, _ = base64.URLEncoding.DecodeString(b64)
-		}
-		
-		// Use Map to avoid data loss
+		if err != nil { decoded, _ = base64.URLEncoding.DecodeString(b64) }
 		var v map[string]interface{}
-		if err == nil {
-			if json.Unmarshal(decoded, &v) == nil {
-				if h, ok := v["add"].(string); ok {
-					host = h
-				}
-			}
+		if err == nil && json.Unmarshal(decoded, &v) == nil {
+			if h, ok := v["add"].(string); ok { host = h }
 		}
 	} else {
-		// Standard URL parsing
 		u, _ := url.Parse(config)
 		if u != nil { host = u.Hostname() }
 	}
 
-	// --- STEP 2: GeoIP Lookup ---
 	if db != nil && host != "" {
 		ip := net.ParseIP(host)
 		if ip == nil {
@@ -350,8 +438,6 @@ func labelWithGeo(config string, index int) string {
 			if err == nil && record != nil {
 				raw := record.Country.Names["en"]
 				code := record.Country.IsoCode
-				
-				// FIXED LOGIC: Only overwrite if we actually have a name
 				if raw != "" {
 					switch raw {
 					case "United States": countryName = "USA"
@@ -361,7 +447,6 @@ func labelWithGeo(config string, index int) string {
 					default: countryName = raw
 					}
 				}
-				
 				if len(code) == 2 {
 					emoji = strings.Map(func(r rune) rune { return r + 127397 }, strings.ToUpper(code))
 				}
@@ -369,30 +454,22 @@ func labelWithGeo(config string, index int) string {
 		}
 	}
 
-	// --- STEP 3: Apply Label Correctly ---
 	label := fmt.Sprintf("%s %s | Node-%d", emoji, countryName, index)
 
 	if isVMess {
-		// === CRITICAL FIX FOR VMESS ===
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		if i := len(b64) % 4; i != 0 {
-			b64 += strings.Repeat("=", 4-i)
-		}
+		if i := len(b64) % 4; i != 0 { b64 += strings.Repeat("=", 4-i) }
 		decoded, err := base64.StdEncoding.DecodeString(b64)
-		if err != nil {
-			decoded, _ = base64.URLEncoding.DecodeString(b64)
-		}
-
+		if err != nil { decoded, _ = base64.URLEncoding.DecodeString(b64) }
 		var v map[string]interface{}
-		if err := json.Unmarshal(decoded, &v); err == nil {
+		if err := json.Unmarshal(decoded, &v) == nil {
 			v["ps"] = label
 			newJSON, _ := json.Marshal(v)
 			return "vmess://" + base64.StdEncoding.EncodeToString(newJSON)
 		}
 		return config 
 	} else {
-		// Standard Fragment for VLESS, Trojan, SS
 		cleanConfig := strings.Split(config, "#")[0]
 		return fmt.Sprintf("%s#%s", cleanConfig, label)
 	}
@@ -415,16 +492,13 @@ func generateOriginalReportStructure(reports []ChannelReport, total int) string 
 	sb.WriteString("### 📡 Source Analysis\n\n")
 	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
 	sb.WriteString("| :--- | :--- | :--- |\n")
-	
 	for _, r := range reports {
 		protos := strings.Join(r.Protocols, ", ")
 		if protos == "" { protos = "—" }
 		sb.WriteString(fmt.Sprintf("| 📢 [%s](https://t.me/s/%s) | `%s` | %s |\n", r.Name, r.Name, protos, r.Message))
 	}
-	
 	sb.WriteString("\n---\n")
 	sb.WriteString("*Auto-generated by Xray Config Collector v2.0* 🛠️")
-	
 	return sb.String()
 }
 
@@ -434,9 +508,7 @@ func toJalali(gy, gm, gd int) (int, int, int) {
 	var gDayNo int
 	gDayNo = 365*(gy-1600) + (gy-1597)/4 - (gy-1501)/100 + (gy-1201)/400
 	gDayNo += gDays[gm-1]
-	if gm > 2 && ((gy%4 == 0 && gy%100 != 0) || (gy%400 == 0)) {
-		gDayNo++
-	}
+	if gm > 2 && ((gy%4 == 0 && gy%100 != 0) || (gy%400 == 0)) { gDayNo++ }
 	gDayNo += gd - 1
 	jDayNo := gDayNo - 79
 	jNp := jDayNo / 12053
@@ -473,13 +545,9 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 	return u, nil
 }
 
-// === IMPROVED DEDUPLICATION LOGIC ===
-// This function now uses a "Fingerprint" method to detect duplicates.
-// It ignores the remark/name (#Name) and compares the actual connection details.
 func removeDuplicates(slice []string) []string {
 	seen := make(map[string]bool)
 	var list []string
-	
 	for _, v := range slice {
 		fingerprint := getConfigFingerprint(v)
 		if !seen[fingerprint] {
@@ -490,37 +558,21 @@ func removeDuplicates(slice []string) []string {
 	return list
 }
 
-// Helper to generate a unique key for a config, ignoring the name
 func getConfigFingerprint(config string) string {
-	// 1. Handle VMess specifically (Decode JSON to compare IP+Port+ID)
 	if strings.HasPrefix(strings.ToLower(config), "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		if i := len(b64) % 4; i != 0 {
-			b64 += strings.Repeat("=", 4-i)
-		}
+		if i := len(b64) % 4; i != 0 { b64 += strings.Repeat("=", 4-i) }
 		decoded, err := base64.StdEncoding.DecodeString(b64)
-		if err != nil {
-			decoded, err = base64.URLEncoding.DecodeString(b64)
-		}
-		
+		if err != nil { decoded, err = base64.URLEncoding.DecodeString(b64) }
 		if err == nil {
 			var v VMessConfig
-			if json.Unmarshal(decoded, &v) == nil {
-				// Return a composite key of Add+Port+Id
-				return fmt.Sprintf("vmess|%s|%v|%v", v.Add, v.Port, v.Id)
-			}
+			if json.Unmarshal(decoded, &v) == nil { return fmt.Sprintf("vmess|%s|%v|%v", v.Add, v.Port, v.Id) }
 		}
-		return config // Fallback to full string if parse fails
+		return config 
 	}
-	
-	// 2. Handle standard URL formats (VLESS, Trojan, SS, Hy2, HTTP/HTTPS)
-	// Strip the fragment (part after #)
 	parts := strings.Split(config, "#")
-	if len(parts) > 0 {
-		return parts[0]
-	}
-	
+	if len(parts) > 0 { return parts[0] }
 	return config
 }
 
