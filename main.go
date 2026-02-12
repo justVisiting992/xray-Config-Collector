@@ -345,13 +345,18 @@ func labelWithGeo(config string, index int) string {
 			if err == nil && record != nil {
 				raw := record.Country.Names["en"]
 				code := record.Country.IsoCode
-				switch raw {
-				case "United States": countryName = "USA"
-				case "United Kingdom": countryName = "UK"
-				case "United Arab Emirates": countryName = "UAE"
-				case "The Netherlands": countryName = "Netherlands"
-				default: countryName = raw
+				
+				// FIXED LOGIC: Only overwrite if we actually have a name
+				if raw != "" {
+					switch raw {
+					case "United States": countryName = "USA"
+					case "United Kingdom": countryName = "UK"
+					case "United Arab Emirates": countryName = "UAE"
+					case "The Netherlands": countryName = "Netherlands"
+					default: countryName = raw
+					}
 				}
+				
 				if len(code) == 2 {
 					emoji = strings.Map(func(r rune) rune { return r + 127397 }, strings.ToUpper(code))
 				}
