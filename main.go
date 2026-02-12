@@ -35,19 +35,19 @@ type VMessConfig struct {
 type ChannelReport struct {
 	Name      string
 	Protocols []string
-	Count     int
+	Count       int
 	Message   string
 }
 
 // Gist Structure
-type GistFile struct {
-	Content string `json:"content"`
-}
 type GistRequest struct {
 	Files map[string]GistFile `json:"files"`
 }
 type GistResponse struct {
 	Files map[string]GistFile `json:"files"`
+}
+type GistFile struct {
+	Content string `json:"content"`
 }
 
 var (
@@ -119,7 +119,7 @@ func main() {
 	var reports []ChannelReport
 	totalScraped := 0
 
-	// 5. Process Python Dump (Integrated into Report)
+	// 5. Process Python Dump
 	gologger.Info().Msg("🐍 Processing Python Collector Dump...")
 	pythonDump, err := os.ReadFile("telegram_dump.txt")
 	if err == nil && len(pythonDump) > 0 {
@@ -149,23 +149,21 @@ func main() {
 	// 6. Stateful Web Scraper
 	gologger.Info().Msg("🕸️  Starting Stateful Web Scraper...")
 	var wgScrape sync.WaitGroup
-	semaphore := make(chan struct{}, 5) // Lower concurrency to be gentle with pagination requests
+	semaphore := make(chan struct{}, 5) 
 
 	for _, channelURL := range channels {
 		wgScrape.Add(1)
 		semaphore <- struct{}{}
-		go func(url string) {
+		go func(urlStr string) {
 			defer wgScrape.Done()
 			defer func() { <-semaphore }()
 			
-			uParts := strings.Split(strings.TrimSuffix(url, "/"), "/")
+			uParts := strings.Split(strings.TrimSuffix(urlStr, "/"), "/")
 			name := uParts[len(uParts)-1]
 			
-			// === STATEFUL SCRAPE CALL ===
-			extracted, count := scrapeChannelStateful(name)
+			extracted, _ := scrapeChannelStateful(name)
 			
-			mu := &sync.Mutex{}
-			mu.Lock()
+			checkpointsMu.Lock()
 			report := ChannelReport{Name: name}
 			for p, cfgs := range extracted {
 				if len(cfgs) > 0 {
@@ -181,7 +179,7 @@ func main() {
 				report.Message = "💤 No new configs"
 			}
 			reports = append(reports, report)
-			mu.Unlock()
+			checkpointsMu.Unlock()
 			
 			if report.Count > 0 {
 				gologger.Debug().Msgf("   + %s: Found %d", name, report.Count)
@@ -190,7 +188,6 @@ func main() {
 	}
 	wgScrape.Wait()
 	
-	// Update Gist with new checkpoints from the scraping session
 	saveCheckpoints()
 
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
@@ -205,8 +202,6 @@ func main() {
 	for p := range myregex {
 		gologger.Info().Msgf("🛡️  Processing Protocol: %s", p)
 		combined := append(newConfigs[p], historyConfigs[p]...)
-		
-		// Fingerprint Deduplication
 		unique := removeDuplicates(combined) 
 		
 		gologger.Info().Msgf("   ↳ Testing %d unique configs...", len(unique))
@@ -226,7 +221,6 @@ func main() {
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
 
-// === STATEFUL SCRAPER LOGIC ===
 func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	results := make(map[string][]string)
 	checkpointsMu.Lock()
@@ -239,9 +233,7 @@ func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	totalExtracted := 0
 	pagesScraped := 0
 
-	// Limit depth to avoid infinite loops (max 5 pages back ~100 posts)
 	for pagesScraped < 5 {
-		// 1. Fetch Page
 		req, _ := http.NewRequest("GET", nextURL, nil)
 		req.Header.Set("User-Agent", "Mozilla/5.0")
 		resp, err := client.Do(req)
@@ -253,9 +245,7 @@ func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 		minIDOnPage := 999999999
 		foundAny := false
 
-		// 2. Parse Messages & IDs
 		doc.Find(".tgme_widget_message").Each(func(i int, s *goquery.Selection) {
-			// Extract ID from data-post="channel/123"
 			dataPost, exists := s.Attr("data-post")
 			if !exists { return }
 			
@@ -265,11 +255,9 @@ func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 			msgID, err := strconv.Atoi(parts[len(parts)-1])
 			if err != nil { return }
 
-			// Track IDs
 			if msgID > maxIDFound { maxIDFound = msgID }
 			if msgID < minIDOnPage { minIDOnPage = msgID }
 
-			// Only extract if this message is NEWER than our checkpoint
 			if msgID > lastSeenID {
 				foundAny = true
 				text := s.Find(".tgme_widget_message_text").Text()
@@ -283,20 +271,15 @@ func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 			}
 		})
 
-		// 3. Logic for Pagination (The "Scroll")
-		// If the oldest message on this page is still newer than our checkpoint, 
-		// we must go deeper (back in time).
 		if foundAny && minIDOnPage > lastSeenID {
 			nextURL = fmt.Sprintf("%s?before=%d", baseURL, minIDOnPage)
 			pagesScraped++
-			time.Sleep(2 * time.Second) // Polite delay to avoid 429
+			time.Sleep(2 * time.Second)
 		} else {
-			// We have reached the checkpoint or end of history
 			break
 		}
 	}
 
-	// Update local map with the highest ID seen this run
 	if maxIDFound > lastSeenID {
 		checkpointsMu.Lock()
 		checkpoints[channelName] = maxIDFound
@@ -306,10 +289,8 @@ func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	return results, totalExtracted
 }
 
-// === GIST FUNCTIONS ===
 func loadCheckpoints() {
 	if gistID == "" || gistToken == "" { return }
-	
 	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
 	req.Header.Set("Authorization", "token "+gistToken)
 	resp, err := client.Do(req)
@@ -327,7 +308,6 @@ func loadCheckpoints() {
 
 func saveCheckpoints() {
 	if gistID == "" || gistToken == "" { return }
-	
 	checkpointsMu.Lock()
 	data, _ := json.Marshal(checkpoints)
 	checkpointsMu.Unlock()
@@ -338,11 +318,9 @@ func saveCheckpoints() {
 		},
 	}
 	body, _ := json.Marshal(payload)
-	
 	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
 	req.Header.Set("Authorization", "token "+gistToken)
 	req.Header.Set("Content-Type", "application/json")
-	
 	resp, err := client.Do(req)
 	if err == nil {
 		resp.Body.Close()
@@ -350,7 +328,6 @@ func saveCheckpoints() {
 	}
 }
 
-// === EXISTING UTILS (DEDUPE, REPORT, ETC) ===
 func fastPingTest(configs []string, protocol string) []string {
 	var wg sync.WaitGroup
 	var mu sync.Mutex
@@ -385,7 +362,7 @@ func checkAlive(config string, protocol string) bool {
 		if err != nil { return false }
 		var v VMessConfig
 		if err := json.Unmarshal(decoded, &v); err != nil { return false }
-		return tcpDial(v.Add, fmt.Sprintf("%v", v.Port))
+		return tcpDial(fmt.Sprintf("%v", v.Add), fmt.Sprintf("%v", v.Port))
 	}
 	if strings.Contains(strings.ToLower(protocol), "hy2") {
 		u, err := url.Parse(config)
@@ -419,8 +396,12 @@ func labelWithGeo(config string, index int) string {
 		decoded, err := base64.StdEncoding.DecodeString(b64)
 		if err != nil { decoded, _ = base64.URLEncoding.DecodeString(b64) }
 		var v map[string]interface{}
-		if err == nil && json.Unmarshal(decoded, &v) == nil {
-			if h, ok := v["add"].(string); ok { host = h }
+		// FIXED SYNTAX HERE
+		if err == nil {
+			err = json.Unmarshal(decoded, &v)
+			if err == nil {
+				if h, ok := v["add"].(string); ok { host = h }
+			}
 		}
 	} else {
 		u, _ := url.Parse(config)
@@ -463,7 +444,9 @@ func labelWithGeo(config string, index int) string {
 		decoded, err := base64.StdEncoding.DecodeString(b64)
 		if err != nil { decoded, _ = base64.URLEncoding.DecodeString(b64) }
 		var v map[string]interface{}
-		if err := json.Unmarshal(decoded, &v) == nil {
+		// FIXED SYNTAX HERE
+		err = json.Unmarshal(decoded, &v)
+		if err == nil {
 			v["ps"] = label
 			newJSON, _ := json.Marshal(v)
 			return "vmess://" + base64.StdEncoding.EncodeToString(newJSON)
@@ -567,7 +550,9 @@ func getConfigFingerprint(config string) string {
 		if err != nil { decoded, err = base64.URLEncoding.DecodeString(b64) }
 		if err == nil {
 			var v VMessConfig
-			if json.Unmarshal(decoded, &v) == nil { return fmt.Sprintf("vmess|%s|%v|%v", v.Add, v.Port, v.Id) }
+			// FIXED SYNTAX HERE
+			err = json.Unmarshal(decoded, &v)
+			if err == nil { return fmt.Sprintf("vmess|%s|%v|%v", v.Add, v.Port, v.Id) }
 		}
 		return config 
 	}
