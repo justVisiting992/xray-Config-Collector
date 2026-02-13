@@ -11,7 +11,7 @@
 
 ## 🇬🇧 English Guide
 
-This project is a high-speed engine designed to automatically scrape, test, and filter V2Ray, Trojan, Shadowsocks, and Hysteria 2 configurations from reliable Telegram sources.
+This project is a high-speed engine designed to automatically scrape, test, and filter XRay, Trojan, Shadowsocks, and Hysteria 2 configurations from reliable Telegram sources.
 
 > **Quality Assurance:** Every configuration is verified by a concurrent ping-testing system (TCP/UDP) before being published to ensure only active and stable nodes are listed.
 
