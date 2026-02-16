@@ -13,33 +13,31 @@ import (
 
 // Proxy represents the internal structure for a Clash proxy
 type Proxy struct {
-	Name           string
-	Type           string
-	Server         string
-	Port           int
-	UUID           string
-	Password       string
-	Cipher         string // For SS
-	UDP            bool
-	TLS            bool
-	SkipCertVerify bool
-	ServerName     string // SNI
-	Network        string // "ws", "grpc", "tcp"
-	Flow           string // xtls-rprx-vision
-	// Reality / Fingerprint
-	RealityShortId string
-	RealityPubKey  string
-	Fingerprint    string
-	// Transport
-	WSPath         string
-	WSHeaders      map[string]string
+	Name            string
+	Type            string
+	Server          string
+	Port            int
+	UUID            string
+	Password        string
+	Cipher          string
+	UDP             bool
+	TLS             bool
+	SkipCertVerify  bool
+	ServerName      string
+	Network         string
+	Flow            string
+	RealityShortId  string
+	RealityPubKey   string
+	Fingerprint     string
+	WSPath          string
+	WSHeaders       map[string]string
 	GRPCServiceName string
 }
 
 // VMessJSON represents the standard VMess share link JSON format
 type VMessJSON struct {
 	Add  string      `json:"add"`
-	Port interface{} `json:"port"` // Can be string or int
+	Port interface{} `json:"port"`
 	Id   string      `json:"id"`
 	Aid  interface{} `json:"aid"`
 	Net  string      `json:"net"`
@@ -53,10 +51,9 @@ type VMessJSON struct {
 }
 
 func main() {
-	// 1. Read the harvested configs
 	file, err := os.Open("mixed_iran.txt")
 	if err != nil {
-		fmt.Println("❌ Error: Could not find mixed_iran.txt. Run main.go first.")
+		fmt.Println("❌ Error: Could not find mixed_iran.txt.")
 		return
 	}
 	defer file.Close()
@@ -75,7 +72,6 @@ func main() {
 
 		p, ok := parseLink(line)
 		if ok {
-			// Deduplicate Names
 			if count, exists := seenNames[p.Name]; exists {
 				seenNames[p.Name]++
 				p.Name = fmt.Sprintf("%s %d", p.Name, count+1)
@@ -91,22 +87,15 @@ func main() {
 		return
 	}
 
-	fmt.Printf("✅ Parsed %d proxies.\n", len(proxies))
-
-	// 2. Generate the full YAML
-	fmt.Println("📝 Generating clash_meta_iran.yaml...")
 	finalConfig := generateConfig(proxies)
-
-	// 3. Write to file
 	err = os.WriteFile("clash_meta_iran.yaml", []byte(finalConfig), 0644)
 	if err != nil {
 		fmt.Printf("❌ Error writing file: %v\n", err)
 	} else {
-		fmt.Println("🎉 Success! 'clash_meta_iran.yaml' is ready.")
+		fmt.Printf("🎉 Success! Generated %d proxies into 'clash_meta_iran.yaml'\n", len(proxies))
 	}
 }
 
-// parseLink handles vless, vmess, trojan, ss
 func parseLink(link string) (Proxy, bool) {
 	link = strings.TrimSpace(link)
 	if strings.HasPrefix(link, "vmess://") {
@@ -117,14 +106,40 @@ func parseLink(link string) (Proxy, bool) {
 		return parseTrojan(link)
 	} else if strings.HasPrefix(link, "ss://") {
 		return parseSS(link)
+	} else if strings.HasPrefix(link, "hysteria2://") || strings.HasPrefix(link, "hy2://") {
+		return parseHy2(link)
 	}
 	return Proxy{}, false
 }
 
+func parseHy2(link string) (Proxy, bool) {
+	u, err := url.Parse(link)
+	if err != nil {
+		return Proxy{}, false
+	}
+	p := Proxy{
+		Type:           "hysteria2",
+		Server:         u.Hostname(),
+		Password:       u.User.String(),
+		Name:           u.Fragment,
+		UDP:            true,
+		TLS:            true,
+		SkipCertVerify: true,
+		ServerName:     u.Query().Get("sni"),
+	}
+	p.Port, _ = strconv.Atoi(u.Port())
+	if p.Name == "" {
+		p.Name = "Hy2-" + p.Server
+	}
+	if decodedName, err := url.QueryUnescape(p.Name); err == nil {
+		p.Name = decodedName
+	}
+	return p, true
+}
+
 func parseVMess(link string) (Proxy, bool) {
 	b64 := strings.TrimPrefix(link, "vmess://")
-	// padding fix
-	if r := len(b64) % 4; r > 0 {
+	if r := len(b64)%4; r > 0 {
 		b64 += strings.Repeat("=", 4-r)
 	}
 	decoded, err := base64.StdEncoding.DecodeString(b64)
@@ -149,8 +164,7 @@ func parseVMess(link string) (Proxy, bool) {
 		ServerName:     v.Sni,
 		Fingerprint:    v.Fp,
 	}
-	
-	// Handle Port (can be string or float/int in JSON)
+
 	switch portVal := v.Port.(type) {
 	case string:
 		p.Port, _ = strconv.Atoi(portVal)
@@ -161,16 +175,15 @@ func parseVMess(link string) (Proxy, bool) {
 	if v.Tls == "tls" {
 		p.TLS = true
 	}
-	// Fallback name if standard name is missing
 	if v.Add != "" {
 		p.Name = "VMess-" + v.Add
 	}
-	// WS Host mapping
 	if v.Net == "ws" && v.Host != "" {
 		p.WSHeaders = map[string]string{"Host": v.Host}
-		if p.ServerName == "" { p.ServerName = v.Host }
+		if p.ServerName == "" {
+			p.ServerName = v.Host
+		}
 	}
-
 	return p, true
 }
 
@@ -179,38 +192,37 @@ func parseVLESS(link string) (Proxy, bool) {
 	if err != nil {
 		return Proxy{}, false
 	}
-	
 	q := u.Query()
 	p := Proxy{
-		Type:           "vless",
-		Server:         u.Hostname(),
-		UUID:           u.User.String(),
-		Name:           u.Fragment,
-		UDP:            true,
-		SkipCertVerify: true,
-		Network:        q.Get("type"),
-		ServerName:     q.Get("sni"),
-		Flow:           q.Get("flow"),
-		Fingerprint:    q.Get("fp"),
-		// Reality fields
-		RealityPubKey:  q.Get("pbk"),
-		RealityShortId: q.Get("sid"),
-		// Transport
+		Type:            "vless",
+		Server:          u.Hostname(),
+		UUID:            u.User.String(),
+		Name:            u.Fragment,
+		UDP:             true,
+		SkipCertVerify:  true,
+		Network:         q.Get("type"),
+		ServerName:      q.Get("sni"),
+		Flow:            q.Get("flow"),
+		Fingerprint:     q.Get("fp"),
+		RealityPubKey:   q.Get("pbk"),
+		RealityShortId:  q.Get("sid"),
 		WSPath:          q.Get("path"),
 		GRPCServiceName: q.Get("serviceName"),
 	}
-
-	if p.Name == "" { p.Name = "VLESS-" + p.Server }
+	if p.Name == "" {
+		p.Name = "VLESS-" + p.Server
+	}
+	if decodedName, err := url.QueryUnescape(p.Name); err == nil {
+		p.Name = decodedName
+	}
 	p.Port, _ = strconv.Atoi(u.Port())
-
-	// Security
 	security := q.Get("security")
 	if security == "tls" || security == "reality" {
 		p.TLS = true
 	}
-	
-	if p.Network == "" { p.Network = "tcp" } // default
-
+	if p.Network == "" {
+		p.Network = "tcp"
+	}
 	return p, true
 }
 
@@ -219,56 +231,52 @@ func parseTrojan(link string) (Proxy, bool) {
 	if err != nil {
 		return Proxy{}, false
 	}
-
 	q := u.Query()
 	p := Proxy{
-		Type:           "trojan",
-		Server:         u.Hostname(),
-		Password:       u.User.String(),
-		Name:           u.Fragment,
-		UDP:            true,
-		SkipCertVerify: true,
-		Network:        q.Get("type"),
-		ServerName:     q.Get("sni"),
-		WSPath:         q.Get("path"),
+		Type:            "trojan",
+		Server:          u.Hostname(),
+		Password:        u.User.String(),
+		Name:            u.Fragment,
+		UDP:             true,
+		SkipCertVerify:  true,
+		Network:         q.Get("type"),
+		ServerName:      q.Get("sni"),
+		WSPath:          q.Get("path"),
 		GRPCServiceName: q.Get("serviceName"),
-		TLS:            true, // Trojan is always TLS
+		TLS:             true,
 	}
-
-	if p.Name == "" { p.Name = "Trojan-" + p.Server }
+	if p.Name == "" {
+		p.Name = "Trojan-" + p.Server
+	}
+	if decodedName, err := url.QueryUnescape(p.Name); err == nil {
+		p.Name = decodedName
+	}
 	p.Port, _ = strconv.Atoi(u.Port())
-	if p.Network == "" { p.Network = "tcp" }
-
+	if p.Network == "" {
+		p.Network = "tcp"
+	}
 	return p, true
 }
 
 func parseSS(link string) (Proxy, bool) {
-	// Simple SS parsing (SIP002 usually)
 	u, err := url.Parse(link)
 	if err != nil {
 		return Proxy{}, false
 	}
-	
-	p := Proxy{
-		Type:   "ss",
-		Server: u.Hostname(),
-		Name:   u.Fragment,
-		UDP:    true,
-	}
+	p := Proxy{Type: "ss", Server: u.Hostname(), Name: u.Fragment, UDP: true}
 	p.Port, _ = strconv.Atoi(u.Port())
-	if p.Name == "" { p.Name = "SS-" + p.Server }
-
+	if p.Name == "" {
+		p.Name = "SS-" + p.Server
+	}
+	if decodedName, err := url.QueryUnescape(p.Name); err == nil {
+		p.Name = decodedName
+	}
 	userInfo := u.User.String()
-	// Usually base64 encoded method:password
-	// But go url.Parse handles standard user:pass if not encoded.
-	// If it looks like a base64 string (no colon), decode it
 	if !strings.Contains(userInfo, ":") {
-		decoded, err := base64.StdEncoding.DecodeString(userInfo)
-		if err == nil {
+		if decoded, err := base64.StdEncoding.DecodeString(userInfo); err == nil {
 			userInfo = string(decoded)
 		}
 	}
-	
 	parts := strings.SplitN(userInfo, ":", 2)
 	if len(parts) == 2 {
 		p.Cipher = parts[0]
@@ -278,31 +286,18 @@ func parseSS(link string) (Proxy, bool) {
 	return Proxy{}, false
 }
 
-// generateConfig builds the massive YAML string
 func generateConfig(proxies []Proxy) string {
 	var sb strings.Builder
-
-	// 1. Static Header (Your provided Config)
 	sb.WriteString(headerTemplate)
-
-	// 2. Proxies List
 	sb.WriteString("\nproxies:\n")
 	var proxyNames []string
-	
+
 	for _, p := range proxies {
-		proxyYAML := proxyToYAML(p)
-		if proxyYAML != "" {
-			sb.WriteString(proxyYAML)
-			proxyNames = append(proxyNames, p.Name)
-		}
+		proxyNames = append(proxyNames, p.Name)
+		sb.WriteString(proxyToYAML(p))
 	}
 
-	// 3. Proxy Groups
-	// We must redefine the proxy groups to use our generated proxy names
-	// instead of the "use: - proxy" provider method, or create a group that holds them.
 	sb.WriteString("\nproxy-groups:\n")
-	
-	// Group 1: The Scraped List (Auto Test)
 	sb.WriteString("  - name: 🚀 Auto-Scraped\n")
 	sb.WriteString("    type: url-test\n")
 	sb.WriteString("    url: https://cp.cloudflare.com/generate_204\n")
@@ -310,40 +305,40 @@ func generateConfig(proxies []Proxy) string {
 	sb.WriteString("    tolerance: 50\n")
 	sb.WriteString("    proxies:\n")
 	for _, n := range proxyNames {
-		sb.WriteString("      - " + n + "\n")
+		sb.WriteString("      - \"" + n + "\"\n")
 	}
 
-	// Group 2: Manual Selection (Select)
 	sb.WriteString("  - name: 🤏🏻 Manual-Scraped\n")
 	sb.WriteString("    type: select\n")
 	sb.WriteString("    proxies:\n")
 	for _, n := range proxyNames {
-		sb.WriteString("      - " + n + "\n")
+		sb.WriteString("      - \"" + n + "\"\n")
 	}
 
-	// Injecting the rest of your groups, but modifying them to point to our new groups
 	sb.WriteString(groupsTemplate)
-
-	// 4. Rule Providers and Rules (Static)
 	sb.WriteString(rulesTemplate)
-
 	return sb.String()
 }
 
 func proxyToYAML(p Proxy) string {
 	var sb strings.Builder
-	// Basic indent
-	sb.WriteString(fmt.Sprintf("  - name: %s\n", p.Name))
+	sb.WriteString(fmt.Sprintf("  - name: \"%s\"\n", p.Name))
 	sb.WriteString(fmt.Sprintf("    type: %s\n", p.Type))
 	sb.WriteString(fmt.Sprintf("    server: %s\n", p.Server))
 	sb.WriteString(fmt.Sprintf("    port: %d\n", p.Port))
 	sb.WriteString("    udp: true\n")
-	
-	if p.UUID != "" { sb.WriteString(fmt.Sprintf("    uuid: %s\n", p.UUID)) }
-	if p.Password != "" { sb.WriteString(fmt.Sprintf("    password: %s\n", p.Password)) }
-	if p.Cipher != "" { sb.WriteString(fmt.Sprintf("    cipher: %s\n", p.Cipher)) }
-	
-	if p.TLS {
+
+	if p.UUID != "" {
+		sb.WriteString(fmt.Sprintf("    uuid: %s\n", p.UUID))
+	}
+	if p.Password != "" {
+		sb.WriteString(fmt.Sprintf("    password: %s\n", p.Password))
+	}
+	if p.Cipher != "" {
+		sb.WriteString(fmt.Sprintf("    cipher: %s\n", p.Cipher))
+	}
+
+	if p.TLS || p.Type == "hysteria2" {
 		sb.WriteString("    tls: true\n")
 		sb.WriteString("    skip-cert-verify: true\n")
 		if p.ServerName != "" {
@@ -356,11 +351,10 @@ func proxyToYAML(p Proxy) string {
 				sb.WriteString(fmt.Sprintf("      short-id: %s\n", p.RealityShortId))
 			}
 		}
-		// Fingerprint (Client Hello)
 		if p.Fingerprint != "" {
 			sb.WriteString(fmt.Sprintf("    client-fingerprint: %s\n", p.Fingerprint))
 		} else {
-			sb.WriteString("    client-fingerprint: chrome\n") // default to chrome
+			sb.WriteString("    client-fingerprint: chrome\n")
 		}
 	}
 
@@ -370,7 +364,6 @@ func proxyToYAML(p Proxy) string {
 
 	if p.Network != "" && p.Network != "tcp" {
 		sb.WriteString(fmt.Sprintf("    network: %s\n", p.Network))
-		
 		if p.Network == "ws" {
 			sb.WriteString("    ws-opts:\n")
 			sb.WriteString(fmt.Sprintf("      path: %s\n", p.WSPath))
@@ -389,7 +382,7 @@ func proxyToYAML(p Proxy) string {
 }
 
 // ---------------------------------------------------------
-// TEMPLATES (Matches your provided high-end config)
+// TEMPLATES (Your exact config parts)
 // ---------------------------------------------------------
 
 const headerTemplate = `global-client-fingerprint: chrome 
@@ -425,12 +418,12 @@ dns:
   fake-ip-filter-mode: blacklist 
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter: 
-    - '*.lan'              
-    - '*.localdomain'      
-    - '*.invalid'          
-    - '*.localhost'        
-    - '*.test'             
-    - '*.local'            
+    - '*.lan'               
+    - '*.localdomain'       
+    - '*.invalid'           
+    - '*.localhost'         
+    - '*.test'              
+    - '*.local'             
     - '*.home.arpa' 
     - 'time.*.com' 
     - 'ntp.*.com' 
