@@ -41,8 +41,8 @@ jobs:
 
       - name: Initialize Go Dependencies
         run: |
-          go mod tidy
-          go mod download
+          go mod tidy || echo "No mod file yet"
+          go mod download || echo "Nothing to download"
 
       - name: Download GeoIP Database
         run: wget -O Country.mmdb https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
@@ -52,6 +52,9 @@ jobs:
           GIST_ID: ${{ secrets.GIST_ID }}
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: go run main.go
+
+      - name: Generate Clash Meta Config
+        run: go run clash_gen.go
 
       - name: Commit and Push
         run: |
