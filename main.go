@@ -560,10 +560,18 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 	return u, nil
 }
 
+// -------------------------------------------------------------
+// IMPROVED DUPLICATION FILTRATION LOGIC
+// -------------------------------------------------------------
+
 func removeDuplicates(slice []string) []string {
 	seen := make(map[string]bool)
 	var list []string
 	for _, v := range slice {
+		v = strings.TrimSpace(v)
+		if v == "" {
+			continue
+		}
 		fingerprint := getConfigFingerprint(v)
 		if !seen[fingerprint] {
 			seen[fingerprint] = true
@@ -574,22 +582,65 @@ func removeDuplicates(slice []string) []string {
 }
 
 func getConfigFingerprint(config string) string {
+	// 1. VMess Handling (JSON structure)
 	if strings.HasPrefix(strings.ToLower(config), "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		if i := len(b64) % 4; i != 0 { b64 += strings.Repeat("=", 4-i) }
+		
+		if i := len(b64) % 4; i != 0 {
+			b64 += strings.Repeat("=", 4-i)
+		}
+		
 		decoded, err := base64.StdEncoding.DecodeString(b64)
-		if err != nil { decoded, err = base64.URLEncoding.DecodeString(b64) }
+		if err != nil {
+			decoded, err = base64.URLEncoding.DecodeString(b64)
+		}
+		
 		if err == nil {
 			var v VMessConfig
 			err = json.Unmarshal(decoded, &v)
-			if err == nil { return fmt.Sprintf("vmess|%s|%v|%v", v.Add, v.Port, v.Id) }
+			if err == nil {
+				// Normalize to lowercase to catch duplicates like "IP" vs "ip"
+				return fmt.Sprintf("vmess|%s|%v|%v", strings.ToLower(v.Add), v.Port, v.Id)
+			}
 		}
 		return config 
 	}
-	parts := strings.Split(config, "#")
-	if len(parts) > 0 { return parts[0] }
-	return config
+
+	// 2. Standard URL Handling (Trojan, VLESS, Hy2, SS)
+	u, err := url.Parse(config)
+	if err != nil {
+		// Fallback for partial or malformed URLs
+		return strings.Split(config, "#")[0]
+	}
+
+	// A. Normalize Scheme
+	scheme := strings.ToLower(u.Scheme)
+	if scheme == "hy2" {
+		scheme = "hysteria2"
+	}
+
+	// B. Normalize Host
+	host := strings.ToLower(u.Hostname())
+	
+	// C. Normalize Port
+	port := u.Port()
+
+	// D. Normalize User (Password/UUID)
+	user := ""
+	if u.User != nil {
+		user = u.User.String()
+	}
+
+	// E. Normalize Query Parameters (Sorts keys alphabetically)
+	q := u.Query()
+	sortedQuery := q.Encode()
+
+	// F. Path
+	path := u.Path
+
+	// Reconstruct unique fingerprint (ignore fragment/comment)
+	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, port, path, sortedQuery)
 }
 
 func saveToFile(name string, data []string) { _ = os.WriteFile(name, []byte(strings.Join(data, "\n")), 0644) }
@@ -602,6 +653,6 @@ func printBanner() {
 	 ██╔██╗ ██╔══██╗██╔══██║  ╚██╔╝  
 	██╔╝ ██╗██║  ██║██║  ██║   ██║   
 	╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   
-	   Xray Config Collector v2.0
+	    Xray Config Collector v2.0
 	`)
 }
