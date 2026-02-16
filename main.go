@@ -561,7 +561,7 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 }
 
 // -------------------------------------------------------------
-// IMPROVED DUPLICATION FILTRATION LOGIC
+// REFINED DUPLICATION FILTRATION LOGIC
 // -------------------------------------------------------------
 
 func removeDuplicates(slice []string) []string {
@@ -573,6 +573,13 @@ func removeDuplicates(slice []string) []string {
 			continue
 		}
 		fingerprint := getConfigFingerprint(v)
+		
+		// Fallback: If fingerprinting fails, we keep it to avoid losing working configs
+		if fingerprint == "" {
+			list = append(list, v)
+			continue
+		}
+
 		if !seen[fingerprint] {
 			seen[fingerprint] = true
 			list = append(list, v)
@@ -582,65 +589,66 @@ func removeDuplicates(slice []string) []string {
 }
 
 func getConfigFingerprint(config string) string {
-	// 1. VMess Handling (JSON structure)
+	// 1. Clean hidden junk characters (Zero-width spaces, etc.)
+	reClean := regexp.MustCompile(`[[:cntrl:]]|[\x{200B}-\x{200D}\x{FEFF}]`)
+	config = reClean.ReplaceAllString(config, "")
+
+	// 2. VMess Handling
 	if strings.HasPrefix(strings.ToLower(config), "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		
-		if i := len(b64) % 4; i != 0 {
-			b64 += strings.Repeat("=", 4-i)
-		}
+		if i := len(b64) % 4; i != 0 { b64 += strings.Repeat("=", 4-i) }
 		
 		decoded, err := base64.StdEncoding.DecodeString(b64)
-		if err != nil {
-			decoded, err = base64.URLEncoding.DecodeString(b64)
-		}
+		if err != nil { decoded, err = base64.URLEncoding.DecodeString(b64) }
 		
 		if err == nil {
 			var v VMessConfig
-			err = json.Unmarshal(decoded, &v)
-			if err == nil {
+			if err := json.Unmarshal(decoded, &v); err == nil {
 				// Normalize to lowercase to catch duplicates like "IP" vs "ip"
 				return fmt.Sprintf("vmess|%s|%v|%v", strings.ToLower(v.Add), v.Port, v.Id)
 			}
 		}
-		return config 
+		return "" 
 	}
 
-	// 2. Standard URL Handling (Trojan, VLESS, Hy2, SS)
-	u, err := url.Parse(config)
+	// 3. Standard URL Handling (Trojan, VLESS, Hy2, SS)
+	// We strip the fragment (#name) first because different names for same server cause duplicates
+	uParts := strings.Split(config, "#")
+	serverOnly := uParts[0]
+
+	u, err := url.Parse(serverOnly)
 	if err != nil {
-		// Fallback for partial or malformed URLs
-		return strings.Split(config, "#")[0]
+		return strings.ToLower(serverOnly)
 	}
 
-	// A. Normalize Scheme
+	// Normalize Scheme (hy2 and hysteria2 are equivalent)
 	scheme := strings.ToLower(u.Scheme)
-	if scheme == "hy2" {
-		scheme = "hysteria2"
-	}
+	if scheme == "hy2" { scheme = "hysteria2" }
 
-	// B. Normalize Host
+	// Normalize Host
 	host := strings.ToLower(u.Hostname())
 	
-	// C. Normalize Port
-	port := u.Port()
-
-	// D. Normalize User (Password/UUID)
+	// Normalize User
 	user := ""
-	if u.User != nil {
-		user = u.User.String()
+	if u.User != nil { user = u.User.String() }
+
+	// Normalize Query Parameters (Sort them to catch shuffled duplicates)
+	q := u.Query()
+	keys := make([]string, 0, len(q))
+	for k := range q { keys = append(keys, k) }
+	sort.Strings(keys)
+
+	var queryBuilder strings.Builder
+	for _, k := range keys {
+		// Also sort values for the same key
+		vals := q[k]
+		sort.Strings(vals)
+		queryBuilder.WriteString(k + "=" + strings.Join(vals, ",") + "&")
 	}
 
-	// E. Normalize Query Parameters (Sorts keys alphabetically)
-	q := u.Query()
-	sortedQuery := q.Encode()
-
-	// F. Path
-	path := u.Path
-
-	// Reconstruct unique fingerprint (ignore fragment/comment)
-	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, port, path, sortedQuery)
+	// Fingerprint based on core server identity: Scheme + User + Host + Port + Path + SortedParams
+	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, u.Port(), u.Path, queryBuilder.String())
 }
 
 func saveToFile(name string, data []string) { _ = os.WriteFile(name, []byte(strings.Join(data, "\n")), 0644) }
