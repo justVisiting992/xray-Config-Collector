@@ -1,321 +1,434 @@
-📂 کانفیگ VMess
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
-
-#VMess #VPN
-
-🕒 انتشار: 22:50 - 1404/11/27
-💡 منبع: @config_proxy
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJ2IjogIjIiLCAicHMiOiAiVGVsZWdyYW06QGNvbmZpZ19wcm94eSDwn5SlIiwgImFkZCI6ICJndDYuYWUxLnVzLmNpIiwgInBvcnQiOiAiODAiLCAiaWQiOiAiNGMyMDVjODEtNTY5NC00M2ZlLWEyODctYWY1NjNhMmViYzA1IiwgImFpZCI6ICIwIiwgInNjeSI6ICJhdXRvIiwgIm5ldCI6ICJ3cyIsICJ0eXBlIjogIm5vbmUiLCAiaG9zdCI6ICJndDYuYWUxLnVzLmNpIiwgInBhdGgiOiAiL2RqQTA3aVVzU3AwSzJGbzRnZHM3Y1hwREI1bk81IiwgInRscyI6ICIiLCAic25pIjogIiIsICJhbHBuIjogIiIsICJmcCI6ICIiLCAiaW5zZWN1cmUiOiAiMCJ9)
-
-```vmess://eyJ2IjogIjIiLCAicHMiOiAiVGVsZWdyYW06QGNvbmZpZ19wcm94eSDwn5SlIiwgImFkZCI6ICJndDYuYWUxLnVzLmNpIiwgInBvcnQiOiAiODAiLCAiaWQiOiAiNGMyMDVjODEtNTY5NC00M2ZlLWEyODctYWY1NjNhMmViYzA1IiwgImFpZCI6ICIwIiwgInNjeSI6ICJhdXRvIiwgIm5ldCI6ICJ3cyIsICJ0eXBlIjogIm5vbmUiLCAiaG9zdCI6ICJndDYuYWUxLnVzLmNpIiwgInBhdGgiOiAiL2RqQTA3aVVzU3AwSzJGbzRnZHM3Y1hwREI1bk81IiwgInRscyI6ICIiLCAic25pIjogIiIsICJhbHBuIjogIiIsICJmcCI6ICIiLCAiaW5zZWN1cmUiOiAiMCJ9```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: روسیه 🇷🇺
-📶 پینگ: 157ms
-
-#VLESS #VPN
-
-🕒 انتشار: 22:46 - 1404/11/27
-💡 منبع: @config_proxy
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F5df480d6-3e18-410b-9b4e-6b1612dec62e%4089.208.221.172%3A8443%3Fencryption%3Dnone%26flow%3Dxtls-rprx-vision%26fp%3Dchrome%26pbk%3DZSzB9TQPGNcCiC0WLmciF5Jc8doJDvdRgbqTi8SCoEM%26security%3Dreality%26sid%3Da1b2c3d4e5f6789a%26sni%3Dvkvideo.ru%26type%3Dtcp%23Telegram%3A%40config_proxy)
-
-```vless://5df480d6-3e18-410b-9b4e-6b1612dec62e@89.208.221.172:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=ZSzB9TQPGNcCiC0WLmciF5Jc8doJDvdRgbqTi8SCoEM&security=reality&sid=a1b2c3d4e5f6789a&sni=vkvideo.ru&type=tcp#Telegram:@config_proxy```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 15ms
-
-#VLESS #VPN
-
-🕒 انتشار: 22:45 - 1404/11/27
-💡 منبع: @config_proxy
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fe88807d6-5789-41bf-ba33-5393f8d84fae%40pkg.zaracloudcenter.ir%3A8443%3Fmode%3Dauto%26security%3Dtls%26encryption%3Dnone%26extra%3D%257B%2522scMaxEachPostBytes%2522%253A%25201000000%252C%2520%2522scMaxConcurrentPosts%2522%253A%2520100%252C%2520%2522scMinPostsIntervalMs%2522%253A%252030%252C%2520%2522xPaddingBytes%2522%253A%2520%2522100-1000%2522%252C%2520%2522noGRPCHeader%2522%253A%2520false%257D%26insecure%3D0%26host%3Damir3.masmashhhh.workers.dev%26fp%3Dchrome%26type%3Dxhttp%26allowInsecure%3D0%26sni%3Damir3.masmashhhh.workers.dev%23Telegram%3A%40config_proxy)
-
-```vless://e88807d6-5789-41bf-ba33-5393f8d84fae@pkg.zaracloudcenter.ir:8443?mode=auto&security=tls&encryption=none&extra=%7B%22scMaxEachPostBytes%22%3A%201000000%2C%20%22scMaxConcurrentPosts%22%3A%20100%2C%20%22scMinPostsIntervalMs%22%3A%2030%2C%20%22xPaddingBytes%22%3A%20%22100-1000%22%2C%20%22noGRPCHeader%22%3A%20false%7D&insecure=0&host=amir3.masmashhhh.workers.dev&fp=chrome&type=xhttp&allowInsecure=0&sni=amir3.masmashhhh.workers.dev#Telegram:@config_proxy```
-
 📂 کانفیگ VLESS
 📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 17ms
+📶 پینگ: 70ms
 
 #VLESS #VPN
 
-🕒 انتشار: 22:45 - 1404/11/27
+🕒 انتشار: 00:05 - 1404/11/28
 💡 منبع: @config_proxy
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fe88807d6-5789-41bf-ba33-5393f8d84fae%40167.82.101.147%3A80%3Fpath%3D%252F%26security%3Dnone%26encryption%3Dnone%26host%3Dmostafanarozirmiz.global.ssl.fastly.net%26type%3Dws%23Telegram%3A%40config_proxy)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40104.207.151.11%3A8443%3Fpath%3D%252F%253FJoin-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26host%3Dsni.111000.dynv6.net%26type%3Dws%26allowInsecure%3D0%26sni%3Dsni.111000.dynv6.net%23Telegram%3A%40config_proxy)
 
-```vless://e88807d6-5789-41bf-ba33-5393f8d84fae@167.82.101.147:80?path=%2F&security=none&encryption=none&host=mostafanarozirmiz.global.ssl.fastly.net&type=ws#Telegram:@config_proxy```
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@104.207.151.11:8443?path=%2F%3FJoin-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-Join-V2rayTun0-%3Fed%3D2560&security=tls&encryption=none&insecure=0&host=sni.111000.dynv6.net&type=ws&allowInsecure=0&sni=sni.111000.dynv6.net#Telegram:@config_proxy```
 
 📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
+📍 لوکیشن: Poland 🇵🇱
+📶 پینگ: 108ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:05 - 1404/11/28
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F201cb355-27c3-4bcc-a27f-50394519d242%40pol1.linkey37.ru%3A443%2F%3Ftype%3Dtcp%26encryption%3Dnone%26flow%3Dxtls-rprx-vision%26sni%3Dwww.yandex.ru%26alpn%3Dchannel%2540.networld_vpn-channel%2540.networld_vpn-channel%2540.networld_vpn-channel%2540.networld_vpn-%26fp%3Dedge%26security%3Dreality%26pbk%3Dz6ja1quSA8bpLdIzWDb9Yj8mnl8Mw_Q0PZB6-3Jgg2U%26sid%3D%23Telegram%3A%40config_proxy)
+
+```vless://201cb355-27c3-4bcc-a27f-50394519d242@pol1.linkey37.ru:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=www.yandex.ru&alpn=channel%40.networld_vpn-channel%40.networld_vpn-channel%40.networld_vpn-channel%40.networld_vpn-&fp=edge&security=reality&pbk=z6ja1quSA8bpLdIzWDb9Yj8mnl8Mw_Q0PZB6-3Jgg2U&sid=#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: هلند 🇳🇱
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:00 - 1404/11/28
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%405.10.246.138%3A2096%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26allowInsecure%3D0%26sni%3Dsni.1110%E2%80%A6%23Telegram%3A%40config_proxy)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@5.10.246.138:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&insecure=0&host=sni.111000.indevs.in&fp=chrome&type=ws&allowInsecure=0&sni=sni.1110…#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: هلند 🇳🇱
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:00 - 1404/11/28
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%405.10.246.138%3A2096%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26allowInsecure%3D0%26sni%3Dsni.111000.indevs.in%23Telegram%3A%40config_proxy)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@5.10.246.138:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&insecure=0&host=sni.111000.indevs.in&fp=chrome&type=ws&allowInsecure=0&sni=sni.111000.indevs.in#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
 📶 پینگ: 13ms
 
 #VLESS #VPN
 
-🕒 انتشار: 22:45 - 1404/11/27
+🕒 انتشار: 00:00 - 1404/11/28
 💡 منبع: @config_proxy
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fe88807d6-5789-41bf-ba33-5393f8d84fae%40167.82.101.147%3A80%3Fpath%3D%252F%26security%3Dnone%26encryption%3Dnone%26host%3Ddashaghdarim.global.ssl.fastly.net%26type%3Dws%23Telegram%3A%40config_proxy)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F4f0c76cd-1413-4a63-bcd1-364e4853bd8b%40188.114.97.3%3A2083%3Fpath%3D%252FeyJqdW5rIjoib1g5eThlSlAiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119%253Fed%253D2560%26security%3Dtls%26alpn%3Dhttp%252F1.1%26encryption%3Dnone%26insecure%3D0%26host%3Dblack-grass-e204.bonica7250.workers.dev%26fp%3Dchrome%26type%3Dws%26allowInsecure%3D0%26sni%3DBLACk-GrasS-e204.bonica7250.WORKErS.DEv%23Telegram%3A%40config_proxy)
 
-```vless://e88807d6-5789-41bf-ba33-5393f8d84fae@167.82.101.147:80?path=%2F&security=none&encryption=none&host=dashaghdarim.global.ssl.fastly.net&type=ws#Telegram:@config_proxy```
+```vless://4f0c76cd-1413-4a63-bcd1-364e4853bd8b@188.114.97.3:2083?path=%2FeyJqdW5rIjoib1g5eThlSlAiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119%3Fed%3D2560&security=tls&alpn=http%2F1.1&encryption=none&insecure=0&host=black-grass-e204.bonica7250.workers.dev&fp=chrome&type=ws&allowInsecure=0&sni=BLACk-GrasS-e204.bonica7250.WORKErS.DEv#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Poland 🇵🇱
+📶 پینگ: 107ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:00 - 1404/11/28
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F9034468f-b93d-407f-bfc0-87a178ba5c8c%40144.31.2.86%3A443%3Fsecurity%3Dreality%26type%3Dtcp%26sni%3Dgoogle.com%26fp%3Dchrome%26flow%3Dxtls-rprx-vision%26sid%3Dcbdfef7f3ede2072%26pbk%3DPuHKrJNt4shNVTNZ_leD7SmOI0QhxJ9SVnkV70i1xho%26encryption%3Dnone%23Telegram%3A%40config_proxy)
+
+```vless://9034468f-b93d-407f-bfc0-87a178ba5c8c@144.31.2.86:443?security=reality&type=tcp&sni=google.com&fp=chrome&flow=xtls-rprx-vision&sid=cbdfef7f3ede2072&pbk=PuHKrJNt4shNVTNZ_leD7SmOI0QhxJ9SVnkV70i1xho&encryption=none#Telegram:@config_proxy```
 
 📂 فایل کانفیگ NapsternetV
 📍 لوکیشن: نامشخص
 
 #NapsternetV #Config #File
 
-🕒 انتشار: 22:42 - 1404/11/27
-💡 منبع: @flyv2ray
+🕒 انتشار: 23:55 - 1404/11/27
+💡 منبع: @ghalagyann
+
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
+
+#NapsternetV #Config #File
+
+🕒 انتشار: 23:55 - 1404/11/27
+💡 منبع: @ghalagyann
 
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
+📶 پینگ: 6ms
 
 #VLESS #VPN
 
-🕒 انتشار: 22:40 - 1404/11/27
+🕒 انتشار: 23:55 - 1404/11/27
 💡 منبع: @config_proxy
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fdd0cfef0-fda9-47ec-8a65-49d7bc004f82%40104.21.14.158%3A443%3Fencryption%3Dnone%26type%3Dws%26host%3D6.3pita.com%26path%3D%2Fvpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl%26security%3Dtls%26fp%3Dchrome%26sni%3D6.3pita.com%26alpn%3Dhttp%2F1.1%23Telegram%3A%40config_proxy)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F47a116a9-4327-44a5-b310-31bfa7c1b956%40dqf21.sdssd1.sadqwdw1.carvan1.mimkiscx.ir%3A443%3Fencryption%3Dnone%26security%3Dtls%26sni%3Dnima-clqw113.wordperessweb.ir%26alpn%3Dh2%252Chttp%252F1.1%26fp%3Dchrome%26type%3Dws%26path%3D%252F%23Telegram%3A%40config_proxy)
 
-```vless://dd0cfef0-fda9-47ec-8a65-49d7bc004f82@104.21.14.158:443?encryption=none&type=ws&host=6.3pita.com&path=/vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl-vpnowl&security=tls&fp=chrome&sni=6.3pita.com&alpn=http/1.1#Telegram:@config_proxy```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 12ms
-
-#VLESS #VPN
-
-🕒 انتشار: 22:40 - 1404/11/27
-💡 منبع: @config_proxy
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F65531728-b87c-4e8a-8dc0-1597d0331369%40188.114.96.3%3A2053%3Fencryption%3Dnone%26type%3Dws%26host%3Dodd-night-8105.wedare3435.workers.dev%26path%3D%2FeyJqdW5rIjoiN0tOQVVOSUpRIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ%26security%3Dtls%26fp%3Dchrome%26sni%3DoDD-NiGht-8105.wedaRE3435.wOrkERs.DEv%26alpn%3Dhttp%2F1.1%23Telegram%3A%40config_proxy)
-
-```vless://65531728-b87c-4e8a-8dc0-1597d0331369@188.114.96.3:2053?encryption=none&type=ws&host=odd-night-8105.wedare3435.workers.dev&path=/eyJqdW5rIjoiN0tOQVVOSUpRIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ&security=tls&fp=chrome&sni=oDD-NiGht-8105.wedaRE3435.wOrkERs.DEv&alpn=http/1.1#Telegram:@config_proxy```
+```vless://47a116a9-4327-44a5-b310-31bfa7c1b956@dqf21.sdssd1.sadqwdw1.carvan1.mimkiscx.ir:443?encryption=none&security=tls&sni=nima-clqw113.wordperessweb.ir&alpn=h2%2Chttp%2F1.1&fp=chrome&type=ws&path=%2F#Telegram:@config_proxy```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: Seychelles 🇸🇨
-📶 پینگ: 14ms
+📶 پینگ: 6ms
 
 #VLESS #VPN
 
-🕒 انتشار: 22:40 - 1404/11/27
+🕒 انتشار: 23:55 - 1404/11/27
 💡 منبع: @config_proxy
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F1c43ddec-1531-4763-bb5e-2577ce192fac%40Z13.prodnsspeed10.ir%3A443%3Fencryption%3Dnone%26type%3Dxhttp%26mode%3Dauto%26path%3D%2F%26security%3Dtls%26fp%3Dfirefox%26sni%3DSHARAF.followerarzon1.com%26alpn%3Dh2%2Chttp%2F1.1%23Telegram%3A%40config_proxy)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F665a891b-114e-435b-a083-1ab5b8adc6ac%40ip.shakhle.ir%3A2095%2F%3Fpath%3D%252F%26security%3Dnone%26encryption%3Dnone%26host%3DJokerv.Membergolabi.iR.%26type%3Dhttpupgrade%23Telegram%3A%40config_proxy)
 
-```vless://1c43ddec-1531-4763-bb5e-2577ce192fac@Z13.prodnsspeed10.ir:443?encryption=none&type=xhttp&mode=auto&path=/&security=tls&fp=firefox&sni=SHARAF.followerarzon1.com&alpn=h2,http/1.1#Telegram:@config_proxy```
+```vless://665a891b-114e-435b-a083-1ab5b8adc6ac@ip.shakhle.ir:2095/?path=%2F&security=none&encryption=none&host=Jokerv.Membergolabi.iR.&type=httpupgrade#Telegram:@config_proxy```
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 119ms
+📂 کانفیگ VLESS
+📍 لوکیشن: Seychelles 🇸🇨
+📶 پینگ: 6ms
 
-#Proxy #MTProto
+#VLESS #VPN
 
-🕒 انتشار: 22:37 - 1404/11/27
-💡 منبع: @InfoTech_VK
+🕒 انتشار: 23:55 - 1404/11/27
+💡 منبع: @config_proxy
 
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fc48ee7af-bd2c-4a0d-b406-dd42d6dc1ac4%4045.130.125.160%3A2052%3Fsecurity%3Dnone%26allowInsecure%3D0%26encryption%3Dnone%26type%3Dxhttp%26path%3D%2Fv1%2Fapi%2Fsync%2Ff47ac10b58cc4372a5670e02b2c3d479%26mode%3Dauto%23Telegram%3A%40config_proxy)
 
-```https://t.me/proxy?server=188.212.98.40&port=8443&secret=eeNEgYdJvXrFGRMCIMJdCQ)```
+```vless://c48ee7af-bd2c-4a0d-b406-dd42d6dc1ac4@45.130.125.160:2052?security=none&allowInsecure=0&encryption=none&type=xhttp&path=/v1/api/sync/f47ac10b58cc4372a5670e02b2c3d479&mode=auto#Telegram:@config_proxy```
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 119ms
+📂 کانفیگ TROJAN
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 84ms
 
-#Proxy #MTProto
+#TROJAN #VPN
 
-🕒 انتشار: 22:37 - 1404/11/27
-💡 منبع: @InfoTech_VK
+🕒 انتشار: 23:43 - 1404/11/27
+💡 منبع: @privatevpns
 
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4035.181.242.3%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S104%29%F0%9F%87%A8%F0%9F%87%B5t.me%2FPrivateVPNs)
 
-```https://t.me/proxy?server=188.212.98.58&port=8443&secret=eeNEgYdJvXrFGRMCIMJdCQ)```
+```trojan://telegram-id-privatevpns@35.181.242.3:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)🇨🇵t.me/PrivateVPNs```
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 126ms
+📂 کانفیگ VLESS
+📍 لوکیشن: Uzbekistan 🇺🇿
+📶 پینگ: 104ms
 
-#Proxy #MTProto
+#VLESS #VPN
 
-🕒 انتشار: 22:37 - 1404/11/27
-💡 منبع: @InfoTech_VK
+🕒 انتشار: 23:30 - 1404/11/27
+💡 منبع: @config_proxy
 
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F30c04389-bbcb-431f-9d47-a8ad24406bd4%4045.134.218.222%3A443%3Fsecurity%3Dreality%26encryption%3Dnone%26pbk%3DeQXsYV276NoiN9SDwuloNrJkX-NU2tDtkMK6ntKQwlg%26headerType%3Dnone%26fp%3Dchrome%26type%3Dtcp%26flow%3Dxtls-rprx-vision%26sni%3Dstats.vk-portal.net%26sid%3Dd4727968a1fae56f%23Telegram%3A%40config_proxy)
 
-```https://t.me/proxy?server=188.212.98.51&port=8443&secret=eeNEgYdJvXrFGRMCIMJdCQ)```
+```vless://30c04389-bbcb-431f-9d47-a8ad24406bd4@45.134.218.222:443?security=reality&encryption=none&pbk=eQXsYV276NoiN9SDwuloNrJkX-NU2tDtkMK6ntKQwlg&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=stats.vk-portal.net&sid=d4727968a1fae56f#Telegram:@config_proxy```
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 133ms
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 6ms
 
-#Proxy #MTProto
+#VLESS #VPN
 
-🕒 انتشار: 22:37 - 1404/11/27
-💡 منبع: @InfoTech_VK
+🕒 انتشار: 23:30 - 1404/11/27
+💡 منبع: @config_proxy
 
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F1464720a-a342-4e1c-ae46-b23d01797b43%40172.64.145.38%3A443%3Fpath%3D%252FSpringHQ%2540SpringHQ-TEL--%2540SpringHQ-TEL--%2540SpringHQ-TEL--%2540SpringHQ-JOIN-%2540SpringHQ-TEL--%2540SpringHQ-JOIN-%2540SpringHQ-TEL-%2540SpringHQ-TEL%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26alpn%3Dh2%252Chttp%252F1.1%26host%3Dmusic.parvareshmorghe.ir%26fp%3Dchrome%26type%3Dws%26sni%3Dmusic.parvareshmorghe.ir%23Telegram%3A%40config_proxy)
 
-```https://t.me/proxy?server=188.212.98.55&port=8443&secret=eeNEgYdJvXrFGRMCIMJdCQ)```
+```vless://1464720a-a342-4e1c-ae46-b23d01797b43@172.64.145.38:443?path=%2FSpringHQ%40SpringHQ-TEL--%40SpringHQ-TEL--%40SpringHQ-TEL--%40SpringHQ-JOIN-%40SpringHQ-TEL--%40SpringHQ-JOIN-%40SpringHQ-TEL-%40SpringHQ-TEL%3Fed%3D2560&security=tls&encryption=none&alpn=h2%2Chttp%2F1.1&host=music.parvareshmorghe.ir&fp=chrome&type=ws&sni=music.parvareshmorghe.ir#Telegram:@config_proxy```
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 124ms
+📂 کانفیگ VLESS
+📍 لوکیشن: Seychelles 🇸🇨
+📶 پینگ: 5ms
 
-#Proxy #MTProto
+#VLESS #VPN
 
-🕒 انتشار: 22:37 - 1404/11/27
-💡 منبع: @InfoTech_VK
+🕒 انتشار: 23:30 - 1404/11/27
+💡 منبع: @config_proxy
 
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fbdf97c06-ae1f-47e9-b47a-9d9ff47b5820%40cfclu2.zopli.ir%3A443%3Fpath%3D%252F%26security%3Dtls%26alpn%3Dh2%252Chttp%252F1.1%26encryption%3Dnone%26insecure%3D0%26fp%3Dchrome%26type%3Dws%26allowInsecure%3D0%26sni%3Dcdn-ru.fxcdn.ir%23Telegram%3A%40config_proxy)
 
-```https://t.me/proxy?server=188.212.98.59&port=8443&secret=eeNEgYdJvXrFGRMCIMJdCQ)```
+```vless://bdf97c06-ae1f-47e9-b47a-9d9ff47b5820@cfclu2.zopli.ir:443?path=%2F&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=cdn-ru.fxcdn.ir#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 9ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:20 - 1404/11/27
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F4c886269-904b-459d-a913-d81d15b16d6b%40104.20.39.116%3A80%3Fpath%3D%252Ft.me%252FV2RayyNGvpn%253Fed%253D512%26security%3Dnone%26encryption%3Dnone%26host%3DEbaypay.esportplusnews.top%26type%3Dhttpupgrade%23Telegram%3A%40config_proxy)
+
+```vless://4c886269-904b-459d-a913-d81d15b16d6b@104.20.39.116:80?path=%2Ft.me%2FV2RayyNGvpn%3Fed%3D512&security=none&encryption=none&host=Ebaypay.esportplusnews.top&type=httpupgrade#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Seychelles 🇸🇨
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:20 - 1404/11/27
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2FParsashonam%4045.130.125.160%3A2096%3Fmode%3Dauto%26path%3D%252F%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26fp%3Dchrome%26type%3Dxhttp%26allowInsecure%3D0%26sni%3Dsignup.atlasw.ir%23Telegram%3A%40config_proxy)
+
+```vless://Parsashonam@45.130.125.160:2096?mode=auto&path=%2F&security=tls&encryption=none&insecure=0&fp=chrome&type=xhttp&allowInsecure=0&sni=signup.atlasw.ir#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 91ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:20 - 1404/11/27
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Ff24a3ab7-fef0-4dff-a75d-6622cba20c8c%40dgrns1.vertalist.ir%3A1310%3Fsecurity%3D%26encryption%3Dnone%26host%3Dplay.google.com%26headerType%3Dhttp%26type%3Dtcp%23Telegram%3A%40config_proxy)
+
+```vless://f24a3ab7-fef0-4dff-a75d-6622cba20c8c@dgrns1.vertalist.ir:1310?security=&encryption=none&host=play.google.com&headerType=http&type=tcp#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Seychelles 🇸🇨
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:15 - 1404/11/27
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F98057472-daa3-43cc-a23e-b7a8f799ba5b%40hamrahconf.ir%3A8443%3Fpath%3D%252F%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26host%3Dsecure-dispatch-hub-25-network-epsilon.hamrahconfig.ir.%26type%3Dws%26allowInsecure%3D0%26sni%3Dsecure-dispatch-hub-25-network-epsilon.hamrahconfig.ir.%23Telegram%3A%40config_proxy)
+
+```vless://98057472-daa3-43cc-a23e-b7a8f799ba5b@hamrahconf.ir:8443?path=%2F&security=tls&encryption=none&insecure=0&host=secure-dispatch-hub-25-network-epsilon.hamrahconfig.ir.&type=ws&allowInsecure=0&sni=secure-dispatch-hub-25-network-epsilon.hamrahconfig.ir.#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Bulgaria 🇧🇬
+📶 پینگ: 115ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:15 - 1404/11/27
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F7f3c1a67-4de0-4753-a992-1b4c20f480be%40alfaproxy-bg.ir404.site%3A80%3Fmode%3Dauto%26path%3D%252F%26security%3Dnone%26encryption%3Dnone%26host%3Dlocalhost%26type%3Dxhttp%23Telegram%3A%40config_proxy)
+
+```vless://7f3c1a67-4de0-4753-a992-1b4c20f480be@alfaproxy-bg.ir404.site:80?mode=auto&path=%2F&security=none&encryption=none&host=localhost&type=xhttp#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 86ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:11 - 1404/11/27
+💡 منبع: @config_proxy
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40141.94.223.220%3A443%3Fpath%3D%252F%253Fed%253D2560%2526Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3%2520%2540WangCai2%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26host%3Dsni.111000.v6.navy%26type%3Dws%26allowInsecure%3D0%26sni%3Dsni.111000.v6.navy%23Telegram%3A%40config_proxy)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@141.94.223.220:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Telegram:@config_proxy```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 13ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6573a2b1-fd7a-4916-9688-b88260547c24%40afrcloud22.mmv.kr%3A443%3Fpath%3D%252F43.130.134.123%253D65002%26security%3Dtls%26encryption%3Dnone%26host%3Dafrcloud22.mmv.kr%26fp%3Dchrome%26type%3Dws%26sni%3Dafrcloud22.mmv.kr%23%2540VPNSSHOCEAN%2520370)
+
+```vless://6573a2b1-fd7a-4916-9688-b88260547c24@afrcloud22.mmv.kr:443?path=%2F43.130.134.123%3D65002&security=tls&encryption=none&host=afrcloud22.mmv.kr&fp=chrome&type=ws&sni=afrcloud22.mmv.kr#%40VPNSSHOCEAN%20370```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 17ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F686c62d9-17a7-43c9-a40a-f6747df60a9f%40104.21.224.5%3A2096%3Fpath%3D%252F%26security%3Dtls%26encryption%3Dnone%26host%3Dca.adobe-connect.top%26fp%3Dchrome%26type%3Dws%26sni%3Dca.adobe-connect.top%23%2540VPNSSHOCEAN%2520369)
+
+```vless://686c62d9-17a7-43c9-a40a-f6747df60a9f@104.21.224.5:2096?path=%2F&security=tls&encryption=none&host=ca.adobe-connect.top&fp=chrome&type=ws&sni=ca.adobe-connect.top#%40VPNSSHOCEAN%20369```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Latvia 🇱🇻
+📶 پینگ: 111ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%4091.197.0.100%3A443%3Fpath%3D%252F%253FTelegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3%2520%2540WangCai2%253D%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520367)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@91.197.0.100:443?path=%2F%3FTelegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2%3D&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20367```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40185.16.110.0%3A443%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520366)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.16.110.0:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20366```
+
+📂 کانفیگ VMess
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 6ms
+
+#VMess #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJhZGQiOiIxMDQuMTkuMTczLjY4IiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJuYXNuZXQtNTcxMjk5NjY3LnJhaGF2YXJkMzY1LmNvIiwiaWQiOiJuYXNuZXQiLCJuZXQiOiJ3cyIsInBhdGgiOiIvTkFTTkVUL2NkbiIsInBvcnQiOiI4MDgwIiwicHMiOiJAVlBOU1NIT0NFQU4gMzY1Iiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9)
+
+```vmess://eyJhZGQiOiIxMDQuMTkuMTczLjY4IiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJuYXNuZXQtNTcxMjk5NjY3LnJhaGF2YXJkMzY1LmNvIiwiaWQiOiJuYXNuZXQiLCJuZXQiOiJ3cyIsInBhdGgiOiIvTkFTTkVUL2NkbiIsInBvcnQiOiI4MDgwIiwicHMiOiJAVlBOU1NIT0NFQU4gMzY1Iiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 106ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Ff0b15f64-db59-438c-b1b6-f1b83db52240%40217.154.194.55%3A443%3Fsecurity%3Dreality%26encryption%3Dnone%26pbk%3DckRcueERkPqqjZABwxqni_J_Nbb70Q6k5fEEUAjoImw%26headerType%3Dnone%26fp%3Dchrome%26type%3Dtcp%26flow%3Dxtls-rprx-vision%26sni%3Dazure.com%23%2540VPNSSHOCEAN%2520364)
+
+```vless://f0b15f64-db59-438c-b1b6-f1b83db52240@217.154.194.55:443?security=reality&encryption=none&pbk=ckRcueERkPqqjZABwxqni_J_Nbb70Q6k5fEEUAjoImw&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=azure.com#%40VPNSSHOCEAN%20364```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40185.148.104.138%3A2096%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520361)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.148.104.138:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20361```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40190.93.244.138%3A2096%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520360)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@190.93.244.138:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20360```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 88ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40130.61.51.100%3A8443%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520359)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@130.61.51.100:8443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20359```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: سنگاپور 🇸🇬
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40154.194.12.138%3A2096%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520358)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@154.194.12.138:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20358```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: انگلیس 🇬🇧
+📶 پینگ: 80ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%4057.129.137.89%3A8443%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520357)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.129.137.89:8443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20357```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 13ms
+📶 پینگ: 8ms
 
 #VLESS #VPN
 
-🕒 انتشار: 22:29 - 1404/11/27
-💡 منبع: @netmellianti
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fe88807d6-5789-41bf-ba33-5393f8d84fae%40167.82.101.147%3A80%3Fpath%3D%252F%26security%3Dnone%26encryption%3Dnone%26host%3D2roznistam.global.ssl.fastly.net%26type%3Dws%23%2540NETMelliAnti)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40160.153.1.173%3A443%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520380)
 
-```vless://e88807d6-5789-41bf-ba33-5393f8d84fae@167.82.101.147:80?path=%2F&security=none&encryption=none&host=2roznistam.global.ssl.fastly.net&type=ws#%40NETMelliAnti```
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.1.173:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20380```
 
 📂 کانفیگ VLESS
-📍 لوکیشن: Italy 🇮🇹
-📶 پینگ: 121ms
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 6ms
 
 #VLESS #VPN
 
-🕒 انتشار: 22:29 - 1404/11/27
-💡 منبع: @netmellianti
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fe88807d6-5789-41bf-ba33-5393f8d84fae%40146.75.53.132%3A80%3Fpath%3D%252F%26security%3Dnone%26encryption%3Dnone%26host%3Ddashaghdarim2.global.ssl.fastly.net%26type%3Dws%23%2540NETMelliAnti)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40160.153.1.181%3A443%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520379)
 
-```vless://e88807d6-5789-41bf-ba33-5393f8d84fae@146.75.53.132:80?path=%2F&security=none&encryption=none&host=dashaghdarim2.global.ssl.fastly.net&type=ws#%40NETMelliAnti```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 15ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```https://t.me/proxy?server=17.3pita.com&port=3389&secret=dd79e344818749bd7ac519130220c25d09)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 14ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```https://t.me/proxy?server=16.3pita.com&port=25565&secret=dd79e344818749bd7ac519130220c25d09)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 12ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```https://t.me/proxy?server=15.3pita.com&port=25565&secret=dd79e344818749bd7ac519130220c25d09)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 15ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```https://t.me/proxy?server=14.3pita.com&port=25565&secret=dd79e344818749bd7ac519130220c25d09)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 15ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```https://t.me/proxy?server=13.3pita.com&port=3389&secret=dd79e344818749bd7ac519130220c25d09)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 14ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```https://t.me/proxy?server=12.3pita.com&port=3389&secret=dd79e344818749bd7ac519130220c25d09)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 14ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```https://t.me/proxy?server=11.3pita.com&port=3389&secret=dd79e344818749bd7ac519130220c25d09)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 14ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```https://t.me/proxy?server=9.3pita.com&port=3389&secret=dd79e344818749bd7ac519130220c25d09)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 13ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:23 - 1404/11/27
-💡 منبع: @mitivpn
-
-
-```tg://proxy?server=8.3pita.com&port=3389&secret=dd79e344818749bd7ac519130220c25d09)|```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Seychelles 🇸🇨
-📶 پینگ: 14ms
-
-#VLESS #VPN
-
-🕒 انتشار: 22:20 - 1404/11/27
-💡 منبع: @parsashonam
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2FParsashonam%4045.130.125.160%3A2096%3Fmode%3Dauto%26path%3D%252F%26security%3Dtls%26encryption%3Dnone%26fp%3Dchrome%26type%3Dxhttp%26sni%3Dsignup.atlasw.ir%23%2540Parsashonam_Bot%2520%25F0%259F%2587%25AB%25F0%259F%2587%25AE-Test-2)
-
-```vless://Parsashonam@45.130.125.160:2096?mode=auto&path=%2F&security=tls&encryption=none&fp=chrome&type=xhttp&sni=signup.atlasw.ir#%40Parsashonam_Bot%20%F0%9F%87%AB%F0%9F%87%AE-Test-2```
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.1.181:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20379```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
@@ -323,35 +436,244 @@
 
 #VLESS #VPN
 
-🕒 انتشار: 22:20 - 1404/11/27
-💡 منبع: @parsashonam
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2FParsashonam%40104.21.14.158%3A2096%3Fmode%3Dauto%26path%3D%252F%26security%3Dtls%26encryption%3Dnone%26fp%3Dchrome%26type%3Dxhttp%26sni%3Dsignup.atlasw.ir%23%2540Parsashonam_Bot%2520%25F0%259F%2587%25AB%25F0%259F%2587%25AE-Test-1)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40188.114.99.243%3A2096%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520378)
 
-```vless://Parsashonam@104.21.14.158:2096?mode=auto&path=%2F&security=tls&encryption=none&fp=chrome&type=xhttp&sni=signup.atlasw.ir#%40Parsashonam_Bot%20%F0%9F%87%AB%F0%9F%87%AE-Test-1```
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@188.114.99.243:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20378```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 6ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Fhumanity%40104.18.32.47%3A443%3Fpath%3D%252Fassignment%26security%3Dtls%26fp%3Dchrome%26type%3Dws%26sni%3Dwww.multiplydose.com%23%2540VPNSSHOCEAN%2520377)
+
+```trojan://humanity@104.18.32.47:443?path=%2Fassignment&security=tls&fp=chrome&type=ws&sni=www.multiplydose.com#%40VPNSSHOCEAN%20377```
 
 📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 91ms
 
 #VLESS #VPN
 
-🕒 انتشار: 22:20 - 1404/11/27
-💡 منبع: @parsashonam
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2FParsashonam%40chatGPT.com%3A2096%3Fmode%3Dauto%26path%3D%252F%26security%3Dtls%26alpn%3Dhttp%252F1.1%252Ch2%26encryption%3Dnone%26fp%3Dchrome%26type%3Dxhttp%26sni%3Dsignup.atlasw.ir%23%2540Parsashonam_Bot%2520%25F0%259F%2587%25AB%25F0%259F%2587%25AE-Test-0)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F48ff2b70-e180-582f-8866-d9a2edeed5f5%4057.129.53.182%3A23576%3Fsecurity%3Dreality%26encryption%3Dnone%26pbk%3D1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s%26headerType%3Dnone%26fp%3Dchrome%26type%3Dtcp%26flow%3Dxtls-rprx-vision%26sni%3Dfuck.rkn%26sid%3D01%23%2540VPNSSHOCEAN%2520376)
 
-```vless://Parsashonam@chatGPT.com:2096?mode=auto&path=%2F&security=tls&alpn=http%2F1.1%2Ch2&encryption=none&fp=chrome&type=xhttp&sni=signup.atlasw.ir#%40Parsashonam_Bot%20%F0%9F%87%AB%F0%9F%87%AE-Test-0```
+```vless://48ff2b70-e180-582f-8866-d9a2edeed5f5@57.129.53.182:23576?security=reality&encryption=none&pbk=1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=fuck.rkn&sid=01#%40VPNSSHOCEAN%20376```
 
 📂 کانفیگ VLESS
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40135.84.64.90%3A443%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520375)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@135.84.64.90:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20375```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: روسیه 🇷🇺
+📶 پینگ: 127ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fbe4ef2f4-8cd5-490b-9b59-a096b49ca46e%4084.201.150.241%3A443%3Fsecurity%3Dreality%26encryption%3Dnone%26pbk%3DZAF9Ig51v2cpHOCtczbVXf-lutAunI6qu3HQPhNK4i4%26headerType%3Dnone%26fp%3Dchrome%26type%3Dtcp%26flow%3Dxtls-rprx-vision%26sni%3Dhelp.max.ru%26sid%3Dcc%23%2540VPNSSHOCEAN%2520374)
+
+```vless://be4ef2f4-8cd5-490b-9b59-a096b49ca46e@84.201.150.241:443?security=reality&encryption=none&pbk=ZAF9Ig51v2cpHOCtczbVXf-lutAunI6qu3HQPhNK4i4&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=help.max.ru&sid=cc#%40VPNSSHOCEAN%20374```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: هلند 🇳🇱
+📶 پینگ: 8ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%405.10.246.138%3A2096%3Fpath%3D%252F%253Fed%253D2560%26security%3Dtls%26encryption%3Dnone%26host%3Dsni.111000.indevs.in%26fp%3Dchrome%26type%3Dws%26sni%3Dsni.111000.indevs.in%23%2540VPNSSHOCEAN%2520373)
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@5.10.246.138:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40VPNSSHOCEAN%20373```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: امارات 🇦🇪
+📶 پینگ: 105ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Feb071647-72a6-46be-8e89-ff3d228d52f6%40ae.cdn.stun.su%3A443%3Fsecurity%3Dreality%26encryption%3Dnone%26pbk%3DxJIswEHrphk8LCn-DyJxw4uypPkouxPgNsfiyjRU-3w%26headerType%3Dnone%26fp%3Dchrome%26type%3Dtcp%26flow%3Dxtls-rprx-vision%26sni%3Dae.cdn.stun.su%26sid%3D41a0b29e95aaea87%23%2540VPNSSHOCEAN%2520372)
+
+```vless://eb071647-72a6-46be-8e89-ff3d228d52f6@ae.cdn.stun.su:443?security=reality&encryption=none&pbk=xJIswEHrphk8LCn-DyJxw4uypPkouxPgNsfiyjRU-3w&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=ae.cdn.stun.su&sid=41a0b29e95aaea87#%40VPNSSHOCEAN%20372```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 6ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 23:08 - 1404/11/27
+💡 منبع: @armod_iran
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Fhumanity%40104.21.40.34%3A443%3Fpath%3D%252Fassignment%26security%3Dtls%26fp%3Dchrome%26type%3Dws%26sni%3Dwww.gossipglove.com%23%2540VPNSSHOCEAN%2520371)
+
+```trojan://humanity@104.21.40.34:443?path=%2Fassignment&security=tls&fp=chrome&type=ws&sni=www.gossipglove.com#%40VPNSSHOCEAN%20371```
+
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
+
+#NapsternetV #Config #File
+
+🕒 انتشار: 23:04 - 1404/11/27
+💡 منبع: @flyv2ray
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Australia 🇦🇺
+📶 پینگ: 108ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 23:01 - 1404/11/27
+💡 منبع: @InfoTech_VK
+
+
+```https://t.me/proxy?server=85.133.194.25&port=8443&secret=eeNEgYdJvXrFGRMCIMJdCQRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA)```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: فنلاند 🇫🇮
+📶 پینگ: 125ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 23:01 - 1404/11/27
+💡 منبع: @InfoTech_VK
+
+
+```https://t.me/proxy?server=65.109.26.215&port=8080&secret=dd49a70de57a60174f18dfd7fe6ef6aaf5)```
+
+📂 کانفیگ MTPROTO
 📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 286ms
+📶 پینگ: 103ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 23:01 - 1404/11/27
+💡 منبع: @InfoTech_VK
+
+
+```https://t.me/proxy?server=snap.huijsen.info&port=443&secret=ee1603010200010001fc030386e24c3add626973636f7474692e79656b74616e65742e636f6d)```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 91ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 23:01 - 1404/11/27
+💡 منبع: @InfoTech_VK
+
+
+```https://t.me/proxy?server=116.203.242.112&port=443&secret=YyEEgYdJXfrFmgMCIMJdjjRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA)```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Australia 🇦🇺
+📶 پینگ: 107ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 23:01 - 1404/11/27
+💡 منبع: @InfoTech_VK
+
+
+```https://t.me/proxy?server=85.133.194.25&port=8443&secret=eeNEgYdJvXrFGRMCIMJdCQ)```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Iran 🇮🇷
+📶 پینگ: 100ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 23:01 - 1404/11/27
+💡 منبع: @InfoTech_VK
+
+
+```https://t.me/proxy?server=185.84.157.230&port=443&secret=FgMBAgABAAH8AxOG4kw63Q)```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 5ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 20:38 - 1404/11/27
+💡 منبع: @beshkan
+
+
+```https://t.me/proxy?server=wine.limoozin.info&port=25565&secret=eeNEgYdJvXrFGRMCIMJdCQ```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Poland 🇵🇱
+📶 پینگ: 106ms
 
 #VLESS #VPN
 
-🕒 انتشار: 21:46 - 1404/11/27
-💡 منبع: @xsfilternet
+🕒 انتشار: 20:28 - 1404/11/27
+💡 منبع: @beshkan
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F10b7917c-515d-4634-adbe-1b44242c6d07%40entekhabat.iran.asiatech.numthree.iranvatanam.com%3A813%3Fsecurity%3D%26encryption%3Dnone%26host%3Dskyroom.online%252Cigap.net%252Cgharar.ir%26headerType%3Dhttp%26type%3Dtcp%23%25F0%259F%2587%25A9%25F0%259F%2587%25AA%2520%25D8%25A2%25D9%2584%25D9%2585%25D8%25A7%25D9%2586%2520-%2520%25D9%2588%25DB%258C%25DA%2598%25D9%2587%2520%25F0%259F%2594%25A5)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fca569d6c-d206-4709-9ed9-8dda73932c22%40144.31.2.86%3A443%3Fencryption%3Dnone%26flow%3Dxtls-rprx-vision%26security%3Dreality%26sni%3Dgoogle.com%26fp%3Dchrome%26pbk%3DPuHKrJNt4shNVTNZ_leD7SmOI0QhxJ9SVnkV70i1xho%26sid%3Dcbdfef7f3ede2072%26type%3Dtcp%26headerType%3Dnone%23%2520)
 
-```vless://10b7917c-515d-4634-adbe-1b44242c6d07@entekhabat.iran.asiatech.numthree.iranvatanam.com:813?security=&encryption=none&host=skyroom.online%2Cigap.net%2Cgharar.ir&headerType=http&type=tcp#%F0%9F%87%A9%F0%9F%87%AA%20%D8%A2%D9%84%D9%85%D8%A7%D9%86%20-%20%D9%88%DB%8C%DA%98%D9%87%20%F0%9F%94%A5```
+```vless://ca569d6c-d206-4709-9ed9-8dda73932c22@144.31.2.86:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=chrome&pbk=PuHKrJNt4shNVTNZ_leD7SmOI0QhxJ9SVnkV70i1xho&sid=cbdfef7f3ede2072&type=tcp&headerType=none#%20```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 6ms
+
+#VLESS #VPN
+
+🕒 انتشار: 20:28 - 1404/11/27
+💡 منبع: @beshkan
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F57ba2ab1-a283-42eb-82ee-dc3561a805b8%40172.67.153.156%3A8443%3Fencryption%3Dnone%26security%3Dtls%26sni%3Dovhwuxian.pai50288.uk%26type%3Dws%26host%3Dovhwuxian.pai50288.uk%26path%3D%252F57ba2ab1%23%2520)
+
+```vless://57ba2ab1-a283-42eb-82ee-dc3561a805b8@172.67.153.156:8443?encryption=none&security=tls&sni=ovhwuxian.pai50288.uk&type=ws&host=ovhwuxian.pai50288.uk&path=%2F57ba2ab1#%20```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 5ms
+
+#VLESS #VPN
+
+🕒 انتشار: 20:28 - 1404/11/27
+💡 منبع: @beshkan
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F57ba2ab1-a283-42eb-82ee-dc3561a805b8%40104.21.3.219%3A8443%3Fencryption%3Dnone%26security%3Dtls%26sni%3Dovhwuxian.pai50288.uk%26fp%3Dchrome%26type%3Dws%26host%3Dovhwuxian.pai50288.uk%26path%3D%252F57ba2ab1%23%2520)
+
+```vless://57ba2ab1-a283-42eb-82ee-dc3561a805b8@104.21.3.219:8443?encryption=none&security=tls&sni=ovhwuxian.pai50288.uk&fp=chrome&type=ws&host=ovhwuxian.pai50288.uk&path=%2F57ba2ab1#%20```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Cyprus 🇨🇾
+📶 پینگ: 11ms
+
+#VLESS #VPN
+
+🕒 انتشار: 14:41 - 1404/11/27
+💡 منبع: @free1_vpn
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F8dc7722c-2767-4eea-a28b-2f8daacc07e3%40yesok42v2.ip4exordir.shop%3A8880%3Fmode%3Dgun%26security%3Dnone%26encryption%3Dnone%26type%3Dgrpc%23%2540FarazV2ray)
+
+```vless://8dc7722c-2767-4eea-a28b-2f8daacc07e3@yesok42v2.ip4exordir.shop:8880?mode=gun&security=none&encryption=none&type=grpc#%40FarazV2ray```
