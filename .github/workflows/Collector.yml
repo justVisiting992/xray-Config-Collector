@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 */2 * * *'
   workflow_dispatch:
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -52,32 +52,11 @@ jobs:
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: go run main.go
 
-      # --- SUB-CONVERTER INTEGRATION START ---
-      - name: Download and Run Subconverter
-        run: |
-          wget https://github.com/tindy2013/subconverter/releases/latest/download/subconverter_linux64.tar.gz
-          tar -zxf subconverter_linux64.tar.gz
-          chmod +x subconverter/subconverter
-          
-          # Move the input file into the subconverter directory to avoid path issues
-          cp mixed_iran.txt subconverter/mixed_iran.txt
-          
-          # Enter the directory so the binary finds its internal settings
-          cd subconverter
-          ./subconverter & 
-          sleep 5
-          
-          # Use curl to get the pure proxy list (list=true)
-          # We output it directly to the root as sub.yaml
-          curl -o ../sub.yaml "http://127.0.0.1:25500/sub?target=clash&list=true&url=mixed_iran.txt"
-          
-          cd ..
-          # Final move to the name clash_gen.go expects
-          mv sub.yaml clean_proxies.yaml
-      # --- SUB-CONVERTER INTEGRATION END ---
-
-      - name: Generate Clash Meta Config
-        run: go run clash_gen.go
+      # --- NEW CONVERTER SCRIPT ---
+      - name: Convert Mixed Links to Clash YAML
+        # This runs the custom script to generate 'clash.yaml' from 'mixed_iran.txt'
+        run: go run converter.go
+      # ----------------------------
 
       - name: Commit and Push
         run: |
