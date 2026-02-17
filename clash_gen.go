@@ -1,262 +1,41 @@
 package main
 
 import (
-	"bufio"
-	"encoding/base64"
-	"encoding/json"
 	"fmt"
-	"net/url"
 	"os"
-	"strconv"
 	"strings"
 )
 
-// Proxy represents the internal structure for a Clash proxy
-type Proxy struct {
-	Name            string
-	Type            string
-	Server          string
-	Port            int
-	UUID            string
-	Password        string
-	Cipher          string
-	UDP             bool
-	TLS             bool
-	SkipCertVerify  bool
-	ServerName      string
-	Network         string
-	Flow            string
-	RealityShortId  string
-	RealityPubKey   string
-	Fingerprint     string
-	WSPath          string
-	WSHeaders       map[string]string
-	GRPCServiceName string
-}
-
-type VMessJSON struct {
-	Add  string      `json:"add"`
-	Port interface{} `json:"port"`
-	Id   string      `json:"id"`
-	Aid  interface{} `json:"aid"`
-	Net  string      `json:"net"`
-	Type string      `json:"type"`
-	Host string      `json:"host"`
-	Path string      `json:"path"`
-	Tls  string      `json:"tls"`
-	Sni  string      `json:"sni"`
-	Alpn string      `json:"alpn"`
-	Fp   string      `json:"fp"`
-}
-
 func main() {
-	file, err := os.Open("mixed_iran.txt")
-	if err != nil {
-		fmt.Println("❌ Error: Could not find mixed_iran.txt.")
-		return
-	}
-	defer file.Close()
+	// Define the path for the final Clash Meta configuration
+	configPath := "clash_meta_iran.yaml"
 
-	var proxies []Proxy
-	seenNames := make(map[string]int)
-	scanner := bufio.NewScanner(file)
+	fmt.Println("⏳ Generating Clash Meta configuration using Proxy Provider...")
 
-	fmt.Println("⏳ Parsing proxies...")
+	// We no longer parse the txt file manually. 
+	// We generate the config using the Subconverter output as a provider.
+	finalConfig := generateConfig()
 
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		if line == "" || strings.HasPrefix(line, "#") {
-			continue
-		}
-
-		p, ok := parseLink(line)
-		if ok {
-			if count, exists := seenNames[p.Name]; exists {
-				seenNames[p.Name]++
-				p.Name = fmt.Sprintf("%s %d", p.Name, count+1)
-			} else {
-				seenNames[p.Name] = 1
-			}
-			proxies = append(proxies, p)
-		}
-	}
-
-	if len(proxies) == 0 {
-		fmt.Println("⚠️ No valid proxies found.")
-		return
-	}
-
-	finalConfig := generateConfig(proxies)
-	err = os.WriteFile("clash_meta_iran.yaml", []byte(finalConfig), 0644)
+	err := os.WriteFile(configPath, []byte(finalConfig), 0644)
 	if err != nil {
 		fmt.Printf("❌ Error writing file: %v\n", err)
 	} else {
-		fmt.Printf("🎉 Success! Generated %d proxies into 'clash_meta_iran.yaml'\n", len(proxies))
+		fmt.Printf("🎉 Success! Generated configuration into '%s'\n", configPath)
+		fmt.Println("🔗 Note: This config expects 'clean_proxies.yaml' to exist in the same directory.")
 	}
 }
 
-func parseLink(link string) (Proxy, bool) {
-	link = strings.TrimSpace(link)
-	if strings.HasPrefix(link, "vmess://") {
-		return parseVMess(link)
-	} else if strings.HasPrefix(link, "vless://") {
-		return parseVLESS(link)
-	} else if strings.HasPrefix(link, "trojan://") {
-		return parseTrojan(link)
-	} else if strings.HasPrefix(link, "ss://") {
-		return parseSS(link)
-	} else if strings.HasPrefix(link, "hysteria2://") || strings.HasPrefix(link, "hy2://") {
-		return parseHy2(link)
-	}
-	return Proxy{}, false
-}
-
-func parseHy2(link string) (Proxy, bool) {
-	u, err := url.Parse(link)
-	if err != nil {
-		return Proxy{}, false
-	}
-	p := Proxy{
-		Type:           "hysteria2",
-		Server:         u.Hostname(),
-		Password:       u.User.String(),
-		Name:           u.Fragment,
-		UDP:            true,
-		TLS:            true,
-		SkipCertVerify: true,
-		ServerName:     u.Query().Get("sni"),
-	}
-	p.Port, _ = strconv.Atoi(u.Port())
-	if p.Name == "" { p.Name = "Hy2-" + p.Server }
-	if dn, err := url.QueryUnescape(p.Name); err == nil { p.Name = dn }
-	return p, true
-}
-
-func parseVMess(link string) (Proxy, bool) {
-	b64 := strings.TrimPrefix(link, "vmess://")
-	if r := len(b64)%4; r > 0 { b64 += strings.Repeat("=", 4-r) }
-	decoded, err := base64.StdEncoding.DecodeString(b64)
-	if err != nil { return Proxy{}, false }
-	var v VMessJSON
-	if err := json.Unmarshal(decoded, &v); err != nil { return Proxy{}, false }
-	p := Proxy{
-		Type: "vmess", Server: v.Add, UUID: v.Id, Name: "VMess-" + v.Add,
-		UDP: true, SkipCertVerify: true, Network: v.Net, WSPath: v.Path, ServerName: v.Sni, Fingerprint: v.Fp,
-	}
-	switch portVal := v.Port.(type) {
-	case string: p.Port, _ = strconv.Atoi(portVal)
-	case float64: p.Port = int(portVal)
-	}
-	if v.Tls == "tls" { p.TLS = true }
-	if v.Net == "ws" && v.Host != "" {
-		p.WSHeaders = map[string]string{"Host": v.Host}
-		if p.ServerName == "" { p.ServerName = v.Host }
-	}
-	return p, true
-}
-
-func parseVLESS(link string) (Proxy, bool) {
-	u, err := url.Parse(link)
-	if err != nil { return Proxy{}, false }
-	q := u.Query()
-	p := Proxy{
-		Type: "vless", Server: u.Hostname(), UUID: u.User.String(), Name: u.Fragment,
-		UDP: true, SkipCertVerify: true, Network: q.Get("type"), ServerName: q.Get("sni"),
-		Flow: q.Get("flow"), Fingerprint: q.Get("fp"), RealityPubKey: q.Get("pbk"), RealityShortId: q.Get("sid"),
-		WSPath: q.Get("path"), GRPCServiceName: q.Get("serviceName"),
-	}
-	if p.Name == "" { p.Name = "VLESS-" + p.Server }
-	if dn, err := url.QueryUnescape(p.Name); err == nil { p.Name = dn }
-	p.Port, _ = strconv.Atoi(u.Port())
-	if q.Get("security") == "tls" || q.Get("security") == "reality" { p.TLS = true }
-	return p, true
-}
-
-func parseTrojan(link string) (Proxy, bool) {
-	u, err := url.Parse(link)
-	if err != nil { return Proxy{}, false }
-	q := u.Query()
-	p := Proxy{
-		Type: "trojan", Server: u.Hostname(), Password: u.User.String(), Name: u.Fragment,
-		UDP: true, SkipCertVerify: true, Network: q.Get("type"), ServerName: q.Get("sni"),
-		WSPath: q.Get("path"), GRPCServiceName: q.Get("serviceName"), TLS: true,
-	}
-	if p.Name == "" { p.Name = "Trojan-" + p.Server }
-	if dn, err := url.QueryUnescape(p.Name); err == nil { p.Name = dn }
-	p.Port, _ = strconv.Atoi(u.Port())
-	return p, true
-}
-
-func parseSS(link string) (Proxy, bool) {
-	u, err := url.Parse(link)
-	if err != nil { return Proxy{}, false }
-	p := Proxy{Type: "ss", Server: u.Hostname(), Name: u.Fragment, UDP: true}
-	p.Port, _ = strconv.Atoi(u.Port())
-	if p.Name == "" { p.Name = "SS-" + p.Server }
-	userInfo := u.User.String()
-	if !strings.Contains(userInfo, ":") {
-		if decoded, err := base64.StdEncoding.DecodeString(userInfo); err == nil { userInfo = string(decoded) }
-	}
-	parts := strings.SplitN(userInfo, ":", 2)
-	if len(parts) == 2 { p.Cipher = parts[0]; p.Password = parts[1]; return p, true }
-	return Proxy{}, false
-}
-
-func generateConfig(proxies []Proxy) string {
+func generateConfig() string {
 	var sb strings.Builder
 	sb.WriteString(headerTemplate)
-	sb.WriteString("\nproxies:\n")
 	
-	var proxyNames []string
-	for _, p := range proxies {
-		proxyNames = append(proxyNames, p.Name)
-		sb.WriteString(proxyToYAML(p))
-	}
-
-	// We create a special section for rule providers and then groups
-	// To maintain your complex group structure, we'll inject the parsed proxies into the groups
-	
+	// Since we use a Proxy Provider, we don't need a list of individual proxy names 
+	// hardcoded in the Go script anymore. The 'use' directive handles it.
 	sb.WriteString("\nproxy-groups:\n")
-	
-	// Inject the proxies into the "نوع انتخاب پروکسی 🔀" group as requested
-	sb.WriteString(generateProxyGroups(proxyNames))
+	sb.WriteString(generateProxyGroups())
 	
 	sb.WriteString(providerTemplate)
 	sb.WriteString(rulesTemplate)
-	return sb.String()
-}
-
-func proxyToYAML(p Proxy) string {
-	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("  - name: \"%s\"\n", p.Name))
-	sb.WriteString(fmt.Sprintf("    type: %s\n", p.Type))
-	sb.WriteString(fmt.Sprintf("    server: %s\n", p.Server))
-	sb.WriteString(fmt.Sprintf("    port: %d\n", p.Port))
-	sb.WriteString("    udp: true\n")
-	if p.UUID != "" { sb.WriteString(fmt.Sprintf("    uuid: %s\n", p.UUID)) }
-	if p.Password != "" { sb.WriteString(fmt.Sprintf("    password: %s\n", p.Password)) }
-	if p.Cipher != "" { sb.WriteString(fmt.Sprintf("    cipher: %s\n", p.Cipher)) }
-	if p.TLS || p.Type == "hysteria2" {
-		sb.WriteString("    tls: true\n    skip-cert-verify: true\n")
-		if p.ServerName != "" { sb.WriteString(fmt.Sprintf("    servername: %s\n", p.ServerName)) }
-		if p.RealityPubKey != "" {
-			sb.WriteString(fmt.Sprintf("    reality-opts:\n      public-key: %s\n", p.RealityPubKey))
-			if p.RealityShortId != "" { sb.WriteString(fmt.Sprintf("      short-id: %s\n", p.RealityShortId)) }
-		}
-		sb.WriteString(fmt.Sprintf("    client-fingerprint: %s\n", "chrome"))
-	}
-	if p.Network != "" && p.Network != "tcp" {
-		sb.WriteString(fmt.Sprintf("    network: %s\n", p.Network))
-		if p.Network == "ws" {
-			sb.WriteString(fmt.Sprintf("    ws-opts:\n      path: \"%s\"\n", p.WSPath))
-			if len(p.WSHeaders) > 0 {
-				sb.WriteString("      headers:\n")
-				for k, v := range p.WSHeaders { sb.WriteString(fmt.Sprintf("        %s: %s\n", k, v)) }
-			}
-		} else if p.Network == "grpc" {
-			sb.WriteString(fmt.Sprintf("    grpc-opts:\n      grpc-service-name: \"%s\"\n", p.GRPCServiceName))
-		}
-	}
 	return sb.String()
 }
 
@@ -364,6 +143,13 @@ tun:
 
 const providerTemplate = `
 proxy-providers:
+  mixed-iran:
+    type: file
+    path: ./clean_proxies.yaml
+    health-check:
+      enable: true
+      interval: 3600
+      url: "http://www.gstatic.com/generate_204"
   proxy:
     type: http
     url: "https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/rayan_proxy.yaml"
@@ -375,15 +161,8 @@ proxy-providers:
       url: "https://www.gstatic.com/generate_204"
 `
 
-func generateProxyGroups(names []string) string {
-	var sb strings.Builder
-	// Injected proxies for manual/auto selection
-	proxyList := ""
-	for _, n := range names {
-		proxyList += "      - \"" + n + "\"\n"
-	}
-
-	sb.WriteString(`  - name: نوع انتخاب پروکسی 🔀 
+func generateProxyGroups() string {
+	return `  - name: نوع انتخاب پروکسی 🔀 
     icon: https://www.svgrepo.com/show/412721/choose.svg 
     type: select 
     proxies: 
@@ -399,8 +178,8 @@ func generateProxyGroups(names []string) string {
   - name: دستی 🤏🏻 
     type: select 
     icon: https://www.svgrepo.com/show/372331/cursor-hand-click.svg 
-    proxies:
-` + proxyList + `    use: 
+    use: 
+      - mixed-iran
       - proxy 
   - name: خودکار (بهترین پینگ) 🤖 
     type: url-test 
@@ -411,8 +190,8 @@ func generateProxyGroups(names []string) string {
     tolerance: 500 
     max-failed-times: 6
     lazy: true 
-    proxies:
-` + proxyList + `    use: 
+    use: 
+      - mixed-iran
       - proxy 
   - name: پشتیبان (در صورت قطعی) 🧯 
     type: fallback 
@@ -422,8 +201,8 @@ func generateProxyGroups(names []string) string {
     timeout: 120000 
     max-failed-times: 3 
     lazy: true 
-    proxies:
-` + proxyList + `    use: 
+    use: 
+      - mixed-iran
       - proxy 
   - name: اتصال پایدار 🔗 
     type: url-test 
@@ -446,8 +225,8 @@ func generateProxyGroups(names []string) string {
     timeout: 120000 
     max-failed-times: 5 
     lazy: true 
-    proxies:
-` + proxyList + `    use: 
+    use: 
+      - mixed-iran
       - proxy 
   - name: توزیع بار (گردشی) 🔁 
     type: load-balance 
@@ -459,8 +238,8 @@ func generateProxyGroups(names []string) string {
     timeout: 120000 
     max-failed-times: 3 
     lazy: true 
-    proxies:
-` + proxyList + `    use: 
+    use: 
+      - mixed-iran
       - proxy 
   - name: توزیع بار (موقت) ⏳ 
     type: load-balance 
@@ -471,8 +250,8 @@ func generateProxyGroups(names []string) string {
     timeout: 120000 
     max-failed-times: 5 
     lazy: true 
-    proxies:
-` + proxyList + `    use: 
+    use: 
+      - mixed-iran
       - proxy 
   - name: دانلود منیجر 📥
     type: select
@@ -756,8 +535,7 @@ func generateProxyGroups(names []string) string {
     proxies:
       - REJECT
     hidden: true
-`)
-	return sb.String()
+`
 }
 
 const rulesTemplate = `
