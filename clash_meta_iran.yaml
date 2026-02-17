@@ -477,7 +477,7 @@ proxy-groups:
 proxy-providers:
   mixed-iran:
     type: file
-    path: ./clean_proxies.yaml
+    path: ./clash.yaml
     health-check:
       enable: true
       interval: 3600
