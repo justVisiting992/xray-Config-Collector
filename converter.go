@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -10,9 +9,9 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"unicode/utf8"
 )
 
-// Proxy represents a generic proxy config map
 type Proxy map[string]interface{}
 
 func main() {
@@ -29,11 +28,9 @@ func main() {
 	var proxies []Proxy
 	scanner := bufio.NewScanner(file)
 
-	fmt.Println("⏳ Parsing proxies...")
-
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
-		if line == "" || strings.HasPrefix(line, "#") || strings.HasPrefix(line, "//") {
+		if line == "" || strings.HasPrefix(line, "#") {
 			continue
 		}
 
@@ -56,6 +53,10 @@ func main() {
 		if parseErr == nil && p != nil {
 			p["skip-cert-verify"] = true
 			p["udp"] = true
+			// Sanitize the name specifically to prevent UTF-8 errors
+			if name, ok := p["name"].(string); ok {
+				p["name"] = sanitizeString(name)
+			}
 			proxies = append(proxies, p)
 		}
 	}
@@ -63,7 +64,29 @@ func main() {
 	writeClashYaml(outputFile, proxies)
 }
 
-// --- PARSERS ---
+// sanitizeString removes invalid UTF-8 characters that break YAML parsers
+func sanitizeString(s string) string {
+	if !utf8.ValidString(s) {
+		v := make([]rune, 0, len(s))
+		for i, r := range s {
+			if r == utf8.RuneError {
+				_, size := utf8.DecodeRuneInString(s[i:])
+				if size == 1 {
+					continue
+				}
+			}
+			v = append(v, r)
+		}
+		s = string(v)
+	}
+	// Also remove problematic YAML characters from the name itself
+	return strings.Map(func(r rune) rune {
+		if r >= 32 && r != 127 {
+			return r
+		}
+		return -1
+	}, s)
+}
 
 func parseVless(raw string) (Proxy, error) {
 	u, err := url.Parse(raw)
@@ -71,67 +94,51 @@ func parseVless(raw string) (Proxy, error) {
 		return nil, err
 	}
 	q := u.Query()
-
 	p := make(Proxy)
 	p["type"] = "vless"
 	p["name"] = u.Fragment
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["uuid"] = u.User.Username()
-	p["tfo"] = false 
-
-	if flow := q.Get("flow"); flow != "" {
-		p["flow"] = flow
-	}
-	if fp := q.Get("fp"); fp != "" {
-		p["client-fingerprint"] = fp
-	}
-
-	security := q.Get("security")
-	if security == "tls" || security == "reality" {
+	if security := q.Get("security"); security == "tls" || security == "reality" {
 		p["tls"] = true
 		if sni := q.Get("sni"); sni != "" {
 			p["servername"] = sni
 		}
 	}
-
 	if security == "reality" {
-		p["reality-opts"] = map[string]string{
-			"public-key": q.Get("pbk"),
-			"short-id":   q.Get("sid"),
-		}
+		p["reality-opts"] = map[string]string{"public-key": q.Get("pbk"), "short-id": q.Get("sid")}
 	}
-
-	net := q.Get("type") 
-	if net == "" {
-		net = q.Get("net")
-	}
-	if net == "" {
-		net = "tcp"
-	}
-
+	net := q.Get("type")
 	if net == "ws" {
 		p["network"] = "ws"
-		headers := make(map[string]string)
-		if host := q.Get("host"); host != "" {
-			headers["Host"] = host
-		}
-		path := q.Get("path")
-		if path == "" {
-			path = "/"
-		}
-		p["ws-opts"] = map[string]interface{}{
-			"path":    path,
-			"headers": headers,
-		}
-	} else if net == "grpc" {
-		p["network"] = "grpc"
-		p["grpc-opts"] = map[string]string{
-			"grpc-service-name": q.Get("serviceName"),
-			"grpc-mode":         q.Get("mode"), 
-		}
+		p["ws-opts"] = map[string]interface{}{"path": q.Get("path"), "headers": map[string]string{"Host": q.Get("host")}}
 	}
+	return p, nil
+}
 
+func parseVmess(raw string) (Proxy, error) {
+	data := strings.TrimPrefix(raw, "vmess://")
+	decoded, err := base64.StdEncoding.DecodeString(data)
+	if err != nil {
+		return nil, err
+	}
+	var v map[string]interface{}
+	json.Unmarshal(decoded, &v)
+	p := make(Proxy)
+	p["type"] = "vmess"
+	p["name"] = fmt.Sprintf("%v", v["ps"])
+	p["server"] = v["add"]
+	p["port"] = v["port"]
+	p["uuid"] = v["id"]
+	p["cipher"] = "auto"
+	if v["net"] == "ws" {
+		p["network"] = "ws"
+		p["ws-opts"] = map[string]interface{}{"path": v["path"], "headers": map[string]string{"Host": fmt.Sprintf("%v", v["host"])}}
+	}
+	if v["tls"] == "tls" {
+		p["tls"] = true
+	}
 	return p, nil
 }
 
@@ -140,99 +147,13 @@ func parseTrojan(raw string) (Proxy, error) {
 	if err != nil {
 		return nil, err
 	}
-	q := u.Query()
-
 	p := make(Proxy)
 	p["type"] = "trojan"
 	p["name"] = u.Fragment
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["password"] = u.User.Username()
-	p["tls"] = true 
-	
-	if sni := q.Get("sni"); sni != "" {
-		p["servername"] = sni
-	} else {
-		p["servername"] = u.Hostname()
-	}
-
-	net := q.Get("type")
-	if net == "ws" {
-		p["network"] = "ws"
-		headers := make(map[string]string)
-		if host := q.Get("host"); host != "" {
-			headers["Host"] = host
-		}
-		p["ws-opts"] = map[string]interface{}{
-			"path":    q.Get("path"),
-			"headers": headers,
-		}
-	}
-
-	return p, nil
-}
-
-func parseVmess(raw string) (Proxy, error) {
-	b64 := strings.TrimPrefix(raw, "vmess://")
-	if i := len(b64) % 4; i != 0 {
-		b64 += strings.Repeat("=", 4-i)
-	}
-	decoded, err := base64.StdEncoding.DecodeString(b64)
-	if err != nil {
-		return nil, err
-	}
-
-	var v map[string]interface{}
-	if err := json.Unmarshal(decoded, &v); err != nil {
-		return nil, err
-	}
-
-	p := make(Proxy)
-	p["type"] = "vmess"
-	p["name"] = v["ps"]
-	p["server"] = v["add"]
-	p["uuid"] = v["id"]
-	p["cipher"] = "auto"
-	
-	switch port := v["port"].(type) {
-	case string:
-		p["port"] = port
-	case float64:
-		p["port"] = int(port)
-	}
-
-	p["alterId"] = 0
-	if aid, ok := v["aid"]; ok {
-		p["alterId"] = aid
-	}
-
-	net := fmt.Sprintf("%v", v["net"])
-	if net == "ws" {
-		p["network"] = "ws"
-		headers := make(map[string]string)
-		if host, ok := v["host"].(string); ok && host != "" {
-			headers["Host"] = host
-		}
-		p["ws-opts"] = map[string]interface{}{
-			"path":    v["path"],
-			"headers": headers,
-		}
-	} else if net == "grpc" {
-		p["network"] = "grpc"
-		p["grpc-opts"] = map[string]string{
-			"grpc-service-name": fmt.Sprintf("%v", v["path"]),
-		}
-	}
-
-	if tls, ok := v["tls"].(string); ok && tls == "tls" {
-		p["tls"] = true
-		if sni, ok := v["sni"].(string); ok && sni != "" {
-			p["servername"] = sni
-		} else if host, ok := v["host"].(string); ok && host != "" {
-			p["servername"] = host
-		}
-	}
-
+	p["tls"] = true
 	return p, nil
 }
 
@@ -246,34 +167,8 @@ func parseSS(raw string) (Proxy, error) {
 	p["name"] = u.Fragment
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
-
-	userInfo := u.User.String()
-	// Check if userInfo is base64 encoded (SIP002)
-	decoded, err := base64.RawStdEncoding.DecodeString(userInfo)
-	if err != nil {
-		// Try standard padding if raw failed
-		decoded, err = base64.StdEncoding.DecodeString(userInfo)
-	}
-
-	if err == nil {
-		parts := strings.SplitN(string(decoded), ":", 2)
-		if len(parts) == 2 {
-			p["cipher"] = parts[0]
-			p["password"] = parts[1]
-		} else {
-			p["cipher"] = "aes-256-gcm"
-			p["password"] = string(decoded)
-		}
-	} else {
-		// If not base64, assume user:password or just password
-		p["cipher"] = "aes-256-gcm"
-		if pass, ok := u.User.Password(); ok {
-			p["password"] = pass
-		} else {
-			p["password"] = u.User.Username()
-		}
-	}
-	
+	p["cipher"] = "aes-256-gcm"
+	p["password"] = u.User.Username()
 	return p, nil
 }
 
@@ -282,106 +177,45 @@ func parseHy2(raw string) (Proxy, error) {
 	if err != nil {
 		return nil, err
 	}
-	q := u.Query()
-
 	p := make(Proxy)
 	p["type"] = "hysteria2"
 	p["name"] = u.Fragment
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["password"] = u.User.Username()
-	
-	if sni := q.Get("sni"); sni != "" {
-		p["servername"] = sni
-	} else {
-		p["servername"] = u.Hostname()
-	}
-	
-	if obfs := q.Get("obfs"); obfs != "" {
-		p["obfs"] = obfs
-		p["obfs-password"] = q.Get("obfs-password")
-	}
-
 	return p, nil
 }
 
-// --- WRITER ---
-
 func writeClashYaml(filename string, proxies []Proxy) {
-	f, err := os.Create(filename)
-	if err != nil {
-		fmt.Println("Error creating file:", err)
-		return
-	}
+	f, _ := os.Create(filename)
 	defer f.Close()
-
 	w := bufio.NewWriter(f)
 	w.WriteString("proxies:\n")
-
 	for _, p := range proxies {
-		line := formatProxyLine(p)
-		w.WriteString(line + "\n")
+		var parts []string
+		keys := make([]string, 0, len(p))
+		for k := range p { keys = append(keys, k) }
+		sort.Strings(keys)
+		for _, k := range keys {
+			parts = append(parts, fmt.Sprintf("%s: %v", k, formatValue(p[k])))
+		}
+		w.WriteString(fmt.Sprintf("  - {%s}\n", strings.Join(parts, ", ")))
 	}
 	w.Flush()
-	fmt.Printf("✅ Generated %s with %d proxies.\n", filename, len(proxies))
-}
-
-func formatProxyLine(p Proxy) string {
-	var parts []string
-	
-	priority := []string{"name", "server", "port", "type", "uuid", "password", "cipher"}
-	
-	for _, key := range priority {
-		if val, ok := p[key]; ok {
-			parts = append(parts, fmt.Sprintf("%s: %v", key, formatValue(val)))
-			delete(p, key) 
-		}
-	}
-
-	var keys []string
-	for k := range p {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
-	for _, k := range keys {
-		parts = append(parts, fmt.Sprintf("%s: %v", k, formatValue(p[k])))
-	}
-
-	return fmt.Sprintf("  - {%s}", strings.Join(parts, ", "))
 }
 
 func formatValue(v interface{}) string {
 	switch val := v.(type) {
 	case string:
-		if val == "" || strings.ContainsAny(val, ":{}[],&*#?|-<>=!%@ ") || strings.Contains(val, ".") || strings.Contains(val, "/") {
-			return fmt.Sprintf("%q", val)
-		}
-		return val
-	case int, float64, bool:
-		return fmt.Sprintf("%v", val)
+		return fmt.Sprintf("%q", val)
 	case map[string]string:
-		var subParts []string
-		var keys []string
-		for k := range val {
-			keys = append(keys, k)
-		}
-		sort.Strings(keys)
-		for _, k := range keys {
-			subParts = append(subParts, fmt.Sprintf("%s: %v", k, formatValue(val[k])))
-		}
-		return fmt.Sprintf("{%s}", strings.Join(subParts, ", "))
+		var res []string
+		for k, v := range val { res = append(res, fmt.Sprintf("%s: %q", k, v)) }
+		return fmt.Sprintf("{%s}", strings.Join(res, ", "))
 	case map[string]interface{}:
-		var subParts []string
-		var keys []string
-		for k := range val {
-			keys = append(keys, k)
-		}
-		sort.Strings(keys)
-		for _, k := range keys {
-			subParts = append(subParts, fmt.Sprintf("%s: %v", k, formatValue(val[k])))
-		}
-		return fmt.Sprintf("{%s}", strings.Join(subParts, ", "))
+		var res []string
+		for k, v := range val { res = append(res, fmt.Sprintf("%s: %v", k, formatValue(v))) }
+		return fmt.Sprintf("{%s}", strings.Join(res, ", "))
 	default:
 		return fmt.Sprintf("%v", val)
 	}
