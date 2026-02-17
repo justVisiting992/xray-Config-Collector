@@ -339,7 +339,8 @@ func formatProxyLine(p Proxy) string {
 func formatValue(v interface{}) string {
 	switch val := v.(type) {
 	case string:
-		if strings.ContainsAny(val, ": {}[],") || val == "" {
+		// Wrap in quotes if it contains YAML-breaking characters or is potentially interpreted as a non-string
+		if val == "" || strings.ContainsAny(val, ":{}[],&*#?|-<>=!%@ ") || strings.Contains(val, ".") || strings.Contains(val, "/") {
 			return fmt.Sprintf("%q", val)
 		}
 		return val
@@ -347,14 +348,24 @@ func formatValue(v interface{}) string {
 		return fmt.Sprintf("%v", val)
 	case map[string]string:
 		var subParts []string
-		for k, v := range val {
-			subParts = append(subParts, fmt.Sprintf("%s: %v", k, formatValue(v)))
+		var keys []string
+		for k := range val {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+		for _, k := range keys {
+			subParts = append(subParts, fmt.Sprintf("%s: %v", k, formatValue(val[k])))
 		}
 		return fmt.Sprintf("{%s}", strings.Join(subParts, ", "))
 	case map[string]interface{}:
 		var subParts []string
-		for k, v := range val {
-			subParts = append(subParts, fmt.Sprintf("%s: %v", k, formatValue(v)))
+		var keys []string
+		for k := range val {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+		for _, k := range keys {
+			subParts = append(subParts, fmt.Sprintf("%s: %v", k, formatValue(val[k])))
 		}
 		return fmt.Sprintf("{%s}", strings.Join(subParts, ", "))
 	default:
