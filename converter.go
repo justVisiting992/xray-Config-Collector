@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -246,17 +247,31 @@ func parseSS(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 
-	user := u.User.String()
-	decoded, err := base64.StdEncoding.DecodeString(user)
+	userInfo := u.User.String()
+	// Check if userInfo is base64 encoded (SIP002)
+	decoded, err := base64.RawStdEncoding.DecodeString(userInfo)
+	if err != nil {
+		// Try standard padding if raw failed
+		decoded, err = base64.StdEncoding.DecodeString(userInfo)
+	}
+
 	if err == nil {
-		parts := strings.Split(string(decoded), ":")
+		parts := strings.SplitN(string(decoded), ":", 2)
 		if len(parts) == 2 {
 			p["cipher"] = parts[0]
 			p["password"] = parts[1]
+		} else {
+			p["cipher"] = "aes-256-gcm"
+			p["password"] = string(decoded)
 		}
 	} else {
-		p["cipher"] = u.User.Username()
-		p["password"], _ = u.User.Password()
+		// If not base64, assume user:password or just password
+		p["cipher"] = "aes-256-gcm"
+		if pass, ok := u.User.Password(); ok {
+			p["password"] = pass
+		} else {
+			p["password"] = u.User.Username()
+		}
 	}
 	
 	return p, nil
@@ -277,9 +292,9 @@ func parseHy2(raw string) (Proxy, error) {
 	p["password"] = u.User.Username()
 	
 	if sni := q.Get("sni"); sni != "" {
-		p["sni"] = sni
+		p["servername"] = sni
 	} else {
-		p["sni"] = u.Hostname()
+		p["servername"] = u.Hostname()
 	}
 	
 	if obfs := q.Get("obfs"); obfs != "" {
@@ -339,7 +354,6 @@ func formatProxyLine(p Proxy) string {
 func formatValue(v interface{}) string {
 	switch val := v.(type) {
 	case string:
-		// Wrap in quotes if it contains YAML-breaking characters or is potentially interpreted as a non-string
 		if val == "" || strings.ContainsAny(val, ":{}[],&*#?|-<>=!%@ ") || strings.Contains(val, ".") || strings.Contains(val, "/") {
 			return fmt.Sprintf("%q", val)
 		}
