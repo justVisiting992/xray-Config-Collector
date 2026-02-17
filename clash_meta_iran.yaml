@@ -117,7 +117,7 @@ proxy-groups:
     type: select 
     icon: https://www.svgrepo.com/show/372331/cursor-hand-click.svg 
     use: 
-      - clash
+      - mixed-iran
       - proxy 
   - name: خودکار (بهترین پینگ) 🤖 
     type: url-test 
@@ -129,7 +129,7 @@ proxy-groups:
     max-failed-times: 6
     lazy: true 
     use: 
-      - clash
+      - mixed-iran
       - proxy 
   - name: پشتیبان (در صورت قطعی) 🧯 
     type: fallback 
@@ -140,7 +140,7 @@ proxy-groups:
     max-failed-times: 3 
     lazy: true 
     use: 
-      - clash
+      - mixed-iran
       - proxy 
   - name: اتصال پایدار 🔗 
     type: url-test 
@@ -164,7 +164,7 @@ proxy-groups:
     max-failed-times: 5 
     lazy: true 
     use: 
-      - clash
+      - mixed-iran
       - proxy 
   - name: توزیع بار (گردشی) 🔁 
     type: load-balance 
@@ -177,7 +177,7 @@ proxy-groups:
     max-failed-times: 3 
     lazy: true 
     use: 
-      - clash
+      - mixed-iran
       - proxy 
   - name: توزیع بار (موقت) ⏳ 
     type: load-balance 
@@ -189,7 +189,7 @@ proxy-groups:
     max-failed-times: 5 
     lazy: true 
     use: 
-      - clash
+      - mixed-iran
       - proxy 
   - name: دانلود منیجر 📥
     type: select
