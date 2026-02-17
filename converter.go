@@ -8,7 +8,6 @@ import (
 	"net/url"
 	"os"
 	"sort"
-	"strconv"
 	"strings"
 )
 
@@ -22,7 +21,7 @@ func main() {
 	file, err := os.Open(inputFile)
 	if err != nil {
 		fmt.Printf("❌ Error opening input file: %v\n", err)
-		os.Exit(0) // Don't fail the workflow, just exit
+		os.Exit(0) 
 	}
 	defer file.Close()
 
@@ -54,7 +53,6 @@ func main() {
 		}
 
 		if parseErr == nil && p != nil {
-			// Global defaults for all proxies based on your sample
 			p["skip-cert-verify"] = true
 			p["udp"] = true
 			proxies = append(proxies, p)
@@ -79,9 +77,8 @@ func parseVless(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["uuid"] = u.User.Username()
-	p["tfo"] = false // Default in your sample
+	p["tfo"] = false 
 
-	// Map Query Params
 	if flow := q.Get("flow"); flow != "" {
 		p["flow"] = flow
 	}
@@ -89,7 +86,6 @@ func parseVless(raw string) (Proxy, error) {
 		p["client-fingerprint"] = fp
 	}
 
-	// Security & TLS
 	security := q.Get("security")
 	if security == "tls" || security == "reality" {
 		p["tls"] = true
@@ -98,7 +94,6 @@ func parseVless(raw string) (Proxy, error) {
 		}
 	}
 
-	// Reality specific
 	if security == "reality" {
 		p["reality-opts"] = map[string]string{
 			"public-key": q.Get("pbk"),
@@ -106,8 +101,7 @@ func parseVless(raw string) (Proxy, error) {
 		}
 	}
 
-	// Network types
-	net := q.Get("type") // sometimes 'net' or 'type' in links
+	net := q.Get("type") 
 	if net == "" {
 		net = q.Get("net")
 	}
@@ -133,7 +127,7 @@ func parseVless(raw string) (Proxy, error) {
 		p["network"] = "grpc"
 		p["grpc-opts"] = map[string]string{
 			"grpc-service-name": q.Get("serviceName"),
-			"grpc-mode":         q.Get("mode"), // usually 'gun' or 'multi'
+			"grpc-mode":         q.Get("mode"), 
 		}
 	}
 
@@ -153,7 +147,7 @@ func parseTrojan(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["password"] = u.User.Username()
-	p["tls"] = true // Trojan is always TLS
+	p["tls"] = true 
 	
 	if sni := q.Get("sni"); sni != "" {
 		p["servername"] = sni
@@ -161,7 +155,6 @@ func parseTrojan(raw string) (Proxy, error) {
 		p["servername"] = u.Hostname()
 	}
 
-	// Trojan usually supports similar transports to Vless
 	net := q.Get("type")
 	if net == "ws" {
 		p["network"] = "ws"
@@ -180,7 +173,6 @@ func parseTrojan(raw string) (Proxy, error) {
 
 func parseVmess(raw string) (Proxy, error) {
 	b64 := strings.TrimPrefix(raw, "vmess://")
-	// Fix standard padding if missing
 	if i := len(b64) % 4; i != 0 {
 		b64 += strings.Repeat("=", 4-i)
 	}
@@ -201,7 +193,6 @@ func parseVmess(raw string) (Proxy, error) {
 	p["uuid"] = v["id"]
 	p["cipher"] = "auto"
 	
-	// Handle Port (can be string or float in JSON)
 	switch port := v["port"].(type) {
 	case string:
 		p["port"] = port
@@ -214,7 +205,6 @@ func parseVmess(raw string) (Proxy, error) {
 		p["alterId"] = aid
 	}
 
-	// Transport
 	net := fmt.Sprintf("%v", v["net"])
 	if net == "ws" {
 		p["network"] = "ws"
@@ -233,7 +223,6 @@ func parseVmess(raw string) (Proxy, error) {
 		}
 	}
 
-	// TLS
 	if tls, ok := v["tls"].(string); ok && tls == "tls" {
 		p["tls"] = true
 		if sni, ok := v["sni"].(string); ok && sni != "" {
@@ -257,7 +246,6 @@ func parseSS(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 
-	// Decode userinfo: method:password (Base64'd)
 	user := u.User.String()
 	decoded, err := base64.StdEncoding.DecodeString(user)
 	if err == nil {
@@ -267,7 +255,6 @@ func parseSS(raw string) (Proxy, error) {
 			p["password"] = parts[1]
 		}
 	} else {
-		// Sometimes it's plain text in link
 		p["cipher"] = u.User.Username()
 		p["password"], _ = u.User.Password()
 	}
@@ -317,8 +304,6 @@ func writeClashYaml(filename string, proxies []Proxy) {
 	w.WriteString("proxies:\n")
 
 	for _, p := range proxies {
-		// We manually format to match the "Flow Style" requested:
-		// - { key: val, key2: val2 }
 		line := formatProxyLine(p)
 		w.WriteString(line + "\n")
 	}
@@ -329,19 +314,15 @@ func writeClashYaml(filename string, proxies []Proxy) {
 func formatProxyLine(p Proxy) string {
 	var parts []string
 	
-	// Order matters for aesthetics? User sample had name, server, port first.
-	// We force specific order for common fields, map sort the rest.
 	priority := []string{"name", "server", "port", "type", "uuid", "password", "cipher"}
 	
-	// Process priority keys first
 	for _, key := range priority {
 		if val, ok := p[key]; ok {
 			parts = append(parts, fmt.Sprintf("%s: %v", key, formatValue(val)))
-			delete(p, key) // Remove so we don't add it again
+			delete(p, key) 
 		}
 	}
 
-	// Sort remaining keys alphabetically
 	var keys []string
 	for k := range p {
 		keys = append(keys, k)
@@ -358,7 +339,6 @@ func formatProxyLine(p Proxy) string {
 func formatValue(v interface{}) string {
 	switch val := v.(type) {
 	case string:
-		// Only quote if necessary (simplified check)
 		if strings.ContainsAny(val, ": {}[],") || val == "" {
 			return fmt.Sprintf("%q", val)
 		}
@@ -366,14 +346,12 @@ func formatValue(v interface{}) string {
 	case int, float64, bool:
 		return fmt.Sprintf("%v", val)
 	case map[string]string:
-		// Handle nested simple maps like reality-opts
 		var subParts []string
 		for k, v := range val {
 			subParts = append(subParts, fmt.Sprintf("%s: %v", k, formatValue(v)))
 		}
 		return fmt.Sprintf("{%s}", strings.Join(subParts, ", "))
 	case map[string]interface{}:
-		// Handle deeper nested maps like ws-opts
 		var subParts []string
 		for k, v := range val {
 			subParts = append(subParts, fmt.Sprintf("%s: %v", k, formatValue(v)))
