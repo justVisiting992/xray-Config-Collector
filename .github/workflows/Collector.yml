@@ -2,7 +2,6 @@ name: Xray Config Collector
 
 on:
   schedule:
-    # Runs every 2 hours
     - cron: '0 */2 * * *'
   workflow_dispatch:
   
@@ -53,7 +52,24 @@ jobs:
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: go run main.go
 
+      # --- NEW SUB-CONVERTER INTEGRATION START ---
+      - name: Download Subconverter Binary
+        run: |
+          wget https://github.com/tindy2013/subconverter/releases/latest/download/subconverter_linux64.tar.gz
+          tar -zxf subconverter_linux64.tar.gz
+          chmod +x subconverter/subconverter
+
+      - name: Convert Raw List to Clash YAML
+        run: |
+          # Assuming main.go outputs a file named 'mixed_iran.txt'
+          # This creates 'sub.yaml' which is a clean Clash-ready proxy list
+          ./subconverter/subconverter -g --url "mixed_iran.txt" --target "clash"
+          # Rename it for your next script to pick up
+          mv sub.yaml clean_proxies.yaml
+      # --- NEW SUB-CONVERTER INTEGRATION END ---
+
       - name: Generate Clash Meta Config
+        # Modify clash_gen.go to read from 'clean_proxies.yaml' instead of raw txt
         run: go run clash_gen.go
 
       - name: Commit and Push
