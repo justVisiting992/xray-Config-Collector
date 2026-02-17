@@ -50,18 +50,19 @@ jobs:
         env:
           GIST_ID: ${{ secrets.GIST_ID }}
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+        # main.go generates the raw text file (e.g., mixed_iran.txt)
         run: go run main.go
 
-      # --- NEW CONVERTER SCRIPT ---
-      - name: Convert Mixed Links to Clash YAML
-        # This runs the custom script to generate 'clash.yaml' from 'mixed_iran.txt'
+      # --- CUSTOM CONVERTER ---
+      - name: Convert Links to Clash YAML
+        # Ensure converter.go uses the same filename main.go generated
         run: go run converter.go
-      # ----------------------------
 
       - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          # Stage all changes including mixed_iran.txt and clash.yaml
           git add .
           git stash || echo "Nothing to stash"
           git pull --rebase origin main
