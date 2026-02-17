@@ -476,21 +476,14 @@ proxy-groups:
 
 proxy-providers:
   mixed-iran:
-    type: file
-    path: ./clash.yaml
-    health-check:
-      enable: true
-      interval: 3600
-      url: "http://www.gstatic.com/generate_204"
-  proxy:
     type: http
     url: "https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/clash.yaml"
     interval: 3600
-    path: "./clash.yaml"
+    path: ./provider_mixed.yaml
     health-check:
       enable: true
-      interval: 3600
-      url: "https://www.gstatic.com/generate_204"
+      interval: 600
+      url: "http://www.gstatic.com/generate_204"
 
 rule-providers: 
   category_public_tracker: 
