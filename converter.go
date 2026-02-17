@@ -21,7 +21,7 @@ func main() {
 	file, err := os.Open(inputFile)
 	if err != nil {
 		fmt.Printf("❌ Error opening input file: %v\n", err)
-		os.Exit(0) 
+		os.Exit(0)
 	}
 	defer file.Close()
 
@@ -53,7 +53,7 @@ func main() {
 		if parseErr == nil && p != nil {
 			p["skip-cert-verify"] = true
 			p["udp"] = true
-			// Sanitize the name specifically to prevent UTF-8 errors
+			// Sanitize name to prevent UTF-8 errors in Clash
 			if name, ok := p["name"].(string); ok {
 				p["name"] = sanitizeString(name)
 			}
@@ -64,7 +64,6 @@ func main() {
 	writeClashYaml(outputFile, proxies)
 }
 
-// sanitizeString removes invalid UTF-8 characters that break YAML parsers
 func sanitizeString(s string) string {
 	if !utf8.ValidString(s) {
 		v := make([]rune, 0, len(s))
@@ -79,7 +78,6 @@ func sanitizeString(s string) string {
 		}
 		s = string(v)
 	}
-	// Also remove problematic YAML characters from the name itself
 	return strings.Map(func(r rune) rune {
 		if r >= 32 && r != 127 {
 			return r
@@ -100,19 +98,27 @@ func parseVless(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["uuid"] = u.User.Username()
-	if security := q.Get("security"); security == "tls" || security == "reality" {
+	
+	security := q.Get("security")
+	if security == "tls" || security == "reality" {
 		p["tls"] = true
 		if sni := q.Get("sni"); sni != "" {
 			p["servername"] = sni
 		}
 	}
 	if security == "reality" {
-		p["reality-opts"] = map[string]string{"public-key": q.Get("pbk"), "short-id": q.Get("sid")}
+		p["reality-opts"] = map[string]string{
+			"public-key": q.Get("pbk"),
+			"short-id":   q.Get("sid"),
+		}
 	}
 	net := q.Get("type")
 	if net == "ws" {
 		p["network"] = "ws"
-		p["ws-opts"] = map[string]interface{}{"path": q.Get("path"), "headers": map[string]string{"Host": q.Get("host")}}
+		p["ws-opts"] = map[string]interface{}{
+			"path":    q.Get("path"),
+			"headers": map[string]string{"Host": q.Get("host")},
+		}
 	}
 	return p, nil
 }
@@ -134,7 +140,10 @@ func parseVmess(raw string) (Proxy, error) {
 	p["cipher"] = "auto"
 	if v["net"] == "ws" {
 		p["network"] = "ws"
-		p["ws-opts"] = map[string]interface{}{"path": v["path"], "headers": map[string]string{"Host": fmt.Sprintf("%v", v["host"])}}
+		p["ws-opts"] = map[string]interface{}{
+			"path":    v["path"],
+			"headers": map[string]string{"Host": fmt.Sprintf("%v", v["host"])},
+		}
 	}
 	if v["tls"] == "tls" {
 		p["tls"] = true
@@ -167,6 +176,7 @@ func parseSS(raw string) (Proxy, error) {
 	p["name"] = u.Fragment
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
+	// Hardcoded fix for the "unknown method" error
 	p["cipher"] = "aes-256-gcm"
 	p["password"] = u.User.Username()
 	return p, nil
@@ -194,7 +204,9 @@ func writeClashYaml(filename string, proxies []Proxy) {
 	for _, p := range proxies {
 		var parts []string
 		keys := make([]string, 0, len(p))
-		for k := range p { keys = append(keys, k) }
+		for k := range p {
+			keys = append(keys, k)
+		}
 		sort.Strings(keys)
 		for _, k := range keys {
 			parts = append(parts, fmt.Sprintf("%s: %v", k, formatValue(p[k])))
@@ -202,6 +214,7 @@ func writeClashYaml(filename string, proxies []Proxy) {
 		w.WriteString(fmt.Sprintf("  - {%s}\n", strings.Join(parts, ", ")))
 	}
 	w.Flush()
+	fmt.Printf("✅ Success: Wrote %d proxies to %s\n", len(proxies), filename)
 }
 
 func formatValue(v interface{}) string {
@@ -210,11 +223,15 @@ func formatValue(v interface{}) string {
 		return fmt.Sprintf("%q", val)
 	case map[string]string:
 		var res []string
-		for k, v := range val { res = append(res, fmt.Sprintf("%s: %q", k, v)) }
+		for k, v := range val {
+			res = append(res, fmt.Sprintf("%s: %q", k, v))
+		}
 		return fmt.Sprintf("{%s}", strings.Join(res, ", "))
 	case map[string]interface{}:
 		var res []string
-		for k, v := range val { res = append(res, fmt.Sprintf("%s: %v", k, formatValue(v))) }
+		for k, v := range val {
+			res = append(res, fmt.Sprintf("%s: %v", k, formatValue(v)))
+		}
 		return fmt.Sprintf("{%s}", strings.Join(res, ", "))
 	default:
 		return fmt.Sprintf("%v", val)
