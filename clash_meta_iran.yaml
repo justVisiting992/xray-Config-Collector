@@ -118,7 +118,6 @@ proxy-groups:
     icon: https://www.svgrepo.com/show/372331/cursor-hand-click.svg 
     use: 
       - mixed-iran
-      - proxy 
   - name: خودکار (بهترین پینگ) 🤖 
     type: url-test 
     icon: https://www.svgrepo.com/show/7876/speedometer.svg 
@@ -130,7 +129,6 @@ proxy-groups:
     lazy: true 
     use: 
       - mixed-iran
-      - proxy 
   - name: پشتیبان (در صورت قطعی) 🧯 
     type: fallback 
     icon: https://www.svgrepo.com/show/415208/backup-cloud-document.svg 
@@ -141,7 +139,6 @@ proxy-groups:
     lazy: true 
     use: 
       - mixed-iran
-      - proxy 
   - name: اتصال پایدار 🔗 
     type: url-test 
     icon: https://www.svgrepo.com/show/428774/connection-internet-communication.svg 
@@ -165,7 +162,6 @@ proxy-groups:
     lazy: true 
     use: 
       - mixed-iran
-      - proxy 
   - name: توزیع بار (گردشی) 🔁 
     type: load-balance 
     icon: https://www.svgrepo.com/show/388466/rotating-forward.svg 
@@ -178,7 +174,6 @@ proxy-groups:
     lazy: true 
     use: 
       - mixed-iran
-      - proxy 
   - name: توزیع بار (موقت) ⏳ 
     type: load-balance 
     icon: https://www.svgrepo.com/show/323449/temporary-shield.svg 
@@ -190,7 +185,6 @@ proxy-groups:
     lazy: true 
     use: 
       - mixed-iran
-      - proxy 
   - name: دانلود منیجر 📥
     type: select
     icon: https://www.sadeemrdp.com/fonts/apps/IDM-Logo.svg
