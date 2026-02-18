@@ -909,7 +909,7 @@ rule-providers:
   spotifyads:
     type: http
     behavior: domain
-    url: https://raw.githubusercontent.com/10ium/V2rayDomains2Clash/refs/heads/generated/spotify-ads.yaml
+    url: "https://raw.githubusercontent.com/10ium/V2rayDomains2Clash/generated/spotify@ads.yaml"
     interval: 86400
     path: ./ruleset/spotifyads.yaml
   DomainSpotify:
