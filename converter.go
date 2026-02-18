@@ -109,12 +109,32 @@ func parseVless(raw string) (Proxy, error) {
 			p["servername"] = sni
 		}
 	}
+
 	if security == "reality" {
-		p["reality-opts"] = map[string]string{
-			"public-key": q.Get("pbk"),
-			"short-id":   q.Get("sid"),
+		pbk := q.Get("pbk")
+		sid := q.Get("sid")
+
+		// Validate public-key: must exist, be base64-like, typical length 43-44 chars
+		if pbk == "" || len(pbk) < 32 || len(pbk) > 64 {
+			// Invalid or missing public-key → skip Reality opts, fallback to regular TLS
+			// (or return nil, err to drop proxy entirely - safer but loses some nodes)
+			// Here we fallback to TLS
+			security = "tls" // prevent adding broken reality-opts
+		} else {
+			// Optional: stricter base64 check
+			if _, err := base64.URLEncoding.DecodeString(pbk); err != nil {
+				// Not valid base64 → drop Reality
+				security = "tls"
+			} else {
+				// Valid → add opts
+				p["reality-opts"] = map[string]string{
+					"public-key": pbk,
+					"short-id":   sid,
+				}
+			}
 		}
 	}
+
 	if q.Get("type") == "ws" {
 		p["network"] = "ws"
 		p["ws-opts"] = map[string]interface{}{
@@ -122,6 +142,12 @@ func parseVless(raw string) (Proxy, error) {
 			"headers": map[string]string{"Host": q.Get("host")},
 		}
 	}
+
+	// Final check: if reality was intended but we dropped opts, ensure tls is still true
+	if security == "reality" && p["reality-opts"] == nil {
+		p["tls"] = true
+	}
+
 	return p, nil
 }
 
@@ -143,7 +169,7 @@ func parseVmess(raw string) (Proxy, error) {
 	p["server"] = v["add"]
 	p["port"] = v["port"]
 	p["uuid"] = v["id"]
-	p["alterId"] = 0          // ← Added this line – fixes the "key 'alterId' missing" error
+	p["alterId"] = 0
 	p["cipher"] = "auto"
 
 	if v["net"] == "ws" {
