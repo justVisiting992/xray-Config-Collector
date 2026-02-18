@@ -668,7 +668,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml" 
     path: ./ruleset/irasn.yaml 
     interval: 86400 
-arvancloud: 
+  arvancloud: 
     type: http 
     format: yaml 
     behavior: ipcidr 
@@ -695,7 +695,7 @@ arvancloud:
     behavior: ipcidr 
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/parspack.yaml" 
     path: ./ruleset/parspack.yaml 
-    interval: 86400
+    interval: 86400 
   malware: 
     type: http 
     format: yaml 
