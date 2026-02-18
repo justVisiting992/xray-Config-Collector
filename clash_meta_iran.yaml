@@ -668,12 +668,34 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml" 
     path: ./ruleset/irasn.yaml 
     interval: 86400 
-  #
-#
-#
-#
-#
-#
+arvancloud: 
+    type: http 
+    format: yaml 
+    behavior: ipcidr 
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/arvancloud.yaml" 
+    path: ./ruleset/arvancloud.yaml 
+    interval: 86400 
+  derakcloud: 
+    type: http 
+    format: yaml 
+    behavior: ipcidr 
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/derakcloud.yaml" 
+    path: ./ruleset/derakcloud.yaml 
+    interval: 86400 
+  iranserver: 
+    type: http 
+    format: yaml 
+    behavior: ipcidr 
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/iranserver.yaml" 
+    path: ./ruleset/iranserver.yaml 
+    interval: 86400 
+  parspack: 
+    type: http 
+    format: yaml 
+    behavior: ipcidr 
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/parspack.yaml" 
+    path: ./ruleset/parspack.yaml 
+    interval: 86400
   malware: 
     type: http 
     format: yaml 
