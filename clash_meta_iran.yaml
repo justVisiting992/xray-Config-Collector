@@ -817,7 +817,7 @@ rule-providers:
   xiaomi-ads: 
     type: http 
     behavior: domain 
-    url: https://raw.githubusercontent.com/10ium/V2rayDomains2Clash/refs/heads/generated/xiaomi-ads.yaml 
+    url: "https://raw.githubusercontent.com/10ium/V2rayDomains2Clash/generated/xiaomi@ads.yaml"
     interval: 86400 
     path: ./ruleset/xiaomi-ads.yaml 
   xiaomi_block_list: 
