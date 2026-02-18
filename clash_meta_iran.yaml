@@ -672,7 +672,7 @@ rule-providers:
 #    type: http 
 #    format: yaml 
 #    behavior: ipcidr 
-*    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/arvancloud.yaml" 
+#    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/arvancloud.yaml" 
 #    path: ./ruleset/arvancloud.yaml 
 #    interval: 86400 
 #  derakcloud: 
