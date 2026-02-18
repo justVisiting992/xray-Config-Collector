@@ -53,12 +53,13 @@ func main() {
 		if parseErr == nil && p != nil {
 			p["skip-cert-verify"] = true
 			p["udp"] = true
-            // Modern Mihomo fingerprint requirement
-            p["client-fingerprint"] = "chrome"
-			
+			// Modern Mihomo fingerprint requirement
+			p["client-fingerprint"] = "chrome"
+
 			if name, ok := p["name"].(string); ok {
 				p["name"] = sanitizeString(name)
 			}
+
 			proxies = append(proxies, p)
 		}
 	}
@@ -72,21 +73,27 @@ func sanitizeString(s string) string {
 		for i, r := range s {
 			if r == utf8.RuneError {
 				_, size := utf8.DecodeRuneInString(s[i:])
-				if size == 1 { continue }
+				if size == 1 {
+					continue
+				}
 			}
 			v = append(v, r)
 		}
 		s = string(v)
 	}
 	return strings.Map(func(r rune) rune {
-		if r >= 32 && r != 127 { return r }
+		if r >= 32 && r != 127 {
+			return r
+		}
 		return -1
 	}, s)
 }
 
 func parseVless(raw string) (Proxy, error) {
 	u, err := url.Parse(raw)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 	q := u.Query()
 	p := make(Proxy)
 	p["type"] = "vless"
@@ -94,7 +101,7 @@ func parseVless(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["uuid"] = u.User.Username()
-	
+
 	security := q.Get("security")
 	if security == "tls" || security == "reality" {
 		p["tls"] = true
@@ -121,16 +128,24 @@ func parseVless(raw string) (Proxy, error) {
 func parseVmess(raw string) (Proxy, error) {
 	data := strings.TrimPrefix(raw, "vmess://")
 	decoded, err := base64.StdEncoding.DecodeString(data)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
+
 	var v map[string]interface{}
-	json.Unmarshal(decoded, &v)
+	if err := json.Unmarshal(decoded, &v); err != nil {
+		return nil, err
+	}
+
 	p := make(Proxy)
 	p["type"] = "vmess"
 	p["name"] = fmt.Sprintf("%v", v["ps"])
 	p["server"] = v["add"]
 	p["port"] = v["port"]
 	p["uuid"] = v["id"]
+	p["alterId"] = 0          // ← Added this line – fixes the "key 'alterId' missing" error
 	p["cipher"] = "auto"
+
 	if v["net"] == "ws" {
 		p["network"] = "ws"
 		p["ws-opts"] = map[string]interface{}{
@@ -138,13 +153,19 @@ func parseVmess(raw string) (Proxy, error) {
 			"headers": map[string]string{"Host": fmt.Sprintf("%v", v["host"])},
 		}
 	}
-	if v["tls"] == "tls" { p["tls"] = true }
+
+	if v["tls"] == "tls" {
+		p["tls"] = true
+	}
+
 	return p, nil
 }
 
 func parseTrojan(raw string) (Proxy, error) {
 	u, err := url.Parse(raw)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 	p := make(Proxy)
 	p["type"] = "trojan"
 	p["name"] = u.Fragment
@@ -157,7 +178,9 @@ func parseTrojan(raw string) (Proxy, error) {
 
 func parseSS(raw string) (Proxy, error) {
 	u, err := url.Parse(raw)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 	p := make(Proxy)
 	p["type"] = "ss"
 	p["name"] = u.Fragment
@@ -170,7 +193,9 @@ func parseSS(raw string) (Proxy, error) {
 
 func parseHy2(raw string) (Proxy, error) {
 	u, err := url.Parse(raw)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 	p := make(Proxy)
 	p["type"] = "hysteria2"
 	p["name"] = u.Fragment
@@ -181,21 +206,32 @@ func parseHy2(raw string) (Proxy, error) {
 }
 
 func writeClashYaml(filename string, proxies []Proxy) {
-	f, _ := os.Create(filename)
+	f, err := os.Create(filename)
+	if err != nil {
+		fmt.Printf("❌ Error creating output file: %v\n", err)
+		return
+	}
 	defer f.Close()
+
 	w := bufio.NewWriter(f)
 	w.WriteString("proxies:\n")
+
 	for _, p := range proxies {
 		var parts []string
 		keys := make([]string, 0, len(p))
-		for k := range p { keys = append(keys, k) }
+		for k := range p {
+			keys = append(keys, k)
+		}
 		sort.Strings(keys)
+
 		for _, k := range keys {
 			parts = append(parts, fmt.Sprintf("%s: %v", k, formatValue(p[k])))
 		}
 		w.WriteString(fmt.Sprintf("  - {%s}\n", strings.Join(parts, ", ")))
 	}
+
 	w.Flush()
+	fmt.Printf("✅ Wrote %d proxies to %s\n", len(proxies), filename)
 }
 
 func formatValue(v interface{}) string {
@@ -204,11 +240,15 @@ func formatValue(v interface{}) string {
 		return fmt.Sprintf("%q", val)
 	case map[string]string:
 		var res []string
-		for k, v := range val { res = append(res, fmt.Sprintf("%s: %q", k, v)) }
+		for k, v := range val {
+			res = append(res, fmt.Sprintf("%s: %q", k, v))
+		}
 		return fmt.Sprintf("{%s}", strings.Join(res, ", "))
 	case map[string]interface{}:
 		var res []string
-		for k, v := range val { res = append(res, fmt.Sprintf("%s: %v", k, formatValue(v))) }
+		for k, v := range val {
+			res = append(res, fmt.Sprintf("%s: %v", k, formatValue(v)))
+		}
 		return fmt.Sprintf("{%s}", strings.Join(res, ", "))
 	default:
 		return fmt.Sprintf("%v", val)
