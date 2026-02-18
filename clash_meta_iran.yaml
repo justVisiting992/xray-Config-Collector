@@ -1,101 +1,178 @@
-port: 7890 
-socks-port: 7891 
-redir-port: 7892 
-mixed-port: 7893 
-tproxy-port: 7894 
-allow-lan: true 
-tcp-concurrent: true 
-enable-process: true 
-find-process-mode: strict 
-ipv6: true 
-log-level: debug 
-geo-auto-update: true 
-geo-update-interval: 168 
-secret: '' 
-bind-address: '*' 
-unified-delay: false 
-disable-keep-alive: false 
-keep-alive-idle: 30 
-keep-alive-interval: 30 
-profile: 
-  store-selected: true 
-  store-fake-ip: true 
-dns: 
-  enable: true 
-  ipv6: true 
-  respect-rules: false 
-  prefer-h3: true 
-  cache-algorithm: arc    
-  use-system-hosts: true 
-  use-host: true 
-  listen: 0.0.0.0:53 
-  enhanced-mode: fake-ip 
-  fake-ip-filter-mode: blacklist 
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7894
+allow-lan: true
+tcp-concurrent: true
+enable-process: true
+find-process-mode: strict
+ipv6: true
+log-level: debug
+geo-auto-update: true
+geo-update-interval: 168
+secret: ''
+bind-address: '*'
+unified-delay: false
+disable-keep-alive: false
+keep-alive-idle: 30
+keep-alive-interval: 30
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+dns:
+  enable: true
+  ipv6: true
+  respect-rules: false
+  prefer-h3: true                  # Test false if QUIC/DoH3 is throttled by ISP
+  cache-algorithm: arc
+  use-system-hosts: true
+  use-hosts: true                  # Renamed for clarity (same as use-host)
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  fake-ip-filter-mode: blacklist
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: 
-    - '*.lan'              
-    - '*.localdomain'      
-    - '*.invalid'          
-    - '*.localhost'        
-    - '*.test'             
-    - '*.local'            
-    - '*.home.arpa' 
-    - 'time.*.com' 
-    - 'ntp.*.com' 
-    - '*.ir' 
- 
-  default-nameserver: 
-    - 8.8.8.8 
-    - 8.8.4.4 
-    - 1.0.0.1 
-    - 1.1.1.1 
-    - 9.9.9.9 
-    - 9.9.9.11 
-    - 9.9.9.10 
-    - 94.140.14.15 
-    - 94.140.15.15 
-    - 223.5.5.5 
+  fake-ip-ttl: 1
+  ipv6-timeout: 300                # Increased slightly for IPv6 stability in Iran
+
+  # Fake-ip-filters
+  fake-ip-filter:
+    - '*.lan'
+    - '*.localdomain'
+    - '*.invalid'
+    - '*.localhost'
+    - '*.test'
+    - '*.local'
+    - '*.home.arpa'
+    - 'time.*.com'
+    - 'ntp.*.com'
+    - '*.ir'
+    # STUN servers (VoIP/video call leak prevention)
+    - 'stun.*.*'
+    - 'stun.*.*.*'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    # Microsoft connectivity checks
+    - '+.msftncsi.com'
+    - 'msftconnecttest.com'
+    # NTP/time variants
+    - 'time?.*.com'
+    - 'time.*.gov'
+    - 'time-ios.apple.com'
+    - 'time1.*.com'
+    - 'time2.*.com'
+    - 'time3.*.com'
+    - 'time4.*.com'
+    - 'time5.*.com'
+    - 'time6.*.com'
+    - 'time7.*.com'
+    - 'ntp?.*.com'
+    - 'ntp1.*.com'
+    - 'ntp2.*.com'
+    - 'ntp3.*.com'
+    - 'ntp4.*.com'
+    - 'ntp5.*.com'
+    - 'ntp6.*.com'
+    - 'ntp7.*.com'
+    - '+.pool.ntp.org'
+    # Router/IoT domains (prevent local device breakage)
+    - 'miwifi.com'
+    - 'tplinkwifi.net'
+    - 'tplinklogin.net'
+    - 'routerlogin.net'
+    - 'routerlogin.com'
+    - 'tendawifi.com'
+    - 'tendawifi.net'
+    - 'tplinkrepeater.net'
+    - 'router.asus.com'
+    # Gaming/console services
+    - '*.*.*.srv.nintendo.net'
+    - '*.*.stun.playstation.net'
+
+  default-nameserver:
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.0.0.1
+    - 1.1.1.1
+    - 9.9.9.9
+    - 9.9.9.11
+    - 9.9.9.10
+    - 94.140.14.15
+    - 94.140.15.15
+    - 223.5.5.5
     - 77.88.8.8
+
   nameserver:
     - 'https://sky.rethinkdns.com/1:-J8AGH8C7_2-___f3_vZ3f_z-f9KagBI'
     - 'tls://1-7cpqagd7alx73px777p5766z3x77h6p7jjvaasa.max.rethinkdns.com'
+
+  # Fallback encrypted upstreams (resilience if Rethink fails)
+  fallback:
+    - tls://1.1.1.1
+    - tls://8.8.8.8
+
+  # Direct (local/Iranian) resolution
   direct-nameserver:
     - '78.157.42.100'
-    - '78.157.42.101' 
-  proxy-server-nameserver: 
-    - '2606:4700:4700::1111' 
-    - '2606:4700:4700::1001' 
-    - '2001:4860:4860::8888' 
-    - '2001:4860:4860::8844' 
-    - '1.1.1.1' 
-    - '8.8.8.8' 
-    - '8.8.4.4' 
-    - '9.9.9.9' 
-    - '223.5.5.5' 
-    - '77.88.8.8' 
-    - '2400:3200::1' 
-    - '2a02:6b8::feed:0ff' 
-    - '2620:fe::fe' 
+    - '78.157.42.101'
+    - 'https://dns.shecan.ir/dns-query'
+    - 'https://free.shecan.ir/dns-query'
 
-sniffer: 
-  enable: true 
-  force-dns-mapping: true 
-  parse-pure-ip: true 
-  override-destination: false 
-  sniff: 
-    HTTP: 
-      ports: [80, 8080, 8880, 2052, 2082, 2086, 2095] 
-    TLS: 
-      ports: [443, 8443, 2053, 2083, 2087, 2096] 
+  proxy-server-nameserver:
+    - '2606:4700:4700::1111'
+    - '2606:4700:4700::1001'
+    - '2001:4860:4860::8888'
+    - '2001:4860:4860::8844'
+    - '1.1.1.1'
+    - '8.8.8.8'
+    - '8.8.4.4'
+    - '9.9.9.9'
+    - '223.5.5.5'
+    - '77.88.8.8'
+    - '2400:3200::1'
+    - '2a02:6b8::feed:0ff'
+    - '2620:fe::fe'
 
-tun: 
-  enable: true 
-  stack: mixed 
-  auto-route: true 
-  auto-detect-interface: true 
-  auto-redir: true 
-  dns-hijack: 
-    - "any:53" 
+  # Granular policy for Iranian domains → local + Shecan DoH (fast/unpoisoned .ir)
+  nameserver-policy:
+    'RULE-SET:ir,ircidr,geoip:ir,+.ir,+.bonyan.co':
+      - '217.218.155.155'           # Shecan/Electro plain
+      - '217.218.127.127'
+      - 'https://dns.shecan.ir/dns-query'
+      - 'https://dns.403.online/dns-query'
+
+  direct-nameserver-follow-policy: false   # Explicit: direct traffic ignores proxy rules
+  # cache-max-size: 4096                   # Optional: limit if memory is concern (uncomment if needed)
+
+# Small hosts block for fallback (critical DoH + time servers)
+hosts:
+  'dns.shecan.ir': ['185.51.200.2']          # Shecan DoH IP (fallback)
+  'free.shecan.ir': ['185.51.200.2']
+  'time.apple.com': ['17.253.52.253', '17.253.52.125']
+  'time.google.com': ['216.239.35.0', '216.239.35.4', '216.239.35.8', '216.239.35.12']
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports: [80, 8080, 8880, 2052, 2082, 2086, 2095]
+    TLS:
+      ports: [443, 8443, 2053, 2083, 2087, 2096]
+
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  auto-detect-interface: true
+  auto-redir: true
+  dns-hijack:
+    - "any:53"
     - "tcp://any:53" 
 
 proxy-groups:
