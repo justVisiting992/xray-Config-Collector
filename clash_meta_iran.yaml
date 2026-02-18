@@ -137,7 +137,11 @@ proxy-groups:
     max-failed-times: 3 
     lazy: true 
     use: 
-      - mixed-iran
+      - f1
+      - f2
+      - f3
+      - f4
+      - f5
   - name: اتصال پایدار 🔗 
     type: url-test 
     icon: https://www.svgrepo.com/show/428774/connection-internet-communication.svg 
@@ -477,6 +481,51 @@ proxy-providers:
       enable: true
       interval: 600
       url: "http://www.gstatic.com/generate_204"
+  f1:
+    type: http
+    url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prov_clash.yaml
+    interval: 3600
+    path: ./proxy-providers/f1.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: https://www.gstatic.com/generate_204
+  f2:
+    type: http
+    url: https://raw.githubusercontent.com/10ium/ClashFactory/main/providers/10ium-HiN-VPN.txt
+    interval: 3600
+    path: ./proxy-providers/f2.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: https://www.gstatic.com/generate_204
+  f3:
+    type: http
+    url: https://raw.githubusercontent.com/10ium/ClashFactory/main/providers/10ium-config-fetcher.txt
+    interval: 3600
+    path: ./proxy-providers/f3.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: https://www.gstatic.com/generate_204
+  f4:
+    type: http
+    url: https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/main/Clash_Movaghat
+    interval: 3600
+    path: ./proxy-providers/f4.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: https://www.gstatic.com/generate_204
+  f5:
+    type: http
+    url: https://raw.githubusercontent.com/xtoolkit/TVC/main/subscriptions/meta/mix
+    interval: 3600
+    path: ./proxy-providers/f5.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: https://www.gstatic.com/generate_204
 
 rule-providers: 
   category_public_tracker: 
