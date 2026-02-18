@@ -138,7 +138,7 @@ dns:
 
   # Granular policy for Iranian domains → local + Shecan DoH (fast/unpoisoned .ir)
   nameserver-policy:
-    'RULE-SET:ir,ircidr,geoip:ir,+.ir,+.bonyan.co':
+#    'RULE-SET:ir,ircidr,geoip:ir,+.ir,+.bonyan.co':
       - '217.218.155.155'           # Shecan/Electro plain
       - '217.218.127.127'
       - 'https://dns.shecan.ir/dns-query'
