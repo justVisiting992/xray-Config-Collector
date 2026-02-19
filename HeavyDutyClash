@@ -154,7 +154,7 @@ proxy-groups:
     icon: https://www.svgrepo.com/show/7876/speedometer.svg 
     url: https://www.gstatic.com/generate_204 
     interval: 600 
-    timeout: 120000 
+    timeout: 2000 
     tolerance: 500 
     max-failed-times: 6
     lazy: true 
@@ -165,7 +165,7 @@ proxy-groups:
     icon: https://www.svgrepo.com/show/415208/backup-cloud-document.svg 
     url: https://www.gstatic.com/generate_204 
     interval: 600 
-    timeout: 120000 
+    timeout: 2000 
     max-failed-times: 3 
     lazy: true 
     use: 
@@ -179,7 +179,7 @@ proxy-groups:
     icon: https://www.svgrepo.com/show/428774/connection-internet-communication.svg 
     url: https://cp.cloudflare.com/generate_204 
     interval: 60
-    timeout: 30000
+    timeout: 2000
     tolerance: 400
     lazy: true 
     proxies: 
@@ -192,7 +192,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204 
     strategy: consistent-hashing 
     interval: 600 
-    timeout: 120000 
+    timeout: 2000 
     max-failed-times: 5 
     lazy: true 
     use: 
@@ -204,7 +204,7 @@ proxy-groups:
     strategy: round-robin 
     interval: 600 
     tolerance: 200 
-    timeout: 120000 
+    timeout: 2000 
     max-failed-times: 3 
     lazy: true 
     use: 
@@ -215,7 +215,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204 
     strategy: sticky-sessions 
     interval: 600 
-    timeout: 120000 
+    timeout: 2000 
     max-failed-times: 5 
     lazy: true 
     use: 
