@@ -120,7 +120,7 @@ proxy-groups:
   - name: خودکار (بهترین پینگ) 🤖 
     type: url-test 
     icon: https://www.svgrepo.com/show/7876/speedometer.svg 
-    url: https://api.v2fly.org/checkConnection.svgz 
+    url: https://www.gstatic.com/generate_204 
     interval: 600 
     timeout: 120000 
     tolerance: 500 
@@ -157,7 +157,7 @@ proxy-groups:
   - name: توزیع بار (پایدار) 🧲 
     type: load-balance 
     icon: https://www.svgrepo.com/show/331731/load-balancer-generic.svg 
-    url: https://api.v2fly.org/checkConnection.svgz 
+    url: https://www.gstatic.com/generate_204 
     strategy: consistent-hashing 
     interval: 600 
     timeout: 120000 
@@ -168,7 +168,7 @@ proxy-groups:
   - name: توزیع بار (گردشی) 🔁 
     type: load-balance 
     icon: https://www.svgrepo.com/show/388466/rotating-forward.svg 
-    url: https://api.v2fly.org/checkConnection.svgz 
+    url: https://www.gstatic.com/generate_204 
     strategy: round-robin 
     interval: 600 
     tolerance: 200 
@@ -180,7 +180,7 @@ proxy-groups:
   - name: توزیع بار (موقت) ⏳ 
     type: load-balance 
     icon: https://www.svgrepo.com/show/323449/temporary-shield.svg 
-    url: https://api.v2fly.org/checkConnection.svgz 
+    url: https://www.gstatic.com/generate_204 
     strategy: sticky-sessions 
     interval: 600 
     timeout: 120000 
