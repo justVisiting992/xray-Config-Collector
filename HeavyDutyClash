@@ -156,7 +156,7 @@ proxy-groups:
     interval: 600 
     timeout: 2000 
     tolerance: 500 
-    max-failed-times: 6
+    max-failed-times: 2
     lazy: true 
     use: 
       - mixed-iran
@@ -166,7 +166,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204 
     interval: 600 
     timeout: 2000 
-    max-failed-times: 3 
+    max-failed-times: 2
     lazy: true 
     use: 
       - f1
@@ -189,34 +189,34 @@ proxy-groups:
   - name: توزیع بار (پایدار) 🧲 
     type: load-balance 
     icon: https://www.svgrepo.com/show/331731/load-balancer-generic.svg 
-    url: https://www.gstatic.com/generate_204 
+    url: https://cp.cloudflare.com/generate_204 
     strategy: consistent-hashing 
     interval: 600 
     timeout: 2000 
-    max-failed-times: 5 
+    max-failed-times: 2
     lazy: true 
     use: 
       - mixed-iran
   - name: توزیع بار (گردشی) 🔁 
     type: load-balance 
     icon: https://www.svgrepo.com/show/388466/rotating-forward.svg 
-    url: https://www.gstatic.com/generate_204 
+    url: https://cp.cloudflare.com/generate_204 
     strategy: round-robin 
     interval: 600 
     tolerance: 200 
     timeout: 2000 
-    max-failed-times: 3 
+    max-failed-times: 2
     lazy: true 
     use: 
       - mixed-iran
   - name: توزیع بار (موقت) ⏳ 
     type: load-balance 
     icon: https://www.svgrepo.com/show/323449/temporary-shield.svg 
-    url: https://www.gstatic.com/generate_204 
+    url: https://cp.cloudflare.com/generate_204 
     strategy: sticky-sessions 
     interval: 600 
     timeout: 2000 
-    max-failed-times: 5 
+    max-failed-times: 2
     lazy: true 
     use: 
       - mixed-iran
