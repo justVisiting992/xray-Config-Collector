@@ -16,7 +16,6 @@ unified-delay: true
 disable-keep-alive: false
 keep-alive-idle: 30
 keep-alive-interval: 30
-global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
