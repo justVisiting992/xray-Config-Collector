@@ -7,7 +7,6 @@ allow-lan: true
 tcp-concurrent: true
 enable-process: true
 find-process-mode: strict
-ipv6: true
 log-level: debug
 geo-auto-update: true
 geo-update-interval: 168
@@ -17,13 +16,13 @@ unified-delay: true
 disable-keep-alive: false
 keep-alive-idle: 30
 keep-alive-interval: 30
+global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
 
 dns:
   enable: true
-  ipv6: true
   respect-rules: false
   prefer-h3: true
   cache-algorithm: arc
@@ -49,8 +48,6 @@ dns:
     - '+.local'
     - '+.localhost'
     - '+.localdomain'
-    - '+.ip6-localhost'
-    - '+.ip6-loopback'
     - '*.example'
     - 'time.nist.gov'
     - 'time.windows.com'
@@ -87,19 +84,12 @@ dns:
     - https://free.shecan.ir/dns-query
 
   proxy-server-nameserver:
-    - '2606:4700:4700::1111'
-    - '2606:4700:4700::1001'
-    - '2001:4860:4860::8888'
-    - '2001:4860:4860::8844'
     - '1.1.1.1'
     - '8.8.8.8'
     - '8.8.4.4'
     - '9.9.9.9'
     - '223.5.5.5'
     - '77.88.8.8'
-    - '2400:3200::1'
-    - '2a02:6b8::feed:0ff'
-    - '2620:fe::fe'
     - https://dns.google/dns-query
     - https://security.cloudflare-dns.com/dns-query
     - https://cph01.dnscry.pt/dns-query
