@@ -2,10 +2,8 @@ package main
 
 import (
 	"bytes"
-	"crypto/md5"
 	"encoding/base64"
 	"encoding/csv"
-	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -16,12 +14,10 @@ import (
 	"os"
 	"regexp"
 	"sort"
-	"strconv"
 	"strings"
 	"sync"
 	"time"
 
-	"github.com/PuerkitoBio/goquery"
 	"github.com/oschwald/geoip2-golang"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
@@ -64,10 +60,6 @@ var (
 	geoCache   = make(map[string]string)
 	geoCacheMu sync.Mutex
 
-	// Per-channel cumulative protocols (persistent)
-	channelProtocols   = make(map[string]map[string]bool) // channel -> protocol -> true
-	channelProtocolsMu sync.Mutex
-
 	myregex = map[string]string{
 		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`,
@@ -92,7 +84,6 @@ func main() {
 	}
 
 	loadCheckpoints()
-	loadChannelProtocols()
 
 	rawChannels, _ := loadChannelsFromCSV("channels.csv")
 	channels := removeDuplicates(rawChannels)
@@ -132,7 +123,6 @@ func main() {
 		dumpText := string(pythonDump)
 		count := 0
 		foundProtos := make(map[string]bool)
-		channelName := "persianvpnhub"
 		for pName, reg := range myregex {
 			re := regexp.MustCompile(reg)
 			matches := re.FindAllString(dumpText, -1)
@@ -140,7 +130,6 @@ func main() {
 				newConfigs[pName] = append(newConfigs[pName], matches...)
 				count += len(matches)
 				foundProtos[pName] = true
-				updateChannelProtocol(channelName, pName)
 			}
 		}
 		var pList []string
@@ -148,8 +137,8 @@ func main() {
 			pList = append(pList, p)
 		}
 		reports = append(reports, ChannelReport{
-			Name:      channelName,
-			Protocols: getChannelProtocols(channelName),
+			Name:      "persianvpnhub",
+			Protocols: pList,
 			Count:     count,
 			Message:   fmt.Sprintf("✅ %d Configs via API", count),
 		})
@@ -180,11 +169,10 @@ func main() {
 			for p, cfgs := range extracted {
 				if len(cfgs) > 0 {
 					newConfigs[p] = append(newConfigs[p], cfgs...)
+					report.Protocols = append(report.Protocols, p)
 					report.Count += len(cfgs)
-					updateChannelProtocol(name, p)
 				}
 			}
-			report.Protocols = getChannelProtocols(name)
 			if report.Count > 0 {
 				report.Message = fmt.Sprintf("✅ %d found", report.Count)
 				totalScraped += report.Count
@@ -202,7 +190,6 @@ func main() {
 	wgScrape.Wait()
 
 	saveCheckpoints()
-	saveChannelProtocols()
 
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
 
@@ -227,7 +214,7 @@ func main() {
 
 		finalList := healthy[:limit]
 		saveToFile(strings.ToLower(p)+"_iran.txt", finalList)
-		allMixed = append(allMixed, healthy...)
+		allMixed = append(allMixed, healthy...) // uncapped for mixed
 	}
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
@@ -238,33 +225,87 @@ func main() {
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
 
-// Per-channel cumulative protocol tracking
-func updateChannelProtocol(channel string, proto string) {
-	channelProtocolsMu.Lock()
-	if _, ok := channelProtocols[channel]; !ok {
-		channelProtocols[channel] = make(map[string]bool)
+func scrapeChannelStateful(channelName string) (map[string][]string, int) {
+	results := make(map[string][]string)
+	checkpointsMu.Lock()
+	lastSeenID := checkpoints[channelName]
+	checkpointsMu.Unlock()
+
+	baseURL := "https://t.me/s/" + channelName
+	nextURL := baseURL
+	maxIDFound := lastSeenID
+	totalExtracted := 0
+	pagesScraped := 0
+
+	for pagesScraped < 5 {
+		req, _ := http.NewRequest("GET", nextURL, nil)
+		req.Header.Set("User-Agent", "Mozilla/5.0")
+		resp, err := client.Do(req)
+		if err != nil {
+			break
+		}
+
+		doc, _ := goquery.NewDocumentFromReader(resp.Body)
+		resp.Body.Close()
+
+		minIDOnPage := 999999999
+		foundAny := false
+
+		doc.Find(".tgme_widget_message").Each(func(i int, s *goquery.Selection) {
+			dataPost, exists := s.Attr("data-post")
+			if !exists {
+				return
+			}
+
+			parts := strings.Split(dataPost, "/")
+			if len(parts) < 2 {
+				return
+			}
+
+			msgID, err := strconv.Atoi(parts[len(parts)-1])
+			if err != nil {
+				return
+			}
+
+			if msgID > maxIDFound {
+				maxIDFound = msgID
+			}
+			if msgID < minIDOnPage {
+				minIDOnPage = msgID
+			}
+
+			if msgID > lastSeenID {
+				foundAny = true
+				text := s.Find(".tgme_widget_message_text").Text()
+				for pName, reg := range myregex {
+					matches := regexp.MustCompile(reg).FindAllString(text, -1)
+					if len(matches) > 0 {
+						results[pName] = append(results[pName], matches...)
+						totalExtracted += len(matches)
+					}
+				}
+			}
+		})
+
+		if foundAny && minIDOnPage > lastSeenID {
+			nextURL = fmt.Sprintf("%s?before=%d", baseURL, minIDOnPage)
+			pagesScraped++
+			time.Sleep(2 * time.Second)
+		} else {
+			break
+		}
 	}
-	channelProtocols[channel][proto] = true
-	channelProtocolsMu.Unlock()
+
+	if maxIDFound > lastSeenID {
+		checkpointsMu.Lock()
+		checkpoints[channelName] = maxIDFound
+		checkpointsMu.Unlock()
+	}
+
+	return results, totalExtracted
 }
 
-func getChannelProtocols(channel string) []string {
-	channelProtocolsMu.Lock()
-	m := channelProtocols[channel]
-	channelProtocolsMu.Unlock()
-
-	if m == nil {
-		return []string{}
-	}
-	var list []string
-	for p := range m {
-		list = append(list, p)
-	}
-	sort.Strings(list)
-	return list
-}
-
-func loadChannelProtocols() {
+func loadCheckpoints() {
 	if gistID == "" || gistToken == "" {
 		return
 	}
@@ -278,44 +319,26 @@ func loadChannelProtocols() {
 
 	var gistResp GistResponse
 	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
-		channelProtocolsMu.Lock()
-		for fileName, file := range gistResp.Files {
-			if strings.HasPrefix(fileName, "protocols_") && strings.HasSuffix(fileName, ".json") {
-				channel := strings.TrimSuffix(strings.TrimPrefix(fileName, "protocols_"), ".json")
-				var protos []string
-				_ = json.Unmarshal([]byte(file.Content), &protos)
-				if channelProtocols[channel] == nil {
-					channelProtocols[channel] = make(map[string]bool)
-				}
-				for _, p := range protos {
-					channelProtocols[channel][p] = true
-				}
-			}
+		if file, ok := gistResp.Files["checkpoints.json"]; ok {
+			_ = json.Unmarshal([]byte(file.Content), &checkpoints)
+			gologger.Info().Msg("🧠 State loaded from Gist.")
 		}
-		channelProtocolsMu.Unlock()
-		gologger.Info().Msg("📋 Loaded per-channel persistent protocols from Gist.")
 	}
 }
 
-func saveChannelProtocols() {
+func saveCheckpoints() {
 	if gistID == "" || gistToken == "" {
 		return
 	}
-	channelProtocolsMu.Lock()
-	payloadFiles := map[string]GistFile{}
-	for channel, m := range channelProtocols {
-		var list []string
-		for p := range m {
-			list = append(list, p)
-		}
-		sort.Strings(list)
-		data, _ := json.Marshal(list)
-		fileName := "protocols_" + channel + ".json"
-		payloadFiles[fileName] = GistFile{Content: string(data)}
-	}
-	channelProtocolsMu.Unlock()
+	checkpointsMu.Lock()
+	data, _ := json.Marshal(checkpoints)
+	checkpointsMu.Unlock()
 
-	payload := GistRequest{Files: payloadFiles}
+	payload := GistRequest{
+		Files: map[string]GistFile{
+			"checkpoints.json": {Content: string(data)},
+		},
+	}
 	body, _ := json.Marshal(payload)
 	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
 	req.Header.Set("Authorization", "token "+gistToken)
@@ -323,13 +346,9 @@ func saveChannelProtocols() {
 	resp, err := client.Do(req)
 	if err == nil {
 		resp.Body.Close()
-		gologger.Info().Msg("💾 Per-channel protocols saved to Gist.")
+		gologger.Info().Msg("💾 State saved to Gist.")
 	}
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-//  Rest of functions unchanged from original
-// ─────────────────────────────────────────────────────────────────────────────
 
 func fastPingTest(configs []string, protocol string) []string {
 	var wg sync.WaitGroup
@@ -769,22 +788,6 @@ func generateReportStructure(reports []ChannelReport, stats map[string][2]int) s
 	}
 
 	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
-
-	// Cumulative protocols line
-	protocolsMu.Lock()
-	var protoList []string
-	for p := range allProtocols {
-		protoList = append(protoList, p)
-	}
-	protocolsMu.Unlock()
-	sort.Strings(protoList)
-	sb.WriteString("### 🌐 Cumulative Bypass Protocols Found (all runs):\n")
-	if len(protoList) > 0 {
-		sb.WriteString("`" + strings.Join(protoList, ", ") + "`\n\n")
-	} else {
-		sb.WriteString("— (none yet)\n\n")
-	}
-
 	sb.WriteString("### 📡 Source Analysis\n\n")
 	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
 	sb.WriteString("| :--- | :--- | :--- |\n")
