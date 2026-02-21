@@ -2,8 +2,10 @@ package main
 
 import (
 	"bytes"
+	"crypto/md5"
 	"encoding/base64"
 	"encoding/csv"
+	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -59,12 +61,11 @@ var (
 	checkpoints   = make(map[string]int)
 	checkpointsMu sync.Mutex
 
-	// New: persistent protocols across runs
-	allProtocols   = make(map[string]bool)
-	protocolsMu    sync.Mutex
-
 	geoCache   = make(map[string]string)
 	geoCacheMu sync.Mutex
+
+	allProtocols   = make(map[string]bool)
+	protocolsMu    sync.Mutex
 
 	myregex = map[string]string{
 		"SS":        `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
@@ -246,148 +247,6 @@ func main() {
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  PERSISTENT PROTOCOLS (new)
-// ─────────────────────────────────────────────────────────────────────────────
-
-func loadPersistentProtocols() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
-	req.Header.Set("Authorization", "token "+gistToken)
-	resp, err := client.Do(req)
-	if err != nil {
-		return
-	}
-	defer resp.Body.Close()
-
-	var gistResp GistResponse
-	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
-		if file, ok := gistResp.Files["protocols.json"]; ok {
-			var saved []string
-			_ = json.Unmarshal([]byte(file.Content), &saved)
-			protocolsMu.Lock()
-			for _, p := range saved {
-				allProtocols[p] = true
-			}
-			protocolsMu.Unlock()
-			gologger.Info().Msg("📋 Loaded persistent protocols from Gist.")
-		}
-	}
-}
-
-func savePersistentProtocols() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	protocolsMu.Lock()
-	var protoList []string
-	for p := range allProtocols {
-		protoList = append(protoList, p)
-	}
-	protocolsMu.Unlock()
-
-	sort.Strings(protoList)
-	data, _ := json.Marshal(protoList)
-
-	payload := GistRequest{
-		Files: map[string]GistFile{
-			"protocols.json": {Content: string(data)},
-		},
-	}
-	body, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
-	req.Header.Set("Authorization", "token "+gistToken)
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := client.Do(req)
-	if err == nil {
-		resp.Body.Close()
-		gologger.Info().Msg("💾 Persistent protocols saved to Gist.")
-	}
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-//  IMPROVED REPORT (persistent protocols + fixed persianvpnhub row)
-// ─────────────────────────────────────────────────────────────────────────────
-
-func generateImprovedReportStructure(reports []ChannelReport, stats map[string][2]int) string {
-	utcNow := time.Now().UTC()
-	loc, _ := time.LoadLocation("Asia/Tehran")
-	tehranNow := utcNow.In(loc)
-	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
-
-	totalUnique := 0
-	totalLive := 0
-	for _, s := range stats {
-		totalUnique += s[0]
-		totalLive += s[1]
-	}
-
-	var sb strings.Builder
-	sb.WriteString("# 📊 Xray Config Collector Report\n\n")
-	sb.WriteString("### 🕒 Last Update\n")
-	sb.WriteString(fmt.Sprintf("- **Tehran Time:** 🇮🇷 `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
-	sb.WriteString(fmt.Sprintf("- **International:** 🌐 `%s`\n\n", tehranNow.Format("Monday, 02 Jan 2006")))
-
-	sb.WriteString("### ⚡ Global Statistics\n")
-	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d` (Total Unique)\n", totalUnique))
-	sb.WriteString(fmt.Sprintf("- **Total Alive:** `%d` 🚀\n", totalLive))
-	sb.WriteString("\n#### 🔍 Protocol Breakdown (this run):\n")
-
-	keys := make([]string, 0, len(stats))
-	for k := range stats {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
-	for _, k := range keys {
-		s := stats[k]
-		sb.WriteString(fmt.Sprintf("- **%s:** %d found (%d live)\n", k, s[0], s[1]))
-	}
-
-	// Cumulative protocols
-	protocolsMu.Lock()
-	var allProtoList []string
-	for p := range allProtocols {
-		allProtoList = append(allProtoList, p)
-	}
-	protocolsMu.Unlock()
-	sort.Strings(allProtoList)
-	sb.WriteString("\n#### 🌐 All Known Bypass Methods (cumulative):\n")
-	if len(allProtoList) > 0 {
-		sb.WriteString("`" + strings.Join(allProtoList, ", ") + "`\n")
-	} else {
-		sb.WriteString("— (none detected yet)\n")
-	}
-
-	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
-	sb.WriteString("### 📡 Source Analysis\n\n")
-	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
-	sb.WriteString("| :--- | :--- | :--- |\n")
-
-	for _, r := range reports {
-		protos := strings.Join(r.Protocols, ", ")
-		if protos == "" {
-			protos = "—"
-		}
-		linkName := r.Name
-		linkURL := "https://t.me/s/" + r.Name
-		if r.Name == "Python-API-Collector" {
-			linkName = "persianvpnhub"
-			linkURL = "https://t.me/s/persianvpnhub"
-		}
-		sb.WriteString(fmt.Sprintf("| 📢 [%s](%s) | `%s` | %s |\n", linkName, linkURL, protos, r.Message))
-	}
-	sb.WriteString("\n---\n")
-	sb.WriteString("*Auto-generated by Xray Config Collector v2.0* 🛠️")
-	return sb.String()
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-//  Rest of the code remains unchanged
-// ─────────────────────────────────────────────────────────────────────────────
-
 func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	results := make(map[string][]string)
 	checkpointsMu.Lock()
@@ -510,6 +369,63 @@ func saveCheckpoints() {
 	if err == nil {
 		resp.Body.Close()
 		gologger.Info().Msg("💾 State saved to Gist.")
+	}
+}
+
+func loadPersistentProtocols() {
+	if gistID == "" || gistToken == "" {
+		return
+	}
+	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
+	req.Header.Set("Authorization", "token "+gistToken)
+	resp, err := client.Do(req)
+	if err != nil {
+		return
+	}
+	defer resp.Body.Close()
+
+	var gistResp GistResponse
+	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
+		if file, ok := gistResp.Files["protocols.json"]; ok {
+			var saved []string
+			_ = json.Unmarshal([]byte(file.Content), &saved)
+			protocolsMu.Lock()
+			for _, p := range saved {
+				allProtocols[p] = true
+			}
+			protocolsMu.Unlock()
+			gologger.Info().Msg("📋 Loaded persistent protocols from Gist.")
+		}
+	}
+}
+
+func savePersistentProtocols() {
+	if gistID == "" || gistToken == "" {
+		return
+	}
+	protocolsMu.Lock()
+	var protoList []string
+	for p := range allProtocols {
+		protoList = append(protoList, p)
+	}
+	protocolsMu.Unlock()
+
+	sort.Strings(protoList)
+	data, _ := json.Marshal(protoList)
+
+	payload := GistRequest{
+		Files: map[string]GistFile{
+			"protocols.json": {Content: string(data)},
+		},
+	}
+	body, _ := json.Marshal(payload)
+	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
+	req.Header.Set("Authorization", "token "+gistToken)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := client.Do(req)
+	if err == nil {
+		resp.Body.Close()
+		gologger.Info().Msg("💾 Persistent protocols saved to Gist.")
 	}
 }
 
@@ -939,8 +855,76 @@ func printBanner() {
 	`)
 }
 
-func generateOriginalReportStructure(reports []ChannelReport, stats map[string][2]int) string {
-	return generateImprovedReportStructure(reports, stats)
+func generateImprovedReportStructure(reports []ChannelReport, stats map[string][2]int) string {
+	utcNow := time.Now().UTC()
+	loc, _ := time.LoadLocation("Asia/Tehran")
+	tehranNow := utcNow.In(loc)
+	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
+
+	totalUnique := 0
+	totalLive := 0
+	for _, s := range stats {
+		totalUnique += s[0]
+		totalLive += s[1]
+	}
+
+	var sb strings.Builder
+	sb.WriteString("# 📊 Xray Config Collector Report\n\n")
+	sb.WriteString("### 🕒 Last Update\n")
+	sb.WriteString(fmt.Sprintf("- **Tehran Time:** 🇮🇷 `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
+	sb.WriteString(fmt.Sprintf("- **International:** 🌐 `%s`\n\n", tehranNow.Format("Monday, 02 Jan 2006")))
+
+	sb.WriteString("### ⚡ Global Statistics\n")
+	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d` (Total Unique)\n", totalUnique))
+	sb.WriteString(fmt.Sprintf("- **Total Alive:** `%d` 🚀\n", totalLive))
+	sb.WriteString("\n#### 🔍 Protocol Breakdown (this run):\n")
+
+	keys := make([]string, 0, len(stats))
+	for k := range stats {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	for _, k := range keys {
+		s := stats[k]
+		sb.WriteString(fmt.Sprintf("- **%s:** %d found (%d live)\n", k, s[0], s[1]))
+	}
+
+	protocolsMu.Lock()
+	var allProtoList []string
+	for p := range allProtocols {
+		allProtoList = append(allProtoList, p)
+	}
+	protocolsMu.Unlock()
+	sort.Strings(allProtoList)
+	sb.WriteString("\n#### 🌐 All Known Bypass Methods (cumulative):\n")
+	if len(allProtoList) > 0 {
+		sb.WriteString("`" + strings.Join(allProtoList, ", ") + "`\n")
+	} else {
+		sb.WriteString("— (none detected yet)\n")
+	}
+
+	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
+	sb.WriteString("### 📡 Source Analysis\n\n")
+	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
+	sb.WriteString("| :--- | :--- | :--- |\n")
+
+	for _, r := range reports {
+		protos := strings.Join(r.Protocols, ", ")
+		if protos == "" {
+			protos = "—"
+		}
+		linkName := r.Name
+		linkURL := "https://t.me/s/" + r.Name
+		if r.Name == "Python-API-Collector" {
+			linkName = "persianvpnhub"
+			linkURL = "https://t.me/s/persianvpnhub"
+		}
+		sb.WriteString(fmt.Sprintf("| 📢 [%s](%s) | `%s` | %s |\n", linkName, linkURL, protos, r.Message))
+	}
+	sb.WriteString("\n---\n")
+	sb.WriteString("*Auto-generated by Xray Config Collector v2.0* 🛠️")
+	return sb.String()
 }
 
 func toJalali(gy, gm, gd int) (int, int, int) {
