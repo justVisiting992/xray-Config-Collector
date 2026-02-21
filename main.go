@@ -71,6 +71,13 @@ var (
 	}
 )
 
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 func main() {
 	gologger.DefaultLogger.SetMaxLevel(levels.LevelDebug)
 	flag.Parse()
@@ -468,7 +475,8 @@ func labelWithGeo(config string, index int) string {
 
 	ips, err := net.LookupIP(host)
 	if err == nil && len(ips) > 0 {
-		for _, ip := range ips[:3] {
+		sliceLen := min(3, len(ips))
+		for _, ip := range ips[:sliceLen] {
 			if ip.To4() == nil && len(ips) > 1 {
 				continue
 			}
