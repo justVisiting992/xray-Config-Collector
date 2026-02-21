@@ -442,48 +442,80 @@ func labelWithGeo(config string, index int) string {
 	}
 	geoCacheMu.Unlock()
 
+	lowerHost := strings.ToLower(host)
+
 	domainHints := map[string]string{
 		".de.": "Germany", ".fr.": "France", ".nl.": "Netherlands", ".ru.": "Russia",
 		".ir.": "Iran", ".ae.": "UAE", ".sg.": "Singapore", ".hk.": "Hong Kong",
 		".jp.": "Japan", ".kr.": "South Korea", ".tr.": "Turkey", ".pl.": "Poland",
 		"fra-": "Germany", "ams-": "Netherlands", "lhr-": "UK", "sin-": "Singapore",
-		"cloudflare": "Cloudflare", "fastly": "Fastly", "akamai": "Akamai",
-		"bunnycdn": "BunnyCDN", "vercel": "Vercel", "pages.dev": "Cloudflare",
-		"workers.dev": "Cloudflare", "fly.dev": "Fly.io",
+		"tyo-": "Japan", "syd-": "Australia", "blr-": "India", "bom-": "India",
+		"cloudflare": "Cloudflare", "workers.dev": "Cloudflare", "pages.dev": "Cloudflare",
+		"r2.dev": "Cloudflare", "trycloudflare.com": "Cloudflare", "isbgpsafeyet.com": "Cloudflare",
+		"fastly": "Fastly", "akamai": "Akamai", "bunnycdn": "BunnyCDN", "vercel": "Vercel",
+		"fly.dev": "Fly.io", "railway.app": "Railway", "render.com": "Render",
+		"koyeb.app": "Koyeb", "deta.sh": "Deta", "deno.dev": "Deno", "replit.dev": "Replit",
+		"oraclecloud": "Oracle", "digitalocean": "DigitalOcean", "linode": "Linode",
+		"vultr": "Vultr", "hetzner": "Hetzner", "contabo": "Contabo",
 	}
 	for substr, country := range domainHints {
-		if strings.Contains(strings.ToLower(host), substr) {
+		if strings.Contains(lowerHost, substr) {
 			countryName = country
 			emoji = guessEmojiFromCountry(country)
 			break
 		}
 	}
 
-	ip := resolveToIP(host)
-	if ip != nil {
-		if !ip.IsPrivate() && !ip.IsLoopback() {
-			if db != nil {
-				record, err := db.Country(ip)
-				if err == nil && record != nil && record.Country.IsoCode != "" {
-					code := record.Country.IsoCode
-					raw := record.Country.Names["en"]
-					if raw != "" {
-						switch raw {
-						case "United States":
-							countryName = "USA"
-						case "United Kingdom":
-							countryName = "UK"
-						case "United Arab Emirates":
-							countryName = "UAE"
-						case "The Netherlands":
-							countryName = "Netherlands"
-						default:
-							countryName = raw
+	ips, err := net.LookupIP(host)
+	if err == nil && len(ips) > 0 {
+		for _, ip := range ips[:3] {
+			if ip.To4() == nil && len(ips) > 1 {
+				continue
+			}
+			if !ip.IsPrivate() && !ip.IsLoopback() {
+				if db != nil {
+					record, err := db.Country(ip)
+					if err == nil && record != nil && record.Country.IsoCode != "" {
+						code := record.Country.IsoCode
+						raw := record.Country.Names["en"]
+						if raw != "" {
+							switch raw {
+							case "United States":
+								countryName = "USA"
+							case "United Kingdom":
+								countryName = "UK"
+							case "United Arab Emirates":
+								countryName = "UAE"
+							case "The Netherlands":
+								countryName = "Netherlands"
+							default:
+								countryName = raw
+							}
 						}
+						if len(code) == 2 {
+							emoji = strings.Map(func(r rune) rune { return r + 127397 }, strings.ToUpper(code))
+						}
+						break
 					}
-					if len(code) == 2 {
-						emoji = strings.Map(func(r rune) rune { return r + 127397 }, strings.ToUpper(code))
-					}
+				}
+			}
+		}
+	}
+
+	if countryName == "Dynamic" && len(ips) > 0 {
+		names, err := net.LookupAddr(ips[0].String())
+		if err == nil && len(names) > 0 {
+			ptr := strings.ToLower(names[0])
+			ptrHints := map[string]string{
+				"fra": "Germany", "ams": "Netherlands", "lhr": "UK", "sin": "Singapore",
+				"tyo": "Japan", "syd": "Australia", "blr": "India", "bom": "India",
+				"cdg": "France", "par": "France", "arn": "Sweden", "hel": "Finland",
+			}
+			for code, country := range ptrHints {
+				if strings.Contains(ptr, code) {
+					countryName = country
+					emoji = guessEmojiFromCountry(country)
+					break
 				}
 			}
 		}
@@ -540,7 +572,7 @@ func extractHost(config string) string {
 			if add, ok := v["add"].(string); ok && add != "" {
 				return add
 			}
-			for _, key := range []string{"sni", "host", "peer"} {
+			for _, key := range []string{"sni", "host", "peer", "serverName"} {
 				if val, ok := v[key].(string); ok && val != "" {
 					return val
 				}
@@ -557,7 +589,7 @@ func extractHost(config string) string {
 	host := strings.ToLower(u.Hostname())
 	if host == "" {
 		q := u.Query()
-		for _, key := range []string{"sni", "peer", "host", "allowInsecure"} {
+		for _, key := range []string{"sni", "peer", "host", "serverName", "allowInsecure"} {
 			if val := q.Get(key); val != "" {
 				host = val
 				break
@@ -617,7 +649,7 @@ func guessEmojiFromCountry(country string) string {
 		return "🇹🇷"
 	case "poland":
 		return "🇵🇱"
-	case "cloudflare", "fastly", "akamai", "bunnycdn", "vercel", "fly.io":
+	case "cloudflare", "fastly", "akamai", "bunnycdn", "vercel", "fly.io", "railway", "render", "koyeb", "deta", "deno", "replit":
 		return "☁️"
 	default:
 		return "🏴"
