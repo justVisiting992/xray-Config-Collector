@@ -2,10 +2,8 @@ package main
 
 import (
 	"bytes"
-	"crypto/md5"
 	"encoding/base64"
 	"encoding/csv"
-	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -64,7 +62,7 @@ var (
 	geoCache   = make(map[string]string)
 	geoCacheMu sync.Mutex
 
-	// Per-channel cumulative protocols (for report table column 2)
+	// Cumulative protocols per channel (for table column 2)
 	channelProtocols   = make(map[string]map[string]bool) // channelName -> protocol -> true
 	channelProtocolsMu sync.Mutex
 
@@ -186,7 +184,7 @@ func main() {
 				}
 			}
 			updateChannelProtocols(name, thisRunProtos)
-			report.Protocols = getChannelProtocols(name) // cumulative
+			report.Protocols = getChannelProtocols(name) // cumulative for table
 			if report.Count > 0 {
 				report.Message = fmt.Sprintf("✅ %d found", report.Count)
 				totalScraped += report.Count
@@ -229,7 +227,7 @@ func main() {
 
 		finalList := healthy[:limit]
 		saveToFile(strings.ToLower(p)+"_iran.txt", finalList)
-		allMixed = append(allMixed, healthy...) // uncapped for mixed
+		allMixed = append(allMixed, healthy...)
 	}
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
@@ -240,10 +238,7 @@ func main() {
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Cumulative protocols per channel (for table column 2)
-// ─────────────────────────────────────────────────────────────────────────────
-
+// Cumulative per-channel functions
 func updateChannelProtocols(channel string, newProtos []string) {
 	channelProtocolsMu.Lock()
 	if _, ok := channelProtocols[channel]; !ok {
@@ -334,10 +329,7 @@ func saveChannelProtocols() {
 	}
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Rest of your original code (unchanged)
-// ─────────────────────────────────────────────────────────────────────────────
-
+// Your original functions (unchanged except for the report call)
 func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	results := make(map[string][]string)
 	checkpointsMu.Lock()
@@ -889,8 +881,8 @@ func generateReportStructure(reports []ChannelReport, stats map[string][2]int) s
 	sb.WriteString("### ⚡ Global Statistics\n")
 	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d` (Total Unique)\n", totalUnique))
 	sb.WriteString(fmt.Sprintf("- **Total Alive:** `%d` 🚀\n", totalLive))
-
 	sb.WriteString("\n#### 🔍 Protocol Breakdown:\n")
+
 	keys := make([]string, 0, len(stats))
 	for k := range stats {
 		keys = append(keys, k)
@@ -903,6 +895,29 @@ func generateReportStructure(reports []ChannelReport, stats map[string][2]int) s
 	}
 
 	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
+
+	// Cumulative all protocols line (informative)
+	channelProtocolsMu.Lock()
+	allProtos := make(map[string]bool)
+	for _, protos := range channelProtocols {
+		for p := range protos {
+			allProtos[p] = true
+		}
+	}
+	channelProtocolsMu.Unlock()
+
+	var protoList []string
+	for p := range allProtos {
+		protoList = append(protoList, p)
+	}
+	sort.Strings(protoList)
+	sb.WriteString("### 🌐 Cumulative Bypass Protocols Found (all runs):\n")
+	if len(protoList) > 0 {
+		sb.WriteString("`" + strings.Join(protoList, ", ") + "`\n\n")
+	} else {
+		sb.WriteString("— (none detected yet)\n\n")
+	}
+
 	sb.WriteString("### 📡 Source Analysis\n\n")
 	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
 	sb.WriteString("| :--- | :--- | :--- |\n")
