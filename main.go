@@ -455,7 +455,7 @@ func labelWithGeo(config string, index int) string {
 		if strings.Contains(strings.ToLower(host), substr) {
 			countryName = country
 			emoji = guessEmojiFromCountry(country)
-			goto cacheAndReturn
+			break
 		}
 	}
 
@@ -489,7 +489,6 @@ func labelWithGeo(config string, index int) string {
 		}
 	}
 
-cacheAndReturn:
 	geoCacheMu.Lock()
 	geoCache[host] = emoji + " " + countryName
 	geoCacheMu.Unlock()
