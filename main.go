@@ -2,8 +2,10 @@ package main
 
 import (
 	"bytes"
+	"crypto/md5"
 	"encoding/base64"
 	"encoding/csv"
+	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -14,10 +16,12 @@ import (
 	"os"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/oschwald/geoip2-golang"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
@@ -60,10 +64,6 @@ var (
 	geoCache   = make(map[string]string)
 	geoCacheMu sync.Mutex
 
-	// Per-channel cumulative protocols (persistent)
-	channelProtocols   = make(map[string]map[string]bool) // channel -> protocol -> true
-	channelProtocolsMu sync.Mutex
-
 	myregex = map[string]string{
 		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`,
@@ -88,7 +88,6 @@ func main() {
 	}
 
 	loadCheckpoints()
-	loadChannelProtocols()
 
 	rawChannels, _ := loadChannelsFromCSV("channels.csv")
 	channels := removeDuplicates(rawChannels)
@@ -141,13 +140,8 @@ func main() {
 		for p := range foundProtos {
 			pList = append(pList, p)
 		}
-		channelName := "persianvpnhub"
-		updateChannelProtocols(channelName, pList)
 		reports = append(reports, ChannelReport{
-			Name:      channelName,
-			Protocols: getChannelProtocols(channelName),
-			Count:     count,
-			Message:   fmt.Sprintf("✅ %d Configs via API", count),
+			Name: "Python-API-Collector", Count: count, Message: fmt.Sprintf("✅ %d Configs via API", count), Protocols: pList,
 		})
 		totalScraped += count
 		gologger.Info().Msgf("✨ Extracted %d configs from Python Dump", count)
@@ -173,16 +167,13 @@ func main() {
 
 			checkpointsMu.Lock()
 			report := ChannelReport{Name: name}
-			var thisRunProtos []string
 			for p, cfgs := range extracted {
 				if len(cfgs) > 0 {
 					newConfigs[p] = append(newConfigs[p], cfgs...)
-					thisRunProtos = append(thisRunProtos, p)
+					report.Protocols = append(report.Protocols, p)
 					report.Count += len(cfgs)
 				}
 			}
-			updateChannelProtocols(name, thisRunProtos)
-			report.Protocols = getChannelProtocols(name) // cumulative for table
 			if report.Count > 0 {
 				report.Message = fmt.Sprintf("✅ %d found", report.Count)
 				totalScraped += report.Count
@@ -200,7 +191,6 @@ func main() {
 	wgScrape.Wait()
 
 	saveCheckpoints()
-	saveChannelProtocols()
 
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
 
@@ -225,114 +215,16 @@ func main() {
 
 		finalList := healthy[:limit]
 		saveToFile(strings.ToLower(p)+"_iran.txt", finalList)
-		allMixed = append(allMixed, healthy...)
+		allMixed = append(allMixed, finalList...)
 	}
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
-	_ = os.WriteFile("report.md", []byte(generateReportStructure(reports, protoStats)), 0644)
+	_ = os.WriteFile("report.md", []byte(generateOriginalReportStructure(reports, protoStats)), 0644)
 
 	gologger.Info().Msg("🍹 Saving Mixed Configs...")
 	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Cumulative per-channel protocols
-// ─────────────────────────────────────────────────────────────────────────────
-
-func updateChannelProtocols(channel string, newProtos []string) {
-	channelProtocolsMu.Lock()
-	if _, ok := channelProtocols[channel]; !ok {
-		channelProtocols[channel] = make(map[string]bool)
-	}
-	for _, p := range newProtos {
-		channelProtocols[channel][p] = true
-	}
-	channelProtocolsMu.Unlock()
-}
-
-func getChannelProtocols(channel string) []string {
-	channelProtocolsMu.Lock()
-	protos := channelProtocols[channel]
-	channelProtocolsMu.Unlock()
-
-	var list []string
-	for p := range protos {
-		list = append(list, p)
-	}
-	sort.Strings(list)
-	return list
-}
-
-func loadChannelProtocols() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
-	req.Header.Set("Authorization", "token "+gistToken)
-	resp, err := client.Do(req)
-	if err != nil {
-		return
-	}
-	defer resp.Body.Close()
-
-	var gistResp GistResponse
-	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
-		if file, ok := gistResp.Files["channel_protocols.json"]; ok {
-			var saved map[string][]string
-			_ = json.Unmarshal([]byte(file.Content), &saved)
-			channelProtocolsMu.Lock()
-			for ch, ps := range saved {
-				if _, ok := channelProtocols[ch]; !ok {
-					channelProtocols[ch] = make(map[string]bool)
-				}
-				for _, p := range ps {
-					channelProtocols[ch][p] = true
-				}
-			}
-			channelProtocolsMu.Unlock()
-			gologger.Info().Msg("📋 Loaded per-channel cumulative protocols from Gist.")
-		}
-	}
-}
-
-func saveChannelProtocols() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	channelProtocolsMu.Lock()
-	saved := make(map[string][]string)
-	for ch, protos := range channelProtocols {
-		var list []string
-		for p := range protos {
-			list = append(list, p)
-		}
-		sort.Strings(list)
-		saved[ch] = list
-	}
-	channelProtocolsMu.Unlock()
-
-	data, _ := json.Marshal(saved)
-
-	payload := GistRequest{
-		Files: map[string]GistFile{
-			"channel_protocols.json": {Content: string(data)},
-		},
-	}
-	body, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
-	req.Header.Set("Authorization", "token "+gistToken)
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := client.Do(req)
-	if err == nil {
-		resp.Body.Close()
-		gologger.Info().Msg("💾 Per-channel cumulative protocols saved to Gist.")
-	}
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Original scraping, ping, geo, dedup functions (unchanged)
-// ─────────────────────────────────────────────────────────────────────────────
 
 func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	results := make(map[string][]string)
@@ -354,20 +246,55 @@ func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 			break
 		}
 
-		body, _ := io.ReadAll(resp.Body)
+		doc, _ := goquery.NewDocumentFromReader(resp.Body)
 		resp.Body.Close()
 
-		text := string(body)
-		for pName, reg := range myregex {
-			re := regexp.MustCompile(reg)
-			matches := re.FindAllString(text, -1)
-			if len(matches) > 0 {
-				results[pName] = append(results[pName], matches...)
-				totalExtracted += len(matches)
+		minIDOnPage := 999999999
+		foundAny := false
+
+		doc.Find(".tgme_widget_message").Each(func(i int, s *goquery.Selection) {
+			dataPost, exists := s.Attr("data-post")
+			if !exists {
+				return
 			}
+
+			parts := strings.Split(dataPost, "/")
+			if len(parts) < 2 {
+				return
+			}
+
+			msgID, err := strconv.Atoi(parts[len(parts)-1])
+			if err != nil {
+				return
+			}
+
+			if msgID > maxIDFound {
+				maxIDFound = msgID
+			}
+			if msgID < minIDOnPage {
+				minIDOnPage = msgID
+			}
+
+			if msgID > lastSeenID {
+				foundAny = true
+				text := s.Find(".tgme_widget_message_text").Text()
+				for pName, reg := range myregex {
+					matches := regexp.MustCompile(reg).FindAllString(text, -1)
+					if len(matches) > 0 {
+						results[pName] = append(results[pName], matches...)
+						totalExtracted += len(matches)
+					}
+				}
+			}
+		})
+
+		if foundAny && minIDOnPage > lastSeenID {
+			nextURL = fmt.Sprintf("%s?before=%d", baseURL, minIDOnPage)
+			pagesScraped++
+			time.Sleep(2 * time.Second)
+		} else {
+			break
 		}
-		// Simplified - no goquery, just string match on page content
-		// Adjust if you want to restore goquery later
 	}
 
 	if maxIDFound > lastSeenID {
@@ -758,6 +685,8 @@ func getConfigFingerprint(config string) string {
 	config = reClean.ReplaceAllString(config, "")
 
 	lower := strings.ToLower(config)
+
+	// VMess
 	if strings.HasPrefix(lower, "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
@@ -768,19 +697,33 @@ func getConfigFingerprint(config string) string {
 		if err != nil {
 			decoded, _ = base64.URLEncoding.DecodeString(b64)
 		}
-		var v VMessConfig
+		var v map[string]interface{}
 		if err := json.Unmarshal(decoded, &v); err == nil {
-			return fmt.Sprintf("vmess|%s|%v|%v", strings.ToLower(v.Add), v.Port, v.Id)
+			add := strings.ToLower(fmt.Sprint(v["add"]))
+			port := fmt.Sprint(v["port"])
+			id := fmt.Sprint(v["id"])
+			net := strings.ToLower(fmt.Sprint(v["net"]))
+			security := strings.ToLower(fmt.Sprint(v["security"]))
+			// Keep tlsSettings fingerprint if present (important for obfuscation)
+			tlsFingerprint := ""
+			if tls, ok := v["tlsSettings"].(map[string]interface{}); ok {
+				if fp, ok := tls["fingerprint"].(string); ok {
+					tlsFingerprint = strings.ToLower(fp)
+				}
+			}
+			// Ignore ps, order, padding extras
+			return fmt.Sprintf("vmess|%s|%s|%s|%s|%s|%s", add, port, id, net, security, tlsFingerprint)
 		}
-		return ""
+		return md5hex(lower)
 	}
 
+	// URL protocols
 	uParts := strings.Split(config, "#")
 	serverOnly := uParts[0]
 
 	u, err := url.Parse(serverOnly)
 	if err != nil {
-		return strings.ToLower(serverOnly)
+		return md5hex(lower)
 	}
 
 	scheme := strings.ToLower(u.Scheme)
@@ -791,9 +734,12 @@ func getConfigFingerprint(config string) string {
 	host := strings.ToLower(u.Hostname())
 	user := ""
 	if u.User != nil {
-		user = u.User.String()
+		user = strings.ToLower(u.User.String())
 	}
 
+	path := strings.ToLower(u.Path)
+
+	// Query: sort keys, normalize values, but KEEP obfuscation params
 	q := u.Query()
 	keys := make([]string, 0, len(q))
 	for k := range q {
@@ -801,14 +747,22 @@ func getConfigFingerprint(config string) string {
 	}
 	sort.Strings(keys)
 
-	var queryBuilder strings.Builder
+	var qb strings.Builder
 	for _, k := range keys {
 		vals := q[k]
 		sort.Strings(vals)
-		queryBuilder.WriteString(k + "=" + strings.Join(vals, ",") + "&")
+		for _, val := range vals {
+			qb.WriteString(strings.ToLower(k) + "=" + strings.ToLower(val) + "&")
+		}
 	}
 
-	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, u.Port(), u.Path, queryBuilder.String())
+	// Full fingerprint includes obfuscation params (as requested)
+	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, u.Port(), path, qb.String())
+}
+
+func md5hex(s string) string {
+	h := md5.Sum([]byte(s))
+	return hex.EncodeToString(h[:])
 }
 
 func saveToFile(name string, data []string) {
@@ -827,7 +781,7 @@ func printBanner() {
 	`)
 }
 
-func generateReportStructure(reports []ChannelReport, stats map[string][2]int) string {
+func generateOriginalReportStructure(reports []ChannelReport, stats map[string][2]int) string {
 	utcNow := time.Now().UTC()
 	loc, _ := time.LoadLocation("Asia/Tehran")
 	tehranNow := utcNow.In(loc)
@@ -849,35 +803,29 @@ func generateReportStructure(reports []ChannelReport, stats map[string][2]int) s
 	sb.WriteString("### ⚡ Global Statistics\n")
 	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d` (Total Unique)\n", totalUnique))
 	sb.WriteString(fmt.Sprintf("- **Total Alive:** `%d` 🚀\n", totalLive))
+	sb.WriteString("\n#### 🔍 Protocol Breakdown:\n")
 
-	sb.WriteString("\n#### Protocol Breakdown (this run):\n")
 	keys := make([]string, 0, len(stats))
 	for k := range stats {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
+
 	for _, k := range keys {
 		s := stats[k]
-		sb.WriteString(fmt.Sprintf("- **%s:** %d found (%d live)\n", k, s[0], s[1]))
+		sb.WriteString(fmt.Sprintf("- **%s:** %d found (%d live) ⚡\n", k, s[0], s[1]))
 	}
 
 	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
 	sb.WriteString("### 📡 Source Analysis\n\n")
 	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
 	sb.WriteString("| :--- | :--- | :--- |\n")
-
 	for _, r := range reports {
 		protos := strings.Join(r.Protocols, ", ")
 		if protos == "" {
 			protos = "—"
 		}
-		linkName := r.Name
-		linkURL := "https://t.me/s/" + r.Name
-		if r.Name == "persianvpnhub" {
-			linkName = "persianvpnhub"
-			linkURL = "https://t.me/s/persianvpnhub"
-		}
-		sb.WriteString(fmt.Sprintf("| 📢 [%s](%s) | `%s` | %s |\n", linkName, linkURL, protos, r.Message))
+		sb.WriteString(fmt.Sprintf("| 📢 [%s](https://t.me/s/%s) | `%s` | %s |\n", r.Name, r.Name, protos, r.Message))
 	}
 	sb.WriteString("\n---\n")
 	sb.WriteString("*Auto-generated by Xray Config Collector v2.0* 🛠️")
