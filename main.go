@@ -2,8 +2,10 @@ package main
 
 import (
 	"bytes"
+	"crypto/md5"
 	"encoding/base64"
 	"encoding/csv"
+	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -70,13 +72,6 @@ var (
 		"Hy2":    `(?i)(?:hysteria2|hy2)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 	}
 )
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
 
 func main() {
 	gologger.DefaultLogger.SetMaxLevel(levels.LevelDebug)
@@ -690,6 +685,8 @@ func getConfigFingerprint(config string) string {
 	config = reClean.ReplaceAllString(config, "")
 
 	lower := strings.ToLower(config)
+
+	// VMess
 	if strings.HasPrefix(lower, "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
@@ -700,19 +697,33 @@ func getConfigFingerprint(config string) string {
 		if err != nil {
 			decoded, _ = base64.URLEncoding.DecodeString(b64)
 		}
-		var v VMessConfig
+		var v map[string]interface{}
 		if err := json.Unmarshal(decoded, &v); err == nil {
-			return fmt.Sprintf("vmess|%s|%v|%v", strings.ToLower(v.Add), v.Port, v.Id)
+			add := strings.ToLower(fmt.Sprint(v["add"]))
+			port := fmt.Sprint(v["port"])
+			id := fmt.Sprint(v["id"])
+			net := strings.ToLower(fmt.Sprint(v["net"]))
+			security := strings.ToLower(fmt.Sprint(v["security"]))
+			// Keep tlsSettings fingerprint if present (important for obfuscation)
+			tlsFingerprint := ""
+			if tls, ok := v["tlsSettings"].(map[string]interface{}); ok {
+				if fp, ok := tls["fingerprint"].(string); ok {
+					tlsFingerprint = strings.ToLower(fp)
+				}
+			}
+			// Ignore ps, order, padding extras
+			return fmt.Sprintf("vmess|%s|%s|%s|%s|%s|%s", add, port, id, net, security, tlsFingerprint)
 		}
-		return ""
+		return md5hex(lower)
 	}
 
+	// URL protocols
 	uParts := strings.Split(config, "#")
 	serverOnly := uParts[0]
 
 	u, err := url.Parse(serverOnly)
 	if err != nil {
-		return strings.ToLower(serverOnly)
+		return md5hex(lower)
 	}
 
 	scheme := strings.ToLower(u.Scheme)
@@ -723,9 +734,12 @@ func getConfigFingerprint(config string) string {
 	host := strings.ToLower(u.Hostname())
 	user := ""
 	if u.User != nil {
-		user = u.User.String()
+		user = strings.ToLower(u.User.String())
 	}
 
+	path := strings.ToLower(u.Path)
+
+	// Query: sort keys, normalize values, but KEEP obfuscation params
 	q := u.Query()
 	keys := make([]string, 0, len(q))
 	for k := range q {
@@ -733,14 +747,22 @@ func getConfigFingerprint(config string) string {
 	}
 	sort.Strings(keys)
 
-	var queryBuilder strings.Builder
+	var qb strings.Builder
 	for _, k := range keys {
 		vals := q[k]
 		sort.Strings(vals)
-		queryBuilder.WriteString(k + "=" + strings.Join(vals, ",") + "&")
+		for _, val := range vals {
+			qb.WriteString(strings.ToLower(k) + "=" + strings.ToLower(val) + "&")
+		}
 	}
 
-	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, u.Port(), u.Path, queryBuilder.String())
+	// Full fingerprint includes obfuscation params (as requested)
+	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, u.Port(), path, qb.String())
+}
+
+func md5hex(s string) string {
+	h := md5.Sum([]byte(s))
+	return hex.EncodeToString(h[:])
 }
 
 func saveToFile(name string, data []string) {
