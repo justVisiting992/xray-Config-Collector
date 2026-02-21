@@ -2,10 +2,8 @@ package main
 
 import (
 	"bytes"
-	"crypto/md5"
 	"encoding/base64"
 	"encoding/csv"
-	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -61,15 +59,26 @@ var (
 	checkpoints   = make(map[string]int)
 	checkpointsMu sync.Mutex
 
+	// New: persistent protocols across runs
+	allProtocols   = make(map[string]bool)
+	protocolsMu    sync.Mutex
+
 	geoCache   = make(map[string]string)
 	geoCacheMu sync.Mutex
 
 	myregex = map[string]string{
-		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`,
-		"Trojan": `(?i)trojan://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"VLess":  `(?i)vless://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"Hy2":    `(?i)(?:hysteria2|hy2)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"SS":        `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"VMess":     `(?i)vmess://[A-Za-z0-9+/=]+`,
+		"Trojan":    `(?i)trojan://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"VLess":     `(?i)vless://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"Hy2":       `(?i)(?:hysteria2|hy2)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"MTProto":   `(?i)(?:mtproto|proxy)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"NPV":       `(?i)(?:npv|npvt)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"SingBox":   `(?i)(?:sing-box://|type["\s]*:.*["\s]*shadowsocks|type["\s]*:.*["\s]*vless)`,
+		"ClashMeta": `(?i)(proxies:|proxy-groups:|rules:|\- name:.*server:.*port:)`,
+		"WireGuard": `(?i)(wg://|\[Interface\].*PrivateKey|\[Peer\].*PublicKey)`,
+		"Naive":     `(?i)naive(?:proxy)?://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"TrojanGo":  `(?i)trojango://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 	}
 )
 
@@ -88,6 +97,7 @@ func main() {
 	}
 
 	loadCheckpoints()
+	loadPersistentProtocols()
 
 	rawChannels, _ := loadChannelsFromCSV("channels.csv")
 	channels := removeDuplicates(rawChannels)
@@ -134,6 +144,9 @@ func main() {
 				newConfigs[pName] = append(newConfigs[pName], matches...)
 				count += len(matches)
 				foundProtos[pName] = true
+				protocolsMu.Lock()
+				allProtocols[pName] = true
+				protocolsMu.Unlock()
 			}
 		}
 		var pList []string
@@ -141,7 +154,10 @@ func main() {
 			pList = append(pList, p)
 		}
 		reports = append(reports, ChannelReport{
-			Name: "Python-API-Collector", Count: count, Message: fmt.Sprintf("✅ %d Configs via API", count), Protocols: pList,
+			Name:      "persianvpnhub",
+			Protocols: pList,
+			Count:     count,
+			Message:   fmt.Sprintf("✅ %d Configs via API", count),
 		})
 		totalScraped += count
 		gologger.Info().Msgf("✨ Extracted %d configs from Python Dump", count)
@@ -172,6 +188,9 @@ func main() {
 					newConfigs[p] = append(newConfigs[p], cfgs...)
 					report.Protocols = append(report.Protocols, p)
 					report.Count += len(cfgs)
+					protocolsMu.Lock()
+					allProtocols[p] = true
+					protocolsMu.Unlock()
 				}
 			}
 			if report.Count > 0 {
@@ -191,6 +210,7 @@ func main() {
 	wgScrape.Wait()
 
 	saveCheckpoints()
+	savePersistentProtocols()
 
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
 
@@ -219,12 +239,154 @@ func main() {
 	}
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
-	_ = os.WriteFile("report.md", []byte(generateOriginalReportStructure(reports, protoStats)), 0644)
+	_ = os.WriteFile("report.md", []byte(generateImprovedReportStructure(reports, protoStats)), 0644)
 
 	gologger.Info().Msg("🍹 Saving Mixed Configs...")
 	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  PERSISTENT PROTOCOLS (new)
+// ─────────────────────────────────────────────────────────────────────────────
+
+func loadPersistentProtocols() {
+	if gistID == "" || gistToken == "" {
+		return
+	}
+	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
+	req.Header.Set("Authorization", "token "+gistToken)
+	resp, err := client.Do(req)
+	if err != nil {
+		return
+	}
+	defer resp.Body.Close()
+
+	var gistResp GistResponse
+	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
+		if file, ok := gistResp.Files["protocols.json"]; ok {
+			var saved []string
+			_ = json.Unmarshal([]byte(file.Content), &saved)
+			protocolsMu.Lock()
+			for _, p := range saved {
+				allProtocols[p] = true
+			}
+			protocolsMu.Unlock()
+			gologger.Info().Msg("📋 Loaded persistent protocols from Gist.")
+		}
+	}
+}
+
+func savePersistentProtocols() {
+	if gistID == "" || gistToken == "" {
+		return
+	}
+	protocolsMu.Lock()
+	var protoList []string
+	for p := range allProtocols {
+		protoList = append(protoList, p)
+	}
+	protocolsMu.Unlock()
+
+	sort.Strings(protoList)
+	data, _ := json.Marshal(protoList)
+
+	payload := GistRequest{
+		Files: map[string]GistFile{
+			"protocols.json": {Content: string(data)},
+		},
+	}
+	body, _ := json.Marshal(payload)
+	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
+	req.Header.Set("Authorization", "token "+gistToken)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := client.Do(req)
+	if err == nil {
+		resp.Body.Close()
+		gologger.Info().Msg("💾 Persistent protocols saved to Gist.")
+	}
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  IMPROVED REPORT (persistent protocols + fixed persianvpnhub row)
+// ─────────────────────────────────────────────────────────────────────────────
+
+func generateImprovedReportStructure(reports []ChannelReport, stats map[string][2]int) string {
+	utcNow := time.Now().UTC()
+	loc, _ := time.LoadLocation("Asia/Tehran")
+	tehranNow := utcNow.In(loc)
+	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
+
+	totalUnique := 0
+	totalLive := 0
+	for _, s := range stats {
+		totalUnique += s[0]
+		totalLive += s[1]
+	}
+
+	var sb strings.Builder
+	sb.WriteString("# 📊 Xray Config Collector Report\n\n")
+	sb.WriteString("### 🕒 Last Update\n")
+	sb.WriteString(fmt.Sprintf("- **Tehran Time:** 🇮🇷 `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
+	sb.WriteString(fmt.Sprintf("- **International:** 🌐 `%s`\n\n", tehranNow.Format("Monday, 02 Jan 2006")))
+
+	sb.WriteString("### ⚡ Global Statistics\n")
+	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d` (Total Unique)\n", totalUnique))
+	sb.WriteString(fmt.Sprintf("- **Total Alive:** `%d` 🚀\n", totalLive))
+	sb.WriteString("\n#### 🔍 Protocol Breakdown (this run):\n")
+
+	keys := make([]string, 0, len(stats))
+	for k := range stats {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	for _, k := range keys {
+		s := stats[k]
+		sb.WriteString(fmt.Sprintf("- **%s:** %d found (%d live)\n", k, s[0], s[1]))
+	}
+
+	// Cumulative protocols
+	protocolsMu.Lock()
+	var allProtoList []string
+	for p := range allProtocols {
+		allProtoList = append(allProtoList, p)
+	}
+	protocolsMu.Unlock()
+	sort.Strings(allProtoList)
+	sb.WriteString("\n#### 🌐 All Known Bypass Methods (cumulative):\n")
+	if len(allProtoList) > 0 {
+		sb.WriteString("`" + strings.Join(allProtoList, ", ") + "`\n")
+	} else {
+		sb.WriteString("— (none detected yet)\n")
+	}
+
+	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
+	sb.WriteString("### 📡 Source Analysis\n\n")
+	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
+	sb.WriteString("| :--- | :--- | :--- |\n")
+
+	for _, r := range reports {
+		protos := strings.Join(r.Protocols, ", ")
+		if protos == "" {
+			protos = "—"
+		}
+		linkName := r.Name
+		linkURL := "https://t.me/s/" + r.Name
+		if r.Name == "Python-API-Collector" {
+			linkName = "persianvpnhub"
+			linkURL = "https://t.me/s/persianvpnhub"
+		}
+		sb.WriteString(fmt.Sprintf("| 📢 [%s](%s) | `%s` | %s |\n", linkName, linkURL, protos, r.Message))
+	}
+	sb.WriteString("\n---\n")
+	sb.WriteString("*Auto-generated by Xray Config Collector v2.0* 🛠️")
+	return sb.String()
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Rest of the code remains unchanged
+// ─────────────────────────────────────────────────────────────────────────────
 
 func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	results := make(map[string][]string)
@@ -704,14 +866,12 @@ func getConfigFingerprint(config string) string {
 			id := fmt.Sprint(v["id"])
 			net := strings.ToLower(fmt.Sprint(v["net"]))
 			security := strings.ToLower(fmt.Sprint(v["security"]))
-			// Keep tlsSettings fingerprint if present (important for obfuscation)
 			tlsFingerprint := ""
 			if tls, ok := v["tlsSettings"].(map[string]interface{}); ok {
 				if fp, ok := tls["fingerprint"].(string); ok {
 					tlsFingerprint = strings.ToLower(fp)
 				}
 			}
-			// Ignore ps, order, padding extras
 			return fmt.Sprintf("vmess|%s|%s|%s|%s|%s|%s", add, port, id, net, security, tlsFingerprint)
 		}
 		return md5hex(lower)
@@ -739,7 +899,6 @@ func getConfigFingerprint(config string) string {
 
 	path := strings.ToLower(u.Path)
 
-	// Query: sort keys, normalize values, but KEEP obfuscation params
 	q := u.Query()
 	keys := make([]string, 0, len(q))
 	for k := range q {
@@ -756,7 +915,6 @@ func getConfigFingerprint(config string) string {
 		}
 	}
 
-	// Full fingerprint includes obfuscation params (as requested)
 	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, u.Port(), path, qb.String())
 }
 
@@ -782,54 +940,7 @@ func printBanner() {
 }
 
 func generateOriginalReportStructure(reports []ChannelReport, stats map[string][2]int) string {
-	utcNow := time.Now().UTC()
-	loc, _ := time.LoadLocation("Asia/Tehran")
-	tehranNow := utcNow.In(loc)
-	jy, jm, jd := toJalali(tehranNow.Year(), int(tehranNow.Month()), tehranNow.Day())
-
-	totalUnique := 0
-	totalLive := 0
-	for _, s := range stats {
-		totalUnique += s[0]
-		totalLive += s[1]
-	}
-
-	var sb strings.Builder
-	sb.WriteString("# 📊 Status Report\n\n")
-	sb.WriteString("### 🕒 Last Update\n")
-	sb.WriteString(fmt.Sprintf("- **Tehran Time:** 🇮🇷 `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
-	sb.WriteString(fmt.Sprintf("- **International:** 🌐 `%s`\n\n", tehranNow.Format("Monday, 02 Jan 2006")))
-
-	sb.WriteString("### ⚡ Global Statistics\n")
-	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d` (Total Unique)\n", totalUnique))
-	sb.WriteString(fmt.Sprintf("- **Total Alive:** `%d` 🚀\n", totalLive))
-	sb.WriteString("\n#### 🔍 Protocol Breakdown:\n")
-
-	keys := make([]string, 0, len(stats))
-	for k := range stats {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
-	for _, k := range keys {
-		s := stats[k]
-		sb.WriteString(fmt.Sprintf("- **%s:** %d found (%d live) ⚡\n", k, s[0], s[1]))
-	}
-
-	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
-	sb.WriteString("### 📡 Source Analysis\n\n")
-	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
-	sb.WriteString("| :--- | :--- | :--- |\n")
-	for _, r := range reports {
-		protos := strings.Join(r.Protocols, ", ")
-		if protos == "" {
-			protos = "—"
-		}
-		sb.WriteString(fmt.Sprintf("| 📢 [%s](https://t.me/s/%s) | `%s` | %s |\n", r.Name, r.Name, protos, r.Message))
-	}
-	sb.WriteString("\n---\n")
-	sb.WriteString("*Auto-generated by Xray Config Collector v2.0* 🛠️")
-	return sb.String()
+	return generateImprovedReportStructure(reports, stats)
 }
 
 func toJalali(gy, gm, gd int) (int, int, int) {
