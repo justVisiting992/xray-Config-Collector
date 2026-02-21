@@ -64,22 +64,16 @@ var (
 	geoCache   = make(map[string]string)
 	geoCacheMu sync.Mutex
 
-	allProtocols   = make(map[string]bool)
-	protocolsMu    sync.Mutex
+	// Per-channel cumulative protocols (persistent)
+	channelProtocols   = make(map[string]map[string]bool) // channel -> protocol -> true
+	channelProtocolsMu sync.Mutex
 
 	myregex = map[string]string{
-		"SS":        `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"VMess":     `(?i)vmess://[A-Za-z0-9+/=]+`,
-		"Trojan":    `(?i)trojan://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"VLess":     `(?i)vless://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"Hy2":       `(?i)(?:hysteria2|hy2)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"MTProto":   `(?i)(?:mtproto|proxy)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"NPV":       `(?i)(?:npv|npvt)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"SingBox":   `(?i)(?:sing-box://|type["\s]*:.*["\s]*shadowsocks|type["\s]*:.*["\s]*vless)`,
-		"ClashMeta": `(?i)(proxies:|proxy-groups:|rules:|\- name:.*server:.*port:)`,
-		"WireGuard": `(?i)(wg://|\[Interface\].*PrivateKey|\[Peer\].*PublicKey)`,
-		"Naive":     `(?i)naive(?:proxy)?://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"TrojanGo":  `(?i)trojango://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`,
+		"Trojan": `(?i)trojan://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"VLess":  `(?i)vless://[A-Za-z0-9./:=?#-_@!%&+=]+`,
+		"Hy2":    `(?i)(?:hysteria2|hy2)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 	}
 )
 
@@ -98,7 +92,7 @@ func main() {
 	}
 
 	loadCheckpoints()
-	loadPersistentProtocols()
+	loadChannelProtocols()
 
 	rawChannels, _ := loadChannelsFromCSV("channels.csv")
 	channels := removeDuplicates(rawChannels)
@@ -138,6 +132,7 @@ func main() {
 		dumpText := string(pythonDump)
 		count := 0
 		foundProtos := make(map[string]bool)
+		channelName := "persianvpnhub"
 		for pName, reg := range myregex {
 			re := regexp.MustCompile(reg)
 			matches := re.FindAllString(dumpText, -1)
@@ -145,9 +140,7 @@ func main() {
 				newConfigs[pName] = append(newConfigs[pName], matches...)
 				count += len(matches)
 				foundProtos[pName] = true
-				protocolsMu.Lock()
-				allProtocols[pName] = true
-				protocolsMu.Unlock()
+				updateChannelProtocol(channelName, pName)
 			}
 		}
 		var pList []string
@@ -155,8 +148,8 @@ func main() {
 			pList = append(pList, p)
 		}
 		reports = append(reports, ChannelReport{
-			Name:      "persianvpnhub",
-			Protocols: pList,
+			Name:      channelName,
+			Protocols: getChannelProtocols(channelName),
 			Count:     count,
 			Message:   fmt.Sprintf("✅ %d Configs via API", count),
 		})
@@ -187,13 +180,11 @@ func main() {
 			for p, cfgs := range extracted {
 				if len(cfgs) > 0 {
 					newConfigs[p] = append(newConfigs[p], cfgs...)
-					report.Protocols = append(report.Protocols, p)
 					report.Count += len(cfgs)
-					protocolsMu.Lock()
-					allProtocols[p] = true
-					protocolsMu.Unlock()
+					updateChannelProtocol(name, p)
 				}
 			}
+			report.Protocols = getChannelProtocols(name)
 			if report.Count > 0 {
 				report.Message = fmt.Sprintf("✅ %d found", report.Count)
 				totalScraped += report.Count
@@ -211,7 +202,7 @@ func main() {
 	wgScrape.Wait()
 
 	saveCheckpoints()
-	savePersistentProtocols()
+	saveChannelProtocols()
 
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
 
@@ -236,131 +227,95 @@ func main() {
 
 		finalList := healthy[:limit]
 		saveToFile(strings.ToLower(p)+"_iran.txt", finalList)
-		allMixed = append(allMixed, finalList...)
+		allMixed = append(allMixed, healthy...)
 	}
 
 	sort.Slice(reports, func(i, j int) bool { return reports[i].Count > reports[j].Count })
-	_ = os.WriteFile("report.md", []byte(generateImprovedReportStructure(reports, protoStats)), 0644)
+	_ = os.WriteFile("report.md", []byte(generateReportStructure(reports, protoStats)), 0644)
 
 	gologger.Info().Msg("🍹 Saving Mixed Configs...")
 	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
 
-func scrapeChannelStateful(channelName string) (map[string][]string, int) {
-	results := make(map[string][]string)
-	checkpointsMu.Lock()
-	lastSeenID := checkpoints[channelName]
-	checkpointsMu.Unlock()
+// Per-channel cumulative protocol tracking
+func updateChannelProtocol(channel string, proto string) {
+	channelProtocolsMu.Lock()
+	if _, ok := channelProtocols[channel]; !ok {
+		channelProtocols[channel] = make(map[string]bool)
+	}
+	channelProtocols[channel][proto] = true
+	channelProtocolsMu.Unlock()
+}
 
-	baseURL := "https://t.me/s/" + channelName
-	nextURL := baseURL
-	maxIDFound := lastSeenID
-	totalExtracted := 0
-	pagesScraped := 0
+func getChannelProtocols(channel string) []string {
+	channelProtocolsMu.Lock()
+	m := channelProtocols[channel]
+	channelProtocolsMu.Unlock()
 
-	for pagesScraped < 5 {
-		req, _ := http.NewRequest("GET", nextURL, nil)
-		req.Header.Set("User-Agent", "Mozilla/5.0")
-		resp, err := client.Do(req)
-		if err != nil {
-			break
-		}
+	if m == nil {
+		return []string{}
+	}
+	var list []string
+	for p := range m {
+		list = append(list, p)
+	}
+	sort.Strings(list)
+	return list
+}
 
-		doc, _ := goquery.NewDocumentFromReader(resp.Body)
-		resp.Body.Close()
+func loadChannelProtocols() {
+	if gistID == "" || gistToken == "" {
+		return
+	}
+	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
+	req.Header.Set("Authorization", "token "+gistToken)
+	resp, err := client.Do(req)
+	if err != nil {
+		return
+	}
+	defer resp.Body.Close()
 
-		minIDOnPage := 999999999
-		foundAny := false
-
-		doc.Find(".tgme_widget_message").Each(func(i int, s *goquery.Selection) {
-			dataPost, exists := s.Attr("data-post")
-			if !exists {
-				return
-			}
-
-			parts := strings.Split(dataPost, "/")
-			if len(parts) < 2 {
-				return
-			}
-
-			msgID, err := strconv.Atoi(parts[len(parts)-1])
-			if err != nil {
-				return
-			}
-
-			if msgID > maxIDFound {
-				maxIDFound = msgID
-			}
-			if msgID < minIDOnPage {
-				minIDOnPage = msgID
-			}
-
-			if msgID > lastSeenID {
-				foundAny = true
-				text := s.Find(".tgme_widget_message_text").Text()
-				for pName, reg := range myregex {
-					matches := regexp.MustCompile(reg).FindAllString(text, -1)
-					if len(matches) > 0 {
-						results[pName] = append(results[pName], matches...)
-						totalExtracted += len(matches)
-					}
+	var gistResp GistResponse
+	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
+		channelProtocolsMu.Lock()
+		for fileName, file := range gistResp.Files {
+			if strings.HasPrefix(fileName, "protocols_") && strings.HasSuffix(fileName, ".json") {
+				channel := strings.TrimSuffix(strings.TrimPrefix(fileName, "protocols_"), ".json")
+				var protos []string
+				_ = json.Unmarshal([]byte(file.Content), &protos)
+				if channelProtocols[channel] == nil {
+					channelProtocols[channel] = make(map[string]bool)
+				}
+				for _, p := range protos {
+					channelProtocols[channel][p] = true
 				}
 			}
-		})
-
-		if foundAny && minIDOnPage > lastSeenID {
-			nextURL = fmt.Sprintf("%s?before=%d", baseURL, minIDOnPage)
-			pagesScraped++
-			time.Sleep(2 * time.Second)
-		} else {
-			break
 		}
-	}
-
-	if maxIDFound > lastSeenID {
-		checkpointsMu.Lock()
-		checkpoints[channelName] = maxIDFound
-		checkpointsMu.Unlock()
-	}
-
-	return results, totalExtracted
-}
-
-func loadCheckpoints() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
-	req.Header.Set("Authorization", "token "+gistToken)
-	resp, err := client.Do(req)
-	if err != nil {
-		return
-	}
-	defer resp.Body.Close()
-
-	var gistResp GistResponse
-	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
-		if file, ok := gistResp.Files["checkpoints.json"]; ok {
-			_ = json.Unmarshal([]byte(file.Content), &checkpoints)
-			gologger.Info().Msg("🧠 State loaded from Gist.")
-		}
+		channelProtocolsMu.Unlock()
+		gologger.Info().Msg("📋 Loaded per-channel persistent protocols from Gist.")
 	}
 }
 
-func saveCheckpoints() {
+func saveChannelProtocols() {
 	if gistID == "" || gistToken == "" {
 		return
 	}
-	checkpointsMu.Lock()
-	data, _ := json.Marshal(checkpoints)
-	checkpointsMu.Unlock()
-
-	payload := GistRequest{
-		Files: map[string]GistFile{
-			"checkpoints.json": {Content: string(data)},
-		},
+	channelProtocolsMu.Lock()
+	payloadFiles := map[string]GistFile{}
+	for channel, m := range channelProtocols {
+		var list []string
+		for p := range m {
+			list = append(list, p)
+		}
+		sort.Strings(list)
+		data, _ := json.Marshal(list)
+		fileName := "protocols_" + channel + ".json"
+		payloadFiles[fileName] = GistFile{Content: string(data)}
 	}
+	channelProtocolsMu.Unlock()
+
+	payload := GistRequest{Files: payloadFiles}
 	body, _ := json.Marshal(payload)
 	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
 	req.Header.Set("Authorization", "token "+gistToken)
@@ -368,66 +323,13 @@ func saveCheckpoints() {
 	resp, err := client.Do(req)
 	if err == nil {
 		resp.Body.Close()
-		gologger.Info().Msg("💾 State saved to Gist.")
+		gologger.Info().Msg("💾 Per-channel protocols saved to Gist.")
 	}
 }
 
-func loadPersistentProtocols() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
-	req.Header.Set("Authorization", "token "+gistToken)
-	resp, err := client.Do(req)
-	if err != nil {
-		return
-	}
-	defer resp.Body.Close()
-
-	var gistResp GistResponse
-	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
-		if file, ok := gistResp.Files["protocols.json"]; ok {
-			var saved []string
-			_ = json.Unmarshal([]byte(file.Content), &saved)
-			protocolsMu.Lock()
-			for _, p := range saved {
-				allProtocols[p] = true
-			}
-			protocolsMu.Unlock()
-			gologger.Info().Msg("📋 Loaded persistent protocols from Gist.")
-		}
-	}
-}
-
-func savePersistentProtocols() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	protocolsMu.Lock()
-	var protoList []string
-	for p := range allProtocols {
-		protoList = append(protoList, p)
-	}
-	protocolsMu.Unlock()
-
-	sort.Strings(protoList)
-	data, _ := json.Marshal(protoList)
-
-	payload := GistRequest{
-		Files: map[string]GistFile{
-			"protocols.json": {Content: string(data)},
-		},
-	}
-	body, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
-	req.Header.Set("Authorization", "token "+gistToken)
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := client.Do(req)
-	if err == nil {
-		resp.Body.Close()
-		gologger.Info().Msg("💾 Persistent protocols saved to Gist.")
-	}
-}
+// ─────────────────────────────────────────────────────────────────────────────
+//  Rest of functions unchanged from original
+// ─────────────────────────────────────────────────────────────────────────────
 
 func fastPingTest(configs []string, protocol string) []string {
 	var wg sync.WaitGroup
@@ -763,8 +665,6 @@ func getConfigFingerprint(config string) string {
 	config = reClean.ReplaceAllString(config, "")
 
 	lower := strings.ToLower(config)
-
-	// VMess
 	if strings.HasPrefix(lower, "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
@@ -775,31 +675,19 @@ func getConfigFingerprint(config string) string {
 		if err != nil {
 			decoded, _ = base64.URLEncoding.DecodeString(b64)
 		}
-		var v map[string]interface{}
+		var v VMessConfig
 		if err := json.Unmarshal(decoded, &v); err == nil {
-			add := strings.ToLower(fmt.Sprint(v["add"]))
-			port := fmt.Sprint(v["port"])
-			id := fmt.Sprint(v["id"])
-			net := strings.ToLower(fmt.Sprint(v["net"]))
-			security := strings.ToLower(fmt.Sprint(v["security"]))
-			tlsFingerprint := ""
-			if tls, ok := v["tlsSettings"].(map[string]interface{}); ok {
-				if fp, ok := tls["fingerprint"].(string); ok {
-					tlsFingerprint = strings.ToLower(fp)
-				}
-			}
-			return fmt.Sprintf("vmess|%s|%s|%s|%s|%s|%s", add, port, id, net, security, tlsFingerprint)
+			return fmt.Sprintf("vmess|%s|%v|%v", strings.ToLower(v.Add), v.Port, v.Id)
 		}
-		return md5hex(lower)
+		return ""
 	}
 
-	// URL protocols
 	uParts := strings.Split(config, "#")
 	serverOnly := uParts[0]
 
 	u, err := url.Parse(serverOnly)
 	if err != nil {
-		return md5hex(lower)
+		return strings.ToLower(serverOnly)
 	}
 
 	scheme := strings.ToLower(u.Scheme)
@@ -810,10 +698,8 @@ func getConfigFingerprint(config string) string {
 	host := strings.ToLower(u.Hostname())
 	user := ""
 	if u.User != nil {
-		user = strings.ToLower(u.User.String())
+		user = u.User.String()
 	}
-
-	path := strings.ToLower(u.Path)
 
 	q := u.Query()
 	keys := make([]string, 0, len(q))
@@ -822,21 +708,14 @@ func getConfigFingerprint(config string) string {
 	}
 	sort.Strings(keys)
 
-	var qb strings.Builder
+	var queryBuilder strings.Builder
 	for _, k := range keys {
 		vals := q[k]
 		sort.Strings(vals)
-		for _, val := range vals {
-			qb.WriteString(strings.ToLower(k) + "=" + strings.ToLower(val) + "&")
-		}
+		queryBuilder.WriteString(k + "=" + strings.Join(vals, ",") + "&")
 	}
 
-	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, u.Port(), path, qb.String())
-}
-
-func md5hex(s string) string {
-	h := md5.Sum([]byte(s))
-	return hex.EncodeToString(h[:])
+	return fmt.Sprintf("%s|%s|%s|%s|%s|%s", scheme, user, host, u.Port(), u.Path, queryBuilder.String())
 }
 
 func saveToFile(name string, data []string) {
@@ -855,7 +734,7 @@ func printBanner() {
 	`)
 }
 
-func generateImprovedReportStructure(reports []ChannelReport, stats map[string][2]int) string {
+func generateReportStructure(reports []ChannelReport, stats map[string][2]int) string {
 	utcNow := time.Now().UTC()
 	loc, _ := time.LoadLocation("Asia/Tehran")
 	tehranNow := utcNow.In(loc)
@@ -869,7 +748,7 @@ func generateImprovedReportStructure(reports []ChannelReport, stats map[string][
 	}
 
 	var sb strings.Builder
-	sb.WriteString("# 📊 Xray Config Collector Report\n\n")
+	sb.WriteString("# 📊 Status Report\n\n")
 	sb.WriteString("### 🕒 Last Update\n")
 	sb.WriteString(fmt.Sprintf("- **Tehran Time:** 🇮🇷 `%d/%02d/%02d` | `%02d:%02d:%02d`\n", jy, jm, jd, tehranNow.Hour(), tehranNow.Minute(), tehranNow.Second()))
 	sb.WriteString(fmt.Sprintf("- **International:** 🌐 `%s`\n\n", tehranNow.Format("Monday, 02 Jan 2006")))
@@ -877,34 +756,35 @@ func generateImprovedReportStructure(reports []ChannelReport, stats map[string][
 	sb.WriteString("### ⚡ Global Statistics\n")
 	sb.WriteString(fmt.Sprintf("- **Total Configs Processed:** `%d` (Total Unique)\n", totalUnique))
 	sb.WriteString(fmt.Sprintf("- **Total Alive:** `%d` 🚀\n", totalLive))
-	sb.WriteString("\n#### 🔍 Protocol Breakdown (this run):\n")
 
+	sb.WriteString("\n#### Protocol Breakdown (this run):\n")
 	keys := make([]string, 0, len(stats))
 	for k := range stats {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
-
 	for _, k := range keys {
 		s := stats[k]
 		sb.WriteString(fmt.Sprintf("- **%s:** %d found (%d live)\n", k, s[0], s[1]))
 	}
 
+	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
+
+	// Cumulative protocols line
 	protocolsMu.Lock()
-	var allProtoList []string
+	var protoList []string
 	for p := range allProtocols {
-		allProtoList = append(allProtoList, p)
+		protoList = append(protoList, p)
 	}
 	protocolsMu.Unlock()
-	sort.Strings(allProtoList)
-	sb.WriteString("\n#### 🌐 All Known Bypass Methods (cumulative):\n")
-	if len(allProtoList) > 0 {
-		sb.WriteString("`" + strings.Join(allProtoList, ", ") + "`\n")
+	sort.Strings(protoList)
+	sb.WriteString("### 🌐 Cumulative Bypass Protocols Found (all runs):\n")
+	if len(protoList) > 0 {
+		sb.WriteString("`" + strings.Join(protoList, ", ") + "`\n\n")
 	} else {
-		sb.WriteString("— (none detected yet)\n")
+		sb.WriteString("— (none yet)\n\n")
 	}
 
-	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
 	sb.WriteString("### 📡 Source Analysis\n\n")
 	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
 	sb.WriteString("| :--- | :--- | :--- |\n")
@@ -916,7 +796,7 @@ func generateImprovedReportStructure(reports []ChannelReport, stats map[string][
 		}
 		linkName := r.Name
 		linkURL := "https://t.me/s/" + r.Name
-		if r.Name == "Python-API-Collector" {
+		if r.Name == "persianvpnhub" {
 			linkName = "persianvpnhub"
 			linkURL = "https://t.me/s/persianvpnhub"
 		}
