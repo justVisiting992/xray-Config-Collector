@@ -14,10 +14,12 @@ import (
 	"os"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/oschwald/geoip2-golang"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
@@ -464,6 +466,205 @@ func getTraitTag(config string) string {
 		return "Basic"
 	}
 	return strings.Join(traits, " • ")
+}
+
+func scrapeChannelStateful(channelName string) (map[string][]string, int) {
+	results := make(map[string][]string)
+	checkpointsMu.Lock()
+	lastSeenID := checkpoints[channelName]
+	checkpointsMu.Unlock()
+
+	baseURL := "https://t.me/s/" + channelName
+	nextURL := baseURL
+	maxIDFound := lastSeenID
+	totalExtracted := 0
+	pagesScraped := 0
+
+	for pagesScraped < 5 {
+		req, _ := http.NewRequest("GET", nextURL, nil)
+		req.Header.Set("User-Agent", "Mozilla/5.0")
+		resp, err := client.Do(req)
+		if err != nil {
+			break
+		}
+
+		doc, _ := goquery.NewDocumentFromReader(resp.Body)
+		resp.Body.Close()
+
+		minIDOnPage := 999999999
+		foundAny := false
+
+		doc.Find(".tgme_widget_message").Each(func(i int, s *goquery.Selection) {
+			dataPost, exists := s.Attr("data-post")
+			if !exists {
+				return
+			}
+
+			parts := strings.Split(dataPost, "/")
+			if len(parts) < 2 {
+				return
+			}
+
+			msgID, err := strconv.Atoi(parts[len(parts)-1])
+			if err != nil {
+				return
+			}
+
+			if msgID > maxIDFound {
+				maxIDFound = msgID
+			}
+			if msgID < minIDOnPage {
+				minIDOnPage = msgID
+			}
+
+			if msgID > lastSeenID {
+				foundAny = true
+				text := s.Find(".tgme_widget_message_text").Text()
+				for pName, reg := range myregex {
+					matches := regexp.MustCompile(reg).FindAllString(text, -1)
+					if len(matches) > 0 {
+						results[pName] = append(results[pName], matches...)
+						totalExtracted += len(matches)
+					}
+				}
+			}
+		})
+
+		if foundAny && minIDOnPage > lastSeenID {
+			nextURL = fmt.Sprintf("%s?before=%d", baseURL, minIDOnPage)
+			pagesScraped++
+			time.Sleep(2 * time.Second)
+		} else {
+			break
+		}
+	}
+
+	if maxIDFound > lastSeenID {
+		checkpointsMu.Lock()
+		checkpoints[channelName] = maxIDFound
+		checkpointsMu.Unlock()
+	}
+
+	return results, totalExtracted
+}
+
+func loadCheckpoints() {
+	if gistID == "" || gistToken == "" {
+		return
+	}
+	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
+	req.Header.Set("Authorization", "token "+gistToken)
+	resp, err := client.Do(req)
+	if err != nil {
+		return
+	}
+	defer resp.Body.Close()
+
+	var gistResp GistResponse
+	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
+		if file, ok := gistResp.Files["checkpoints.json"]; ok {
+			_ = json.Unmarshal([]byte(file.Content), &checkpoints)
+			gologger.Info().Msg("🧠 State loaded from Gist.")
+		}
+	}
+}
+
+func saveCheckpoints() {
+	if gistID == "" || gistToken == "" {
+		return
+	}
+	checkpointsMu.Lock()
+	data, _ := json.Marshal(checkpoints)
+	checkpointsMu.Unlock()
+
+	payload := GistRequest{
+		Files: map[string]GistFile{
+			"checkpoints.json": {Content: string(data)},
+		},
+	}
+	body, _ := json.Marshal(payload)
+	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
+	req.Header.Set("Authorization", "token "+gistToken)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := client.Do(req)
+	if err == nil {
+		resp.Body.Close()
+		gologger.Info().Msg("💾 State saved to Gist.")
+	}
+}
+
+func fastPingTest(configs []string, protocol string) []string {
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+	healthy := []string{}
+	sem := make(chan struct{}, 100)
+
+	for _, cfg := range configs {
+		wg.Add(1)
+		go func(c string) {
+			defer wg.Done()
+			sem <- struct{}{}
+			defer func() { <-sem }()
+
+			if checkAlive(c, protocol) {
+				mu.Lock()
+				healthy = append(healthy, labelWithGeo(c, len(healthy)+1))
+				mu.Unlock()
+			}
+		}(cfg)
+	}
+	wg.Wait()
+	return healthy
+}
+
+func checkAlive(config string, protocol string) bool {
+	if strings.HasPrefix(strings.ToLower(config), "vmess://") {
+		b64 := strings.TrimPrefix(config, "vmess://")
+		b64 = strings.TrimPrefix(b64, "VMess://")
+		if i := len(b64) % 4; i != 0 {
+			b64 += strings.Repeat("=", 4-i)
+		}
+		decoded, err := base64.StdEncoding.DecodeString(b64)
+		if err != nil {
+			decoded, err = base64.URLEncoding.DecodeString(b64)
+		}
+		if err != nil {
+			return false
+		}
+		var v VMessConfig
+		if err := json.Unmarshal(decoded, &v); err != nil {
+			return false
+		}
+		return tcpDial(fmt.Sprintf("%v", v.Add), fmt.Sprintf("%v", v.Port))
+	}
+	if strings.Contains(strings.ToLower(protocol), "hy2") {
+		u, err := url.Parse(config)
+		if err != nil {
+			return false
+		}
+		if tcpDial(u.Hostname(), u.Port()) {
+			return true
+		}
+		ips, err := net.LookupIP(u.Hostname())
+		return err == nil && len(ips) > 0
+	}
+	u, err := url.Parse(config)
+	if err != nil {
+		return false
+	}
+	return tcpDial(u.Hostname(), u.Port())
+}
+
+func tcpDial(host, port string) bool {
+	if host == "" || port == "" {
+		return false
+	}
+	conn, err := net.DialTimeout("tcp", net.JoinHostPort(host, port), 3*time.Second)
+	if err != nil {
+		return false
+	}
+	conn.Close()
+	return true
 }
 
 func labelWithGeo(config string, index int) string {
