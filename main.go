@@ -14,12 +14,10 @@ import (
 	"os"
 	"regexp"
 	"sort"
-	"strconv"
 	"strings"
 	"sync"
 	"time"
 
-	"github.com/PuerkitoBio/goquery"
 	"github.com/oschwald/geoip2-golang"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
@@ -596,6 +594,7 @@ func buildLabel(config string, emoji, countryName string, index int) string {
 			newJSON, _ := json.Marshal(v)
 			return "vmess://" + base64.StdEncoding.EncodeToString(newJSON)
 		}
+		return config
 	}
 
 	// For other protocols: append #label
