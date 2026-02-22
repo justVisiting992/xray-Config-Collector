@@ -7,9 +7,7 @@ import (
 	"fmt"
 	"net/url"
 	"os"
-	"regexp"
 	"sort"
-	"strconv"
 	"strings"
 	"unicode/utf8"
 )
@@ -29,7 +27,6 @@ func main() {
 
 	var proxies []Proxy
 	scanner := bufio.NewScanner(file)
-	skipped := 0
 
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
@@ -39,7 +36,6 @@ func main() {
 
 		var p Proxy
 		var parseErr error
-		var reason string
 
 		switch {
 		case strings.HasPrefix(line, "vless://"):
@@ -52,47 +48,30 @@ func main() {
 			p, parseErr = parseSS(line)
 		case strings.HasPrefix(line, "hysteria2://") || strings.HasPrefix(line, "hy2://"):
 			p, parseErr = parseHy2(line)
-		default:
-			reason = "unsupported protocol"
 		}
 
-		if parseErr != nil {
-			reason = parseErr.Error()
+		if parseErr == nil && p != nil {
+			p["udp"] = true
+			p["skip-cert-verify"] = true
+
+			if p["tls"] == true {
+				p["alpn"] = []string{"h2", "http/1.1"}
+			}
+
+			delete(p, "plugin")
+			delete(p, "plugin-opts")
+			delete(p, "obfs")
+			delete(p, "obfs-password")
+
+			if name, ok := p["name"].(string); ok {
+				p["name"] = sanitizeString(name)
+			}
+
+			proxies = append(proxies, p)
 		}
-
-		if reason != "" {
-			fmt.Printf("Skipped: %s | reason: %s\n", line[:60]+"...", reason)
-			skipped++
-			continue
-		}
-
-		if p == nil {
-			fmt.Printf("Skipped nil proxy: %s\n", line[:60]+"...")
-			skipped++
-			continue
-		}
-
-		p["udp"] = true
-		p["skip-cert-verify"] = true
-
-		if p["tls"] == true {
-			p["alpn"] = []string{"h2", "http/1.1"}
-		}
-
-		delete(p, "plugin")
-		delete(p, "plugin-opts")
-		delete(p, "obfs")
-		delete(p, "obfs-password")
-
-		if name, ok := p["name"].(string); ok {
-			p["name"] = sanitizeString(name)
-		}
-
-		proxies = append(proxies, p)
 	}
 
 	writeClashYaml(outputFile, proxies)
-	fmt.Printf("\n✅ Wrote %d proxies | Skipped %d\n", len(proxies), skipped)
 }
 
 func sanitizeString(s string) string {
@@ -129,11 +108,6 @@ func parseVless(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["uuid"] = u.User.Username()
-
-	// UUID validation
-	if uuid := p["uuid"].(string); !regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$`).MatchString(uuid) {
-		return nil, fmt.Errorf("invalid UUID")
-	}
 
 	security := q.Get("security")
 	if security == "tls" || security == "reality" {
