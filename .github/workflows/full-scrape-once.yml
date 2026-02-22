@@ -1,0 +1,39 @@
+name: One-Time Full Scrape for Bypass Methods
+
+on:
+  workflow_dispatch:  # Manual trigger only (you click "Run workflow" in Actions tab)
+  # Remove or comment the line below if you NEVER want it to run on push
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - 'full_scrape_once.go'  # only if you push changes to the script
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'  # or match your local Go version
+
+      - name: Install dependencies
+        run: go mod tidy
+
+      - name: Run one-time full scrape
+        env:
+          GIST_ID: ${{ secrets.GIST_ID }}
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+        run: go run full_scrape_once.go
+
+      - name: Commit updated report.md (if changed)
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add report.md
+          git commit -m "Update report.md with full bypass methods table [ci skip]" || echo "No changes to commit"
+          git push || echo "Push failed or no changes"
