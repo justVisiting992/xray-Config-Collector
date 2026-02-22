@@ -60,6 +60,10 @@ func main() {
 				p["alpn"] = []string{"h2", "http/1.1"}
 			}
 
+			// Explicitly disable any obfs/plugin to prevent "missing obfs password"
+			p["plugin"] = nil
+			p["plugin-opts"] = nil
+
 			if name, ok := p["name"].(string); ok {
 				p["name"] = sanitizeString(name)
 			}
@@ -126,7 +130,7 @@ func parseVless(raw string) (Proxy, error) {
 		}
 	}
 
-	// Fingerprint: use from config if present, else default to chrome if TLS
+	// Fingerprint: use from config if present, else chrome if TLS
 	fp := q.Get("fp")
 	if fp != "" {
 		p["client-fingerprint"] = fp
@@ -137,6 +141,10 @@ func parseVless(raw string) (Proxy, error) {
 	network := q.Get("type")
 	if network != "" {
 		p["network"] = network
+		if network == "ws" || network == "httpupgrade" || network == "grpc" {
+			// Force tls: true for these transports if not already set (prevents obfs misparse)
+			p["tls"] = true
+		}
 		if network == "ws" || network == "httpupgrade" {
 			headers := map[string]string{}
 			if host := q.Get("host"); host != "" {
@@ -154,6 +162,10 @@ func parseVless(raw string) (Proxy, error) {
 	} else {
 		p["network"] = "tcp"
 	}
+
+	// Explicitly remove any obfs/plugin to avoid "missing obfs password"
+	delete(p, "plugin")
+	delete(p, "plugin-opts")
 
 	return p, nil
 }
@@ -189,11 +201,14 @@ func parseVmess(raw string) (Proxy, error) {
 			"path":    v["path"],
 			"headers": map[string]string{"Host": fmt.Sprintf("%v", v["host"])},
 		}
+		// Force tls if implied
+		p["tls"] = true
 	} else if net == "grpc" {
 		p["network"] = "grpc"
 		p["grpc-opts"] = map[string]interface{}{
 			"service-name": v["path"],
 		}
+		p["tls"] = true
 	} else {
 		p["network"] = "tcp"
 	}
@@ -208,6 +223,10 @@ func parseVmess(raw string) (Proxy, error) {
 			}
 		}
 	}
+
+	// No obfs/plugin
+	delete(p, "plugin")
+	delete(p, "plugin-opts")
 
 	return p, nil
 }
@@ -226,13 +245,15 @@ func parseTrojan(raw string) (Proxy, error) {
 	p["tls"] = true
 	p["network"] = "tcp"
 
-	// Fingerprint from query if present, else chrome
 	fp := u.Query().Get("fp")
 	if fp != "" {
 		p["client-fingerprint"] = fp
 	} else {
 		p["client-fingerprint"] = "chrome"
 	}
+
+	delete(p, "plugin")
+	delete(p, "plugin-opts")
 
 	return p, nil
 }
@@ -248,7 +269,6 @@ func parseSS(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 
-	// Cipher/password parsing
 	user := u.User.Username()
 	pass, hasPass := u.User.Password()
 	if hasPass {
@@ -259,7 +279,6 @@ func parseSS(raw string) (Proxy, error) {
 		p["password"] = user
 	}
 
-	// If TLS/transport present
 	if security := u.Query().Get("security"); security == "tls" {
 		p["tls"] = true
 		fp := u.Query().Get("fp")
@@ -269,6 +288,9 @@ func parseSS(raw string) (Proxy, error) {
 			p["client-fingerprint"] = "chrome"
 		}
 	}
+
+	delete(p, "plugin")
+	delete(p, "plugin-opts")
 
 	return p, nil
 }
@@ -285,7 +307,6 @@ func parseHy2(raw string) (Proxy, error) {
 	p["port"] = u.Port()
 	p["password"] = u.User.Username()
 
-	// Optional params
 	q := u.Query()
 	if obfs := q.Get("obfs"); obfs != "" {
 		p["obfs"] = obfs
@@ -294,6 +315,7 @@ func parseHy2(raw string) (Proxy, error) {
 		p["brutal"] = brutal
 	}
 
+	// Hy2 doesn't use obfs-password, so no error risk
 	return p, nil
 }
 
