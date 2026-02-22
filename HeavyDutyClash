@@ -144,8 +144,8 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204 
     interval: 600 
     timeout: 5000 
-    tolerance: 500 
-    max-failed-times: 2
+    tolerance: 200 
+    max-failed-times: 5
     lazy: true 
     use: 
       - mixed-iran
@@ -154,8 +154,9 @@ proxy-groups:
     icon: https://www.svgrepo.com/show/415208/backup-cloud-document.svg 
     url: https://www.gstatic.com/generate_204 
     interval: 600 
-    timeout: 2000 
-    max-failed-times: 2
+    timeout: 6000 
+    tolerance: 300
+    max-failed-times: 3
     lazy: true 
     use: 
       - f1
@@ -166,9 +167,10 @@ proxy-groups:
     type: url-test 
     icon: https://www.svgrepo.com/show/428774/connection-internet-communication.svg 
     url: https://cp.cloudflare.com/generate_204 
-    interval: 60
-    timeout: 5000
-    tolerance: 400
+    interval: 30
+    timeout: 3000
+    tolerance: 200
+    max-failed-times: 3
     lazy: true 
     proxies: 
       - خودکار (بهترین پینگ) 🤖 
@@ -180,8 +182,8 @@ proxy-groups:
     url: https://cp.cloudflare.com/generate_204 
     strategy: consistent-hashing 
     interval: 600 
-    timeout: 5000 
-    max-failed-times: 2
+    timeout: 6000 
+    max-failed-times: 3
     lazy: true 
     use: 
       - mixed-iran
@@ -192,8 +194,8 @@ proxy-groups:
     strategy: round-robin 
     interval: 600 
     tolerance: 200 
-    timeout: 5000 
-    max-failed-times: 2
+    timeout: 6000 
+    max-failed-times: 3
     lazy: true 
     use: 
       - mixed-iran
@@ -203,8 +205,8 @@ proxy-groups:
     url: https://cp.cloudflare.com/generate_204 
     strategy: sticky-sessions 
     interval: 600 
-    timeout: 5000 
-    max-failed-times: 2
+    timeout: 6000 
+    max-failed-times: 5
     lazy: true 
     use: 
       - mixed-iran
