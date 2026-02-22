@@ -1,0 +1,37 @@
+name: Manually Run Clash Converter
+
+on:
+  workflow_dispatch:  # Only manual trigger (you click "Run workflow")
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'  # Adjust if your code needs a different Go version
+
+      - name: Install dependencies (if you use go.mod)
+        run: go mod tidy
+
+      - name: Run Clash converter
+        run: go run converter.go   # <-- Change to your actual filename if different (e.g. clash-converter.go)
+
+      - name: Commit updated clash.yaml (if changed)
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add clash.yaml
+          git commit -m "Update clash.yaml from manual converter run [ci skip]" || echo "No changes to commit"
+          git push || echo "Push failed or no changes"
+
+      - name: Upload clash.yaml as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clash-yaml
+          path: clash.yaml
