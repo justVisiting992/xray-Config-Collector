@@ -51,18 +51,19 @@ func main() {
 		}
 
 		if parseErr == nil && p != nil {
-			// Common settings
 			p["udp"] = true
 			p["skip-cert-verify"] = true
 
-			// ALPN for TLS
 			if p["tls"] == true {
 				p["alpn"] = []string{"h2", "http/1.1"}
 			}
 
-			// Explicitly disable any obfs/plugin to prevent "missing obfs password"
-			p["plugin"] = nil
-			p["plugin-opts"] = nil
+			// Explicitly wipe any possible plugin/obfs nonsense
+			delete(p, "plugin")
+			delete(p, "plugin-opts")
+			delete(p, "obfs")
+			delete(p, "obfs-opts")
+			delete(p, "obfs-password")
 
 			if name, ok := p["name"].(string); ok {
 				p["name"] = sanitizeString(name)
@@ -130,7 +131,6 @@ func parseVless(raw string) (Proxy, error) {
 		}
 	}
 
-	// Fingerprint: use from config if present, else chrome if TLS
 	fp := q.Get("fp")
 	if fp != "" {
 		p["client-fingerprint"] = fp
@@ -142,7 +142,6 @@ func parseVless(raw string) (Proxy, error) {
 	if network != "" {
 		p["network"] = network
 		if network == "ws" || network == "httpupgrade" || network == "grpc" {
-			// Force tls: true for these transports if not already set (prevents obfs misparse)
 			p["tls"] = true
 		}
 		if network == "ws" || network == "httpupgrade" {
@@ -163,9 +162,12 @@ func parseVless(raw string) (Proxy, error) {
 		p["network"] = "tcp"
 	}
 
-	// Explicitly remove any obfs/plugin to avoid "missing obfs password"
+	// Kill any obfs/plugin remnants
 	delete(p, "plugin")
 	delete(p, "plugin-opts")
+	delete(p, "obfs")
+	delete(p, "obfs-password")
+	delete(p, "obfs-host")
 
 	return p, nil
 }
@@ -201,7 +203,6 @@ func parseVmess(raw string) (Proxy, error) {
 			"path":    v["path"],
 			"headers": map[string]string{"Host": fmt.Sprintf("%v", v["host"])},
 		}
-		// Force tls if implied
 		p["tls"] = true
 	} else if net == "grpc" {
 		p["network"] = "grpc"
@@ -224,9 +225,10 @@ func parseVmess(raw string) (Proxy, error) {
 		}
 	}
 
-	// No obfs/plugin
 	delete(p, "plugin")
 	delete(p, "plugin-opts")
+	delete(p, "obfs")
+	delete(p, "obfs-password")
 
 	return p, nil
 }
@@ -254,6 +256,8 @@ func parseTrojan(raw string) (Proxy, error) {
 
 	delete(p, "plugin")
 	delete(p, "plugin-opts")
+	delete(p, "obfs")
+	delete(p, "obfs-password")
 
 	return p, nil
 }
@@ -291,6 +295,8 @@ func parseSS(raw string) (Proxy, error) {
 
 	delete(p, "plugin")
 	delete(p, "plugin-opts")
+	delete(p, "obfs")
+	delete(p, "obfs-password")
 
 	return p, nil
 }
@@ -315,7 +321,9 @@ func parseHy2(raw string) (Proxy, error) {
 		p["brutal"] = brutal
 	}
 
-	// Hy2 doesn't use obfs-password, so no error risk
+	delete(p, "plugin")
+	delete(p, "plugin-opts")
+
 	return p, nil
 }
 
