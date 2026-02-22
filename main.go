@@ -329,204 +329,143 @@ func saveChannelProtocols() {
 	}
 }
 
-// Your original functions (unchanged except for the report call)
-func scrapeChannelStateful(channelName string) (map[string][]string, int) {
-	results := make(map[string][]string)
-	checkpointsMu.Lock()
-	lastSeenID := checkpoints[channelName]
-	checkpointsMu.Unlock()
+// New function: extract cool trait tag for label
+func getTraitTag(config string) string {
+	lower := strings.ToLower(config)
+	var traits []string
 
-	baseURL := "https://t.me/s/" + channelName
-	nextURL := baseURL
-	maxIDFound := lastSeenID
-	totalExtracted := 0
-	pagesScraped := 0
-
-	for pagesScraped < 5 {
-		req, _ := http.NewRequest("GET", nextURL, nil)
-		req.Header.Set("User-Agent", "Mozilla/5.0")
-		resp, err := client.Do(req)
-		if err != nil {
-			break
-		}
-
-		doc, _ := goquery.NewDocumentFromReader(resp.Body)
-		resp.Body.Close()
-
-		minIDOnPage := 999999999
-		foundAny := false
-
-		doc.Find(".tgme_widget_message").Each(func(i int, s *goquery.Selection) {
-			dataPost, exists := s.Attr("data-post")
-			if !exists {
-				return
-			}
-
-			parts := strings.Split(dataPost, "/")
-			if len(parts) < 2 {
-				return
-			}
-
-			msgID, err := strconv.Atoi(parts[len(parts)-1])
-			if err != nil {
-				return
-			}
-
-			if msgID > maxIDFound {
-				maxIDFound = msgID
-			}
-			if msgID < minIDOnPage {
-				minIDOnPage = msgID
-			}
-
-			if msgID > lastSeenID {
-				foundAny = true
-				text := s.Find(".tgme_widget_message_text").Text()
-				for pName, reg := range myregex {
-					matches := regexp.MustCompile(reg).FindAllString(text, -1)
-					if len(matches) > 0 {
-						results[pName] = append(results[pName], matches...)
-						totalExtracted += len(matches)
-					}
-				}
-			}
-		})
-
-		if foundAny && minIDOnPage > lastSeenID {
-			nextURL = fmt.Sprintf("%s?before=%d", baseURL, minIDOnPage)
-			pagesScraped++
-			time.Sleep(2 * time.Second)
-		} else {
-			break
-		}
-	}
-
-	if maxIDFound > lastSeenID {
-		checkpointsMu.Lock()
-		checkpoints[channelName] = maxIDFound
-		checkpointsMu.Unlock()
-	}
-
-	return results, totalExtracted
-}
-
-func loadCheckpoints() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
-	req.Header.Set("Authorization", "token "+gistToken)
-	resp, err := client.Do(req)
-	if err != nil {
-		return
-	}
-	defer resp.Body.Close()
-
-	var gistResp GistResponse
-	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
-		if file, ok := gistResp.Files["checkpoints.json"]; ok {
-			_ = json.Unmarshal([]byte(file.Content), &checkpoints)
-			gologger.Info().Msg("🧠 State loaded from Gist.")
-		}
-	}
-}
-
-func saveCheckpoints() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	checkpointsMu.Lock()
-	data, _ := json.Marshal(checkpoints)
-	checkpointsMu.Unlock()
-
-	payload := GistRequest{
-		Files: map[string]GistFile{
-			"checkpoints.json": {Content: string(data)},
-		},
-	}
-	body, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
-	req.Header.Set("Authorization", "token "+gistToken)
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := client.Do(req)
-	if err == nil {
-		resp.Body.Close()
-		gologger.Info().Msg("💾 State saved to Gist.")
-	}
-}
-
-func fastPingTest(configs []string, protocol string) []string {
-	var wg sync.WaitGroup
-	var mu sync.Mutex
-	healthy := []string{}
-	sem := make(chan struct{}, 100)
-
-	for _, cfg := range configs {
-		wg.Add(1)
-		go func(c string) {
-			defer wg.Done()
-			sem <- struct{}{}
-			defer func() { <-sem }()
-
-			if checkAlive(c, protocol) {
-				mu.Lock()
-				healthy = append(healthy, labelWithGeo(c, len(healthy)+1))
-				mu.Unlock()
-			}
-		}(cfg)
-	}
-	wg.Wait()
-	return healthy
-}
-
-func checkAlive(config string, protocol string) bool {
-	if strings.HasPrefix(strings.ToLower(config), "vmess://") {
+	if strings.HasPrefix(lower, "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		if i := len(b64) % 4; i != 0 {
-			b64 += strings.Repeat("=", 4-i)
+		if rem := len(b64) % 4; rem != 0 {
+			b64 += strings.Repeat("=", 4-rem)
 		}
 		decoded, err := base64.StdEncoding.DecodeString(b64)
 		if err != nil {
-			decoded, err = base64.URLEncoding.DecodeString(b64)
+			decoded, _ = base64.URLEncoding.DecodeString(b64)
 		}
-		if err != nil {
-			return false
-		}
-		var v VMessConfig
-		if err := json.Unmarshal(decoded, &v); err != nil {
-			return false
-		}
-		return tcpDial(fmt.Sprintf("%v", v.Add), fmt.Sprintf("%v", v.Port))
-	}
-	if strings.Contains(strings.ToLower(protocol), "hy2") {
-		u, err := url.Parse(config)
-		if err != nil {
-			return false
-		}
-		if tcpDial(u.Hostname(), u.Port()) {
-			return true
-		}
-		ips, err := net.LookupIP(u.Hostname())
-		return err == nil && len(ips) > 0
-	}
-	u, err := url.Parse(config)
-	if err != nil {
-		return false
-	}
-	return tcpDial(u.Hostname(), u.Port())
-}
+		var v map[string]interface{}
+		if json.Unmarshal(decoded, &v) == nil {
+			net := strings.ToLower(fmt.Sprint(v["net"]))
+			sec := strings.ToLower(fmt.Sprint(v["security"]))
+			fp := ""
+			if tls, ok := v["tlsSettings"].(map[string]interface{}); ok {
+				if f, ok := tls["fingerprint"].(string); ok {
+					fp = strings.ToLower(f)
+				}
+			}
 
-func tcpDial(host, port string) bool {
-	if host == "" || port == "" {
-		return false
+			// Transport (omit plain tcp)
+			if net != "" && net != "tcp" {
+				if net == "httpupgrade" {
+					traits = append(traits, "HTTPup")
+				} else if net == "grpc" {
+					traits = append(traits, "gRPC")
+				} else {
+					traits = append(traits, strings.ToUpper(net))
+				}
+			}
+
+			// Security
+			if sec == "tls" {
+				traits = append(traits, "TLS")
+			} else if sec != "" && sec != "none" && sec != "auto" {
+				traits = append(traits, strings.ToUpper(sec))
+			}
+
+			// Fingerprint
+			if fp != "" {
+				traits = append(traits, fp)
+			}
+		}
+	} else if strings.HasPrefix(lower, "vless://") {
+		u, err := url.Parse(config)
+		if err == nil {
+			q := u.Query()
+			sec := strings.ToLower(q.Get("security"))
+			net := strings.ToLower(q.Get("type"))
+			flow := strings.ToLower(q.Get("flow"))
+
+			// Security
+			if sec == "tls" {
+				traits = append(traits, "TLS")
+			} else if sec == "reality" {
+				traits = append(traits, "Reality")
+			} else if sec != "" && sec != "none" {
+				traits = append(traits, strings.ToUpper(sec))
+			}
+
+			// Transport (omit plain tcp)
+			if net != "" && net != "tcp" {
+				if net == "httpupgrade" {
+					traits = append(traits, "HTTPup")
+				} else if net == "grpc" {
+					traits = append(traits, "gRPC")
+				} else {
+					traits = append(traits, strings.ToUpper(net))
+				}
+			}
+
+			// Flow
+			if flow == "xtls-rprx-vision" {
+				traits = append(traits, "Vision")
+			}
+		}
+	} else if strings.HasPrefix(lower, "trojan://") {
+		u, err := url.Parse(config)
+		if err == nil {
+			q := u.Query()
+			fp := strings.ToLower(q.Get("fp"))
+
+			traits = append(traits, "TLS") // always TLS
+
+			if fp != "" {
+				traits = append(traits, fp)
+			}
+		}
+	} else if strings.HasPrefix(lower, "ss://") {
+		parts := strings.SplitN(strings.TrimPrefix(lower, "ss://"), "@", 2)
+		if len(parts) == 2 {
+			auth := parts[0]
+			methodPass := strings.SplitN(auth, ":", 2)
+			if len(methodPass) == 2 {
+				method := strings.ToLower(methodPass[0])
+				short := method
+				if strings.Contains(method, "aes-128") {
+					short = "AES128"
+				} else if strings.Contains(method, "aes-256") {
+					short = "AES256"
+				} else if strings.Contains(method, "chacha") {
+					short = "ChaCha"
+				} else if strings.Contains(method, "2022") {
+					short = "2022"
+				}
+				traits = append(traits, short)
+			}
+		}
+	} else if strings.HasPrefix(lower, "hy2://") || strings.HasPrefix(lower, "hysteria2://") {
+		u, err := url.Parse(config)
+		if err == nil {
+			q := u.Query()
+			obfs := strings.ToLower(q.Get("obfs"))
+			brutal := q.Get("brutal") != ""
+
+			traits = append(traits, "TLS")
+
+			if obfs == "salamander" {
+				traits = append(traits, "Salamander")
+			}
+
+			if brutal {
+				traits = append(traits, "Brutal")
+			}
+		}
 	}
-	conn, err := net.DialTimeout("tcp", net.JoinHostPort(host, port), 3*time.Second)
-	if err != nil {
-		return false
+
+	if len(traits) == 0 {
+		return "Basic"
 	}
-	conn.Close()
-	return true
+	return strings.Join(traits, " • ")
 }
 
 func labelWithGeo(config string, index int) string {
@@ -635,9 +574,12 @@ func labelWithGeo(config string, index int) string {
 	return buildLabel(config, emoji, countryName, index)
 }
 
+// Updated buildLabel with new trait strategy
 func buildLabel(config string, emoji, countryName string, index int) string {
-	label := fmt.Sprintf("%s %s | Node-%d", emoji, countryName, index)
+	trait := getTraitTag(config)
+	label := fmt.Sprintf("%s %s | %s", emoji, countryName, trait)
 
+	// Special handling for VMess: update ps in JSON
 	if strings.HasPrefix(strings.ToLower(config), "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
@@ -654,9 +596,9 @@ func buildLabel(config string, emoji, countryName string, index int) string {
 			newJSON, _ := json.Marshal(v)
 			return "vmess://" + base64.StdEncoding.EncodeToString(newJSON)
 		}
-		return config
 	}
 
+	// For other protocols: append #label
 	cleanConfig := strings.Split(config, "#")[0]
 	return fmt.Sprintf("%s#%s", cleanConfig, label)
 }
