@@ -329,7 +329,7 @@ func saveChannelProtocols() {
 	}
 }
 
-// Fixed trait extraction for SS (proper base64 handling), VMess (nil safety), Hy2 (no trailing dot)
+// Fixed trait extraction - SS now handles extended format with query params
 func getTraitTag(config string) string {
 	lower := strings.ToLower(config)
 	var traits []string
@@ -422,41 +422,65 @@ func getTraitTag(config string) string {
 	} else if strings.HasPrefix(lower, "ss://") {
 		ssPart := strings.TrimPrefix(lower, "ss://")
 
-		// Try URL-safe base64 (common for SS)
-		padded := ssPart
-		padNeeded := (4 - len(padded)%4) % 4
-		padded += strings.Repeat("=", padNeeded)
-		decoded, err := base64.URLEncoding.DecodeString(padded)
-		if err != nil {
-			// Fallback to standard base64
-			decoded, err = base64.StdEncoding.DecodeString(padded)
-		}
+		// Modern extended format with query params (your cases)
+		if strings.Contains(ssPart, "?") {
+			// Parse as URL (add dummy scheme if needed)
+			if !strings.Contains(ssPart, "://") {
+				ssPart = "ss://" + ssPart
+			}
+			u, err := url.Parse(ssPart)
+			if err == nil {
+				q := u.Query()
+				typ := strings.ToLower(q.Get("type"))
+				sec := strings.ToLower(q.Get("security"))
+				fp := strings.ToLower(q.Get("fp"))
 
-		if err == nil && len(decoded) > 0 {
-			decStr := string(decoded)
-			atSplit := strings.SplitN(decStr, "@", 2)
-			if len(atSplit) == 2 {
-				auth := atSplit[0]
-				colonSplit := strings.SplitN(auth, ":", 2)
-				if len(colonSplit) == 2 {
-					method := strings.ToLower(colonSplit[0])
-					short := getShortMethod(method)
-					if short != "" {
-						traits = append(traits, short)
+				// Transport type
+				if typ != "" {
+					typUpper := strings.ToUpper(typ)
+					switch typ {
+					case "httpupgrade":
+						traits = append(traits, "HTTPup")
+					case "xhttp":
+						traits = append(traits, "XHTTP")
+					case "grpc":
+						traits = append(traits, "gRPC")
+					default:
+						traits = append(traits, typUpper)
 					}
+				}
+
+				// Security
+				if sec == "tls" {
+					traits = append(traits, "TLS")
+				} else if sec == "none" || sec != "" {
+					traits = append(traits, "NONE")
+				}
+
+				// Fingerprint
+				if fp != "" {
+					traits = append(traits, fp)
 				}
 			}
 		} else {
-			// Plain format fallback
-			atSplit := strings.SplitN(ssPart, "@", 2)
-			if len(atSplit) == 2 {
-				auth := atSplit[0]
-				colonSplit := strings.SplitN(auth, ":", 2)
-				if len(colonSplit) == 2 {
-					method := strings.ToLower(colonSplit[0])
-					short := getShortMethod(method)
-					if short != "" {
-						traits = append(traits, short)
+			// Classic base64-encoded SS (method:pass@host:port)
+			padded := ssPart + strings.Repeat("=", (4-len(ssPart)%4)%4)
+			decoded, err := base64.URLEncoding.DecodeString(padded)
+			if err != nil {
+				decoded, _ = base64.StdEncoding.DecodeString(padded)
+			}
+			if err == nil && len(decoded) > 0 {
+				decStr := string(decoded)
+				atSplit := strings.SplitN(decStr, "@", 2)
+				if len(atSplit) == 2 {
+					auth := atSplit[0]
+					colonSplit := strings.SplitN(auth, ":", 2)
+					if len(colonSplit) == 2 {
+						method := strings.ToLower(colonSplit[0])
+						short := getShortMethod(method)
+						if short != "" {
+							traits = append(traits, short)
+						}
 					}
 				}
 			}
@@ -486,10 +510,9 @@ func getTraitTag(config string) string {
 	}
 
 	tag := strings.Join(traits, " • ")
-	return strings.TrimRight(tag, " •")
+	return strings.Trim(tag, " •")
 }
 
-// Helper for SS method shortening
 func getShortMethod(method string) string {
 	m := strings.ToLower(method)
 	switch {
@@ -502,18 +525,8 @@ func getShortMethod(method string) string {
 	case strings.Contains(m, "2022"):
 		return "2022"
 	default:
-		if m != "" {
-			return strings.ToUpper(m[:min(6, len(m))])
-		}
 		return ""
 	}
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }
 
 func scrapeChannelStateful(channelName string) (map[string][]string, int) {
@@ -830,7 +843,6 @@ func labelWithGeo(config string, index int) string {
 	return buildLabel(config, emoji, countryName, index)
 }
 
-// Updated buildLabel with trait strategy
 func buildLabel(config string, emoji, countryName string, index int) string {
 	trait := getTraitTag(config)
 	label := fmt.Sprintf("%s %s | %s", emoji, countryName, trait)
