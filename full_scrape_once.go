@@ -11,7 +11,6 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"os"
 	"regexp"
@@ -228,7 +227,7 @@ func fullScrapeChannel(channelName string) {
 	fmt.Printf("%s done: %d pages, methods: %v\n", channelName, pagesScraped, getChannelProtocols(channelName))
 }
 
-// Cumulative helpers (copied minimal)
+// Cumulative helpers
 func updateChannelProtocols(channel string, newProtos []string) {
 	channelProtocolsMu.Lock()
 	if _, ok := channelProtocols[channel]; !ok {
@@ -317,7 +316,7 @@ func saveChannelProtocols() {
 	}
 }
 
-// Dummy loadCheckpoints (minimal, only loads if needed)
+// Dummy loadCheckpoints (minimal)
 func loadCheckpoints() {
 	if gistID == "" || gistToken == "" {
 		return
@@ -338,7 +337,7 @@ func loadCheckpoints() {
 	}
 }
 
-// loadChannelsFromCSV + removeDuplicates (minimal copy)
+// loadChannelsFromCSV + removeDuplicates
 func loadChannelsFromCSV(p string) ([]string, error) {
 	f, err := os.Open(p)
 	if err != nil {
