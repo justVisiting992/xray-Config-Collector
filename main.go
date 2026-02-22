@@ -329,7 +329,7 @@ func saveChannelProtocols() {
 	}
 }
 
-// New function: extract cool trait tag for label
+// Fixed and improved trait extraction
 func getTraitTag(config string) string {
 	lower := strings.ToLower(config)
 	var traits []string
@@ -346,16 +346,19 @@ func getTraitTag(config string) string {
 		}
 		var v map[string]interface{}
 		if json.Unmarshal(decoded, &v) == nil {
-			net := strings.ToLower(fmt.Sprint(v["net"]))
-			sec := strings.ToLower(fmt.Sprint(v["security"]))
+			// Safe extraction with defaults
+			netStr, _ := v["net"].(string)
+			net := strings.ToLower(netStr)
+			secStr, _ := v["security"].(string)
+			sec := strings.ToLower(secStr)
 			fp := ""
-			if tls, ok := v["tlsSettings"].(map[string]interface{}); ok {
-				if f, ok := tls["fingerprint"].(string); ok {
+			if tlsSettings, ok := v["tlsSettings"].(map[string]interface{}); ok {
+				if f, ok := tlsSettings["fingerprint"].(string); ok {
 					fp = strings.ToLower(f)
 				}
 			}
 
-			// Transport (omit plain tcp)
+			// Transport (skip plain tcp)
 			if net != "" && net != "tcp" {
 				if net == "httpupgrade" {
 					traits = append(traits, "HTTPup")
@@ -395,7 +398,7 @@ func getTraitTag(config string) string {
 				traits = append(traits, strings.ToUpper(sec))
 			}
 
-			// Transport (omit plain tcp)
+			// Transport (skip plain tcp)
 			if net != "" && net != "tcp" {
 				if net == "httpupgrade" {
 					traits = append(traits, "HTTPup")
@@ -417,30 +420,68 @@ func getTraitTag(config string) string {
 			q := u.Query()
 			fp := strings.ToLower(q.Get("fp"))
 
-			traits = append(traits, "TLS") // always TLS
+			traits = append(traits, "TLS")
 
 			if fp != "" {
 				traits = append(traits, fp)
 			}
 		}
 	} else if strings.HasPrefix(lower, "ss://") {
-		parts := strings.SplitN(strings.TrimPrefix(lower, "ss://"), "@", 2)
-		if len(parts) == 2 {
-			auth := parts[0]
-			methodPass := strings.SplitN(auth, ":", 2)
-			if len(methodPass) == 2 {
-				method := strings.ToLower(methodPass[0])
-				short := method
-				if strings.Contains(method, "aes-128") {
-					short = "AES128"
-				} else if strings.Contains(method, "aes-256") {
-					short = "AES256"
-				} else if strings.Contains(method, "chacha") {
-					short = "ChaCha"
-				} else if strings.Contains(method, "2022") {
-					short = "2022"
+		// Handle both plain and base64 SS formats
+		ssPart := strings.TrimPrefix(lower, "ss://")
+		// Try base64 decoding first (common format)
+		decoded, err := base64.URLEncoding.DecodeString(ssPart)
+		if err != nil {
+			decoded, _ = base64.StdEncoding.DecodeString(ssPart)
+		}
+		if err == nil && len(decoded) > 0 {
+			// base64 decoded -> method:password@host:port
+			decStr := string(decoded)
+			atSplit := strings.SplitN(decStr, "@", 2)
+			if len(atSplit) == 2 {
+				auth := atSplit[0]
+				methodPass := strings.SplitN(auth, ":", 2)
+				if len(methodPass) == 2 {
+					method := strings.ToLower(methodPass[0])
+					short := method
+					if strings.Contains(method, "aes-128") {
+						short = "AES128"
+					} else if strings.Contains(method, "aes-256") {
+						short = "AES256"
+					} else if strings.Contains(method, "chacha") {
+						short = "ChaCha"
+					} else if strings.Contains(method, "2022") {
+						short = "2022"
+					} else if method != "" {
+						short = strings.ToUpper(method[:3])
+					}
+					if short != "" {
+						traits = append(traits, short)
+					}
 				}
-				traits = append(traits, short)
+			}
+		} else {
+			// Plain format ss://method:password@host:port
+			atSplit := strings.SplitN(ssPart, "@", 2)
+			if len(atSplit) == 2 {
+				auth := atSplit[0]
+				methodPass := strings.SplitN(auth, ":", 2)
+				if len(methodPass) == 2 {
+					method := strings.ToLower(methodPass[0])
+					short := method
+					if strings.Contains(method, "aes-128") {
+						short = "AES128"
+					} else if strings.Contains(method, "aes-256") {
+						short = "AES256"
+					} else if strings.Contains(method, "chacha") {
+						short = "ChaCha"
+					} else if strings.Contains(method, "2022") {
+						short = "2022"
+					}
+					if short != "" {
+						traits = append(traits, short)
+					}
+				}
 			}
 		}
 	} else if strings.HasPrefix(lower, "hy2://") || strings.HasPrefix(lower, "hysteria2://") {
@@ -448,7 +489,8 @@ func getTraitTag(config string) string {
 		if err == nil {
 			q := u.Query()
 			obfs := strings.ToLower(q.Get("obfs"))
-			brutal := q.Get("brutal") != ""
+			brutalStr := q.Get("brutal")
+			brutal := brutalStr != "" && brutalStr != "0" && brutalStr != "false"
 
 			traits = append(traits, "TLS")
 
@@ -465,7 +507,10 @@ func getTraitTag(config string) string {
 	if len(traits) == 0 {
 		return "Basic"
 	}
-	return strings.Join(traits, " • ")
+
+	// Join and remove trailing dot if any
+	tag := strings.Join(traits, " • ")
+	return strings.TrimRight(tag, " •")
 }
 
 func scrapeChannelStateful(channelName string) (map[string][]string, int) {
@@ -635,7 +680,11 @@ func checkAlive(config string, protocol string) bool {
 		if err := json.Unmarshal(decoded, &v); err != nil {
 			return false
 		}
-		return tcpDial(fmt.Sprintf("%v", v.Add), fmt.Sprintf("%v", v.Port))
+		portStr := fmt.Sprintf("%v", v.Port)
+		if portStr == "<nil>" {
+			portStr = "443" // fallback
+		}
+		return tcpDial(fmt.Sprintf("%v", v.Add), portStr)
 	}
 	if strings.Contains(strings.ToLower(protocol), "hy2") {
 		u, err := url.Parse(config)
