@@ -7,7 +7,9 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"unicode/utf8"
 )
@@ -27,6 +29,7 @@ func main() {
 
 	var proxies []Proxy
 	scanner := bufio.NewScanner(file)
+	skipped := 0
 
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
@@ -48,30 +51,45 @@ func main() {
 			p, parseErr = parseSS(line)
 		case strings.HasPrefix(line, "hysteria2://") || strings.HasPrefix(line, "hy2://"):
 			p, parseErr = parseHy2(line)
+		default:
+			fmt.Printf("Skipped unsupported: %s\n", line[:60]+"...")
+			skipped++
+			continue
 		}
 
-		if parseErr == nil && p != nil {
-			p["udp"] = true
-			p["skip-cert-verify"] = true
-
-			if p["tls"] == true {
-				p["alpn"] = []string{"h2", "http/1.1"}
-			}
-
-			delete(p, "plugin")
-			delete(p, "plugin-opts")
-			delete(p, "obfs")
-			delete(p, "obfs-password")
-
-			if name, ok := p["name"].(string); ok {
-				p["name"] = sanitizeString(name)
-			}
-
-			proxies = append(proxies, p)
+		if parseErr != nil {
+			fmt.Printf("Parse error skipped: %s | %v\n", line[:60]+"...", parseErr)
+			skipped++
+			continue
 		}
+
+		if p == nil {
+			fmt.Printf("Nil proxy skipped: %s\n", line[:60]+"...")
+			skipped++
+			continue
+		}
+
+		p["udp"] = true
+		p["skip-cert-verify"] = true
+
+		if p["tls"] == true {
+			p["alpn"] = []string{"h2", "http/1.1"}
+		}
+
+		delete(p, "plugin")
+		delete(p, "plugin-opts")
+		delete(p, "obfs")
+		delete(p, "obfs-password")
+
+		if name, ok := p["name"].(string); ok {
+			p["name"] = sanitizeString(name)
+		}
+
+		proxies = append(proxies, p)
 	}
 
 	writeClashYaml(outputFile, proxies)
+	fmt.Printf("\nWrote %d proxies | Skipped %d\n", len(proxies), skipped)
 }
 
 func sanitizeString(s string) string {
@@ -108,6 +126,11 @@ func parseVless(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 	p["uuid"] = u.User.Username()
+
+	// UUID validation
+	if uuid, ok := p["uuid"].(string); !ok || !regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$`).MatchString(uuid) {
+		return nil, fmt.Errorf("invalid UUID")
+	}
 
 	security := q.Get("security")
 	if security == "tls" || security == "reality" {
