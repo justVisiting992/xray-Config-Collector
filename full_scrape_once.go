@@ -8,8 +8,10 @@ package main
 
 import (
 	"bytes"
+	"encoding/csv"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"regexp"
@@ -23,6 +25,23 @@ import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
 )
+
+type ChannelReport struct {
+	Name      string
+	Protocols []string
+	Count     int
+	Message   string
+}
+
+type GistRequest struct {
+	Files map[string]GistFile `json:"files"`
+}
+type GistResponse struct {
+	Files map[string]GistFile `json:"files"`
+}
+type GistFile struct {
+	Content string `json:"content"`
+}
 
 var (
 	client   = &http.Client{Timeout: 15 * time.Second}
@@ -61,14 +80,14 @@ var (
 		"nekobox":      "Nekobox/NekoRay",
 		"openvpn":      "OpenVPN",
 		"psiphon":      "Psiphon",
-		// Add more keywords here if needed
+		// Add more if needed
 	}
 )
 
 func main() {
 	gologger.DefaultLogger.SetMaxLevel(levels.LevelInfo)
 	fmt.Println("=== ONE-TIME FULL SCRAPE for bypass methods ===")
-	fmt.Println("This will scrape 20 pages per channel, detect all tools, update Gist & report.md")
+	fmt.Println("Scraping 20 pages per channel, detecting all tools, updating Gist & report.md")
 	fmt.Println("After this run, DELETE this file — main.go will handle future updates")
 
 	if gistID == "" || gistToken == "" {
@@ -101,7 +120,7 @@ func main() {
 			name := uParts[len(uParts)-1]
 			fmt.Printf("Scraping full history: %s\n", name)
 
-			_, _ = fullScrapeChannel(name) // ignore extracted configs, we only care about methods
+			fullScrapeChannel(name)
 		}(urlStr)
 	}
 	wg.Wait()
@@ -109,8 +128,7 @@ func main() {
 	saveChannelProtocols()
 	fmt.Println("Gist updated with all detected bypass methods")
 
-	// Generate report.md with enriched table
-	// (Dummy reports just to reuse generateReportStructure — we only need the table)
+	// Generate minimal report.md with enriched table
 	var reports []ChannelReport
 	channelProtocolsMu.Lock()
 	for ch := range channelProtocols {
@@ -119,27 +137,23 @@ func main() {
 		reports = append(reports, ChannelReport{
 			Name:      ch,
 			Protocols: protos,
-			Count:     0, // dummy
-			Message:   "—", // dummy
+			Count:     0,
+			Message:   "—",
 		})
 	}
 	channelProtocolsMu.Unlock()
 
-	// Dummy stats (not used)
-	dummyStats := make(map[string][2]int)
-	content := generateReportStructure(reports, dummyStats)
+	content := generateMinimalReport(reports)
 	_ = os.WriteFile("report.md", []byte(content), 0644)
 
-	fmt.Println("Done! report.md updated with full bypass methods table.")
-	fmt.Println("You can now DELETE full_scrape_once.go")
-	fmt.Println("Future runs of main.go will keep the table cumulative.")
+	fmt.Println("Done! report.md updated. Check the second column.")
+	fmt.Println("Delete this file now: rm full_scrape_once.go")
 }
 
-// Full historical scrape — ignores checkpoint, scrapes 20 pages, collects methods
-func fullScrapeChannel(channelName string) (int, int) {
+// Full scrape — 20 pages, no checkpoint filter
+func fullScrapeChannel(channelName string) {
 	baseURL := "https://t.me/s/" + channelName
 	nextURL := baseURL
-	totalExtracted := 0
 	pagesScraped := 0
 	const maxPages = 20
 
@@ -167,16 +181,16 @@ func fullScrapeChannel(channelName string) (int, int) {
 
 			foundAny = true
 
-			// Extract your 5 core protocols (for completeness)
+			lowerText := strings.ToLower(text)
+
+			// Your 5 core protocols
 			for pName, reg := range myregex {
-				if regexp.MustCompile(reg).MatchString(text) {
+				if regexp.MustCompile(reg).MatchString(lowerText) {
 					updateChannelProtocols(channelName, []string{pName})
-					totalExtracted++
 				}
 			}
 
-			// Scan for extra bypass tools
-			lowerText := strings.ToLower(text)
+			// Extra bypass tools
 			for kw, toolName := range extraTools {
 				if strings.Contains(lowerText, kw) {
 					updateChannelProtocols(channelName, []string{toolName})
@@ -184,8 +198,8 @@ func fullScrapeChannel(channelName string) (int, int) {
 			}
 		})
 
-		// Try to go older
-		var minIDOnPage int = 999999999
+		// Next page
+		minIDOnPage := 999999999
 		doc.Find(".tgme_widget_message").Each(func(i int, s *goquery.Selection) {
 			dataPost, exists := s.Attr("data-post")
 			if !exists {
@@ -205,19 +219,16 @@ func fullScrapeChannel(channelName string) (int, int) {
 			nextURL = fmt.Sprintf("%s?before=%d", baseURL, minIDOnPage)
 			pagesScraped++
 			time.Sleep(2 * time.Second)
-			fmt.Printf("  %s: scraped page %d\n", channelName, pagesScraped)
+			fmt.Printf("  %s: page %d/%d\n", channelName, pagesScraped, maxPages)
 		} else {
 			break
 		}
 	}
 
-	fmt.Printf("%s: scraped %d pages, found methods: %v\n",
-		channelName, pagesScraped, getChannelProtocols(channelName))
-
-	return totalExtracted, pagesScraped
+	fmt.Printf("%s done: %d pages, methods: %v\n", channelName, pagesScraped, getChannelProtocols(channelName))
 }
 
-// Reuse your cumulative functions (copy-pasted minimal version)
+// Cumulative helpers (copied minimal)
 func updateChannelProtocols(channel string, newProtos []string) {
 	channelProtocolsMu.Lock()
 	if _, ok := channelProtocols[channel]; !ok {
@@ -306,7 +317,28 @@ func saveChannelProtocols() {
 	}
 }
 
-// Minimal loadChannelsFromCSV + removeDuplicates (copied from your main.go)
+// Dummy loadCheckpoints (minimal, only loads if needed)
+func loadCheckpoints() {
+	if gistID == "" || gistToken == "" {
+		return
+	}
+	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
+	req.Header.Set("Authorization", "token "+gistToken)
+	resp, err := client.Do(req)
+	if err != nil {
+		return
+	}
+	defer resp.Body.Close()
+
+	var gistResp GistResponse
+	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
+		if file, ok := gistResp.Files["checkpoints.json"]; ok {
+			_ = json.Unmarshal([]byte(file.Content), &checkpoints)
+		}
+	}
+}
+
+// loadChannelsFromCSV + removeDuplicates (minimal copy)
 func loadChannelsFromCSV(p string) ([]string, error) {
 	f, err := os.Open(p)
 	if err != nil {
@@ -346,11 +378,11 @@ func removeDuplicates(slice []string) []string {
 	return list
 }
 
-// Reuse your generateReportStructure (minimal copy — only table part matters)
-func generateReportStructure(reports []ChannelReport, _ map[string][2]int) string {
+// Minimal report generation (only table + header)
+func generateMinimalReport(reports []ChannelReport) string {
 	var sb strings.Builder
 	sb.WriteString("# 📊 Status Report\n\n")
-	sb.WriteString("### 📡 Source Analysis\n\n")
+	sb.WriteString("### 📡 Source Analysis (Bypass Methods)\n\n")
 	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
 	sb.WriteString("| :--- | :--- | :--- |\n")
 
@@ -368,6 +400,6 @@ func generateReportStructure(reports []ChannelReport, _ map[string][2]int) strin
 		sb.WriteString(fmt.Sprintf("| 📢 [%s](%s) | `%s` | %s |\n", linkName, linkURL, protos, r.Message))
 	}
 	sb.WriteString("\n---\n")
-	sb.WriteString("*One-time full scrape for bypass methods — main.go will keep it updated*")
+	sb.WriteString("*One-time full scrape — main.go will keep updating cumulatively*")
 	return sb.String()
 }
