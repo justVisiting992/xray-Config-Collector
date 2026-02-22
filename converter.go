@@ -39,6 +39,7 @@ func main() {
 
 		var p Proxy
 		var parseErr error
+		var reason string
 
 		switch {
 		case strings.HasPrefix(line, "vless://"):
@@ -52,19 +53,21 @@ func main() {
 		case strings.HasPrefix(line, "hysteria2://") || strings.HasPrefix(line, "hy2://"):
 			p, parseErr = parseHy2(line)
 		default:
-			fmt.Printf("Skipped unsupported: %s\n", line[:60]+"...")
-			skipped++
-			continue
+			reason = "unsupported protocol"
 		}
 
 		if parseErr != nil {
-			fmt.Printf("Parse error skipped: %s | %v\n", line[:60]+"...", parseErr)
+			reason = parseErr.Error()
+		}
+
+		if reason != "" {
+			fmt.Printf("Skipped: %s | reason: %s\n", line[:60]+"...", reason)
 			skipped++
 			continue
 		}
 
 		if p == nil {
-			fmt.Printf("Nil proxy skipped: %s\n", line[:60]+"...")
+			fmt.Printf("Skipped nil proxy: %s\n", line[:60]+"...")
 			skipped++
 			continue
 		}
@@ -89,7 +92,7 @@ func main() {
 	}
 
 	writeClashYaml(outputFile, proxies)
-	fmt.Printf("\nWrote %d proxies | Skipped %d\n", len(proxies), skipped)
+	fmt.Printf("\n✅ Wrote %d proxies | Skipped %d\n", len(proxies), skipped)
 }
 
 func sanitizeString(s string) string {
@@ -128,7 +131,7 @@ func parseVless(raw string) (Proxy, error) {
 	p["uuid"] = u.User.Username()
 
 	// UUID validation
-	if uuid, ok := p["uuid"].(string); !ok || !regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$`).MatchString(uuid) {
+	if uuid := p["uuid"].(string); !regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$`).MatchString(uuid) {
 		return nil, fmt.Errorf("invalid UUID")
 	}
 
