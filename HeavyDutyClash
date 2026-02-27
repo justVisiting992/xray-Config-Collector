@@ -516,7 +516,7 @@ proxy-providers:
     type: http
     url: https://raw.githubusercontent.com/10ium/ClashFactory/main/providers/10ium-config-fetcher.txt
     interval: 3600
-    path: ./proxy-providers/f3.yaml
+    path: ./proxy-providers/f2.yaml
     health-check:
       enable: true
       interval: 600
@@ -525,7 +525,7 @@ proxy-providers:
     type: http
     url: https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/main/Clash_Movaghat
     interval: 3600
-    path: ./proxy-providers/f4.yaml
+    path: ./proxy-providers/f3.yaml
     health-check:
       enable: true
       interval: 600
@@ -534,7 +534,7 @@ proxy-providers:
     type: http
     url: https://raw.githubusercontent.com/xtoolkit/TVC/main/subscriptions/meta/mix
     interval: 3600
-    path: ./proxy-providers/f5.yaml
+    path: ./proxy-providers/f4.yaml
     health-check:
       enable: true
       interval: 600
