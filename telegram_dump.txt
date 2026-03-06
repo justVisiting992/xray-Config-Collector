@@ -1,23 +1,72 @@
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
 
-#SLIPNET-ENC #VPN
+#NapsternetV #Config #File
 
-🕒 انتشار: 06:41 - 1404/12/15
-💡 منبع: @ai_duet
+🕒 انتشار: 10:29 - 1404/12/15
+💡 منبع: @dargiiriis
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=slipnet-enc%3A%2F%2FARN6p6wDJHXNfGPbALZ6%2BKYjfSltCMv8oH3lN4TgQmCHrLJhIqQBcSqXKTwaT3rpHTtkWd63%2FqfA5y5PkQieOpiRqN9heuIljfncZ2TlXx1w%2BTmL2Drw19jOuNop95qdMJ1ZBm8DxIu7NchFGnR0OXqV6yFEjFWxouqPBdf7sQThvHoeEWxoElHuGAnZ8Bx%2F62epyGHImIKuK2TTvUAw4OlmSy%2FVJebGQmulwjJcCxdKmVUu2x3a90ANQqWvDj9YxQ404yNhAE%2FqSEUyN4BqSM%2BtYCLvfTSqky1QXbVC6EKceevI%2F8lLc1K4hXRzVSZfBKyWsYkzR8Ezx2o6v%2FZUXdlN8viheJrF%2BR89zmxfzyBOtj6RYD3lA5NmSl1BDj01QroCqDM5%2FqKRSu4%2B77dqNyL2Mn9wsLigaJk%3D)
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
 
-```slipnet-enc://ARN6p6wDJHXNfGPbALZ6+KYjfSltCMv8oH3lN4TgQmCHrLJhIqQBcSqXKTwaT3rpHTtkWd63/qfA5y5PkQieOpiRqN9heuIljfncZ2TlXx1w+TmL2Drw19jOuNop95qdMJ1ZBm8DxIu7NchFGnR0OXqV6yFEjFWxouqPBdf7sQThvHoeEWxoElHuGAnZ8Bx/62epyGHImIKuK2TTvUAw4OlmSy/VJebGQmulwjJcCxdKmVUu2x3a90ANQqWvDj9YxQ404yNhAE/qSEUyN4BqSM+tYCLvfTSqky1QXbVC6EKceevI/8lLc1K4hXRzVSZfBKyWsYkzR8Ezx2o6v/ZUXdlN8viheJrF+R89zmxfzyBOtj6RYD3lA5NmSl1BDj01QroCqDM5/qKRSu4+77dqNyL2Mn9wsLigaJk=```
+#NapsternetV #Config #File
 
-📊 **گزارش عملکرد ربات**
+🕒 انتشار: 10:11 - 1404/12/15
+💡 منبع: @Proxymelimon
 
-📅 تاریخ: 1404/12/14
-✅ مجموع کل: 199
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
 
-⚙️ تعداد کانفیگ: 120
-🛡 تعداد پروکسی: 53
-📂 تعداد فایل: 26
+#NapsternetV #Config #File
 
-#آمار #گزارش
+🕒 انتشار: 10:11 - 1404/12/15
+💡 منبع: @Proxymelimon
+
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
+
+#NapsternetV #Config #File
+
+🕒 انتشار: 10:11 - 1404/12/15
+💡 منبع: @Proxymelimon
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Hong Kong 🇭🇰
+📶 پینگ: 126ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 21:21 - 1404/12/13
+💡 منبع: @beshkan
+
+
+```https://t.me/proxy?server=194.120.230.106&port=433&secret=3XnnAQIAAQAH8AMDhuJMOt0```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 145ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 10:02 - 1404/12/15
+💡 منبع: @privatevpns
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4063.182.228.117%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S101%29%F0%9F%87%A9%F0%9F%87%AAt.me%2FPrivateVPNs)
+
+```trojan://telegram-id-privatevpns@63.182.228.117:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
+
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
+
+#NapsternetV #Config #File
+
+🕒 انتشار: 09:34 - 1404/12/15
+💡 منبع: @Proxymelimon
+
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
+
+#NapsternetV #Config #File
+
+🕒 انتشار: 09:31 - 1404/12/15
+💡 منبع: @Proxymelimon
