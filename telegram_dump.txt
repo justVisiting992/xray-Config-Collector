@@ -1,221 +1,91 @@
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
 
-#SLIPNET-ENC #VPN
+#NapsternetV #Config #File
 
-🕒 انتشار: 00:13 - 1404/12/16
-💡 منبع: @slipnet_chat
+🕒 انتشار: 02:07 - 1404/12/16
+💡 منبع: @makvaslim
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=slipnet-enc%3A%2F%2FAT73E1xK4z4szO%2FlEKlRt7hTheMKkEwTgvM9D%2Fi83Kkuqdq%2FQdND%2B8Wsggv3tHMZqiHszZuKPusSTaKjS48m%2BM8TPKduM3KDvMnoK1G%2FJi7MSDud6raeJUXh8ZUs%2Fd30Q%2BsdV99UlKQVNz0lALObWLudiAzy%2BIV5VSlJWWjAeOl7z2A3AG6tz8xqPbulHE3D4B37bn7%2FBzoxRzo8wWtMZf%2FCvvhh8DYeK8Jd4vgP%2Br8mtw3p1T%2F7m1f0ITbfNoeoJYEzlFGjdYqImnF%2FKQpCn1CtwUjXK78GewZci51L7GIYsIL0%2BaclsceQETX2Np0OxCTUR%2F5inX2eXiogP2wUMfDvdrSxte9JQIPLygPyrmiuz8TLoHvBtpkA8z8G72Yem8aUtp7KZH2uce%2FTmbamQrKFjr5nne0SWOKCivYBSfy4YWmhEAeagvfUvlnj7PbCbB%2FAEWr%2BzSek0loxTF43k0O1aBigxvtWgzLgAJHKm5aGnprX7uRtTjQf4xH%2BOzLLgOLtJZZImBst5wLgnC%2FA0APfQCVTyQNjOwYI6XzJ4sjmjvI7Q%2BHzEczJehIcvOORNrkr3w%3D%3D)
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Cyprus 🇨🇾
+📶 پینگ: 166ms
 
-```slipnet-enc://AT73E1xK4z4szO/lEKlRt7hTheMKkEwTgvM9D/i83Kkuqdq/QdND+8Wsggv3tHMZqiHszZuKPusSTaKjS48m+M8TPKduM3KDvMnoK1G/Ji7MSDud6raeJUXh8ZUs/d30Q+sdV99UlKQVNz0lALObWLudiAzy+IV5VSlJWWjAeOl7z2A3AG6tz8xqPbulHE3D4B37bn7/BzoxRzo8wWtMZf/Cvvhh8DYeK8Jd4vgP+r8mtw3p1T/7m1f0ITbfNoeoJYEzlFGjdYqImnF/KQpCn1CtwUjXK78GewZci51L7GIYsIL0+aclsceQETX2Np0OxCTUR/5inX2eXiogP2wUMfDvdrSxte9JQIPLygPyrmiuz8TLoHvBtpkA8z8G72Yem8aUtp7KZH2uce/TmbamQrKFjr5nne0SWOKCivYBSfy4YWmhEAeagvfUvlnj7PbCbB/AEWr+zSek0loxTF43k0O1aBigxvtWgzLgAJHKm5aGnprX7uRtTjQf4xH+OzLLgOLtJZZImBst5wLgnC/A0APfQCVTyQNjOwYI6XzJ4sjmjvI7Q+HzEczJehIcvOORNrkr3w==```
+#Proxy #MTProto
+
+🕒 انتشار: 00:49 - 1404/12/16
+💡 منبع: @YeBeKhe
+
+
+```tg://proxy?server=92.118.234.215&port=443&secret=dddb9b51b5ce9a2820ff62d348cb23f1b9```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Unknown 🏁
+📶 پینگ: 2ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 00:49 - 1404/12/16
+💡 منبع: @YeBeKhe
+
+
+```tg://proxy?server=www.spsctr.info&port=22&secret=7nnnAQIAAQAH8AMDhuJMOt0=```
 
 📂 کانفیگ MTPROTO
 📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 150ms
+📶 پینگ: 151ms
 
 #Proxy #MTProto
 
-🕒 انتشار: 23:56 - 1404/12/15
-💡 منبع: @Proxymelimon
+🕒 انتشار: 00:49 - 1404/12/16
+💡 منبع: @YeBeKhe
 
 
-```https://t.me/proxy?server=92.246.139.33&port=8888&secret=eeb94b8e35905f710e8ac96be3d451931a706574726f766963682e7275)```
+```tg://proxy?server=116.203.8.88&port=42341&secret=79e7010200010007f0030386e24c3add```
 
 📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 144ms
+📍 لوکیشن: Czechia 🇨🇿
+📶 پینگ: 153ms
 
 #Proxy #MTProto
 
-🕒 انتشار: 23:56 - 1404/12/15
-💡 منبع: @Proxymelimon
+🕒 انتشار: 00:49 - 1404/12/16
+💡 منبع: @YeBeKhe
 
 
-```https://t.me/proxy?server=91.107.172.155&port=443&secret=79e344818749bd7ac519130220c25d09)```
+```tg://proxy?server=95.85.231.6&port=8443&secret=46b107169c2e3968abc49eba40928782```
 
 📂 کانفیگ MTPROTO
-📍 لوکیشن: Austria 🇦🇹
-📶 پینگ: 133ms
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 155ms
 
 #Proxy #MTProto
 
-🕒 انتشار: 23:56 - 1404/12/15
-💡 منبع: @Proxymelimon
+🕒 انتشار: 00:49 - 1404/12/16
+💡 منبع: @YeBeKhe
 
 
-```https://t.me/proxy?server=www.qatar-railways.info.&port=443&secret=ee79e7010200010007f0030386e24c3add68656c702e737465616d706f77657265642e636f6d)```
+```tg://proxy?server=77.239.112.86&port=30534&secret=ddbee03206cb1a464769f666fc1820b03f```
 
 📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 144ms
+📍 لوکیشن: روسیه 🇷🇺
+📶 پینگ: 182ms
 
 #Proxy #MTProto
 
-🕒 انتشار: 20:33 - 1404/12/15
-💡 منبع: @beshkan
+🕒 انتشار: 00:49 - 1404/12/16
+💡 منبع: @YeBeKhe
 
 
-```https://t.me/proxy?server=91.107.172.155&port=443&secret=79e344818749bd7ac519130220c25d09```
+```tg://proxy?server=185.73.126.27&port=8443&secret=cc3dd85be1bd44e3d41db989bd3dc53e```
 
 📂 کانفیگ MTPROTO
-📍 لوکیشن: Austria 🇦🇹
-📶 پینگ: 127ms
+📍 لوکیشن: Poland 🇵🇱
+📶 پینگ: 117ms
 
 #Proxy #MTProto
 
-🕒 انتشار: 21:18 - 1404/12/14
-💡 منبع: @beshkan
+🕒 انتشار: 00:37 - 1404/12/16
+💡 منبع: @makvaslim
 
 
-```https://t.me/proxy?server=www.careemian.info.&port=2083&secret=ee1603010200010001fc030386e24c3add68656c702e737465616d706f77657265642e636f6d```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Austria 🇦🇹
-📶 پینگ: 105ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 23:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=147.125.130.46&port=2083&secret=ee1603010200010001fc030386e24c3add68656c702e737465616d706f77657265642e636f6d```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: ژاپن 🇯🇵
-📶 پینگ: 141ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 23:05 - 1404/12/15
-💡 منبع: @azadi_az_inja_migzare
-
-
-```tg://proxy?server=45.32.10.186&port=9443&secret=2adab36179e7a39026adf74034615248```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 130ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=Ashkoda-Best.gabrial-batistuta.shop&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 133ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=general.irancell-ir.cfd&port=443&secret=ee1603010200010001fc030386e24c3add626973636F7474692E79656B74616E65742E636F6D```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 130ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=Shoting.forwarding-co.site.&port=44300&secret=eeNEgYdJvXrFGRMCIMJdCQ```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 130ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=weblog.forwarding-co.site&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 133ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=total.beyondeson-co.cfd&port=443&secret=ee1603010200010001fc030386e24c3add626973636F7474692E79656B74616E65742E636F6D```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 109ms
-
-#VLESS #VPN
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F1e878456-0f00-4a85-99a6-1d69bdc62e3d%40152.53.116.71%3A443%3Ftype%3Dtcp%26security%3Dreality%26pbk%3DL0T7BLyB6gtVckvnxryaK-GGd2XwgoJ3YFM9M8kXmho%26fp%3Dchrome%26sni%3Dyahoo.com%26sid%3D7554%26spx%3D%2F%23%2540v2rayconfigamir%25209595)
-
-```vless://1e878456-0f00-4a85-99a6-1d69bdc62e3d@152.53.116.71:443?type=tcp&security=reality&pbk=L0T7BLyB6gtVckvnxryaK-GGd2XwgoJ3YFM9M8kXmho&fp=chrome&sni=yahoo.com&sid=7554&spx=/#%40v2rayconfigamir%209595```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 109ms
-
-#VLESS #VPN
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F97e276a0-6991-4589-b95a-2fbb2cbacee2%4078.159.110.53%3A14443%3Fflow%3Dxtls-rprx-vision%26encryption%3Dnone%26type%3Dtcp%26security%3Dreality%26sni%3Dwww.jobinvest.ru%26pbk%3DSbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc%23%2540v2rayconfigamir%25203439)
-
-```vless://97e276a0-6991-4589-b95a-2fbb2cbacee2@78.159.110.53:14443?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&sni=www.jobinvest.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc#%40v2rayconfigamir%203439```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 116ms
-
-#VLESS #VPN
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F26524cce-d514-4014-a426-365fb266a14d%4082.117.245.53%3A2053%3Fsecurity%3Dtls%26sni%3Dbt5hpm5jf6.chinam.eu.org%26type%3Dws%26host%3Dbt5hpm5jf6.chinam.eu.org%26path%3D%252Fdanfeng%253Fed%253D2560%26fp%3Drandom%23%2540v2rayconfigamir%25209605)
-
-```vless://26524cce-d514-4014-a426-365fb266a14d@82.117.245.53:2053?security=tls&sni=bt5hpm5jf6.chinam.eu.org&type=ws&host=bt5hpm5jf6.chinam.eu.org&path=%2Fdanfeng%3Fed%3D2560&fp=random#%40v2rayconfigamir%209605```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 110ms
-
-#VLESS #VPN
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2FTelegram%3A%2540Free_VPN_CH%40195.26.231.93%3A443%3Fpath%3D%2Fsg-lnd%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26host%3Dtn1rr.qzz.io%26type%3Dws%26allowInsecure%3D0%26sni%3Dtn1rr.qzz.io%23%2540v2rayconfigamir%25208181)
-
-```vless://Telegram:%40Free_VPN_CH@195.26.231.93:443?path=/sg-lnd&security=tls&encryption=none&insecure=0&host=tn1rr.qzz.io&type=ws&allowInsecure=0&sni=tn1rr.qzz.io#%40v2rayconfigamir%208181```
-
-📂 کانفیگ VMess
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 109ms
-
-#VMess #VPN
-
-🕒 انتشار: 19:30 - 1404/12/15
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJhZGQiOiIxNjIuMTkuMjQ4LjIzOCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiIiwiaWQiOiJlZGUyN2E3OS1iMDM5LTQ5MGItOTMyYy00OTVkZTRiNjg4ODAiLCJuZXQiOiJ0Y3AiLCJwYXRoIjoiIiwicG9ydCI6IjU1MCIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAxODM5Iiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiJub25lIiwidiI6IjIifQ%3D%3D)
-
-```vmess://eyJhZGQiOiIxNjIuMTkuMjQ4LjIzOCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiIiwiaWQiOiJlZGUyN2E3OS1iMDM5LTQ5MGItOTMyYy00OTVkZTRiNjg4ODAiLCJuZXQiOiJ0Y3AiLCJwYXRoIjoiIiwicG9ydCI6IjU1MCIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAxODM5Iiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiJub25lIiwidiI6IjIifQ==```
+```https://t.me/proxy?server=195.3.222.147&port=47998&secret=dd833e1ac99cec3eddbf4e817402d7933f```
