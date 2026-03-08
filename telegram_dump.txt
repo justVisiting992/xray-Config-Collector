@@ -1,67 +1,11 @@
-📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 107ms
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Austria 🇦🇹
+📶 پینگ: 132ms
 
-#TROJAN #VPN
+#Proxy #MTProto
 
-🕒 انتشار: 16:03 - 1404/12/17
-💡 منبع: @privatevpns
+🕒 انتشار: 21:18 - 1404/12/14
+💡 منبع: @beshkan
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4013.36.46.152%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S104%29%F0%9F%87%A8%F0%9F%87%B5t.me%2FPrivateVPNs)
 
-```trojan://telegram-id-privatevpns@13.36.46.152:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)🇨🇵t.me/PrivateVPNs```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 92ms
-
-#VLESS #VPN
-
-🕒 انتشار: 15:12 - 1404/12/17
-💡 منبع: @Proxymelimon
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fc71d2f84-1ae1-11f1-97cf-7fa5d2a6fb9f%40gr5.vpnjantit.com%3A10004%3Fpath%3D%252Fvpnjantit%26security%3Dnone%26encryption%3Dnone%26type%3Dws%23%25F0%259F%2587%25A9%25F0%259F%2587%25AA%25C2%25A6german%25202)
-
-```vless://c71d2f84-1ae1-11f1-97cf-7fa5d2a6fb9f@gr5.vpnjantit.com:10004?path=%2Fvpnjantit&security=none&encryption=none&type=ws#%F0%9F%87%A9%F0%9F%87%AA%C2%A6german%202```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 92ms
-
-#VLESS #VPN
-
-🕒 انتشار: 15:12 - 1404/12/17
-💡 منبع: @Proxymelimon
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fc71d2f84-1ae1-11f1-97cf-7fa5d2a6fb9f%40gr5.vpnjantit.com%3A10002%3Fpath%3D%252Fvpnjantit%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26type%3Dws%26allowInsecure%3D0%23%25F0%259F%2587%25A9%25F0%259F%2587%25AA%25C2%25A6german)
-
-```vless://c71d2f84-1ae1-11f1-97cf-7fa5d2a6fb9f@gr5.vpnjantit.com:10002?path=%2Fvpnjantit&security=tls&encryption=none&insecure=0&type=ws&allowInsecure=0#%F0%9F%87%A9%F0%9F%87%AA%C2%A6german```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 14:52 - 1404/12/17
-💡 منبع: @dargiiriis
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 14:43 - 1404/12/17
-💡 منبع: @dargiiriis
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 103ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 14:02 - 1404/12/17
-💡 منبع: @privatevpns
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4035.181.15.224%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S103%29%F0%9F%87%A8%F0%9F%87%B5t.me%2FPrivateVPNs)
-
-```trojan://telegram-id-privatevpns@35.181.15.224:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)🇨🇵t.me/PrivateVPNs```
+```https://t.me/proxy?server=www.qatar-railways.info.&port=443&secret=ee79e7010200010007f0030386e24c3add68656c702e737465616d706f77657265642e636f6d```
