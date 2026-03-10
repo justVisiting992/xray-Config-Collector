@@ -1,33 +1,51 @@
-📂 کانفیگ TROJAN
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 132ms
+📂 کانفیگ SLIPNET-ENC
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
 
-#TROJAN #VPN
+#SLIPNET-ENC #VPN
 
-🕒 انتشار: 20:02 - 1404/12/19
-💡 منبع: @privatevpns
+🕒 انتشار: 23:01 - 1404/12/19
+💡 منبع: @AzadNet
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4063.183.93.61%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S102%29%F0%9F%87%A9%F0%9F%87%AAt.me%2FPrivateVPNs)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=slipnet-enc%3A%2F%2FAd5ljOGdOek71hHe189FMLF1zHZucJMWdVmtgf%2FwiWSnxsnwrfjoB0we%2BYvr4JcuZ299lbC14pspwycYa8VbqjY7Thkf2Wr9w2BXV4N%2B8KYg%2BFvj4DfmpNnIIF%2F0mfOn8DnBrqULhCu4nwu9Pro5L9W2LdonUQCpboNUTw9mXugCuQ%2FzWSgBLfzA45L%2F6fA6w5EoclGMZy78F4E60ZF21GnpWdWDvKdS73YBAlbdTm9RgwZqikBiX9KzmLFO1pX3GJZLGnkByP1dOABZJMcnlJfmWr3cHYlD6mAbU9ttUuPZejYYteuwZ6xryIxnbJXU2%2BsVJStOvjp81C3eBTTPhoAe7WQ%2BAYa1Eutmfq2Vh%2Bo98wAE5nb6Kn794rfzfP0Vnv2MZuRV4N0chCBX%2B2Xv8y3mIx0nmozrmOacfddoqntBuB85%2FkXlTVWKA4MoqmliK2ZvPTrFRCP9LqH4lohlgrpVdKYVnphEQHyJ5KAYqgNqWNkcian44K1qh9bgjMv28wRSopxyUQ%3D%3D)
 
-```trojan://telegram-id-privatevpns@63.183.93.61:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)🇩🇪t.me/PrivateVPNs```
+```slipnet-enc://Ad5ljOGdOek71hHe189FMLF1zHZucJMWdVmtgf/wiWSnxsnwrfjoB0we+Yvr4JcuZ299lbC14pspwycYa8VbqjY7Thkf2Wr9w2BXV4N+8KYg+Fvj4DfmpNnIIF/0mfOn8DnBrqULhCu4nwu9Pro5L9W2LdonUQCpboNUTw9mXugCuQ/zWSgBLfzA45L/6fA6w5EoclGMZy78F4E60ZF21GnpWdWDvKdS73YBAlbdTm9RgwZqikBiX9KzmLFO1pX3GJZLGnkByP1dOABZJMcnlJfmWr3cHYlD6mAbU9ttUuPZejYYteuwZ6xryIxnbJXU2+sVJStOvjp81C3eBTTPhoAe7WQ+AYa1Eutmfq2Vh+o98wAE5nb6Kn794rfzfP0Vnv2MZuRV4N0chCBX+2Xv8y3mIx0nmozrmOacfddoqntBuB85/kXlTVWKA4MoqmliK2ZvPTrFRCP9LqH4lohlgrpVdKYVnphEQHyJ5KAYqgNqWNkcian44K1qh9bgjMv28wRSopxyUQ==```
 
 📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 194ms
+📍 لوکیشن: South Africa 🇿🇦
+📶 پینگ: 270ms
 
 #VLESS #VPN
 
-🕒 انتشار: 18:12 - 1404/12/19
-💡 منبع: @shay_iranux
+🕒 انتشار: 22:27 - 1404/12/19
+💡 منبع: @AzadNet
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2FZem5jz6yS%40143.204.111.124%3A443%3Fpath%3D%252F%26security%3Dtls%26alpn%3Dh2%252Chttp%252F1.1%26encryption%3Dnone%26insecure%3D1%26host%3Dd2c2o3w4og10sj.cloudfront.net%26fp%3Dchrome%26type%3Dws%26allowInsecure%3D1%26sni%3Dd2c2o3w4og10sj.cloudfront.net%23%25F0%259D%2598%25BE%25F0%259D%2599%259E%25F0%259D%2599%25A5%25F0%259D%2599%259D%25F0%259D%2599%259A%25F0%259D%2599%25A7%25F0%259D%2599%258D%25F0%259D%2599%25A4%25F0%259D%2599%25AA%25F0%259D%2599%25A9%25F0%259D%2599%259A%25F0%259D%2599%2591%25F0%259D%2599%258B%25F0%259D%2599%2589)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Ff9a84da7-102f-4066-8593-095c4a4af003%40102.37.157.78%3A6013%3Fpath%3D%252F%26security%3Dnone%26encryption%3Dnone%26host%3Dsoft98.ir%26type%3Dws%23%2540AzadNet)
 
-```vless://Zem5jz6yS@143.204.111.124:443?path=%2F&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&insecure=1&host=d2c2o3w4og10sj.cloudfront.net&fp=chrome&type=ws&allowInsecure=1&sni=d2c2o3w4og10sj.cloudfront.net#%F0%9D%98%BE%F0%9D%99%9E%F0%9D%99%A5%F0%9D%99%9D%F0%9D%99%9A%F0%9D%99%A7%F0%9D%99%8D%F0%9D%99%A4%F0%9D%99%AA%F0%9D%99%A9%F0%9D%99%9A%F0%9D%99%91%F0%9D%99%8B%F0%9D%99%89```
+```vless://f9a84da7-102f-4066-8593-095c4a4af003@102.37.157.78:6013?path=%2F&security=none&encryption=none&host=soft98.ir&type=ws#%40AzadNet```
 
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ TROJAN
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 141ms
 
-#NapsternetV #Config #File
+#TROJAN #VPN
 
-🕒 انتشار: 17:39 - 1404/12/19
-💡 منبع: @dargiiriis
+🕒 انتشار: 22:03 - 1404/12/19
+💡 منبع: @privatevpns
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4013.38.214.118%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S103%29%F0%9F%87%A8%F0%9F%87%B5t.me%2FPrivateVPNs)
+
+```trojan://telegram-id-privatevpns@13.38.214.118:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)🇨🇵t.me/PrivateVPNs```
+
+📂 کانفیگ VMess
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 249ms
+
+#VMess #VPN
+
+🕒 انتشار: 21:43 - 1404/12/19
+💡 منبع: @prrofile_purple
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJhZGQiOiIxNDMuMjA0LjExMS42NSIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiZDM0cjczNW93anFiOWEuY2xvdWRmcm9udC5uZXQiLCJpZCI6IjdkOTY5YmVjLWVkMjEtNDBhZS04Y2NhLTE5NjNlOWE2MTMxNiIsImluc2VjdXJlIjoiMCIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJwb3J0IjoiODAiLCJwcyI6Itio2LHYp9uMINin2KrYtdin2YQg2K%2FYp9im2YXbjCDYrNmI24zZhiDYtNmI8J%2BXviBwcnJvZmlsZV9wdXJwbGVAIiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9)
+
+```vmess://eyJhZGQiOiIxNDMuMjA0LjExMS42NSIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiZDM0cjczNW93anFiOWEuY2xvdWRmcm9udC5uZXQiLCJpZCI6IjdkOTY5YmVjLWVkMjEtNDBhZS04Y2NhLTE5NjNlOWE2MTMxNiIsImluc2VjdXJlIjoiMCIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJwb3J0IjoiODAiLCJwcyI6Itio2LHYp9uMINin2KrYtdin2YQg2K/Yp9im2YXbjCDYrNmI24zZhiDYtNmI8J+XviBwcnJvZmlsZV9wdXJwbGVAIiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9```
