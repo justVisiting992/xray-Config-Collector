@@ -1,25 +1,49 @@
-📂 کانفیگ TROJAN
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 143ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 10:02 - 1404/12/21
-💡 منبع: @privatevpns
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%403.127.99.68%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S101%29%F0%9F%87%A9%F0%9F%87%AAt.me%2FPrivateVPNs)
-
-```trojan://telegram-id-privatevpns@3.127.99.68:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
-
 📂 کانفیگ VLESS
-📍 لوکیشن: سوئد 🇸🇪
-📶 پینگ: 99ms
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 116ms
 
 #VLESS #VPN
 
-🕒 انتشار: 08:13 - 1404/12/21
+🕒 انتشار: 11:55 - 1404/12/21
 💡 منبع: @wiki_tajrobe
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F0b9d4217-e627-46b9-8342-fa5463bdbcde%40sw.truetunnel.xyz%3A443%3Fsecurity%3Dreality%26encryption%3Dnone%26pbk%3DVZ45JY_rFdpprcZhHnO_pxs0tm5XFyE7h6Yv_HVbJQg%26headerType%3Dnone%26fp%3Dchrome%26type%3Dtcp%26flow%3Dxtls-rprx-vision%26sni%3Dsw.truetunnel.xyz%26sid%3Dfd4f56d0fd822539%23%25F0%259F%2594%25A5%2520Telegram%253A%2520%2540wiki_tajrobe)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fa4b53348-294d-43be-8549-93055291de3f%4046.225.61.97%3A8080%3Ftype%3Dws%26encryption%3Dnone%26path%3D%252Fws%26host%3Dv.iampedi7.live%26security%3Dnone%23iampedi-vless-cdn-8880-sym32ta4)
 
-```vless://0b9d4217-e627-46b9-8342-fa5463bdbcde@sw.truetunnel.xyz:443?security=reality&encryption=none&pbk=VZ45JY_rFdpprcZhHnO_pxs0tm5XFyE7h6Yv_HVbJQg&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=sw.truetunnel.xyz&sid=fd4f56d0fd822539#%F0%9F%94%A5%20Telegram%3A%20%40wiki_tajrobe```
+```vless://a4b53348-294d-43be-8549-93055291de3f@46.225.61.97:8080?type=ws&encryption=none&path=%2Fws&host=v.iampedi7.live&security=none#iampedi-vless-cdn-8880-sym32ta4```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 21ms
+
+#VLESS #VPN
+
+🕒 انتشار: 11:39 - 1404/12/21
+💡 منبع: @azadi_az_inja_migzare
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Ff91c1cc2-05fe-4efd-ba09-86cb6bec19e3%4023.95.113.104%3A443%3Fpath%3D%252F%26security%3D%26encryption%3Dnone%26type%3Dws%23Maznet-Psiphon-4)
+
+```vless://f91c1cc2-05fe-4efd-ba09-86cb6bec19e3@23.95.113.104:443?path=%2F&security=&encryption=none&type=ws#Maznet-Psiphon-4```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: هلند 🇳🇱
+📶 پینگ: 107ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 20:14 - 1404/12/20
+💡 منبع: @armod_iran
+
+
+```https://t.me/proxy?server=195.254.165.243&port=25565&secret=dd79e344818749bd7ac519130220c25d09)```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Hong Kong 🇭🇰
+📶 پینگ: 105ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 19:54 - 1404/12/20
+💡 منبع: @beshkan
+
+
+```https://t.me/proxy?server=194.120.230.106&port=433&secret=3XnnAQIAAQAH8AMDhuJMOt0```
