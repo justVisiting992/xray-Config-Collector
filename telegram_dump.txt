@@ -1,18 +1,38 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ TROJAN
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 123ms
 
-#NapsternetV #Config #File
+#TROJAN #VPN
 
-🕒 انتشار: 04:36 - 1404/12/23
-💡 منبع: @ghalagyann
+🕒 انتشار: 10:03 - 1404/12/23
+💡 منبع: @privatevpns
 
-📊 **گزارش عملکرد ربات**
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4018.193.206.143%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S101%29%F0%9F%87%A9%F0%9F%87%AAt.me%2FPrivateVPNs)
 
-📅 تاریخ: 1404/12/22
-✅ مجموع کل: 102
+```trojan://telegram-id-privatevpns@18.193.206.143:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
 
-⚙️ تعداد کانفیگ: 62
-🛡 تعداد پروکسی: 24
-📂 تعداد فایل: 16
+📂 کانفیگ SS
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 14ms
 
-#آمار #گزارش
+#Shadowsocks #VPN
+
+🕒 انتشار: 09:20 - 1404/12/23
+💡 منبع: @prrofile_purple
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=ss%3A%2F%2FY2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpVWG11a25HUXFpSm9JdG1RVFhqY0Yy%40104.192.227.162%3A443%23%25E2%259A%25A1Telegram%2520%253D%2520%2540prrofile_purple)
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpVWG11a25HUXFpSm9JdG1RVFhqY0Yy@104.192.227.162:443#%E2%9A%A1Telegram%20%3D%20%40prrofile_purple```
+
+📂 کانفیگ VMess
+📍 لوکیشن: Hong Kong 🇭🇰
+📶 پینگ: 177ms
+
+#VMess #VPN
+
+🕒 انتشار: 09:20 - 1404/12/23
+💡 منبع: @prrofile_purple
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJhZGQiOiJuMTc2MTI5Njg3Ny5saWU1ZC5jeW91IiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJuMTc2MTI5Njg3Ny5saWU1ZC5jeW91IiwiaWQiOiIxZWJmZGZmYS0xYTM3LTQzMzYtODQ5NC1mODViMzZjZGYwODciLCJpbnNlY3VyZSI6IjAiLCJuZXQiOiJ3cyIsInBhdGgiOiIvIiwicG9ydCI6IjQ0MyIsInBzIjoi4pqhVGVsZWdyYW0gXHUwMDNkIEBwcnJvZmlsZV9wdXJwbGUiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoidGxzIiwidHlwZSI6Ii0tLSIsInYiOiIyIn0%3D)
+
+```vmess://eyJhZGQiOiJuMTc2MTI5Njg3Ny5saWU1ZC5jeW91IiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJuMTc2MTI5Njg3Ny5saWU1ZC5jeW91IiwiaWQiOiIxZWJmZGZmYS0xYTM3LTQzMzYtODQ5NC1mODViMzZjZGYwODciLCJpbnNlY3VyZSI6IjAiLCJuZXQiOiJ3cyIsInBhdGgiOiIvIiwicG9ydCI6IjQ0MyIsInBzIjoi4pqhVGVsZWdyYW0gXHUwMDNkIEBwcnJvZmlsZV9wdXJwbGUiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoidGxzIiwidHlwZSI6Ii0tLSIsInYiOiIyIn0=```
