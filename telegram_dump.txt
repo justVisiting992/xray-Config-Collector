@@ -1,86 +1,25 @@
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 6ms
+📂 کانفیگ SLIPNET
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
 
-#VLESS #VPN
+#SLIPNET #VPN
 
-🕒 انتشار: 03:38 - 1404/12/25
-💡 منبع: @shay_iranux
+🕒 انتشار: 10:34 - 1404/12/25
+💡 منبع: @V2rayRoom
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Feca9ff44-edfa-4071-cadb-6c4b51e776fc%40mtnx.ircf.space%3A8443%3Fmode%3Dgun%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26type%3Dgrpc%26allowInsecure%3D0%239%25F0%259F%2593%25B1%2520%2540unvisible_drops)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=slipnet%3A%2F%2FMTd8ZG5zdHR8ZDIuc29mdGRpdmFyOTguaXJ8ZDIuc29mdGRpdmFyOTguaXJ8Mi4xODguMjEuMjA6NTM6MHwwfDUwMDB8YmJyfDEwODB8MTI3LjAuMC4xfDB8MzVmZmFlOTdlMWM3NGEzOTcyMWFmNDJiMmIxNTJlMTkxMDI4NDM0NTk1YWY0MDRjYTAxYjg2YzA1MmYyMmI2ZHx8fDB8fHwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDB8fDB8)
 
-```vless://eca9ff44-edfa-4071-cadb-6c4b51e776fc@mtnx.ircf.space:8443?mode=gun&security=tls&encryption=none&insecure=0&type=grpc&allowInsecure=0#9%F0%9F%93%B1%20%40unvisible_drops```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 6ms
-
-#VLESS #VPN
-
-🕒 انتشار: 03:38 - 1404/12/25
-💡 منبع: @shay_iranux
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fc16da53d-386c-4bc8-a1cb-d98d56b6c2e5%40mcix.ircf.space%3A443%3Fmode%3Dgun%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26type%3Dgrpc%26allowInsecure%3D0%238%25F0%259F%2593%25B1%2520%2540unvisible_drops)
-
-```vless://c16da53d-386c-4bc8-a1cb-d98d56b6c2e5@mcix.ircf.space:443?mode=gun&security=tls&encryption=none&insecure=0&type=grpc&allowInsecure=0#8%F0%9F%93%B1%20%40unvisible_drops```
+```slipnet://MTd8ZG5zdHR8ZDIuc29mdGRpdmFyOTguaXJ8ZDIuc29mdGRpdmFyOTguaXJ8Mi4xODguMjEuMjA6NTM6MHwwfDUwMDB8YmJyfDEwODB8MTI3LjAuMC4xfDB8MzVmZmFlOTdlMWM3NGEzOTcyMWFmNDJiMmIxNTJlMTkxMDI4NDM0NTk1YWY0MDRjYTAxYjg2YzA1MmYyMmI2ZHx8fDB8fHwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDB8fDB8```
 
 📂 کانفیگ TROJAN
-📍 لوکیشن: ژاپن 🇯🇵
-📶 پینگ: 157ms
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 112ms
 
 #TROJAN #VPN
 
-🕒 انتشار: 03:38 - 1404/12/25
-💡 منبع: @shay_iranux
+🕒 انتشار: 10:02 - 1404/12/25
+💡 منبع: @privatevpns
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ff389ed926e512e15f382dc3804029474%40153.121.45.139%3A4937%3Fsecurity%3Dtls%26insecure%3D0%26headerType%3Dnone%26type%3Dtcp%26allowInsecure%3D0%26sni%3Dwww.nintendogames.net%232%25F0%259F%2593%25B1%2520%2540unvisible_drops)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4018.194.236.215%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S101%29%F0%9F%87%A9%F0%9F%87%AAt.me%2FPrivateVPNs)
 
-```trojan://f389ed926e512e15f382dc3804029474@153.121.45.139:4937?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=www.nintendogames.net#2%F0%9F%93%B1%20%40unvisible_drops```
-
-📂 کانفیگ VMess
-📍 لوکیشن: ژاپن 🇯🇵
-📶 پینگ: 158ms
-
-#VMess #VPN
-
-🕒 انتشار: 03:38 - 1404/12/25
-💡 منبع: @shay_iranux
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJhZGQiOiJuMTc1MzU5ODQ1Mi53cGcyNy54eXoiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6Im4xNzUzNTk4NDUyLndwZzI3Lnh5eiIsImlkIjoiNGYyM2ViN2MtZWYyZi00M2IwLTkwZGQtZjJiOGE3NTk1NGE1IiwiaW5zZWN1cmUiOiIwIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsInBvcnQiOiI0NDMiLCJwcyI6IjEg8J%2BTsSBAdW52aXNpYmxlX2Ryb3BzIiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6InRscyIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9)
-
-```vmess://eyJhZGQiOiJuMTc1MzU5ODQ1Mi53cGcyNy54eXoiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6Im4xNzUzNTk4NDUyLndwZzI3Lnh5eiIsImlkIjoiNGYyM2ViN2MtZWYyZi00M2IwLTkwZGQtZjJiOGE3NTk1NGE1IiwiaW5zZWN1cmUiOiIwIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsInBvcnQiOiI0NDMiLCJwcyI6IjEg8J+TsSBAdW52aXNpYmxlX2Ryb3BzIiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6InRscyIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 93ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:23 - 1404/12/22
-💡 منبع: @armod_iran
-
-
-```https://t.me/proxy?server=195.254.165.250&port=25565&secret=dd79e344818749bd7ac519130220c25d09&@verna_vpn)```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 92ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:23 - 1404/12/22
-💡 منبع: @armod_iran
-
-
-```https://t.me/proxy?server=195.254.165.243&port=25565&secret=dd79e344818749bd7ac519130220c25d09&@verna_vpn)```
-
-📊 **گزارش عملکرد ربات**
-
-📅 تاریخ: 1404/12/24
-✅ مجموع کل: 67
-
-⚙️ تعداد کانفیگ: 43
-🛡 تعداد پروکسی: 22
-📂 تعداد فایل: 2
-
-#آمار #گزارش
+```trojan://telegram-id-privatevpns@18.194.236.215:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
