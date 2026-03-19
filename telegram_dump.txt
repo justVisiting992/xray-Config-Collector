@@ -1,37 +1,38 @@
-📂 کانفیگ SLIPNET-ENC
+📂 کانفیگ SLIPNET
 📍 لوکیشن: نامشخص 🏁
 📶 پینگ: N/A ms
 
-#SLIPNET-ENC #VPN
+#SLIPNET #VPN
 
-🕒 انتشار: 17:08 - 1404/12/28
-💡 منبع: @ai_duet
+🕒 انتشار: 20:17 - 1404/12/28
+💡 منبع: @TirexNet
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=slipnet-enc%3A%2F%2FAU8gfY51RJyWEmsQ01c2KKZVvBekbhDPRn5bDRpvYLiy0FnAJd9hwhBGn6iuF0e93SgVbQsSVx1eAOCSAeIEF3cy2H8YdD7vTOrYkuPfIyBDFMDBDXVVP%2BxtC4%2BTtGU56uEb82IIp8m2fcYCO%2BiAhe6S1%2BQh0XqR76FK0qJeMnxTOmPNvvRus%2B8hV5gbtwDKBayhsJmX%2BW%2FdRp4jUodEz17gKunLgvB7oVYgdAv4WcfIFFq5QC%2BhvRy510SwTNTMY76hAvgqaZLxnz4nqaw0NnbXwY4waRyAmvB%2BHtmdVoWTafavQ7E63QjxXNH4uNWHeOiYzndj%2F6OVOjC2RoGkf83KwobVai%2FfgzNoooyHV2KCZQdeGCxDc19wfJErcbYEdzvLGEdcfivuJknn2dII2ys%2FJVYJosnpRf0zVLW6oajDHvpgkkPp8Ba2GRocqgD5YUClHdAcL%2F6BElSt%2FfKXMo4THgGQ9T0CiRNB4A%3D%3D)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=slipnet%3A%2F%2FMTd8c2F5ZWRuc19zc2h8QFRpcmV4TmV0fHouaWFtcGVkaTcubGl2ZXwyLjE4OC4yMS4yMDo1MzoxfDF8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHxlNzVhYjNmNzZmMjlkNTczN2IyOWZmMzBkNDM0MzQzOWVmNTEwZDc4ZDEzYjNlN2RhYzlkNzZlMmZjYWE4NDM0fGlhbXBlZGl8bmVtaWdhbXwwfGlhbXBlZGl8bmVtaWdhbXwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDB8fDB8)
 
-```slipnet-enc://AU8gfY51RJyWEmsQ01c2KKZVvBekbhDPRn5bDRpvYLiy0FnAJd9hwhBGn6iuF0e93SgVbQsSVx1eAOCSAeIEF3cy2H8YdD7vTOrYkuPfIyBDFMDBDXVVP+xtC4+TtGU56uEb82IIp8m2fcYCO+iAhe6S1+Qh0XqR76FK0qJeMnxTOmPNvvRus+8hV5gbtwDKBayhsJmX+W/dRp4jUodEz17gKunLgvB7oVYgdAv4WcfIFFq5QC+hvRy510SwTNTMY76hAvgqaZLxnz4nqaw0NnbXwY4waRyAmvB+HtmdVoWTafavQ7E63QjxXNH4uNWHeOiYzndj/6OVOjC2RoGkf83KwobVai/fgzNoooyHV2KCZQdeGCxDc19wfJErcbYEdzvLGEdcfivuJknn2dII2ys/JVYJosnpRf0zVLW6oajDHvpgkkPp8Ba2GRocqgD5YUClHdAcL/6BElSt/fKXMo4THgGQ9T0CiRNB4A==```
+```slipnet://MTd8c2F5ZWRuc19zc2h8QFRpcmV4TmV0fHouaWFtcGVkaTcubGl2ZXwyLjE4OC4yMS4yMDo1MzoxfDF8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHxlNzVhYjNmNzZmMjlkNTczN2IyOWZmMzBkNDM0MzQzOWVmNTEwZDc4ZDEzYjNlN2RhYzlkNzZlMmZjYWE4NDM0fGlhbXBlZGl8bmVtaWdhbXwwfGlhbXBlZGl8bmVtaWdhbXwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDB8fDB8```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 15ms
+
+#VLESS #VPN
+
+🕒 انتشار: 20:08 - 1404/12/28
+💡 منبع: @prrofile_purple
+
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fd9a83363-40a6-4a21-9dbe-cb2b7d287048%40104.26.15.21%3A443%3Fpath%3D%252F107.174.121.122%253D443%26security%3Dtls%26encryption%3Dnone%26insecure%3D1%26host%3Dafrcloud22.mmv.kr%26type%3Dws%26allowInsecure%3D1%26sni%3Dafrcloud22.mmv.kr%23%25D8%25A8%25D8%25B1%25D8%25A7%25DB%258C%2520%25D8%25A7%25D8%25AA%25D8%25B5%25D8%25A7%25D9%2584%2520%25D8%25AF%25D8%25A7%25D8%25A6%25D9%2585%25DB%258C%2520%25D8%25AC%25D9%2588%25DB%258C%25D9%2586%2520%25D8%25B4%25D9%2588%25F0%259F%2597%25BE%2520prrofile_purple%2540)
+
+```vless://d9a83363-40a6-4a21-9dbe-cb2b7d287048@104.26.15.21:443?path=%2F107.174.121.122%3D443&security=tls&encryption=none&insecure=1&host=afrcloud22.mmv.kr&type=ws&allowInsecure=1&sni=afrcloud22.mmv.kr#%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D8%AF%D8%A7%D8%A6%D9%85%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%F0%9F%97%BE%20prrofile_purple%40```
 
 📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 88ms
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 124ms
 
 #TROJAN #VPN
 
-🕒 انتشار: 16:03 - 1404/12/28
+🕒 انتشار: 20:03 - 1404/12/28
 💡 منبع: @privatevpns
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4015.236.16.104%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S104%29%F0%9F%87%A8%F0%9F%87%B5t.me%2FPrivateVPNs)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%403.123.214.232%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S102%29%F0%9F%87%A9%F0%9F%87%AAt.me%2FPrivateVPNs)
 
-```trojan://telegram-id-privatevpns@15.236.16.104:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)🇨🇵t.me/PrivateVPNs```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 119ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 15:44 - 1404/12/28
-💡 منبع: @parsashonam
-
-
-```https://t.me/proxy?server=78.153.139.201&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
+```trojan://telegram-id-privatevpns@3.123.214.232:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)🇩🇪t.me/PrivateVPNs```
