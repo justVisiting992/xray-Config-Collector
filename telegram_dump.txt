@@ -1,121 +1,15 @@
-📂 کانفیگ MTPROTO
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 12ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 15:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=www.nimagallery11.ir&port=25565&secret=dd79e344818749bd7ac519130220c25d09```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 13ms
-
-#VLESS #VPN
-
-🕒 انتشار: 15:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Ff1eb7fed-bc91-4285-9e7f-23d941a0204a%40www.speedtest.net%3A443%3Fmode%3Dgun%26security%3Dtls%26alpn%3Dh3%252Ch2%252Chttp%252F1.1%26encryption%3Dnone%26authority%3D%26fp%3Dchrome%26type%3Dgrpc%26serviceName%3D%2540ConfigTell%252C%2540ConfigTell%252C%2540ConfigTell%26sni%3Dwww.felafel.org%23%2540v2rayconfigamir%25203033)
-
-```vless://f1eb7fed-bc91-4285-9e7f-23d941a0204a@www.speedtest.net:443?mode=gun&security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&encryption=none&authority=&fp=chrome&type=grpc&serviceName=%40ConfigTell%2C%40ConfigTell%2C%40ConfigTell&sni=www.felafel.org#%40v2rayconfigamir%203033```
-
-📂 کانفیگ VMess
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 126ms
-
-#VMess #VPN
-
-🕒 انتشار: 15:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJhZGQiOiIxNTkuODkuMjkuMTM2IiwiYWlkIjoiMCIsImhvc3QiOiJjeC5jb20iLCJpZCI6ImQyMGQ2ZWRlLTQzM2MtMTFlZC1iODFmLWNmZDkwNWRmOTk1OCIsIm5ldCI6IndzIiwicGF0aCI6Ii92bWVzcyIsInBvcnQiOiI4MCIsInBzIjoiQHYycmF5Y29uZmlnYW1pciA2OTE0Iiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiIiLCJ2IjoiMiJ9)
-
-```vmess://eyJhZGQiOiIxNTkuODkuMjkuMTM2IiwiYWlkIjoiMCIsImhvc3QiOiJjeC5jb20iLCJpZCI6ImQyMGQ2ZWRlLTQzM2MtMTFlZC1iODFmLWNmZDkwNWRmOTk1OCIsIm5ldCI6IndzIiwicGF0aCI6Ii92bWVzcyIsInBvcnQiOiI4MCIsInBzIjoiQHYycmF5Y29uZmlnYW1pciA2OTE0Iiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiIiLCJ2IjoiMiJ9```
-
-📂 کانفیگ VMess
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
-
-#VMess #VPN
-
-🕒 انتشار: 15:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAxMDQ5IiwiYWRkIjoia2tsby4xeHEuaW5kZXZzLmluIiwicG9ydCI6IjgwIiwiYWlkIjowLCJzY3kiOiJhdXRvIiwibmV0Ijoid3MiLCJ0eXBlIjoibm9uZSIsInRscyI6IiIsImlkIjoiNGU0NWMxYjQtOTEwNy00NWRkLTk5OTUtY2RmN2NiYjQ0ZDlkIiwiaG9zdCI6ImtrbG8uMXhxLmluZGV2cy5pbiIsInBhdGgiOiIvaVNSV1NLVUpLTnVYdlZ6c1lIbXNNcm5PIn0%3D)
-
-```vmess://eyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAxMDQ5IiwiYWRkIjoia2tsby4xeHEuaW5kZXZzLmluIiwicG9ydCI6IjgwIiwiYWlkIjowLCJzY3kiOiJhdXRvIiwibmV0Ijoid3MiLCJ0eXBlIjoibm9uZSIsInRscyI6IiIsImlkIjoiNGU0NWMxYjQtOTEwNy00NWRkLTk5OTUtY2RmN2NiYjQ0ZDlkIiwiaG9zdCI6ImtrbG8uMXhxLmluZGV2cy5pbiIsInBhdGgiOiIvaVNSV1NLVUpLTnVYdlZ6c1lIbXNNcm5PIn0=```
-
-📂 کانفیگ VMess
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 15ms
-
-#VMess #VPN
-
-🕒 انتشار: 15:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJhZGQiOiJtZ2hubmJqLjF5eS5jY3d1LmNjIiwiYWlkIjowLCJob3N0IjoibWdobm5iai4xeXkuY2N3dS5jYyIsImlkIjoiNGU0NWMxYjQtOTEwNy00NWRkLTk5OTUtY2RmN2NiYjQ0ZDlkIiwibmV0Ijoid3MiLCJwYXRoIjoiL2lTUldTS1VKS051WHZWenNZSG1zTXJuTyIsInBvcnQiOjgwLCJzZWN1cml0eSI6ImF1dG8iLCJzbmkiOiJtZ2hubmJqLjF5eS5jY3d1LmNjIiwicHMiOiJAdjJyYXljb25maWdhbWlyIDc3MTQifQ%3D%3D)
-
-```vmess://eyJhZGQiOiJtZ2hubmJqLjF5eS5jY3d1LmNjIiwiYWlkIjowLCJob3N0IjoibWdobm5iai4xeXkuY2N3dS5jYyIsImlkIjoiNGU0NWMxYjQtOTEwNy00NWRkLTk5OTUtY2RmN2NiYjQ0ZDlkIiwibmV0Ijoid3MiLCJwYXRoIjoiL2lTUldTS1VKS051WHZWenNZSG1zTXJuTyIsInBvcnQiOjgwLCJzZWN1cml0eSI6ImF1dG8iLCJzbmkiOiJtZ2hubmJqLjF5eS5jY3d1LmNjIiwicHMiOiJAdjJyYXljb25maWdhbWlyIDc3MTQifQ==```
-
 📂 کانفیگ TROJAN
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 9ms
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 107ms
 
 #TROJAN #VPN
 
-🕒 انتشار: 15:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
+🕒 انتشار: 16:02 - 1404/12/29
+💡 منبع: @privatevpns
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Fhumanity%40www.host-tracker.com%3A443%3Fpath%3D%252Fassignment%26security%3Dtls%26insecure%3D0%26fp%3Dchrome%26type%3Dws%26allowInsecure%3D0%26sni%3Dwww.gossipglove.com%23%2540v2rayconfigamir%25209472)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4013.38.195.57%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S104%29%F0%9F%87%A8%F0%9F%87%B5t.me%2FPrivateVPNs)
 
-```trojan://humanity@www.host-tracker.com:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.gossipglove.com#%40v2rayconfigamir%209472```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: انگلیس 🇬🇧
-📶 پینگ: 135ms
-
-#VLESS #VPN
-
-🕒 انتشار: 15:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2Fd1209ffb-c159-48d5-b40d-542ce11fc768%408tf3qy.by-api-yandex.com%3A10121%3Fsecurity%3Dreality%26encryption%3Dnone%26pbk%3D4DdA8dBVn5zB_UTbgBY45YqM0HU8zrjXYdzg3-wz5Rg%26headerType%3Dnone%26fp%3Dqq%26type%3Dtcp%26flow%3Dxtls-rprx-vision%26sni%3Dapple.com%26sid%3D9c2a7d4e5f18b6a3%23%2540v2rayconfigamir%25207329)
-
-```vless://d1209ffb-c159-48d5-b40d-542ce11fc768@8tf3qy.by-api-yandex.com:10121?security=reality&encryption=none&pbk=4DdA8dBVn5zB_UTbgBY45YqM0HU8zrjXYdzg3-wz5Rg&headerType=none&fp=qq&type=tcp&flow=xtls-rprx-vision&sni=apple.com&sid=9c2a7d4e5f18b6a3#%40v2rayconfigamir%207329```
-
-📂 کانفیگ VMess
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
-
-#VMess #VPN
-
-🕒 انتشار: 15:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAxMTE1IiwiYWRkIjoibnF6a2IuY212dmIub25saW5lIiwicG9ydCI6IjQ0MyIsInR5cGUiOiJub25lIiwiaWQiOiIxNjYwNGI0OC03NDk3LTQyOGMtYTZkNC1iMDE3YjNhMzBjZTQiLCJhaWQiOiIwIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsImhvc3QiOiJucXprYi5jbXZ2Yi5vbmxpbmUiLCJ0bHMiOiJ0bHMifQ%3D%3D)
-
-```vmess://eyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAxMTE1IiwiYWRkIjoibnF6a2IuY212dmIub25saW5lIiwicG9ydCI6IjQ0MyIsInR5cGUiOiJub25lIiwiaWQiOiIxNjYwNGI0OC03NDk3LTQyOGMtYTZkNC1iMDE3YjNhMzBjZTQiLCJhaWQiOiIwIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsImhvc3QiOiJucXprYi5jbXZ2Yi5vbmxpbmUiLCJ0bHMiOiJ0bHMifQ==```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 15:29 - 1404/12/29
-💡 منبع: @filtershekan_channel
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 15:29 - 1404/12/29
-💡 منبع: @filtershekan_channel
+```trojan://telegram-id-privatevpns@13.38.195.57:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)🇨🇵t.me/PrivateVPNs```
 
 📂 کانفیگ SLIPNET
 📍 لوکیشن: نامشخص 🏁
@@ -123,119 +17,9 @@
 
 #SLIPNET #VPN
 
-🕒 انتشار: 15:17 - 1404/12/29
-💡 منبع: @shay_iranux
+🕒 انتشار: 15:33 - 1404/12/29
+💡 منبع: @filtershekan_channel
 
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=slipnet%3A%2F%2FMTd8ZG5zdHRfc3NofPCfk7EgQHVudmlzaWJsZV9kcm9wc3xnLnRvbm5lbC5uZXR3b3JrfDIuMTg4LjIxLjIwOjUzOjB8MHw1MDAwfGJicnwxMDgwfDEyNy4wLjAuMXwwfGYyOTUyMjU3YjkzODc0ZDI0Y2MxNjZiMmM1MzdhNjY0ZmEyYmNhMWVmOTIwN2Q1MWI1OGM0NTg5YzQ3YmQ4MWF8fHwxfGZyZWVpcmFufGZyZWVpcmFufDIyfDB8MTI3LjAuMC4xfDB8fHVkcHxwYXNzd29yZHx8fHwwfDQ0M3x8fDB8fDB8MHx8MHw%3D)
+🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=slipnet%3A%2F%2FMTd8ZG5zdHR88J2QgvCdkKHwnZCa8J2Qp%2FCdkKfwnZCe8J2QpTogQGZpbHRlcnNoZWthbl9jaGFubmVsfHQ2LnN5bmNicmlkZ2Uuc2l0ZXwyLjE4OC4yMS4yMDo1MzowfDB8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHwzZmQ1ZjE4ZmU5YTJkMjgxNGJmNmMwOWY4Y2ZiNzMzODlmZTdmNTAyNTY4NDc1Yzk5OTZiYzNkYWY2NjQyYTc4fG5lY29vfG5lY292cG58MHx8fDIyfDB8MTI3LjAuMC4xfDB8fHVkcHxwYXNzd29yZHx8fHwwfDQ0M3x8fDB8fDB8MHx8MHw%3D)
 
-```slipnet://MTd8ZG5zdHRfc3NofPCfk7EgQHVudmlzaWJsZV9kcm9wc3xnLnRvbm5lbC5uZXR3b3JrfDIuMTg4LjIxLjIwOjUzOjB8MHw1MDAwfGJicnwxMDgwfDEyNy4wLjAuMXwwfGYyOTUyMjU3YjkzODc0ZDI0Y2MxNjZiMmM1MzdhNjY0ZmEyYmNhMWVmOTIwN2Q1MWI1OGM0NTg5YzQ3YmQ4MWF8fHwxfGZyZWVpcmFufGZyZWVpcmFufDIyfDB8MTI3LjAuMC4xfDB8fHVkcHxwYXNzd29yZHx8fHwwfDQ0M3x8fDB8fDB8MHx8MHw=```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 15ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 11:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=bedebezanimcom.nokia.com.co.uk.do_yo.want_to.clash_with.this.microsoft.com.there_is_no.place_nano.localhost.bing.com.count_with_me.cyou.com.now_sudo.rm_rf.ddns.net.we_are_here.again_to_fight.with_everyone.i_am.the_internet.special.sadatnews.lflinkup.org&port=443&secret=ee1603010200010001fc030386e24c3add7777772e7370656564746573742e6e657```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 14ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 11:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-
-```https://t.me/proxy?server=bedebezanimcom.nokia.com.co.uk.do_yo.want_to.clash_with.this.microsoft.com.there_is_no.place_nano.localhost.bing.com.count_with_me.cyou.com.now_sudo.rm_rf.ddns.net.we_are_here.again_to_fight.with_everyone.i_am.the_internet.special.sadatnews.lflinkup.org&port=443&secret=ee1603010200010001fc030386e24c3add7777772e7370656564746573742e6e6574```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 11:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2FOVsFRZT5jG%40172.67.191.189%3A443%3Fpath%3D%252F%26security%3Dtls%26host%3Dweb.teama.tk%26type%3Dws%26sni%3Dweb.teama.tk%23%2540v2rayconfigamir%25206319)
-
-```trojan://OVsFRZT5jG@172.67.191.189:443?path=%2F&security=tls&host=web.teama.tk&type=ws&sni=web.teama.tk#%40v2rayconfigamir%206319```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Spain 🇪🇸
-📶 پینگ: 122ms
-
-#VLESS #VPN
-
-🕒 انتشار: 11:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F948fac3c-42bf-41a6-a5f9-704d36ff0d8d%40172.233.121.202%3A20205%3F%26security%3Dtls%26fp%3Drandom%26alpn%3Dhttp%2F1.1%26sni%3Dsnippet.sheilabelinda.ndjp.net%26type%3Dws%26headerType%3Dnone%26host%3Dsnippet.sheilabelinda.ndjp.net%26path%3D%252Fdanfeng%23%2540v2rayconfigamir%25206722)
-
-```vless://948fac3c-42bf-41a6-a5f9-704d36ff0d8d@172.233.121.202:20205?&security=tls&fp=random&alpn=http/1.1&sni=snippet.sheilabelinda.ndjp.net&type=ws&headerType=none&host=snippet.sheilabelinda.ndjp.net&path=%2Fdanfeng#%40v2rayconfigamir%206722```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Spain 🇪🇸
-📶 پینگ: 119ms
-
-#VLESS #VPN
-
-🕒 انتشار: 11:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F6202b230-417c-4d8e-b624-0f71afa9c75d%40178.33.161.186%3A8443%3Fpath%3D%252F%253Fed%253D2560%2526Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3%2520%2540WangCai2%26security%3Dtls%26encryption%3Dnone%26insecure%3D0%26host%3Dsni.111000.v6.navy%26type%3Dws%26allowInsecure%3D0%26sni%3Dsni.111000.v6.navy%23%2540v2rayconfigamir%25208047)
-
-```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@178.33.161.186:8443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#%40v2rayconfigamir%208047```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Spain 🇪🇸
-📶 پینگ: 123ms
-
-#VLESS #VPN
-
-🕒 انتشار: 11:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vless%3A%2F%2F438f81f8-aa18-4261-820a-87ee42122d0e%40212.227.95.106%3A443%3Ftype%3Dtcp%26security%3Dreality%26pbk%3DXxphGtGbyJegOM0QIy65eyC8g3dzlKOMY0tWFBnTCWc%26fp%3Dchrome%26sni%3Dyahoo.com%26sid%3Da0cb%26spx%3D%252F%23%2540v2rayconfigamir%25204542)
-
-```vless://438f81f8-aa18-4261-820a-87ee42122d0e@212.227.95.106:443?type=tcp&security=reality&pbk=XxphGtGbyJegOM0QIy65eyC8g3dzlKOMY0tWFBnTCWc&fp=chrome&sni=yahoo.com&sid=a0cb&spx=%2F#%40v2rayconfigamir%204542```
-
-📂 کانفیگ VMess
-📍 لوکیشن: Spain 🇪🇸
-📶 پینگ: 119ms
-
-#VMess #VPN
-
-🕒 انتشار: 11:31 - 1404/12/29
-💡 منبع: @V2rayconfigAmir
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=vmess%3A%2F%2FeyJhZGQiOiI4NS45MC4yMTcuNDIiLCJwb3J0IjoiMjIzMjQiLCJpZCI6IjA0NjIxYmFlLWFiMzYtMTFlYy1iOTA5LTAyNDJhYzEyMDAwMiIsImFpZCI6IjAiLCJzY3kiOiJhdXRvIiwibmV0IjoidGNwIiwidiI6IjIiLCJwcyI6IkB2MnJheWNvbmZpZ2FtaXIgNzkyNyIsImhvc3QiOiIiLCJwYXRoIjoiIiwidGxzIjoiIiwic25pIjoiIiwidHlwZSI6Im5vbmUiLCJzZXJ2ZXJQb3J0IjowLCJuYXRpb24iOiIifQ%3D%3D)
-
-```vmess://eyJhZGQiOiI4NS45MC4yMTcuNDIiLCJwb3J0IjoiMjIzMjQiLCJpZCI6IjA0NjIxYmFlLWFiMzYtMTFlYy1iOTA5LTAyNDJhYzEyMDAwMiIsImFpZCI6IjAiLCJzY3kiOiJhdXRvIiwibmV0IjoidGNwIiwidiI6IjIiLCJwcyI6IkB2MnJheWNvbmZpZ2FtaXIgNzkyNyIsImhvc3QiOiIiLCJwYXRoIjoiIiwidGxzIjoiIiwic25pIjoiIiwidHlwZSI6Im5vbmUiLCJzZXJ2ZXJQb3J0IjowLCJuYXRpb24iOiIifQ==```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 14:10 - 1404/12/29
-💡 منبع: @dargiiriis
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 107ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 14:03 - 1404/12/29
-💡 منبع: @privatevpns
-
-🔍 [QRcode](https://kissapi-qrcode.vercel.app/api/qrcode?cht=qr&chs=200x200&chl=trojan%3A%2F%2Ftelegram-id-privatevpns%4013.36.80.221%3A22222%3Fsecurity%3Dtls%26alpn%3Dhttp%2F1.1%26headerType%3Dnone%26type%3Dtcp%26sni%3Dtrojan.burgerip.co.uk%23%28S103%29%F0%9F%87%A8%F0%9F%87%B5t.me%2FPrivateVPNs)
-
-```trojan://telegram-id-privatevpns@13.36.80.221:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)🇨🇵t.me/PrivateVPNs```
+```slipnet://MTd8ZG5zdHR88J2QgvCdkKHwnZCa8J2Qp/CdkKfwnZCe8J2QpTogQGZpbHRlcnNoZWthbl9jaGFubmVsfHQ2LnN5bmNicmlkZ2Uuc2l0ZXwyLjE4OC4yMS4yMDo1MzowfDB8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHwzZmQ1ZjE4ZmU5YTJkMjgxNGJmNmMwOWY4Y2ZiNzMzODlmZTdmNTAyNTY4NDc1Yzk5OTZiYzNkYWY2NjQyYTc4fG5lY29vfG5lY292cG58MHx8fDIyfDB8MTI3LjAuMC4xfDB8fHVkcHxwYXNzd29yZHx8fHwwfDQ0M3x8fDB8fDB8MHx8MHw=```
