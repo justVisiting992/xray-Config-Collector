@@ -1,194 +1,340 @@
-📂 کانفیگ VMess
-📍 لوکیشن: Philippines 🇵🇭
-📶 پینگ: 188ms
+📂 کانفیگ VLESS
+📍 لوکیشن: Austria 🇦🇹
+📶 پینگ: 129ms
 
-#VMess #VPN
+#VLESS #VPN
 
-🕒 انتشار: 23:30 - 1405/01/02
-💡 منبع: @V2rayconfigAmir
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
 
-```vmess://eyJhZGQiOiI2MS4yNDUuMTEuNjAiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IiIsImlkIjoiYTNlM2E3MTAtNzlmOC00YWUwLWI4M2MtNjA3YWFiNDBkMTk3IiwiaW5zZWN1cmUiOiIxIiwibmV0Ijoid3MiLCJwYXRoIjoiL3ZtZXNzLyIsInBvcnQiOiI4MCIsInBzIjoiQHYycmF5Y29uZmlnYW1pciA2MTk0Iiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9```
-
-📂 کانفیگ VMess
-📍 لوکیشن: Philippines 🇵🇭
-📶 پینگ: 191ms
-
-#VMess #VPN
-
-🕒 انتشار: 23:30 - 1405/01/02
-💡 منبع: @V2rayconfigAmir
-
-```vmess://eyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAxOTEwIiwiYWRkIjoiNjEuMjQ1LjExLjYwIiwicG9ydCI6ODAsImlkIjoiYTNlM2E3MTAtNzlmOC00YWUwLWI4M2MtNjA3YWFiNDBkMTk3IiwiYWlkIjowLCJzY3kiOiJhdXRvIiwibmV0Ijoid3MiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiIiLCJwYXRoIjoiL3ZtZXNzLyIsInRscyI6ImF1dG8iLCJzbmkiOiIiLCJhbHBuIjoiIiwiZnAiOiIifQ==```
-
-📂 کانفیگ VMess
-📍 لوکیشن: Philippines 🇵🇭
-📶 پینگ: 187ms
-
-#VMess #VPN
-
-🕒 انتشار: 23:30 - 1405/01/02
-💡 منبع: @V2rayconfigAmir
-
-```vmess://eyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciA4MjIyIiwiYWRkIjoiNjEuMjQ1LjExLjYwIiwicG9ydCI6ODAsImlkIjoiYTNlM2E3MTAtNzlmOC00YWUwLWI4M2MtNjA3YWFiNDBkMTk3IiwibmV0Ijoid3MiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiI2MS4yNDUuMTEuNjAiLCJwYXRoIjoiL3ZtZXNzLyJ9```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 23:13 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```slipnet-enc://AblSajOxrcFfXMVgA4Ks7s2CEbAQ/K6JDdzlUCIwdubfsclXYaR+Alc7ON6XoHgsXCZ/KsP8qfQT5IqNi1NRrJxnJca+v3ORYErNb5DCCT0RFnWvkmRUY1q1VGZ50ixtelmRvGrVk5rdNbmSEYcBMQCgpu2euIujSaM1DND02hULrU6i7CUYhzZFEODCW4jo4+Rr3L59JNoNRaKmjAq43pAERSMpmTKn/q4SenkkDx0vr3SRYCZovyJiEWm5ZQBb9k1AZcq2v7hNH2ODyU/N4APt2EvmpaDhMFzOK3lV2+VV0LB5c4PV2ximFTDXHofNqeaUh2Dt3OaO/ewxrYs65bAzK//ObQE/D53VcqsfIoxUSn8hiVditzPtTJ6F/NATPXAoJqrIwvAbWKxG/akXaYEg97XNuT1VEvF4/CWbUMldk0vKv7mvT4lmmQLlQZOc8xmHB74Oc0HRugsS2A2jdHBcn/71Wb5y3iVedIoZQq2HCYEzPR5Sls/nYAY3LYgQ8U4xhbpRt/CWXVdH+VTzTVmfCcZ+9DuS0RJga/aPHj+Tv/VRR156w179pF9JRx1hmvp6FgRDiPufemaZzk9XLcguKO8vgom2hDEK1IoZItFPUqj/jGtnqtQ=```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 23:10 - 1405/01/02
-💡 منبع: @ghalagyann
-
-```slipnet-enc://AYhlXXmQg+k3c+j2a+aypfkab5mmoXmgiykhITzp7mx9h/xP90SWqFAtd/S4cas9T4DD3VavHoMDZz+lxrFjzGG2CVAZnlOBvXkpAUM7VMGFc4IS0VHzZiFIQhc6Djp4QSA4w980E53xFW4tZT2hylbk+kkkJXbVPKzftIJvccHJzl3AIiCgUKfnYyqMJZKxD4mOrIwDoYREpCH/2otizKszSGIz+DL4LLeWv8mpjexOEaUv5XSYaWHDzEX3rua4H0jgXeuRERnKH/uyE69PSFxvSrbG1kesgcKgPz8bOwB7lqCA76/oPA5ms5xdbNea3QXiIEmZyaY8+xMBM1FgijBdxmEIaS3kP14e+3aCDKU4BEGGocyd4LkQtmY9NK0d6lm/ebkEvSP2/B6xr1qdkjMckRw30OixNpHKCL1vBWl9Px3gXmdAJejo03GlxgoyQeK+93EL4296RpMiiE42TTeQtufuhlPfS3j0KT+G2guNRb8P5M8GUTHkEviV/ioSBQSHCpoGWpN/qphTi2tQ8yDB26/TuAMX0pB7ZAic2Fzcsg8sxBvr8wtVuY5k/7dv4J74Ph9oFurKfwk1```
-
-📂 کانفیگ SLIPNET
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 22:51 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```slipnet://MTh8c2F5ZWRuc19zc2h8QHplbDJvdnBufHouZGphcmlvLmNvbXwyLjE4OC4yMS4yMDo1MzoxLDIuMTg4LjIxLjEyMDo1MzoxLDIuMTg4LjIxLjE5MDo1MzoxfDF8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHxiNzJkYTIwNTdkZDgwMjRiMGQ1Nzc4Y2U3YWJmZDA3ZTdlNTdlYWYyYmFhODg4ODI3NjFhZDIxYmZhY2JlZjAxfEFyaW9hZG1pMDIxRnJlZUlSYU5ufERlYXRoMlNlcEFoaTg4ODh8MHxBcmlvYWRtaTAyMUZyZWVJUmFObnxEZWF0aDJTZXBBaGk4ODg4fDIyfDB8MTI3LjAuMC4xfDB8fHVkcHxwYXNzd29yZHx8fHwwfDQ0M3x8fDB8fDB8MHx8MHx8MHw1NXwxMDgw```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Latvia 🇱🇻
-📶 پینگ: 145ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:37 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```https://t.me/proxy?server=5.39.250.20&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 54ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:37 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```https://t.me/proxy?server=166.1.160.127&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: روسیه 🇷🇺
-📶 پینگ: 51ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:37 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```https://t.me/proxy?server=138.124.68.7&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: سوئد 🇸🇪
-📶 پینگ: 171ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:37 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```https://t.me/proxy?server=138.124.71.179&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: سوئیس 🇨🇭
-📶 پینگ: 139ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:37 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```https://t.me/proxy?server=138.124.72.27&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 125ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:37 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```https://t.me/proxy?server=138.124.70.86&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 143ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:37 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```https://t.me/proxy?server=93.123.30.203&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 141ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 22:37 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```https://t.me/proxy?server=78.153.139.201&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 22:16 - 1405/01/02
-💡 منبع: @ghalagyann
-
-```slipnet-enc://AX3QJUsLdP4k1XVcyf3zf3xUGOcspgNKNLLxYwqx5IZiAh5e/LdeFDsgHtH+Bv6wiqbg1K35D/GUn2IjLE8d+mt+IiYHfd9Gnw8KdseGKcDp0SGGjwQHIxzcAO7SMXe4WaiApGsFL/n8bHCvhepnxNV8QO7TFVlWMVEEDQQKXepo+7QwNcXAgea6WgbpSkBus5SICXWY5F5i2v7NjAtGCoUEwOOZOQP2l2bMMNT5n9JFsRn9KCiiQ1EO1oVfjmNc8RhSre+lvYOPrvUwk+7zAphVYqWY2SELH5UOpnO6o8K5UHEUR7yoYqL2cQlEAym/chhZHMmq6/S20WlD9Gb9FSZHuISYJuNCovSVgi4QBOekJYNrVN+8QJipgIVRXMVAABxTQ+XHIgnokADnsZ0cmeIndIqIk3eXn5fUURGYbIXXPKkXIbEfnCteE8DQXz8+YnyFzAX6RkruwC7KZc5vkScqXwR2fIx+ky8Cb+iv/O3nLfB+FipiPOZgEK18xitW49WHQH2xWP/D4WvxpG43SLiJsRIqQqGIBCdITitvbfEpt+9S1qF2+5ZOjIOrBmKHdUF0EbikGxtGS9doOyt45gRqJaM8y2NVIZU=```
-
-📂 کانفیگ SLIPNET
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 22:05 - 1405/01/02
-💡 منبع: @xsfilternet
-
-```slipnet://MTZ8c2F5ZWRuc3wyOW1vcmdofHouMjltb3JnaC5jb218OC44LjguODo1MzowfDB8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHxlZDU5YTA0Y2RiMmU1M2YxNzI3ZDE5ZDU5NDg2OWE1NDA5N2Q0YzVhNWRiOTNjNjVkNzRmYzUyMmFiMzc5MzcxfHx8fHx8fDB8MTI3LjAuMC4xfDB8fHVkcHxwYXNzd29yZHx8fDB8NDQzfHx8fDB8fDB8MHw=```
+```vless://63f92f3c-447c-4283-80b9-0af8e164cdad@152.53.48.237:22955?mode=gun&security=reality&encryption=none&pbk=9Mt_Y8J_qDb1khlieWnhDSAq-kGtLHw6aOKgkAzOMms&fp=chrome&type=grpc&serviceName=grpc&sni=one-piece.com&sid=6ba85179e30d4fc2#%40v2_mod_shop%20%28%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%29```
 
 📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 115ms
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 14ms
 
 #TROJAN #VPN
 
-🕒 انتشار: 22:03 - 1405/01/02
-💡 منبع: @privatevpns
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
 
-```trojan://telegram-id-privatevpns@15.237.55.242:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)🇨🇵t.me/PrivateVPNs```
+```trojan://humanity@188.114.98.0:443?path=%2Fassignment&security=tls&insecure=1&host=www.creationlong.org&type=ws&allowInsecure=1&sni=www.creationlong.org#%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D8%AF%D8%A7%D8%A6%D9%85%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%F0%9F%9A%8F%20TelegramID%20%E2%8C%B2SHOP_GAMING1011%20%F0%9F%AA%A9```
 
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 14ms
 
-#NapsternetV #Config #File
+#TROJAN #VPN
 
-🕒 انتشار: 22:01 - 1405/01/02
-💡 منبع: @xsfilternet
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```trojan://humanity@172.67.180.92:443?path=%2Fassignment&security=tls&insecure=1&host=www.multiplydose.com&fp=chrome&type=ws&allowInsecure=1&sni=www.multiplydose.com#%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D8%AF%D8%A7%D8%A6%D9%85%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%F0%9F%9A%8F%20TelegramID%20%E2%8C%B2SHOP_GAMING1011%20%F0%9F%AA%A9```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Vietnam 🇻🇳
+📶 پینگ: 219ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://cca053d5-7123-4a87-83d6-babe4e9c8115@103.245.237.124:58202?path=%2F&security=none&encryption=none&type=ws#%F0%9F%A6%89%40FreeConfigForYou```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 9ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```trojan://humanity@104.21.40.34:443?path=%2Fassignment&security=tls&insecure=1&host=www.gossipglove.com&type=ws&allowInsecure=1&sni=www.gossipglove.com#%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D8%AF%D8%A7%D8%A6%D9%85%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%F0%9F%9A%8F%20TelegramID%20%E2%8C%B2SHOP_GAMING1011%20%F0%9F%AA%A9```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Poland 🇵🇱
+📶 پینگ: 138ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://859b7d71-a9fc-4234-8e03-42eb876a170a@151.115.96.243:7242?security=reality&encryption=none&pbk=jGmjU0vrRXCnIwn0rVatYKf5ihWZhMvqidp2ceY1QAM&host=%2F%3FBIA_TELEGRAM%40MARAMBASHI_MARAMBASHI_MARAMBASHI_MARAMBASHI_MARAMBASHI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=modily.net&sid=8c01e365#%40Dynamite_vpn```
+
+📂 کانفیگ SS
+📍 لوکیشن: انگلیس 🇬🇧
+📶 پینگ: 114ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.194:8080#%F0%9F%A6%89%40FreeConfigForYou```
+
+📂 کانفیگ SS
+📍 لوکیشن: Egypt 🇪🇬
+📶 پینگ: 146ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo2ZmYxNDIzZjYxZmZlNjcz@38.54.59.16:11201#%E3%80%8E%20%20%F0%9F%8C%9F%40airdrop2033%20%E3%80%8F%D8%B9%D8%B6%D9%88%20%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%DB%8C%20%D8%A8%D8%B4%DB%8C%D9%86```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 10ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```trojan://humanity@www.multiplydose.com:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.multiplydose.com#%40ServerTel%20%F0%9F%8C%B9%F0%9F%91%91%F0%9F%95%8A%EF%B8%8F```
+
+📂 کانفیگ SS
+📍 لوکیشن: Croatia 🇭🇷
+📶 پینگ: 130ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpKT1o1TWIzbkpDbW1vS2hkOENjOWFD@5.181.2.76:36608#%40i10VPN%20%F0%9F%9A%80%7C%20%D8%A8%D8%A7%20%D9%85%D8%A7%20%D9%85%D8%AA%D8%B5%D9%84%20%D8%A8%D9%85%D9%88%D9%86%E2%9A%A1```
+
+📂 کانفیگ SS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 123ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5NGFhZTA1MTAxODhlOGM1@141.95.106.127:11201#%40i10VPN%20%F0%9F%9A%80%7C%20%D8%A8%D8%A7%20%D9%85%D8%A7%20%D9%85%D8%AA%D8%B5%D9%84%20%D8%A8%D9%85%D9%88%D9%86%E2%9A%A1```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 187ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://ddb913e5-492f-42e8-baec-93c9c5d333d6@45.136.149.145:443?security=reality&encryption=none&pbk=83ZRQEAaJx3rV-EDhk5TFnBoDjTr7TfGKlq7FgA-WRY&headerType=none&fp=chrome&spx=/&type=tcp&sni=yahoo.com&sid=58a3#@chillguy_vpn```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 122ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://1e878456-0f00-4a85-99a6-1d69bdc62e3d@152.53.116.71:443?encryption=none&type=tcp&security=reality&fp=chrome&sni=yahoo.com&pbk=L0T7BLyB6gtVckvnxryaK-GGd2XwgoJ3YFM9M8kXmho&sid=7554&spx=/#@chillguy_vpn```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 14ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```trojan://humanity@188.114.98.0:443?path=%252fassignment&security=tls&insecure=1&host=www.creationlong.org&type=ws&allowInsecure=1&sni=www.creationlong.org#%40i10VPN%20%F0%9F%9A%80%7C%20%D8%A8%D8%A7%20%D9%85%D8%A7%20%D9%85%D8%AA%D8%B5%D9%84%20%D8%A8%D9%85%D9%88%D9%86%E2%9A%A1```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Cyprus 🇨🇾
+📶 پینگ: 30ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://8dc7722c-2767-4eea-a28b-2f8daacc07e3@pqh18v7.viripdirect.shop:8880?encryption=none&security=none&type=grpc#OS```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 35ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://d0b3e27d-bbfc-4a3b-8e60-6973de8fcefa@157.254.223.44:18959?&security=reality&pbk=-hwVEdgFkvjku8ESuDoAA7id5yGGv_zXBvBW_RdhmHA&sid=d557c6895d014075&fp=chrome&sni=itunes.apple.com&type=tcp&headerType=none&path=%2F#@mtproto_proserver```
+
+📂 کانفیگ SS
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 34ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpoYkdycGZ2TnJKc1VtS21QYlIzaVky@tinkered-pennies-puppies.freesocks.work:443#%F0%9F%87%BA%F0%9F%87%B8%20USA%20%7C%20%40KIA_NET%20%DA%86%D9%86%D9%84%E2%80%8C%D8%AA%D9%84%DA%AF%D8%B1%D9%85```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Poland 🇵🇱
+📶 پینگ: 128ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://62ad5a48-f452-4868-b7eb-d27df9b3d723@plcdn23.suio.me:443?security=tls&encryption=none&insecure=1&headerType=none&type=tcp&allowInsecure=1&sni=plcdn23.suio.me#%E2%9A%A1%20%40HajmVPN_Config```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 15ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://3f58cc47-94f6-40d3-8797-1ce66cb0555e@188.114.98.0:2087?path=%2F%3Fed%3D2048&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&insecure=1&host=nl4.maxriser.ir&fp=chrome&type=ws&allowInsecure=1&sni=nl4.maxriser.ir#%40v2_mod_shop%20%28%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%29```
+
+📂 کانفیگ SS
+📍 لوکیشن: انگلیس 🇬🇧
+📶 پینگ: 117ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.62:8080#%F0%9F%87%AC%F0%9F%87%A7%20UK%20%7C%20%40KIA_NET%20%DA%86%D9%86%D9%84%E2%80%8C%D8%AA%D9%84%DA%AF%D8%B1%D9%85```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Hungary 🇭🇺
+📶 پینگ: 134ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://1c7fcc38-e6be-43c5-875f-b8de2516b9f2@5.182.38.91:17267?security=reality&encryption=none&pbk=SnWZg6ORcQepuWLI1EVCTTVc4KyfDiGWR4o_CXCMhgk&headerType=none&fp=chrome&type=tcp&sni=yahoo.com&sid=4ae260#%40v2_mod_shop%20%28%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%29```
+
+📂 کانفیگ VMess
+📍 لوکیشن: سوئد 🇸🇪
+📶 پینگ: 121ms
+
+#VMess #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vmess://eyJhZGQiOiI0Ni4yNDYuMTI2LjE1NCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiIiwiaWQiOiJmMmZkMDc4Ni0xMDU5LTRmNjQtZDU0ZS0zZjNhNTY4YzZjNjgiLCJpbnNlY3VyZSI6IjAiLCJuZXQiOiJ3cyIsInBhdGgiOiIvIiwicG9ydCI6IjQ0MyIsInBzIjoiQGdpbGFzc19vbiDwn42S27kiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoiIiwidHlwZSI6Ii0tLSIsInYiOiIyIn0=```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 15ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://478cc26d-16b3-4fdd-be64-60d5a58c1622@188.114.98.0:80?host=tt.andishehparenting.com&path=%2F&security=none&type=ws#```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 15ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://478cc26d-16b3-4fdd-be64-60d5a58c1622@188.114.98.0:80?path=%2F&security=none&encryption=none&host=tt.andishehparenting.com&type=ws#%40v2_mod_shop%20%28%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%29```
+
+📂 کانفیگ SS
+📍 لوکیشن: Saudi Arabia 🇸🇦
+📶 پینگ: 189ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxZTY4ZDRiZDAwMjQzN2Fi@149.104.71.134:11201#%F0%9F%A6%89%40FreeConfigForYou```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 14ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://94daa8ad-75ed-4dbf-a6de-d05036d98df5@norman.ns.cloudflare.com:443?path=%2Ftixvuws&security=tls&encryption=none&insecure=1&host=vangoghhh.info&type=ws&allowInsecure=1&sni=vangoghhh.info#%40v2_mod_shop%20%28%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%29```
+
+📂 کانفیگ SS
+📍 لوکیشن: Saudi Arabia 🇸🇦
+📶 پینگ: 265ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjYjQyNThkYzFiNTM2MTNj@163.171.207.11:29464#%F0%9F%A6%89%40FreeConfigForYou```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 12ms
+
+#VLESS #VPN
+
+🕒 انتشار: 00:58 - 1405/01/03
+💡 منبع: @makvaslim
+
+```vless://6a719f2b-b629-462d-975a-9c0daa3edb75@chatgpt.com:2083?path=%2FQDHqawq0xGrFP7Pa%2FMTU4LjE4MC4xMi4xMTc%3D%3Fed%3D2560&security=tls&encryption=none&insecure=0&host=raviddd.pages.dev&fp=chrome&type=ws&allowInsecure=0&sni=rAviDdD.paGEs.DEv#%40Caa_family%7C%D9%86%D9%85%D9%88%D9%86%D9%87%20%DA%A9%D8%A7%D9%86%D9%81%DB%8C%DA%AF%20%DA%86%D8%AA%20%D8%AC%DB%8C%20%D9%BE%DB%8C%20%D8%AA%DB%8C**```
+
+📂 کانفیگ SLIPNET
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
+
+#SLIPNET #VPN
+
+🕒 انتشار: 00:00 - 1405/01/03
+💡 منبع: @TirexNet
+
+```slipnet://MTh8ZG5zdHR8QFRpcmV4TmV0INqG2YbZhHxrLnRvbm5lbC5uZXR3b3JrfDEwLjEwLjEwLjEwOjUzOjB8MHw1MDAwfGJicnwxMDgwfDEyNy4wLjAuMXwwfDIzZjRlZjM4YzUxYzUyYTI4ZTI4MWU1MWFmNDY2MzVlNjhmNzBlYmFhNjg4M2NhY2JlNTk3MjFjZWExZWJlMmF8fHwwfHx8MjJ8MHwxMjcuMC4wLjF8MHx8dWRwfHBhc3N3b3JkfHx8fDB8NDQzfHx8MHx8MHwwfHwwfHwwfDB8MTA4MA==```
+
+📂 کانفیگ SLIPNET
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
+
+#SLIPNET #VPN
+
+🕒 انتشار: 20:56 - 1405/01/02
+💡 منبع: @TirexNet
+
+```slipnet://MTd8c2F5ZWRuc19zc2h8QFRpcmV4TmV0fHouZGphcmlvLmNvbXwyLjE4OC4yMS4yMDo1MzoxfDF8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHxiNzJkYTIwNTdkZDgwMjRiMGQ1Nzc4Y2U3YWJmZDA3ZTdlNTdlYWYyYmFhODg4ODI3NjFhZDIxYmZhY2JlZjAxfEFyaW9hZG1pMDIxRnJlZUlSYU5ufERlYXRoMlNlcEFoaTg4ODh8MHxBcmlvYWRtaTAyMUZyZWVJUmFObnxEZWF0aDJTZXBBaGk4ODg4fDIyfDB8MTI3LjAuMC4xfDB8fHVkcHxwYXNzd29yZHx8fHwwfDQ0M3x8fDB8fDB8MHx8MHw=```
+
+📂 کانفیگ SLIPNET
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
+
+#SLIPNET #VPN
+
+🕒 انتشار: 18:00 - 1405/01/02
+💡 منبع: @TirexNet
+
+```slipnet://MTh8c2F5ZWRuc3xAVGlyZXhOZXR8dHMuZ2d4cGJvb3N0LnRvcHwyLjE4OC4yMS4yMDo1MzowfDB8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHxhNWYzN2U2OGRlNzYwMWZjMWY2OTgwMWFmOTk1ODM1MGE1MTM3MTNiMWI0YmZhZjRjNTU3YjJhNTUxYTUxMTcxfG1pcmFjbGUyNTg1fG1pcmFjbGUyNTg1fDB8fHwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDB8fDB8fDB8MHwxMDgw```
