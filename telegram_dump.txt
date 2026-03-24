@@ -1,131 +1,32 @@
-📂 کانفیگ VMess
-📍 لوکیشن: Hong Kong 🇭🇰
-📶 پینگ: 211ms
+📂 کانفیگ SLIPNET-ENC
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
 
-#VMess #VPN
+#SLIPNET #VPN
 
-🕒 انتشار: 03:30 - 1405/01/04
-💡 منبع: @V2rayconfigAmir
+🕒 انتشار: 08:01 - 1405/01/04
+💡 منبع: @TirexNet
 
-```vmess://eyJhZGQiOiI4LjIxOC41Mi41IiwiYWlkIjowLCJob3N0IjoiIiwiaWQiOiIxZjJkYWY0My1mZjkwLTRkZjktOTI3Ni1kZmI4NDg2ZDcyYmMiLCJuZXQiOiJ3cyIsInBhdGgiOiIvIiwicG9ydCI6NDQzLCJwcyI6IkB2MnJheWNvbmZpZ2FtaXIgOTMwOCIsInRscyI6InRscyIsInR5cGUiOiJhdXRvIiwic2VjdXJpdHkiOiJhdXRvIiwic2tpcC1jZXJ0LXZlcmlmeSI6ZmFsc2UsInNuaSI6Im4xNzYxMjE0OTE1Lm12N3doLnRlY2gifQ==```
-
-📂 کانفیگ VMess
-📍 لوکیشن: Hong Kong 🇭🇰
-📶 پینگ: 216ms
-
-#VMess #VPN
-
-🕒 انتشار: 03:30 - 1405/01/04
-💡 منبع: @V2rayconfigAmir
-
-```vmess://eyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciA2MzEwIiwiYWRkIjoibjE3NTI4MzMxODQubGllNWQuY3lvdSIsInBvcnQiOiI0NDMiLCJpZCI6IjZjN2QwOWUzLTljZmEtNDFjOC04MTk0LWU4MWViMjFiZmI4OCIsImFpZCI6IjAiLCJzY3kiOiJhdXRvIiwibmV0Ijoid3MiLCJ0eXBlIjoiYXV0byIsImhvc3QiOiJuMTc1MjgzMzE4NC5saWU1ZC5jeW91IiwicGF0aCI6Ii8iLCJ0bHMiOiJ0bHMiLCJzbmkiOiJuMTc1MjgzMzE4NC5saWU1ZC5jeW91IiwiYWxwbiI6IiIsImZwIjoiIn0=```
-
-📂 کانفیگ VMess
-📍 لوکیشن: Hong Kong 🇭🇰
-📶 پینگ: 215ms
-
-#VMess #VPN
-
-🕒 انتشار: 03:30 - 1405/01/04
-💡 منبع: @V2rayconfigAmir
-
-```vmess://eyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAyODkzIiwiYWRkIjoibjE3NjEyMTQ5MDQud3BnMjcueHl6IiwicG9ydCI6IjQ0MyIsInR5cGUiOiJhdXRvIiwiaWQiOiI3ZjZmNjRhZS0zNzc4LTQzNGMtYWRmYy05NWNiNjdlZThiNzMiLCJhaWQiOiIwIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsImhvc3QiOiJuMTc2MTIxNDkwNC53cGcyNy54eXoiLCJ0bHMiOiJ0bHMifQ==```
+```slipnet-enc://AVDSvJ1LRrnzdZTS3MameoyTj5ruGychPE8cAeE/WH0G/kosc22uNobKUqj5pVcfcAQtbXk1ykePzp764d9qYTepDa8jTbJ4YhL+bA3mQBtNk9uGB0E2KSIwxhUwbz+oN9cHklWfcYJQdijbYZfsxYcis1+ysjVNpH1WG6RQxm4lAWbZ3I5lNnt5uJ0DBI/T99DZhTLJfmrQftjoUHxu4pxKNzw25bLmRA2xdr+Ifpt6Dl4OCmvxBqsXi94t5vC7HeRl1Yv7mXiDyQPqtZ0ovL0ftbdWb7rsMG/mBsQ+B8uSg2/MusNnONifRAZ6I1hMXgfzvdH9EpVVpjxzLaTwB898wwpb2Hoc2Yj6SJIDtCzBKtqQfCwn/kepLE4FLGE7mLM0GyJX7IOhb5m4M4ZM6xzsNBIIUIfM1t/FjiUVa54xBP9QtKdFlVudGU22iPLs2e5uVs6nnxHqJZ2rZxWk4wupmBpfy5/mu4HnFQS/bcUJY8a+5cf0Bx9Jklurm1VZw4WlCIDnyw==```
 
 📂 کانفیگ VLESS
-📍 لوکیشن: Hong Kong 🇭🇰
-📶 پینگ: 207ms
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 50ms
 
 #VLESS #VPN
 
-🕒 انتشار: 03:30 - 1405/01/04
-💡 منبع: @V2rayconfigAmir
+🕒 انتشار: 07:57 - 1405/01/04
+💡 منبع: @Proxymelimon
 
-```vless://6048472f-0993-4ae0-8203-960b9a0f4113@38.54.23.58:443?encryption=none&security=reality&flow=xtls-rprx-vision&type=tcp&sni=www.amazon.com&pbk=i7xxqA7h16NpQQAGiQJKxubs-_IRCUUlredSK7swTkw&fp=chrome#%40v2rayconfigamir%206499```
+```vless://430399ca-d329-44c3-949c-0f74e3eb3b09@anten.ir:443?path=%2F%3Fed%3D2048&security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&encryption=none&host=cpcalendars.digital-ping.ir&fp=chrome&type=ws&sni=cpcalendars.digital-ping.ir#%40proxymelimon%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85```
 
-📂 کانفیگ VLESS
-📍 لوکیشن: Hong Kong 🇭🇰
-📶 پینگ: 217ms
+📂 کانفیگ SLIPNET-ENC
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
 
-#VLESS #VPN
+#SLIPNET #VPN
 
-🕒 انتشار: 03:30 - 1405/01/04
-💡 منبع: @V2rayconfigAmir
+🕒 انتشار: 21:19 - 1405/01/03
+💡 منبع: @TirexNet
 
-```vless://14b02e2a-8930-4afb-8412-ea4a4954ca5b@103.118.42.35:2053?encryption=none&security=tls&sni=ylnhh.cc.cd&insecure=0&allowInsecure=0&type=ws&host=ylnhh.cc.cd&path=%2FTelegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#%40v2rayconfigamir%204620```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Denmark 🇩🇰
-📶 پینگ: 95ms
-
-#VLESS #VPN
-
-🕒 انتشار: 23:31 - 1405/01/03
-💡 منبع: @V2rayconfigAmir
-
-```vless://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855?type=ws&security=none&path=%2F#%40v2rayconfigamir%208038```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 2ms
-
-#VLESS #VPN
-
-🕒 انتشار: 23:31 - 1405/01/03
-💡 منبع: @V2rayconfigAmir
-
-```vless://71a5d7f2-2ac6-4020-acaf-3c59efa4e856@dk01.sonicsonic.icu:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=CsiQp5w0SPY80LQ9UQlHMLHIKYbMi_a0dF6bqjo-7Wk&sid=&sni=apple.com&path=&host=#%40v2rayconfigamir%201541```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 87ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1405/01/03
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=195.254.165.253&port=25565&secret=dd79e344818749bd7ac519130220c25d09```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 88ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1405/01/03
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=195.254.165.247&port=25565&secret=dd79e344818749bd7ac519130220c25d09```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 89ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1405/01/03
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=195.254.165.252&port=25565&secret=dd79e344818749bd7ac519130220c25d09```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 89ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 19:30 - 1405/01/03
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=195.254.165.249&port=25565&secret=dd79e344818749bd7ac519130220c25d09```
-
-📊 **گزارش عملکرد ربات**
-
-📅 تاریخ: 1405/01/03
-✅ مجموع کل: 80
-
-⚙️ تعداد کانفیگ: 57
-🛡 تعداد پروکسی: 17
-📂 تعداد فایل: 6
-
-#آمار #گزارش
+```slipnet-enc://AQB/OVce685/Y3JCdQG14G+o323VJ6rB/XHdjhKGJ5+TYGOlFId9Ibe61uoLPUcwVqjpTTadXzGPlxHjWHkxC1ryNzXO2I7T/+50Ai/amt9TR901Mp6qh3P2oaDAALcM2FqAWF6PIBoBsbMpxF5AZCjuecF62/NQ++PTJWUtTYFwE2dIODWOPDknG/iVN5vcVaZfFKf0tDWb5pYix2jkTDI8acrhyfDHs5/OWS5fcAqle+GPlvfG1REDgnfSmJzwfokZd0r++kdJyKsA6rhLRXJwxpYCrHjxCsURbypnAHYQAXc9W1KtkXfsmj1VMdEQ7qrCWE0fCmGJNZlk/h0Bd9F80YGmQlQRjwb7wJLnZ0yFMoOe2PiYowc5OV/Xu5AM2x+O4ojADILkzy2s5j63mIkwZ/D0cVkjVc8u4MylPsfb92Ds5FpOjRL22grxvLmYgKWkzn3jtzUnRRxizZJnPVtThJOv9pOehQHeOT7GKbmbl15zDVY6wirlqj3KZhzz0eiLtyejZN2AlWi4IvTc4PLa5obpR6/wYEBsS328k11Fv07Apt61QKHBA0cHlwtE0s6gjVohEyTEzCTGAEXt3gIxBIskg7SPRsX4O9N0VxfA5MwmENOLTjQ=```
