@@ -1,10 +1,43 @@
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 1ms
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Iran 🇮🇷
+📶 پینگ: 105ms
 
-#VLESS #VPN
+#Proxy #MTProto
 
-🕒 انتشار: 22:23 - 1405/01/04
-💡 منبع: @electvpn0
+🕒 انتشار: 23:34 - 1405/01/05
+💡 منبع: @ghalagyann
 
-```vless://d2d0f796-edb0-427a-af32-ae360679f9e7@172.66.1.143:443?path=%2F&security=tls&encryption=none&insecure=1&host=rayan-007.foton.dpdns.org&type=ws&allowInsecure=1&sni=rAyAn-007.fOtOn.dPdNs.oRg#``@electvpn0```
+```https://t.me/proxy?server=195.254.165.244&port=25565&secret=dd79e344818749bd7ac519130220c25d09```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: فنلاند 🇫🇮
+📶 پینگ: 135ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 23:34 - 1405/01/05
+💡 منبع: @ghalagyann
+
+```https://t.me/proxy?server=65.109.213.227&port=65535&secret=EERighJJvXrFGRMCIMJdCQRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 106ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 20:22 - 1405/01/04
+💡 منبع: @beshkan
+
+```https://t.me/proxy?server=138.124.70.86&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 107ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 22:02 - 1405/01/05
+💡 منبع: @PrivateVPNs
+
+```trojan://telegram-id-privatevpns@52.47.75.88:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)🇨🇵t.me/PrivateVPNs```
