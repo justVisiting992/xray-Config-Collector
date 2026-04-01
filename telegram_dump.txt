@@ -1,56 +1,21 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 133ms
 
-#NapsternetV #Config #File
+#VLESS #VPN
 
-🕒 انتشار: 16:09 - 1405/01/12
-💡 منبع: @ehsawn8
+🕒 انتشار: 17:48 - 1405/01/12
+💡 منبع: @prrofile_purple
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 156ms
+```vless://cc827222-bc88-4947-b857-83180a9bc4c4@s1.elmovipservice.ir:80?path=%2F&security=none&encryption=none&host=ss1.elmovipservice.ir&type=ws#%E2%9A%A1Telegram%20%3D%20%40prrofile_purple```
 
-#Proxy #MTProto
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 38ms
 
-🕒 انتشار: 16:07 - 1405/01/12
-💡 منبع: گروه MahsaNet
+#VLESS #VPN
 
-```tg://proxy?server=65.109.245.159&port=443&secret=dd104462821249bd7ac519130220c25d09```
+🕒 انتشار: 17:48 - 1405/01/12
+💡 منبع: @prrofile_purple
 
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 16:06 - 1405/01/12
-💡 منبع: گروه MahsaNet
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 131ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 16:02 - 1405/01/12
-💡 منبع: @PrivateVPNs
-
-```trojan://telegram-id-privatevpns@35.181.231.212:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)🇨🇵t.me/PrivateVPNs```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 152ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 14:02 - 1405/01/12
-💡 منبع: @PrivateVPNs
-
-```trojan://telegram-id-privatevpns@35.181.201.33:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)🇨🇵t.me/PrivateVPNs```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 13:54 - 1405/01/12
-💡 منبع: @ghalagyann
+```vless://84dc085d-1677-4a74-ad3a-44a731bc6400@varzesh3.com:80?path=%2Fprivate&security=none&encryption=none&host=cas.xo-connection.ir&type=ws#%E2%9A%A1Telegram%20%3D%20%40prrofile_purple```
