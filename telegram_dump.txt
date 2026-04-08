@@ -1,10 +1,10 @@
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 23ms
 
-#SLIPNET #VPN
+#VLESS #VPN
 
-🕒 انتشار: 15:17 - 1405/01/17
-💡 منبع: @azadi_az_inja_migzare
+🕒 انتشار: 09:31 - 1405/01/19
+💡 منبع: گروه MahsaNet
 
-```slipnet-enc://AfMdccyj9w3NkMJqyTWkp+OCGmh2jTbbXnBEPlAGZDVKkCwvfK4dxV/FVV2KrIjMCgbp4+Dx1XiXm/wGNMgJHg+UR7gDCdjl15bHns/Ro1TBhzjMuvf3m5RKgbGpLMX2dLdHnh0jxr9amWMe2w8wj+YYIFYZ0+d8zCas9lI5VZxshh1WD61NieHVz95TzbXuANzCjGFERrolMWuchLA2H40xepPVWboiP6uuO4m/1QEWZRnQ18TEBxvSR4kfu5CVkS9elHbdnwk8IsTS6MaP2Z1VkndqVJLRj9Zw5sBWLYy+6+pAMP4lUs1Bwz2eHY3XuK1qQFvMxFCXPwO207O48YI/yniTNkVu+trmYE0ZtGkKtsdejKwxZ5IYpD0ZEtsiQ3IqgCI/N6jiirQaRYWYyn7MmEegVt0HztSSe5XLTF/HJmw/HyN57Kanh9QUwp83Mw==```
+```vless://c387b0f2-5d9e-4c95-882d-1d5eeb443ce2@varzesh3.com:443?path=%2Fmovie&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&insecure=0&host=nginx-3b1e7ed824-abol.apps.ir-central1.arvancaas.ir&fp=chrome&type=ws&allowInsecure=0&sni=nginx-3b1e7ed824-abol.apps.ir-central1.arvancaas.ir#Psiphon%20-%20%40i10VPN%2011```
