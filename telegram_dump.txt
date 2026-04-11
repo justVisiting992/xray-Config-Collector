@@ -1,21 +1,54 @@
+📊 **گزارش عملکرد ربات**
+
+📅 تاریخ: 1405/01/21
+✅ مجموع کل: 67
+
+⚙️ تعداد کانفیگ: 46
+🛡 تعداد پروکسی: 15
+📂 تعداد فایل: 6
+
+#آمار #گزارش
+
 📂 کانفیگ MTPROTO
 📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 157ms
+📶 پینگ: 95ms
 
 #Proxy #MTProto
 
-🕒 انتشار: 00:26 - 1405/01/22
-💡 منبع: @ehsawn8
+🕒 انتشار: 02:45 - 1405/01/22
+💡 منبع: @InfoTech_VK
 
-```https://t.me/proxy?server=46.225.29.180&port=443&secret=ee636c6f7564666c6172652e636f6db6```
+```https://t.me/proxy?server=178.104.72.162&port=443&secret=dd104462821249bd7ac519130220c25d09```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 146ms
+📶 پینگ: 83ms
 
 #VLESS #VPN
 
-🕒 انتشار: 00:19 - 1405/01/22
-💡 منبع: @shay_iranux
+🕒 انتشار: 02:45 - 1405/01/22
+💡 منبع: @InfoTech_VK
 
-```vless://7635ce2e-166b-4984-a7a5-b6843de1f843@185.143.234.200:443?path=%2F%3Fed%3D443&security=tls&encryption=none&insecure=0&host=alef.ir.oadeflantrogm.airasiadl.com&fp=randomized&type=ws&allowInsecure=0&sni=alef.ir.oadeflantrogm.airasiadl.com#10GB%20%7C%2004-v9-%20%40unvisible_drops```
+```vless://f1d697f4-355d-4c3b-a625-06859a6f4d22@haji.nahidapp.com:443?path=%2Fhaji%2F&security=tls&encryption=none&host=haji.nahidapp.com&allowinsecure=0&type=ws&sni=haji.nahidapp.com#@InfoTech_VK```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: فنلاند 🇫🇮
+📶 پینگ: 113ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 02:11 - 1405/01/22
+💡 منبع: @InfoTech_VK
+
+```https://t.me/proxy?server=95.216.178.76&port=443&secret=dd104462821249bd7ac519130220c25d09```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 85ms
+
+#VLESS #VPN
+
+🕒 انتشار: 02:10 - 1405/01/22
+💡 منبع: @electvpn0
+
+```vless://57535069-9fc5-49f1-a656-f8ca8421e765@snapp.ir:80?path=%2F&security=none&encryption=none&host=dsfr.parsimas.ir&type=ws#@electvpn0```
