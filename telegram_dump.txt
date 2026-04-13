@@ -1,32 +1,18 @@
-📂 کانفیگ SS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 102ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 07:34 - 1405/01/24
-💡 منبع: گروه MahsaNet
-
-```ss://bd2c7638-7f66-4fd0-8ca5-9c78cb4c3603@amvip.q2k.ir:80?path=%2F&security=&encryption=none&host=Amvip.yooring.ir&type=ws#%40V2ray_confiig```
-
 📂 کانفیگ TROJAN
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 3ms
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 133ms
 
 #TROJAN #VPN
 
-🕒 انتشار: 07:34 - 1405/01/24
+🕒 انتشار: 10:02 - 1405/01/24
+💡 منبع: @PrivateVPNs
+
+```trojan://telegram-id-privatevpns@3.64.136.6:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
+
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
+
+#NapsternetV #Config #File
+
+🕒 انتشار: 09:26 - 1405/01/24
 💡 منبع: گروه MahsaNet
-
-```trojan://PSMFD1nJgID-f4Z9yntv9rIwW_pdF_GE@aiowufhitest.kamalnet-new.com:443?path=%2Fassignment&security=tls&alpn=h2%2Chttp%2F1.1&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=aiowufhitest.kamalnet-new.com#%40V2ray_confiig```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 112ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 04:31 - 1405/01/24
-💡 منبع: @InfoTech_VK
-
-```https://t.me/proxy?server=94.130.191.164&port=443&secret=dd104462821249bd7ac519130220c25d09```
