@@ -1,123 +1,65 @@
-📂 کانفیگ MTPROTO
-📍 لوکیشن: هلند 🇳🇱
-📶 پینگ: 165ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 20:21 - 1405/01/26
-💡 منبع: @beshkan
-
-```https://t.me/proxy?server=tggo.store&port=443&secret=7uzWmAwONp7D1ujd83Bwkr50Z2dvLnN0b3Jl```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 180ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 20:21 - 1405/01/26
-💡 منبع: @beshkan
-
-```https://t.me/proxy?server=furrow.goitrous.inefficacy.kaunas.unaided.pinoyteleseryehd.net&port=8950&secret=ee9c5c58f91ce1bb198dcc68037ea465```
-
 📂 کانفیگ VLESS
-📍 لوکیشن: هلند 🇳🇱
-📶 پینگ: 166ms
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 103ms
 
 #VLESS #VPN
 
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
+🕒 انتشار: 21:42 - 1405/01/26
+💡 منبع: @Farah_VPN
 
-```vless://248d1886-8ae0-4079-a281-4d21bdb74ba4@152.53.60.114:7443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=chat.deepseek.com&fp=qq&pbk=5QAO98ot2U7TcGs_f6EEaQjCzNOJLNHqPf6smYsdFVI&sid=be0ce047&type=tcp&headerType=none#%20```
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.75.24.59:8443?allowInsecure=1&encryption=none&host=sni.111000.v6.navy&path=%2F%3FTelegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3%2B%2540WangCai2%3D&security=tls&sni=sni.111000.v6.navy&type=ws#🏳️```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 113ms
+
+#VLESS #VPN
+
+🕒 انتشار: 21:42 - 1405/01/26
+💡 منبع: @Farah_VPN
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@159.223.24.65:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#🏳️```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 115ms
+
+#VLESS #VPN
+
+🕒 انتشار: 21:42 - 1405/01/26
+💡 منبع: @Farah_VPN
+
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.129.63.154:2053?allowInsecure=1&encryption=none&host=sni.111000.dynv6.net&path=/?Telegram🇨🇳+@WangCai2=&security=tls&sni=sni.111000.dynv6.net&type=ws#🇩🇪```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Hong Kong 🇭🇰
+📶 پینگ: 122ms
+
+#VLESS #VPN
+
+🕒 انتشار: 21:40 - 1405/01/26
+💡 منبع: @Farah_VPN
+
+```vless://06ef598c-1555-4887-b3f9-08214a2f6792@222.167.202.21:7443?allowInsecure=1&encryption=none&host=2026.hhhhh.eu.org&path=/222.167.202.21:7443&security=tls&sni=2026.hhhhh.eu.org&type=ws#🇮🇹```
 
 📂 کانفیگ SS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 12ms
+📍 لوکیشن: انگلیس 🇬🇧
+📶 پینگ: 107ms
 
 #Shadowsocks #VPN
 
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
+🕒 انتشار: 21:40 - 1405/01/26
+💡 منبع: @Farah_VPN
 
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpzb21lYm9keQ==@23.177.40.226:30011#%20```
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.214:8080#🇳🇱```
 
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 157ms
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
 
-#VLESS #VPN
+#NapsternetV #Config #File
 
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
-
-```vless://97b2cd5b-b98d-494f-8f97-3a06e8c1bbd2@18.245.54.3:443?encryption=none&security=tls&sni=d2241b25w3zftf.cloudfront.net&fp=chrome&type=ws&host=d2241b25w3zftf.cloudfront.net&path=%2F#%20```
-
-📂 کانفیگ VMess
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 46ms
-
-#VMess #VPN
-
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
-
-```vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIiIsDQogICJhZGQiOiAiNjYuMTgxLjM2LjE3NCIsDQogICJwb3J0IjogIjUyOTE0IiwNCiAgImlkIjogIjhhZTFjMmYwLTMxMjctNDlhYy1hY2FkLWRlZjU1YjA0YzIzMSIsDQogICJhaWQiOiAiMCIsDQogICJzY3kiOiAiYXV0byIsDQogICJuZXQiOiAidGNwIiwNCiAgInR5cGUiOiAiaHR0cCIsDQogICJob3N0IjogIiIsDQogICJwYXRoIjogIi9BQkNERSIsDQogICJ0bHMiOiAiIiwNCiAgInNuaSI6ICIiLA0KICAiYWxwbiI6ICIiLA0KICAiZnAiOiAiIg0KfQ==```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 3ms
-
-#VLESS #VPN
-
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
-
-```vless://d46056cf-da4e-4426-a3e4-39fcbfefa112@63.141.128.188:443?encryption=none&security=tls&sni=d2-us1.djwstlsweb.top&fp=chrome&type=ws&host=d2-us1.djwstlsweb.top&path=%2Fdjjc%2Fus1#%20```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: روسیه 🇷🇺
-📶 پینگ: 219ms
-
-#VLESS #VPN
-
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
-
-```vless://4649d681-7f26-4959-a3f2-02eb8866230f@72.56.8.156:9443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=yahoo.com&fp=chrome&pbk=wAYsJ6RJXFy94w_WaTIhp1ZfCePAPoZmP27RarvUqXg&sid=2344766a270a6298&type=tcp&headerType=none#%20```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Italy 🇮🇹
-📶 پینگ: 316ms
-
-#VLESS #VPN
-
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
-
-```vless://6ba2eac6-0ec9-44ca-a42b-a8e23aafb530@204.216.216.23:1114?encryption=none&flow=xtls-rprx-vision&security=reality&sni=yahoo.com&fp=chrome&pbk=WfkCF0eEuIoO0MyJsKOddU89QrTzCZ4y2dzCJbH99CQ&sid=79a1e14b&type=tcp&headerType=none#%20```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Czechia 🇨🇿
-📶 پینگ: 150ms
-
-#VLESS #VPN
-
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
-
-```vless://913c6074-a747-492b-a7e9-5abfcad6369d@gr.milas.click:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=gr.milas.click&fp=chrome&pbk=DoZSKLwNQjogQMlE7oEEuB8TqpNa-umXzG-2Q6dTTEY&sid=4fa44664f6a566d3&type=tcp&headerType=none#%20```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: هلند 🇳🇱
-📶 پینگ: 163ms
-
-#VLESS #VPN
-
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
-
-```vless://148cf088-5fa8-48a2-afbb-7003696c5cc1@bot2.jetstoreapp.ru:8443?encryption=none&flow=xtls-rprx-vision&security=tls&sni=bot2.jetstoreapp.ru&type=tcp&headerType=none#%20```
+🕒 انتشار: 21:20 - 1405/01/26
+💡 منبع: @GrizzlyVPN
 
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
@@ -125,206 +67,7 @@
 
 #VLESS #VPN
 
-🕒 انتشار: 20:09 - 1405/01/26
-💡 منبع: @beshkan
+🕒 انتشار: 20:43 - 1405/01/26
+💡 منبع: @Proxymelimon
 
-```vless://98ef96cd-7f4c-420c-8feb-8f16268017e2@104.18.12.149:8443?encryption=none&security=tls&sni=turkiye-fast.rocketset.fun&alpn=h2%2Chttp%2F1.1&fp=chrome&type=ws&host=turkiye-fast.rocketset.fun&path=%2F%3Fed%3D2560#%20```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 153ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 20:03 - 1405/01/26
-💡 منبع: @PrivateVPNs
-
-```trojan://telegram-id-privatevpns@51.102.234.219:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)🇩🇪t.me/PrivateVPNs```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 15ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:50 - 1405/01/26
-💡 منبع: @Father_vpn
-
-```vless://eb211fb7-40c8-4314-8b67-7b5f025e0f62@8.6.112.6:2083?path=%2F&security=tls&encryption=none&insecure=0&host=kamalnet.pages.dev&fp=chrome&type=ws&allowInsecure=0&sni=kamalnet.pages.dev#Tel%3B%40Father_vpn```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:30 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://eb211fb7-40c8-4314-8b67-7b5f025e0f62@8.6.112.6:2083?security=tls&allowInsecure=0&encryption=none&type=ws&host=kamalnet.pages.dev&path=/&sni=kamalnet.pages.dev&fp=chrome#@InfoTech_VK21```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 15ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@clud.soonteam.top:443?security=tls&encryption=none&insecure=0&host=2-4jq.pages.dev&type=ws&allowInsecure=0&sni=2-4jq.pages.dev#@InfoTech_VK19```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 10ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://501e461e-02f6-4293-8334-d6ba7c076dd9@clud.soonteam.top:443?security=tls&encryption=none&insecure=0&host=cdn.dns.xn--q9jyb4c&type=xhttp&allowInsecure=0&sni=cdn.dns.xn--q9jyb4c#@InfoTech_VK18```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://4dc0b42a-1a8a-4337-851b-5d8a1f149fca@clud.soonteam.top:8443?security=tls&encryption=none&insecure=0&host=kingman.turboo-server.com.co&type=ws&allowInsecure=0&sni=kingman.turboo-server.com.co#@InfoTech_VK17```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 10ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://733a9a09-ba93-4e73-b1f3-ae0bcbd88310@clud.soonteam.top:443?security=tls&encryption=none&insecure=0&host=noisy-paper.workers.dev&type=ws&allowInsecure=0&sni=noisy-paper.workers.dev#@InfoTech_VK16```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 15ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://529ad031-70ae-4352-bf3d-19297d35190b@clud.soonteam.top:443?security=tls&encryption=none&insecure=0&host=mioptp.miomio.cloud&type=ws&allowInsecure=0&sni=mioptp.miomio.cloud#@InfoTech_VK15```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 10ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://2247d5b9-570c-477a-9191-350f6025cb38@clud.soonteam.top:443?security=tls&encryption=none&insecure=0&host=cloud.endlessteam.site&type=ws&allowInsecure=0&sni=cloud.endlessteam.site#@InfoTech_VK14```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 12ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```trojan://8r%3C%5B9%27l6hAO%238ZQi@clud.soonteam.top:2096?security=tls&insecure=0&host=Koma-YT.pages.dev&type=ws&allowInsecure=0&sni=Koma-YT.pages.dev#@InfoTech_VK13```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 10ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://cff6f361-828a-43c8-a8b5-8d10b32e57fb@clud.soonteam.top:443?security=tls&encryption=none&insecure=0&host=zh.hollowspot.ir&type=ws&allowInsecure=0&sni=zh.hollowspot.ir#@InfoTech_VK12```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 12ms
-
-#VLESS #VPN
-
-🕒 انتشار: 18:06 - 1405/01/26
-💡 منبع: @InfoTech_VK
-
-```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@clud.soonteam.top:2053?security=tls&encryption=none&insecure=0&host=sni.111000.indevs.in&type=ws&allowInsecure=0&sni=sni.111000.indevs.in#@InfoTech_VK11```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 18:01 - 1405/01/26
-💡 منبع: @AzadNet
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 18:00 - 1405/01/26
-💡 منبع: @ehsawn8
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 14ms
-
-#VLESS #VPN
-
-🕒 انتشار: 17:57 - 1405/01/26
-💡 منبع: @ehsawn8
-
-```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@8.6.112.0:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&insecure=1&host=sni.jpmj.dev&fp=chrome&type=ws&allowInsecure=1&sni=sni.jpmj.dev#@ehsawn8```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:56 - 1405/01/26
-💡 منبع: @azadi_az_inja_migzare
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:53 - 1405/01/26
-💡 منبع: @prrofile_purple
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:52 - 1405/01/26
-💡 منبع: @mitivpn
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:30 - 1405/01/26
-💡 منبع: @mitivpn
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:24 - 1405/01/26
-💡 منبع: @mitivpn
+```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@8.6.112.0:8443?path=%2F%3FTelegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.dynv6.net&type=ws&allowInsecure=0&sni=sni.111000.dynv6.net#proxymelimon```
