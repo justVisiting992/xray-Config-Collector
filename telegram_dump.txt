@@ -1,10 +1,21 @@
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 176ms
+📂 کانفیگ SLIPNET-ENC
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
 
-#Proxy #MTProto
+#SLIPNET #VPN
 
-🕒 انتشار: 06:58 - 1405/01/27
-💡 منبع: @InfoTech_VK
+🕒 انتشار: 11:53 - 1405/01/27
+💡 منبع: @slipnet_chat
 
-```https://t.me/proxy?server=vavan.online&port=443&secret=dd104462821249bd7ac519130220c25d09```
+```slipnet-enc://AbL5tSWwoq0r+EApPqgVzMRabvOY7hN64tmucLUy2OJuu2Fhc1UNEvC+VqO8O85qB/FZ/WOQGqLnUf6Rg6ATWIW+g+YRgr/3qwFwfn3mxtnrX4BmIkR8CeuEB78C9Y8AkoBWRh42juTKgZIrzmaonL+K/XMpMcp0QN02JAAM+zHvJMKr9/TbQjrxLDu83M4XJZLlT7DwP6T79ahR1oduSyMybxDHTTmcx+tjrPHXffR/KTSrHG8SGjPhUWGLCZlL9m9m4TO4zhgw37IEmt/Z5/6By1Of/egRTed46a88MkCcjFRdbnKzI2vus/2jnVV5+Se2cWT9hRgZWSFdDxBwGMcY8Xx9gSuDSRNU6DMWoL9QDBQ3afHqz/KB9FKlmBuYsiric3TjQNrbBiftufPwMSctKea/2cOGAhSQYN4l7NYrPJHKWi3eNhCE+vZlH8mR1uNniJkBi6YXCH8JK8li+oAsAjRDvENhaPaEuwhsjl4/iZ2J5EwaAdgbmxOSDOxA7goUw8adE5I86r8oKnzWSU97MPfJaBcN/fzAry1NLvtqhAw6YAdBpz9/HXwtZE1v7DXzfeh7a9YiUYavrkhQdf+tzG0ApeY=```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 152ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 10:04 - 1405/01/27
+💡 منبع: @PrivateVPNs
+
+```trojan://telegram-id-privatevpns@3.66.203.131:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
