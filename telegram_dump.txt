@@ -1,119 +1,54 @@
-📂 کانفیگ SLIPNET
+📂 کانفیگ SLIPNET-ENC
 📍 لوکیشن: نامشخص 🏁
 📶 پینگ: N/A ms
 
 #SLIPNET #VPN
 
-🕒 انتشار: 17:06 - 1405/01/30
-💡 منبع: @Parsashonam
+🕒 انتشار: 17:46 - 1405/01/30
+💡 منبع: @Father_vpn
 
-```slipnet://Mjd8dmF5ZG5zX3NzaHxAUGFyc2FzaG9uYW0gLSB2YXlkbnMtc3NofGkuYXRsYXNxLmlyfDIuMTg4LjIxLjEwMDo1MzowLDIuMTg4LjIxLjEyMDo1MzowLDIuMTg4LjIxLjI0MDo1MzowLDIuMTg4LjIxLjIzMDo1MzowLDIuMTg4LjIxLjE5MDo1MzowLDIuMTg4LjIxLjkwOjUzOjAsMi4xODguMjEuMjA6NTM6MHwwfDUwMDB8YmJyfDEwODB8MTI3LjAuMC4xfDB8ZGM4Y2FiOTk2YTkwZjFmOTQ5ZThiYTBlNGVjYmU0ZDFlOTZiNDFkYmViNzg4MjA2ZTA5YTQzMWU3NTVkMWEyMXxwYXJzYXNob25hbTB8VGVsZWdyYW0uUGFyc2FzaG9uYW18MXxwYXJzYXNob25hbTB8VGVsZWdyYW0uUGFyc2FzaG9uYW18MjJ8MHwxMjcuMC4wLjF8MHx8dWRwfHBhc3N3b3JkfHx8fDB8NDQzfHx8MHx8MHwwfHwwfHwwfDB8MTA4MHwwfGNuYW1lfDEwMXwwLjB8MHwwfDB8MHwyfDB8fHw4MDgwfHwwfC98MXx8fHJvdW5kcm9iaW58M3x8dGxzfHdzfC98fDQ0M3wxfHNuaV9zcGxpdHwzMDB8fDB8MHwwfDh8fDA=```
+```slipnet-enc://AfewrmMwfAldHDx2UpZc5DFcFJUat1WvUeJg+efDEJ8iZkgbtLudLWfJ9Da4gMamQpgje4gar8JWpMFJ/YBkNtNLnOsKz8KWG7vLF34JXB+3f/Uz4w0/fb0kIqLBTVKyFwY1VFCD6yWcjCuXxTdFq5gI42aFWX99/qeP/KynAmwuO7PKTlMb+HO5xjOEQEuU+RceVg86nKbrV/E/itP0UagJtbQKtaYnEpZr7eTfNprcCDOuPfwQFLvpjn2B+UZQAQ/mjgriczyL4g5E+DIyUgMbfrvr8HeJquIjO0lVqlaB80XCCaGEs98Q8Zu6OG8+e+5FmtTnBS9TboGANAlPMQOgF1GrGEtFdoHZeceKgRrkRdFjX1/Frx8kCU9/7Bw1DqY7n41uxgCcGt37h3y+aBiodRSvXY20F7PrEk8+6IM2AjYj2iQJCJ5WCGic0zQBgdXFSJNtXooyLGdM9wqMXP2VwfpGJ9gABySEGCYNqvbOFOS5hzytVva8exPuvMFQCZ1e2mYeR7NS0zRNeQJYpwohfE4L8YxtSZzMKWvbJF8EyicgS6UTDpyBVHw/MJF76lhmiAuyTnUY/+626k0SSD7k22ZzKKmepmmCZ9uZv3khM/PY3rY=```
 
-📂 کانفیگ SLIPNET
+📂 کانفیگ SLIPNET-ENC
 📍 لوکیشن: نامشخص 🏁
 📶 پینگ: N/A ms
 
 #SLIPNET #VPN
 
-🕒 انتشار: 17:06 - 1405/01/30
-💡 منبع: @Parsashonam
+🕒 انتشار: 17:46 - 1405/01/30
+💡 منبع: @Father_vpn
 
-```slipnet://Mjd8dmF5ZG5zfEBQYXRzYXNob25hbSAtIHZheWRucy1zb2Nrc3xpLmF0bGFzcS5pcnwyLjE4OC4yMS4xMDA6NTM6MCwyLjE4OC4yMS4xMjA6NTM6MCwyLjE4OC4yMS4yNDA6NTM6MCwyLjE4OC4yMS4yMzA6NTM6MCwyLjE4OC4yMS4xOTA6NTM6MCwyLjE4OC4yMS45MDo1MzowLDIuMTg4LjIxLjIwOjUzOjB8MHw1MDAwfGJicnwxMDgwfDEyNy4wLjAuMXwwfGRjOGNhYjk5NmE5MGYxZjk0OWU4YmEwZTRlY2JlNGQxZTk2YjQxZGJlYjc4ODIwNmUwOWE0MzFlNzU1ZDFhMjF8cGFyc2FzaG9uYW0wfFRlbGVncmFtLlBhcnNhc2hvbmFtfDB8fHwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDB8fDB8fDB8MHwxMDgwfDB8Y25hbWV8MTAxfDAuMHwwfDB8MHwwfDJ8MHx8fDgwODB8fDB8L3wxfHx8cm91bmRyb2JpbnwzfHx0bHN8d3N8L3x8NDQzfDF8c25pX3NwbGl0fDMwMHx8MHwwfDB8OHx8MA==```
+```slipnet-enc://ASDNPCXgfOLKcKcoWmtZiebNr8x0m22xBmOy5uq+j5Di2E7/6AnEI6Yt2zXTJcjQt5a0JtFPGyTa03vlp3CVZ/GepPzKx25sRMNKGudPSxcahWbcsbL2MZMgqMJ6ITAt1Am+G7jzcv09FIsDMS9KJ1uHwaeVWRV7tDYJMBjJgah2NiD/SgItWSUQ+LtWi6iOcbtJjyteHnnBZ5W2zziNOHKD1zjrEVry0yTUJVW0vHxI3MmH7QKsRYDX4pHC6GD0H4rgdPldYzK0j97JYQxttErYa6adtjltxYJUQef+4n7MUg6Z+dPJfMNuVKcm2akpStlS5R0HDzwMDfAR1xxMUSvw5KdiMlKDlV5SLzylqfuD2rISAcC1gDqLpYQlqcHeh6jQ8P2/LLcDB4JPEGcY/NtEMTzaX3EdTf6pCkAFOu8/lmDkXzL5Mxm9SnI/9J566rqJ6bw9lsHfbHAiJNbQ3GCnTKCzeGd7RfO0eoF/o7PVVbipFIn8OG5/0seddTRWq8g7qnhiE5drCzElN/9gXdC/otIU5ViM96En/W+JOvQ4Xz8APsI/okHWRs+cpd8Otd4l5zw2Icr7LVaO8ulEE0JkKjyQYRBGVjWksvrklR4FPw==```
 
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:03 - 1405/01/30
-💡 منبع: @MTproxy22_v2ray
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:03 - 1405/01/30
-💡 منبع: @MTproxy22_v2ray
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:02 - 1405/01/30
-💡 منبع: @MTproxy22_v2ray
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 17:02 - 1405/01/30
-💡 منبع: @MTproxy22_v2ray
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 6ms
-
-#VLESS #VPN
-
-🕒 انتشار: 17:01 - 1405/01/30
-💡 منبع: @ehsawn8
-
-```vless://95ad47ac-df62-486b-813c-f50b34eba5c7@185.143.235.253:80?path=%2F&security=none&encryption=none&host=ss.oppobot.ir&type=ws#@ehsawn8```
-
-📂 کانفیگ SLIPNET
+📂 کانفیگ SLIPNET-ENC
 📍 لوکیشن: نامشخص 🏁
 📶 پینگ: N/A ms
 
 #SLIPNET #VPN
 
-🕒 انتشار: 17:00 - 1405/01/30
-💡 منبع: @Parsashonam
+🕒 انتشار: 17:46 - 1405/01/30
+💡 منبع: @Father_vpn
 
-```slipnet://Mjd8c2F5ZWRuc19zc2h8QFBhcnNhc2hvbmFtIC0gbm9pemRucy1zc2h8cC5hdGxhc3EuaXJ8Mi4xODguMjEuMTAwOjUzOjAsMi4xODguMjEuMTIwOjUzOjAsMi4xODguMjEuMjQwOjUzOjAsMi4xODguMjEuMjMwOjUzOjAsMi4xODguMjEuMTkwOjUzOjAsMi4xODguMjEuOTA6NTM6MCwyLjE4OC4yMS4yMDo1MzowfDB8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHwwN2I1ZTI5MGE2NGEzY2I5MGY3Y2Y4ZmVjNmZlMzJhOTc1YzJjYTkyOTA5ZjJjNWM1OTUzMmQ5MmRjYTYxYjFmfHBhcnNhc2hvbmFtfFRlbGVncmFtLlBhcnNhc2hvbmFtfDB8cGFyc2FzaG9uYW18VGVsZWdyYW0uUGFyc2FzaG9uYW18MjJ8MHwxMjcuMC4wLjF8MHx8dWRwfHBhc3N3b3JkfHx8fDB8NDQzfHx8MHx8MHwwfHwwfHwwfDUwfDEwODB8MHx0eHR8MTAxfDAuMHwwfDB8MHwwfDB8MHx8fDgwODB8fDB8L3wxfHx8cm91bmRyb2JpbnwzfHx0bHN8d3N8L3x8NDQzfDF8c25pX3NwbGl0fDMwMHx8MHwwfDB8OHx8MA==```
+```slipnet-enc://ASDGaxCaGGNlQZExQC3zQUNgtPSNrlQaCYSgtDMaKdlxAfQrD1LqdNb6WvYj3jlEWZqejwQa87wnPTix4A1G8NfsGLiwpQooKj2htt8T/7D606wU8tAdbwc7BItj3ISj4fClEq0cufPO/x9CBIdGsO+8lRMmNo+gwyNB0uVmAAjSYlF3weMGF5YgZJ6CgtjvDA15bvHfoiisC5SuRnz/q91hM7aQpZpfibydSAA+ZKC19lYWpPbuyICaINlwRlqAk+p4YlXPVhzxHyeluRi6oFkKV+55fHpn+jWuvFV64iIU/N6a3INVcXZfuQVpjj593xg/7vNPq/4asmt9e99mqCvTUSVBXwEn692IzbLF/V+503TVqhbYmUcAEeuCjmObc0W15OewDTbBzT4bUTICxb9TiUUSfqmYh4haer3zEq7OsrgEn1SNd6cj9fodJRTOzUGiUGitfRLO6AQ/SdkFNWuko5ZTCvnSKp9i8dLXybR1EH+2Fz0uQRlwgP6Q0oE44jbGZ3eAGlTXztLdrpMgsNwFB5ZTcr86SiGGoIJikZh+iDr57EtIms5lFSh+UUCy6xae4Nm2MJN71iViI4QxpKw2u2uHnzbVPs+cbclbceBSFdvVnLhYsLYbBEO0atto```
 
-📂 کانفیگ SLIPNET
+📂 کانفیگ SLIPNET-ENC
 📍 لوکیشن: نامشخص 🏁
 📶 پینگ: N/A ms
 
 #SLIPNET #VPN
 
-🕒 انتشار: 17:00 - 1405/01/30
-💡 منبع: @Parsashonam
+🕒 انتشار: 17:46 - 1405/01/30
+💡 منبع: @Father_vpn
 
-```slipnet://Mjd8c2F5ZWRuc3xAUGFyc2FzaG9uYW0gLSBub2l6ZG5zLXNvY2tzfHAuYXRsYXNxLmlyfDIuMTg4LjIxLjEwMDo1MzowLDIuMTg4LjIxLjEyMDo1MzowLDIuMTg4LjIxLjI0MDo1MzowLDIuMTg4LjIxLjIzMDo1MzowLDIuMTg4LjIxLjE5MDo1MzowLDIuMTg4LjIxLjkwOjUzOjAsMi4xODguMjEuMjA6NTM6MHwwfDUwMDB8YmJyfDEwODB8MTI3LjAuMC4xfDB8MDdiNWUyOTBhNjRhM2NiOTBmN2NmOGZlYzZmZTMyYTk3NWMyY2E5MjkwOWYyYzVjNTk1MzJkOTJkY2E2MWIxZnxwYXJzYXNob25hbXxUZWxlZ3JhbS5QYXJzYXNob25hbXwwfHx8MjJ8MHwxMjcuMC4wLjF8MHx8dWRwfHBhc3N3b3JkfHx8fDB8NDQzfHx8MHx8MHwwfHwwfHwwfDUwfDEwODB8MHx0eHR8MTAxfDAuMHwwfDB8MHwwfDB8MHx8fDgwODB8fDB8L3wxfHx8cm91bmRyb2JpbnwzfHx0bHN8d3N8L3x8NDQzfDF8c25pX3NwbGl0fDMwMHx8MHwwfDB8OHx8MA==```
+```slipnet-enc://ASg+GkLY3lIWeDZcsgkay6qXuCHmDaca+NYsePzlfcrRZCbAlP7zayQvpLd1h7bju7icgPeEgP1XvRT8lGFBoK3ouoDLIsGfxF37aDmhXSDfQD1OMEZx2hAr5IIsz6faToWj73k2MsjK4P+5tjmDDToupGY54xfRQQC++V2zlu86sDimjngQeK+nyc95w3ZGa6A7xNZGdu3XsVaonjOE4nlw5WyY7EXzFCDtlU9Y8z8m5/QQo6LMKac+M90as5D70IX5HQeFWZbqCVlp6RygI9e65QMIOkyY0jssXkXKo0nyI6tj6vmzSw8O2Sex9GWLPMhZrcqXacyiE8BMhwD0YIJFfOdWR6b+Qj6lWtJK1Z2cxHc0H8STGLx+vXv5cg37T/Hl1znVjNvXa6D31ImqCN3yD1KhBot/eV65uYQBPsWURcZWa/w1U/j6H7sCHDouN7SiV8mE3OP96Kilv1MSwe9jRSe736GFQY0GPcHtQc7sf/uT8JGnxPRUuTLP41CIms1Y1QegvDqsvicnS8krpaOfH6F47fE8EqHR0q9+bt0vPBsQ9zrC74KVDiTu0Il8H2576bxpB5YO3FzLthYo6M97bFubjvGYuZCsyoDJPPCbLL6z8+RCKIEWS3mNXfTAEltJSphCL55URPkqGVpFxxSibuz8WILNdjcQbPwx2aVHCuO03ss22MfZVsU3ZD6JSNRRyorIG0NOkGu6WBh4s5P29M59bC+RlmmhTUOsbdE=```
 
-📂 کانفیگ SLIPNET
+📂 کانفیگ SLIPNET-ENC
 📍 لوکیشن: نامشخص 🏁
 📶 پینگ: N/A ms
 
 #SLIPNET #VPN
 
-🕒 انتشار: 16:59 - 1405/01/30
-💡 منبع: @Parsashonam
+🕒 انتشار: 17:46 - 1405/01/30
+💡 منبع: @Father_vpn
 
-```slipnet://Mjd8ZG5zdHRfc3NofEBQYXJzYXNob25hbSAtIGRuc3R0LXNzaHxwLmF0bGFzcS5pcnwyLjE4OC4yMS4xMDA6NTM6MCwyLjE4OC4yMS4xMjA6NTM6MCwyLjE4OC4yMS4yNDA6NTM6MCwyLjE4OC4yMS4yMzA6NTM6MCwyLjE4OC4yMS4xOTA6NTM6MCwyLjE4OC4yMS45MDo1MzowLDIuMTg4LjIxLjIwOjUzOjB8MHw1MDAwfGJicnwxMDgwfDEyNy4wLjAuMXwwfDA3YjVlMjkwYTY0YTNjYjkwZjdjZjhmZWM2ZmUzMmE5NzVjMmNhOTI5MDlmMmM1YzU5NTMyZDkyZGNhNjFiMWZ8cGFyc2FzaG9uYW18VGVsZWdyYW0uUGFyc2FzaG9uYW18MXxwYXJzYXNob25hbXxUZWxlZ3JhbS5QYXJzYXNob25hbXwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDB8fDB8fDB8NTB8MTA4MHwwfHR4dHwxMDF8MC4wfDB8MHwwfDB8MHwwfHx8ODA4MHx8MHwvfDF8fHxyb3VuZHJvYmlufDN8fHRsc3x3c3wvfHw0NDN8MXxzbmlfc3BsaXR8MzAwfHwwfDB8MHw4fHww```
-
-📂 کانفیگ SLIPNET
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 16:59 - 1405/01/30
-💡 منبع: @Parsashonam
-
-```slipnet://Mjd8ZG5zdHR8QFBhcnNhc2hvbmFtIC0gZG5zdHQtc29ja3N8cC5hdGxhc3EuaXJ8Mi4xODguMjEuMTAwOjUzOjAsMi4xODguMjEuMTIwOjUzOjAsMi4xODguMjEuMjQwOjUzOjAsMi4xODguMjEuMjMwOjUzOjAsMi4xODguMjEuMTkwOjUzOjAsMi4xODguMjEuOTA6NTM6MCwyLjE4OC4yMS4yMDo1MzowfDB8NTAwMHxiYnJ8MTA4MHwxMjcuMC4wLjF8MHwwN2I1ZTI5MGE2NGEzY2I5MGY3Y2Y4ZmVjNmZlMzJhOTc1YzJjYTkyOTA5ZjJjNWM1OTUzMmQ5MmRjYTYxYjFmfHBhcnNhc2hvbmFtfFRlbGVncmFtLlBhcnNhc2hvbmFtfDB8fHwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDB8fDB8fDB8NTB8MTA4MHwwfHR4dHwxMDF8MC4wfDB8MHwwfDB8MHwwfHx8ODA4MHx8MHwvfDF8fHxyb3VuZHJvYmlufDN8fHRsc3x3c3wvfHw0NDN8MXxzbmlfc3BsaXR8MzAwfHwwfDB8MHw4fHww```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 84ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 16:02 - 1405/01/30
-💡 منبع: @PrivateVPNs
-
-```trojan://telegram-id-privatevpns@13.36.75.195:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)🇨🇵t.me/PrivateVPNs```
+```slipnet-enc://ARV4mqiN+0L+NMYPJp5mkm3+YYYoyJyRNX3arSoEJnAUyvo3uL103jyyU3+GwLPRChZIfjwnQrgY68VK39yuL2vCzmD1mSmTXH/52d2uHT4SWshhZn1bBHX3IaSbkWwZyzcqelHyR0HugaQjKy3i4WU74gas3DRxY14jTgW/vFev7fkxXu8uA+EgKKMzo4blClYFQTHDivWHUog0j4Q0F9EEOrtGhrO4pVj5VeiTpASk34eV51RczOv/aXUN3+zHgdmuomX2QgZxF+XeS4Ljng4QOZ0JZLK1y+31OvxFqhK+dBSKwop6Fngpr34ISJ3LNV5xVztSlji7poaLJ7hZIrKhkQDYY1+quXWLHpplW0267xZ9jgo+YdiRITFfi4HKK4uSebVDKTVGry7yp+o1FusQdUwprOnzdzLHo8uGpt+OhmmIxBehZWJmoY4YA2xRFTrNOhp0QJLRU+95pM0wfyiSfa+rV2q09BC4OnmsReox/f38I2CkPYf8Rssx59wIK1i06zcfzGVSRM1VEz7wZeTPLzo0pX92Vl2bAMv/ME+l8eTayFs+6daBPCE=```
