@@ -1,21 +1,29 @@
-📊 **گزارش عملکرد ربات**
-
-📅 تاریخ: 1405/02/01
-✅ مجموع کل: 123
-
-⚙️ تعداد کانفیگ: 81
-🛡 تعداد پروکسی: 31
-📂 تعداد فایل: 11
-
-#آمار #گزارش
-
-📂 کانفیگ VLESS
+📂 کانفیگ MTPROTO
 📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 91ms
+📶 پینگ: 135ms
 
-#VLESS #VPN
+#Proxy #MTProto
 
-🕒 انتشار: 02:38 - 1405/02/02
-💡 منبع: @filtershekan_channel
+🕒 انتشار: 07:14 - 1405/02/02
+💡 منبع: گروه MahsaNet
 
-```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@176.96.138.17:2087?path=%2F&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#%40filtershekan_channel```
+```https://t.me/proxy?server=91.107.182.200&port=8443&secret=dd104462821249bd7ac519130220c25d09```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 152ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 07:14 - 1405/02/02
+💡 منبع: گروه MahsaNet
+
+```https://t.me/proxy?server=49.13.35.164&port=8443&secret=dd104462821249bd7ac519130220c25d09```
+
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
+
+#NapsternetV #Config #File
+
+🕒 انتشار: 04:04 - 1405/02/02
+💡 منبع: @prrofile_purple
