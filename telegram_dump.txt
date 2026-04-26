@@ -1,57 +1,13 @@
-📊 **گزارش عملکرد ربات**
+📂 کانفیگ SLIPNET-ENC
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
 
-📅 تاریخ: 1405/02/05
-✅ مجموع کل: 48
+#SLIPNET #VPN
 
-⚙️ تعداد کانفیگ: 42
-🛡 تعداد پروکسی: 2
-📂 تعداد فایل: 4
-
-#آمار #گزارش
-
-📂 کانفیگ VMess
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 128ms
-
-#VMess #VPN
-
-🕒 انتشار: 02:55 - 1405/02/06
+🕒 انتشار: 08:21 - 1405/02/06
 💡 منبع: @slipnet_chat
 
-```vmess://eyJhZGQiOiJjZG4uaXAtc3RhdGljLmNvbSIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZWNoQ29uZmlnTGlzdCI6IiIsImVjaEZvcmNlUXVlcnkiOiIiLCJlY2hTZXJ2ZXJLZXlzIjoiIiwiZmFrZWhvc3RfZG9tYWluIjoiIiwiZnAiOiIiLCJob3N0IjoiU1dFMDAxLm1pZGFzbmV0LndvcmsiLCJpZCI6IjJkMTVjNDNmLWViNDEtNDU5ZC1iNTIwLTAyZjI0ZDM3MTA4MiIsImludGVydmFsIjoiIiwibGVuZ3RoIjoiIiwibXV4IjoiIiwibXV4Q29uY3VycmVuY3kiOiIiLCJuZXQiOiJ3cyIsInBhY2tldHMiOiIiLCJwYXRoIjoiLyIsInBvcnQiOiI4MCIsInBzIjoieHNmaWx0ZXJuZXQiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoiIiwidHlwZSI6IiIsInYiOiIyIn0=```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 134ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:53 - 1405/02/06
-💡 منبع: @filtershekan_channel
-
-```vless://59ab21e3-c0cc-42d6-9ff5-fd49abfc0780@185.143.233.5:443?path=%2Fchat%3Fed%3D128&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&host=an.8lack.ir&fp=firefox&type=ws&sni=an.8lack.ir#%40filtershekan_channel```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 128ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:53 - 1405/02/06
-💡 منبع: @filtershekan_channel
-
-```vless://f1e24201-d57b-48df-8ca9-da0203f4a229@mobile2.liteingshop.com:80?path=%2F&security=none&encryption=none&host=book2.liteingshop.com&type=ws#%40filtershekan_channel```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 11ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 02:53 - 1405/02/06
-💡 منبع: @filtershekan_channel
-
-```trojan://8r%3C%5B9%27l6hAO%238ZQi@172.64.149.54:2096?path=%2Ftr&security=tls&host=Koma-YT.PAGeS.Dev&type=ws&sni=Koma-YT.PAGeS.Dev#%40filtershekan_channel```
+```slipnet-enc://AXXmoc9eDzLA7LOdac0s3ETjLO2f3ubL8GnaBHINy1mwW7OevHxEwAJFFT+JSdH403qcjQDK6W+S34/c+fxGpbafE6iNSDE0M7szkXwy3NsA5kHjdotQVnNY8tt2sutmYAytWobcX5+8IMs0pSnRe7ChgVLBRU2fFgmNzTHC/QSGsKAB8/JftoeKvZ44sKv+HhddjYSIjS8oqw2Fyq1+MpXT0kECxOI//dJ6R44GwnQauzCWH1pLindCiQKH9fa1QQj48Gne1qyJOgwOlZS9lLZ7TTTULt87Rmbaf1DwN26xq/nZXVTtWnc4cK18tltgZSXbCOFAewZ90aFiQF7Ki9aka8scLZwrGlmWB0lIMGEKi6/G0MqEW9Ik8tDnm/LelhChdwaMAHrFeWWz8jxOmbpEZoZ4zfIID85v79W3Y0+TABFKC7BDETL+8ZB05nnSqxKZqAtJhF8EO2PSd59p7oIoxqH05jUQYGs1WgTRHbCkps3QPHHYuMw/YPduWaGD+3JJGhFuERMp2QVjkJAhvTAztZ1KvXiaZETvxAFTIU/Ed4ZVY/WndacIHAmW2O+5JMhrnAW+xPjcSOwYndlYAXKCm+f99sTW/ZP97AkAptl5qaUDNFcT/4pRphAdxNtp6Jin4sHSQnYALuvw+lBiSmBHxfpfn2cFhSOE8DfRuh/mCwenzpPueg==```
 
 📂 کانفیگ SLIPNET-ENC
 📍 لوکیشن: نامشخص 🏁
@@ -59,7 +15,15 @@
 
 #SLIPNET #VPN
 
-🕒 انتشار: 02:49 - 1405/02/06
-💡 منبع: @filtershekan_channel
+🕒 انتشار: 08:14 - 1405/02/06
+💡 منبع: @slipnet_chat
 
-```slipnet-enc://AXthAAo5LB7P7fYjrlzzzc2Y0XJcmPwTcFTrM/f4UjcPWRdtBvdWc4LC0sqYHF6ujkVRvi2izVOyNASW2Bnw94a/UaQhiLPZt2paLzGSZCmpop7IgxyvPfWEhA5kQjWM2ciSRa8uNwcPhiSoajBGQ/lD4kGJ/rtdgzWfY5k5YOzi9WiIOCqZ96537FWYPhwxbev2L0ANAVQeS+aBh3CADBY+vprlQse0SMyekXpfp3gq8cvSOpmi4e9J6sQIUA0vUdNvf7TR/lguy4EUWuP2XWyuoMmjRglwaisMTikK7s7W85WmmyKbcfjrSh/3MZi08IVxOfT7XTtY6SbtJ7NLw6ZYRY/rcRT5KVR5E0qjv6kuDfmAEoEp+bleJIzI4UuUHABJ7VWT3vSmDVMAMQOtx4T/c4mBj9LIpFXmkkVCa0Yp3SgXG2+NV42BWLHsXatDdgmZVufGw+bJffPb1CNDDE6qoAatgzeGGtT/Yt27X59VGk0/d4iY+1WNtyhFbjMrLWcGJLFD3NQsqJv0sQ2ZTaXoOufhXmiagNhPhc6oE+9vfRi2tFmjKqvqu3THZEXVSNDyiiIVHbBydFc8AmMNo48R2XW2gw==`0```
+```slipnet-enc://AeuRvTzLzlS+eCdOUCFPIlVYkV5qTyaTSKzVKEONsIGhWxLMuDzPmeJcDJEn7Ee7W48LCDJUFHulcwgzY1LHCzGWZU3F1OcKj5PvRfa3UBDWqPjx+G1xcGZxH05kq3+cgFDw1OHypInBHfMvN0RAofRIr3+M0kAEAB4jPMbxzQtJDkLuhGd/zHTZ0aq48BhK/qX2bYAabYaT72nzSecY3VFLqKfk2qxUJ7tTaf56oWb5Uedeslt4oeb5j/BwfFHzz6vmVEkKDV4ZHFEQAkDvW5ToQnCIqkfaCjpeiNn22+EGPEsIw8M8WqGeXqSRL3tGDXxb8g4NEWBgldMdmRkNnQv0enRilBLT2rQkIAZCm85Yj8wg/cJBjya/AwwkJ+P6YeN1XrHl1I+H9Bl/ntFrGXGEq/OcXYueu2dg5PLH4W+smXLw7JIx0/nouriuC/3ZMFhc40phriJW0qdV6xFzad0dp740DgH3IxoUN/7bUz+3pvUCpTiBwpdedvVvPMtuuZazo/EjaCoVMTLmkvAS4eqbCcrZcfH5nCTDWYr9qFYkwDr40mVjahIW174sLkmcuA1cfWH84SAb9W6Mp7I3UBhKB7/LuBOw7ci4ayEciMk1f1Vwww1Xj56yMQIsgBD0vx3d31lx9BrS8hmiFt7FhAcVRigB0Wos4FUHYuDUMLOv+5aU2lLVOx/HX8FuIjHsIKuVJlC6t7/mBq+3Qe+89epp12VQiytu+vp6wuiURv9KGEFRoth88CLCPbb3HuANxvk=```
+
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
+
+#NapsternetV #Config #File
+
+🕒 انتشار: 07:23 - 1405/02/06
+💡 منبع: گروه MahsaNet
