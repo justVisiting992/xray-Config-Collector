@@ -1,147 +1,32 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 14:58 - 1405/02/11
-💡 منبع: @ehsawn8
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 14:36 - 1405/02/11
-💡 منبع: @Father_vpn
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: روسیه 🇷🇺
-📶 پینگ: 187ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 11:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=proxysb.xyz&port=443&secret=eef7ca86268af768135f9ca41f89e9efb670726f787973622e78797a```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 0ms
-
-#VLESS #VPN
-
-🕒 انتشار: 11:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```vless://85df0ad4-8818-4aa5-9799-4bb7232de9e0@ip3-fast.tyryqyserver.ir:80?path=%2F%3Fed%3D2052&security=none&encryption=none&host=tamamde1.global.ssl.fastly.net&type=ws#%40v2rayconfigamir%202258```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 1ms
-
-#VLESS #VPN
-
-🕒 انتشار: 11:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```vless://85df0ad4-8818-4aa5-9799-4bb7232de9e0@ip1-fast.tyryqyserver.ir:80?path=%2F%3Fed%3D2052&security=none&encryption=none&host=tamamde1.global.ssl.fastly.net&type=ws#%40v2rayconfigamir%205071```
-
-📂 کانفیگ SS
-📍 لوکیشن: Lithuania 🇱🇹
-📶 پینگ: 188ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 11:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@193.135.174.135:990?type=tcp#%40v2rayconfigamir%204538```
-
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 1ms
+📶 پینگ: 95ms
 
 #VLESS #VPN
 
-🕒 انتشار: 11:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
+🕒 انتشار: 17:56 - 1405/02/11
+💡 منبع: @shay_iranux
 
-```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.142.120.30:8880?type=ws&security=none&encryption=none&host=vms.lifetime08.workers.dev#%40v2rayconfigamir%206078```
+```vless://95872646-a37f-4d20-80c8-b08266dc8f23@ite.pishvatech.lol:2052?path=%2F&security=none&encryption=none&type=ws#%40themecherie```
 
-📂 کانفیگ SS
-📍 لوکیشن: Lithuania 🇱🇹
-📶 پینگ: 188ms
+📂 کانفیگ SLIPNET-ENC
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
 
-#Shadowsocks #VPN
+#SLIPNET #VPN
 
-🕒 انتشار: 11:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
+🕒 انتشار: 16:44 - 1405/02/11
+💡 منبع: @filtershekan_channel
 
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ%3D%3D@193.135.174.135:990#%40v2rayconfigamir%205849```
+```slipnet-enc://AU9qYmVt9g+HwyQVHG89XKPK3t5g9EXDRl0659mNTQ1TAwFyZiZOtil1A0ge+d4y1bMzn7RH8YcUTlSObLI8hQ7zHSw0ETnt/CKttwGQKuR8U+bE6WkGmtVcC007KZz5uB/cEbJImJmBByrSvS3YbAY9R3yTZ2B1kdmSBHanfa2bvyvMzs/s2pjp4cgmAsINgD+vYI+G3vS4WKRjsnTy6WHEmscoZYQaqhCTicq42869c/hDAnsMEIufiHRf4D0RbofBr5hFtrS51ZKaTNgz8I2YoVIxoml9zFAMTDeIDWpFKK1T2l0KnwS1XnwRUd09ZQ7FT94DRF5Ac+EEydsI9KTL4rox9q89LmLW0djkqxpIGbQt6KsNDKrtNVNDfcGj671Lxthsb1FBYOyJ5xQ4hTONKY+bg8oiBPD+D9NYurzkal/Alo+RVULZOsPOplK3ZiAulB45sDtPxXYMqYWlpestn+ldlpUzqEze6udJIRyJJBDYfcIdgq52YFp9rvNIFj1oguFYhIo9iSL58VWGTSVKSPLoD0HhAl8hR5M6nBXAwi4K2dcmBidl8iHkO/X4jGgk1YaKSWU9zf0XOyd0/8tEwulGJSzik2+Kw1iGXcuZnROmur7oVG3CjVD9qGNnry7UPMDVrC3arMHW/3B2yM+LE0a4W+Njx5t6fERBVcw92pf6JBkc```
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 154ms
+📂 کانفیگ TROJAN
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 136ms
 
-#Proxy #MTProto
+#TROJAN #VPN
 
-🕒 انتشار: 07:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
+🕒 انتشار: 16:02 - 1405/02/11
+💡 منبع: @PrivateVPNs
 
-```https://t.me/proxy?server=free-germany.kimt.space&port=443&secret=ee7b7ef45d40766b5b5f494f801f53af40667265652d6765726d616e792e6b696d742e7370616365```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Bulgaria 🇧🇬
-📶 پینگ: 187ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 07:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=108.165.233.137&port=443&secret=24bd7c651c0cdef3195110f94d4c92ce```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: هلند 🇳🇱
-📶 پینگ: 154ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 07:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=nid2904.mtproxygram.lol&port=443&secret=ee51b8a119e0b003066431e2507959b8f762726f777365722e79616e6465782e636f6d```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: روسیه 🇷🇺
-📶 پینگ: 232ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 07:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=90.188.4.105&port=7997&secret=ee4c670831e7ee84c7c3a287a2184181d8626979736b32322e7275```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 176ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 07:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=77.42.79.76&port=4455&secret=dd104462821249bd7ac519130220c25d09```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 173ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 07:31 - 1405/02/11
-💡 منبع: @V2rayconfigAmir
-
-```https://t.me/proxy?server=prx.postpulse.space&port=443&secret=7t9wXPAjSLyG5qaB0nL7Y9hwZXRyb3ZpY2gucnU```
+```trojan://telegram-id-privatevpns@15.236.176.235:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)🇨🇵t.me/PrivateVPNs```
