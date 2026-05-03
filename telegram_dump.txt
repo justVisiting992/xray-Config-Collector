@@ -1,87 +1,57 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ SLIPNET-ENC
+📍 لوکیشن: نامشخص 🏁
+📶 پینگ: N/A ms
 
-#NapsternetV #Config #File
+#SLIPNET #VPN
 
-🕒 انتشار: 04:35 - 1405/02/13
-💡 منبع: @Outline_ir
+🕒 انتشار: 08:38 - 1405/02/13
+💡 منبع: گروه MahsaNet
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: روسیه 🇷🇺
-📶 پینگ: 119ms
+```slipnet-enc://Ac1HrFJUT4plz8yvdk0ZScwzT165nuKMVHWu3PPyYtoi/Ea4eXxN54BrVcBbjCc7Iha4qhjOdYKDJtVtle9xZ6zHQ9yrrDLSAQLOkcZLqVepwhyh8O5Lgm0wGpxO+aTe8J6BlqTTDeh8dc8PK89wtlrYiKrmLFq+5rJ13buP+h/0lyNJ7or0XJlOjonOed411+NKqNXPQ00HEpyw0lT1/eCgoi/rk94FPIZFpmoWTzkxq+0TAi9JHXXweAV3kJGA/ykxkXwqe7bGBbAzPZi2CMyiufrnMQqyxl466SDqM5hd9S3tHNbXHMGIYihd8kyd86gNmFECAJuk2C9JBZ3aGkyUHpEet5AeYZBjuf79lyZXePgADWWi7mTUdi57mg1QSlA5ZlE0IcDPadMpQUyrzrutdXYqJVlfJrNJ9++xjpTGj/q5dYrVZ2buUBYB0KxPk9yHOVuhCvbAsPzE9tqe/xKeM429S8WPMYKTgUFnKTih9P98eqVbvNe9+eCButWLgin+aUDwGWr0zYdww14tRh6g6ECHQbKxeOxwZbzjsfnta87bELvYSNjBRN9kz2n27qCpmK4BwapkRje/JjaNHjqJN0n/MyW4ZcXImLg/+ImJOdD3p2tunK4RKOs67SwGuqMzVN7iiBFFKiC4UzgOLtYl9cZIctsZoqpLOcEqIpXTQg8ScYAMjT61ToPSnaEjWBfvt5iYWqxNtqa/4/K9XdM9cpKPhqO/uF0HiniI8fV+BxDOg2JWXKb7Kw==```
 
-#Proxy #MTProto
+📂 کانفیگ VLESS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 95ms
 
-🕒 انتشار: 03:55 - 1405/02/13
-💡 منبع: @Father_vpn
+#VLESS #VPN
 
-```https://t.me/proxy?server=proxytg.fit&port=443&secret=eec8f164f338f20e2e3c7a0f4e0408a51270726f787974672e666974```
+🕒 انتشار: 08:38 - 1405/02/13
+💡 منبع: @archivetell
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 91ms
+```vless://Telegram-Parsashonam@94.130.50.12:443?encryption=none&security=tls&sni=letsencrypt.org&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1&type=xhttp&host=mzsv.netlify.app&path=%2Fp4r34m&mode=auto#https%3A%2F%2Ft.me%2Farchivetell_letsencrypt.org```
 
-#Proxy #MTProto
+📂 کانفیگ VLESS
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 95ms
 
-🕒 انتشار: 03:55 - 1405/02/13
-💡 منبع: @Father_vpn
+#VLESS #VPN
 
-```https://t.me/proxy?server=m4in-fr4mes-are-comp1ex-but-cut3.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b```
+🕒 انتشار: 08:38 - 1405/02/13
+💡 منبع: @archivetell
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 91ms
+```vless://Telegram-Parsashonam@94.130.50.12:443?encryption=none&security=tls&sni=kubernetes.io&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1&type=xhttp&host=mzsv.netlify.app&path=%2Fp4r34m&mode=auto#https%3A%2F%2Ft.me%2Farchivetell_kubernetes.io```
 
-#Proxy #MTProto
+📂 کانفیگ VLESS
+📍 لوکیشن: Ireland 🇮🇪
+📶 پینگ: 88ms
 
-🕒 انتشار: 03:55 - 1405/02/13
-💡 منبع: @Father_vpn
+#VLESS #VPN
 
-```https://t.me/proxy?server=i-love-cu.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b```
+🕒 انتشار: 08:23 - 1405/02/13
+💡 منبع: @archivetell
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 91ms
+```vless://Telegram-Parsashonam@50.7.5.85:443?encryption=none&security=tls&sni=letsencrypt.org&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1&type=xhttp&host=mzsv.netlify.app&path=%2Fp4r34m&mode=auto#https%3A%2F%2Ft.me%2Farchivetell%20letsencrypt.org```
 
-#Proxy #MTProto
+📂 کانفیگ VLESS
+📍 لوکیشن: Ireland 🇮🇪
+📶 پینگ: 92ms
 
-🕒 انتشار: 03:55 - 1405/02/13
-💡 منبع: @Father_vpn
+#VLESS #VPN
 
-```https://t.me/proxy?server=5hu7-up-4nd-sell-me-mor3-th353-chocol47e5.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b```
+🕒 انتشار: 08:23 - 1405/02/13
+💡 منبع: @archivetell
 
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 91ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 03:55 - 1405/02/13
-💡 منبع: @Father_vpn
-
-```https://t.me/proxy?server=akenai.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: هلند 🇳🇱
-📶 پینگ: 86ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 03:55 - 1405/02/13
-💡 منبع: @Father_vpn
-
-```https://t.me/proxy?server=188.137.250.103&port=443&secret=dd55e6dc2a653a5b98684624035dea96ce```
-
-📊 **گزارش عملکرد ربات**
-
-📅 تاریخ: 1405/02/12
-✅ مجموع کل: 73
-
-⚙️ تعداد کانفیگ: 58
-🛡 تعداد پروکسی: 4
-📂 تعداد فایل: 11
-
-#آمار #گزارش
+```vless://Telegram-Parsashonam@50.7.5.85:443?encryption=none&security=tls&sni=kubernetes.io&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1&type=xhttp&host=mzsv.netlify.app&path=%2Fp4r34m&mode=auto#https%3A%2F%2Ft.me%2Farchivetell%20kubernetes.io```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
@@ -89,139 +59,40 @@
 
 #VLESS #VPN
 
-🕒 انتشار: 02:21 - 1405/02/13
-💡 منبع: @prrofile_purple
+🕒 انتشار: 05:34 - 1405/02/13
+💡 منبع: @Father_vpn
 
-```vless://767a3e4b-d4fb-4710-894e-fbb9b33d187f@snapp.ir:80?path=%2F&security=none&encryption=none&host=shop.gameidlc.sbs&type=ws#%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D8%AF%D8%A7%D8%A6%D9%85%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%F0%9F%97%BE%20prrofile_purple%40```
+```vless://48028784-4999-4447-8dbd-56a551f8dffa@snapp.ir:2082?path=%2F&security=none&encryption=none&host=iran.zebra-license.ir&type=ws#TEL%3BFather_vpn```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 83ms
+📶 پینگ: 1106ms
 
 #VLESS #VPN
 
-🕒 انتشار: 02:03 - 1405/02/13
-💡 منبع: @Proxymelimon
+🕒 انتشار: 05:34 - 1405/02/13
+💡 منبع: @Father_vpn
 
-```vless://ed10ef5e-3803-4231-ab9e-067a5621c18c@185.143.233.5:8880?encryption=none&host=cdn.sesrsa.com&path=%2F&security=none&type=ws#@proxymelimon```
+```vless://465c319b-6963-4e61-a3ab-2bd407947fbf@snapp.ir:80?path=%2F&security=none&encryption=none&host=server-c0053a1c-f7bc-4c77-860c-1fbbcdec175b.ir-thr-si1.arvancompute.ir&type=ws#TEL%3BFather_vpn```
 
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 85ms
 
-#SLIPNET #VPN
+#VLESS #VPN
 
-🕒 انتشار: 19:49 - 1405/02/12
-💡 منبع: @TirexNet
+🕒 انتشار: 05:34 - 1405/02/13
+💡 منبع: @Father_vpn
 
-```slipnet-enc://AS9/qWZ4FwazM91MVgnPCyoNwizH6a+YQMn0yKJkXPo3wSJuB/y6E3Ey4KYMx83TTf08Lq9M9SH11TcGAAGCMs7CzyRO+MhjZRQKw2LgnsfF8kCtcF5iRtLGCKmITlVjPrenhzrv4SKkhNFC5g7LjEguaqRHzTjJmHgdRBCO0qdRIOvEOXY0Tmo50wYCm+FkU9tIZz6Czq3zMKcNqUS9bbuSl4Vv6Q/Dh/A49ibEfGIq0Nn+RA8HQDiDRaDnLHWquDcn19aMxVhX+v6pkxh1k4758wFk8ZOD2dRlCrWbhpM7S8+xu3cCx0RZhRgvKCJ6ZdKeapRae1jZElzVtxXnf1aj7hwavTzAZvfTxHaawibj6kHaHF1xkJDTJfL8VE2tHHENpMV/IdsZBZWDNM5eK4dndmjep5eDLz3Ar/RHWPT4z0Tvsmy0Nu4IFm8P51urRu9AXc9ncn6mA97M6QPbnS02/mf5fkzMPJoFx9BRHzLZgGf5vFhNUVD5hfuWlG20HDUeO1ZYyIIF2Scy+01pqxcDx4nf0Cb6otTbW7NFDKbl7aDVdS1D7TypKx5DDEh/xKdTsax8NML4P8EJvMlnD+ofsq7MFZYLqj6gsmcoh3okhpdp/EW3KZ9e8SYAH6VvgURkjXG8r4zzlBkrqy9iUfBpQYoenIjHHdxVK6HWbKCWiWE6URchGC5cNG9Pzxvp0ZbHGz4UUQFL9Y6TIjJqD3Ig6N1+MIJAv5eq5Q==```
+```vless://2c3a3169-784f-4fde-8301-c1b4a0dcd738@snapp.ir:80?path=%2F&security=none&encryption=none&host=movie.slmastractor.ir&type=ws#TEL%3BFather_vpn```
 
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 238ms
 
-#SLIPNET #VPN
+#VLESS #VPN
 
-🕒 انتشار: 19:49 - 1405/02/12
-💡 منبع: @TirexNet
+🕒 انتشار: 05:22 - 1405/02/13
+💡 منبع: @Father_vpn
 
-```slipnet-enc://AWgYmJ0adUOV+1giuWlYPhcFBSJPsnUKpYcgnzQTHUrehXgU1X5STCI0/pr5ecdgfr7CqkjKKMuy5+5ZudqzQ32TcNmp8rT/5e1lJpEDA4Ybt7CTQahOWiPRMbOstOLS9Hq5IjSTbbAFCaflELGz7N8W5fAWel6QFuKYIYsVoTSIEqGIHWfVPfnrJ+eDQ8lbiNy9W3oXr2p2NYSz/q+03VtcaZ+k4wscCsBMuyNHOxZSPlQCNbh+CSPeoznkv4KxN1oF+L8+U0pswvKMVJLdTkpOs5JvIGC6209uMQXKqE+FPqQjWez04tsaCw9vo6dJNMs/yUTlaHs4s2YgS9ynnE91xK3GA3IuTVk5tBrH8Zb6J1i+ltTq25GgTjwAju/sVQqPEA0JQd9CppHNGbq3nlLCyCpTgUyplT5y17yk//sGjW8V2f1PBP/ncfKtR1kRUi7Dy46EAK0jpSH9a/M2QtCchNw4P0I6N4touZlI+hpnSlli2KpAq/F9SJ9VHbBd076JGyHhkK351FWFUrIOmoIydzQc9da1wXz6l3M/L1wria9cqv1mD0u6GmjG+9uW8pmXSbI1KJSOD9UXqaH0Sb3LY1oFD+bS65Runu9ZeFzq9T4X1VXC6Mc=```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:49 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://AbN1LYDNV2zN9Qya9mc8EtWB9NJhnctXcJaEtKl/VCAzZpsZAKpMfKPldLL+HMxZc5W3VsgtIqL3VM3A6dwZz08MiIY1AbaMLJ4qPsmD4mG004M+A4PwrLSZToxKe1Y6M0GqbdWwgH1XDNii4TF1R5Sfg1wm/TwAAAIcZA3MioKsJNaakfstonUCdanqdKrfUPE3Z851Y+LUK9eqzCzZ/ZXoz3nRa1993+JrN4Oha5P4SGaZh8Vx9r5JOL7zVPCPwJZcwNtZ9yv3/4gmz0byOPwZ0c4r9If5DIURlcY9AuP46VLPqKbB6zq7O7pEC2NAtTgqccUZu1PMqGTlNHPBa4UaPRycaLjTx8sjlAN9C7QWO5ijznHnQLbxexDXiiebbDqu0QtHMBl8IrGVy/1P4EvhGJ0cTglV4JIokxVT2W3qVB7ivJw2dQW69M8R99yZFErqoAE7L59TWKMgc+dCD8NQH5+vAnPn1vJanluZfK7ajNl0EeOdy1Uv48/yxpQeRO+vJI8ULyNEJVG421cnJWxejpRVFWb6MRneDuq54wkAOli4iguh8amBbz+8qOdFUQfRbMbHgaAaeZPNnYGcaXm/YcKyyXpstWL6+l5aK+x03HYPfvmVp4UChxYhtmzHtEhdzQ7Dlnt78YegY5TL0Lf1CQQ0vVyTSEPp7jRe5FyaarmeKxPGY3eCDHsiu0hkFjKb4zoWx9khySKdeM3gQHpC179dBIsDMcVhaxIrh1il46c/ANgBy7nk+54+wwD8s6DWErzH0JXMEKRQviS9FCi08vKOcLoH```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:48 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://AZcd/DITquDlWKr7AQYTQXJUxTeqYgXSA+F4E/zTP0S7XwCXNIp52o/6mcFkwx/i4bTusF13GNtmtedLHXiyQ3lrTZ44mqHTTBJRMAycyFuDU7adHVXUsqyLmGhTkvX7o8x6U53RpF0pVokczfYZ6MJDGzxZVkHRwnrMtokzjMeIz6GxANj7dp9aoXdLEMFmtPYThodDZcPutE0aZ2604MQum8LIicb2Kn3ngEZVU91zH35FBRb9bVNawjtGW2el6sfL8kKE+TfDT7ex8vWXp6rHSOiCjYkzl+2nwOWhhwbZ/eL3zH4+kavzPU9X2BHplEor62JUtuXDrUVkd8XJLK06/mGoVRwtdLU1aEEe7dwQ+XUFi9gz+bsxE8KMfvoQhJMgW8LShgq37P/MhLWRmjD1smUSEMacX+gIK9dy9ZbzwbdfLUfrIkJ8Yi+SGaumMkOcBvHbUS/V5rQTgF8HTHfVKQBpXQiuGqkhs4PHNREoXwuTnIs3TWeUiU/O4tg31V+Syw7wuxs1lxtTmQAgOJyR9Gkmu1NqFWXaK0ycP1xD/4LVAahh+c2XwYwtC2Gog+orO361wee20QI04A+veCRMBC3A82qXkKKjGpNA/rknC8rqZdnxYXe3AG9nW0MDH2jgY+U7sk2Ag2jZ5cOtHa32bq71m11gNOlkZ2Sy/f8+IxG9RU4kYWdJ1dM9aMSp//zUcsW1sY8o```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:48 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://AQjLWdovDyPAEy18fGMfCItcFGmYt1PgeRrpxP/iR0T1A8CgTw0f/c7xKHHSPXDsPNn2OtrxDVZbrsFZbDPERQc3SA5tOFbt5zBlM8Xa+Astlr92DdmCyUCQwH8twZds/wBB4SClbSneo9K/0mKOBESrKPMDsona+ujINBIeWa3GUtiembEytPn4ZltU0w8wYc3Hp0mdR6BG2jV6mufaJB2o3kYZY4R6tOtskeNE7d/Lv9pDRoBPkRxFLErKK2VMiHp+e5dBFt1t1cC/wMyDEjS2KkW14LJsf74UJccJLeIRPTPPvWnxadch5fy2VIbfvlFOVkqv8mJjSLRo9cWhq//T5Vf7/8WIx9bX6NagzaMf4EARSXV996HlAUE4nGiN9yANJ9FYCjQvVeYVNg8XjvDPBxLlt/PYOrHZbd8wXI5KjcmAbZIN79LWL55GeO/bP79Qj/znXxLAm1uMIW4bb5o+kkxddKuJu0R+8CUAAO4VZ3ZOswNpmM98/bkrYm+KIv1XSKbwP8MxptOQvLaknxicSE59P1pYVk7B8LxngbIjQ0/ngibyoYCZsV74YwS885fcn7BsgydOk5EYyVRH3SakeZxh5l+MErGhPLXHIlt0gqliIEc9+sO3knS3kBk3O8HferE62rN2YNTRLhpnhebqyltzDprJQQmn9yGZk81Mr0b9r9FrXrMOULwBo0z4u6J5thKlZaVHRBNhlAtKLTeqqpKInCCYTnpor4lODX1IB+i86JA/7RVu6e5O3F2uK7rEOdAPaF/qQQ==```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:48 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://AT5YmjBiFydqlljqQyLblkStZZw0+cYpiIdOPn+wNVqX9YxWgI0k3wX7+49FiI3YAjTtWpd7KE+2ridgejOpKruqRcLnd1FLNdO0n1JA0QBvl+RPsYqQVCu4TdfATi2R3mHPBSMX8CcfWjQH2X+4RQXHE0ebyztkqsL+EyAxlLGpTICMT9LrXxolm761h62YFdV7gmTE1Ry9hFE+5/qrNOmblN4rkCR1ah70cHqkng4Sq2OKN2EA8BhzKplDZpiCd9BGiCoJyWAkSFaAlII22SHN3ZnnbFS7+zeqfMff4Q+QHiKQrKN37CKbuprhwv61YMkN7UEoYCs9z/qGYyWVXyk6HY2hQ0EsDZ8P0GrD5kCiNQxaMqxe6TsbHuBrW7MX/5YvHD/QRKIow21OG+Wh7y4Hjklxdd9FVO/DEGWesHyXTrINWoAVMa8HF71Rxq/F1l68orvv7hTkofOlxYIIjxP9LlILUcHiEU23M8f+tvvMBAzB9tBJG6rC1kGVmlW7bPBNqDPf4iYRfXbgUjdJdTtSZZzN0r5BMj/inc1XUEBvQpieIuNmWsxjr36s6HrCdKKLc7ZL7591+xvCqEdHAakPh/dbuH/nOOVku02oJuJwbfzdLKzQkmHgma08gtFVLb2aGWuOPnj2cDE7OAcycgkFxdIgpPTH/uCJ3Kj5v8pywL9tlqwm1nk7pZB4acy0K20/C49ZeSihJ9G5y5eP6j8ET2TpspGs66WPjXvXBFh6TuBpc1ybmxoIebnJF1uzwOhyZmfPxARt```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:48 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://ART/S5CeLj4YJUcxY7PNdsd2IsiRhGb64/mwasWUA7VwM0QYxfrTiLWf3zfnIta0UqrxTqixwHI+cFBvlit4QdrW2xBBXvGdSMTfhch1kjEbrdTg3MtN7f+NuryoefMBsazwoArGRfwT10duD+ELJSznQdFQyfFDjG8pqdIn5/aetd12wVKtj7LITUXqQthN2ot+RXT2d28SxlqrEehLD4Jv8cEr3iV9+BnUNsSwa+KST4na7BqPcCZXGpXLpZ7C4cgUiDIG1+EdblaPyFbDt3TeRWZve1DIHHhh77UKh3c0qC9TraoPpFpcSuPwmJVS9qRfktlnSzbg8Rt+pzfqFbmtntOagzpwdnRTHZgsn6rdI1btPi55976JVVd9si/kKNIbr4dsirKPIH0Yx8Dx8E1WzvIm1QPZSAdVKBbKXFNafEomdWDtQnFLDbesY8ws49z5DP9iXQBDoce9TzUjS6IlEMgOkFoK+KEQZsNj6kpqGetm7vWAcawLumKih9HJIMXap1CoD1bIW6roqtAK2iU2//pidmpAF7lDrfbB768asxRFFgVN8504vHgTzvcK2tTfhBUe2lKwlJeodgGEknMp2Zozt3CkRiYhCrtZlyPpRN8PX1LWnsk+BEhRTVehaTYVCFnmeNSOpOzlk5o5vRJt2912e5NijABK```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:46 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://AR9G7U+SO6YcS7WnYG6XLZFPSlbTkDEBRXqsjoZboCW+1j+eiZsR+fzXWq2b4dG61z57Nti5ab/cwaBqFOg7/q+JCt6p0eL5GqRsTsRgqACWTmQNWWoRZgut7PI/dhEqL7BJ7c+r21Pwqf+wZLgtSbYppgE9FHoTh/9G7J3vtt5ncwxov6vVWtK0++nBkM9zalN53znRwB9+CxG8zkxY8eRnsjZ7pTI77OWQ+rsOKG3VVy+IVCZLLqPCUtUXwv5t8jxo8geTgjo+20vgGawqbeAZ9aw6vN2mIICid2+gUToDEKDyIHZUbWLDdBH38oDyk81dvWbQ2ELYZ844QyxwDOb4vH5hNcAZkPHjtwTz/ZdDGJeyBA9SfyzGbeD+SuIMOHAtNLEnSLsMIvhsvajpMDFmlle6p9k76l8K+znbuXMxxXvdhXjY0FpspezRKF2ZzAaeT0hqTInZ++5ifSbKqqm/uasye/QBBZHWoVEclLfSiNugm8CDJ8YEzGv5BceDu7l89P8lPcB5TqS1Od264Zy4G2SpD3W59IW1igTkxvIB2WvkgJZ/cooxN8Gpry+wjxeldxrrEqviMcK9FLhabmfSms2wStxkY1QwAr9o+HcWTdk38DTCztfWyRsLMkGLWB3XqnwyMdSoNjqZagmOvTc1k4qY7lXA8VzAvEI0YFbW4/hFTfLpYMCvZKJ/NGvN4g==```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:46 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://AS1AH8DQ6VpJ7V/wWxnzMqqdYwijWSaFyjdBhV9bQNac2McWauVwA8fAKt8mrKxLrmtfPlT6mGq9SBbPLZXSn30F3IRUEd0b9QfqTtUOjCWxcSJjUDrA8kiFd5XZ6zbFCBc5slFcpC2nKgDnuIP7+q+xri5LPi5hwdZGIrpT8dGgsAKws9zLsDt5pI/uvQg19dNIch+KQ/V/6adLRrYXohSEF1uLMaqQG9zNztyvGXN8R2F582YbY7mDUeD+bANjORvHuSvP14Oy1QV9XWCvwjbxfGmExgN1C2yTJvDzOeOECEXVcL+3glKvrIm4twB/SYUC4HHtfo6icE0Q6pXN6L7c4kL0GMHRFNZHAUdbFron8dzvInplHeq697I6zydoFRPqyHQoRxYbxu8xn8Fb6FV1zF5TxLX2J01qoLAhM8SKz17QYFPeeGxX6wxdZ1qkOD5EQInvhU/ZzVDSCJteq+RKa/pj8BVJIg0P/f0pSYR+aeR71gTBHOryT94N0zt5EaQ/X0Ht/3frdhk8sWRjgOKnnGzbqxbNwX+MssqF5ZvtM9rw7zVpVhZhSXrFz6R3wxJBfZ2/rBD/lznTT0S2b5gBLLDSGDh0ziAuUeRO0OWWDLDpMjWpfUn66BoVQQmTG5jvr/5XZUeo8XalPwtyNEGNRcX0OjDOqohg94JJqMHoX0Na8gGPwLWM3K/srRFtQQP+o3cwnd50ZBD8m9hH7uNwSUIrk9OI8JgzVc6aOBiQaGbkn1QHMC7pqOmwpqKz05w=```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:46 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://AdJV+Ncf/VhMWLvib+z6BM4+Lt7ZkOVDh8jhsHZEqIi5BnPWwodP3fvK06YV3Dqnm/oRqLm2SKADJ1nSDR0yFN53IUpEUibdXy1r7eFcgVSUDc7/KKfKOaHo7b9GY3oS5e2U6ZfPH2EwD/C7ML4iyFdjiFoqCUxu27UO9noqwrRX8RJkQDW+5AQOFCbX9saIkVQg96kAdW8lPIwm5JA7jyTSuK0Kd+CSLVAtvx15vYzSy3GMyFOsfiRyDjwFqVaR/XBHc6HEorzqCvftzSAWEKdkO18FpoBr8/0trpBkGdL23MVhdrxgMibd8XHyvDMTik03N3oUdefAeuzbHxEBuMUgIzlB4lSF5CzjKVigKL9PXyThR3EvOKLBGpK1Rd5YDA9Tkke6hqg3oZYEr45lm3MnW9aAgRci1NVABJo9bEhct2o+wV0+zVzJQmZn1dq0nbQ5vbZOcBy6rTkn0yiuHmI/g/L9nxCIciL/A1j0q+Z2zWOSE9lwMew3+STSxaD4sC84p93N/zyQ5t6ANTJID4dqN1NKr+/GbYsQfM9VqYYsdLMxLlREw+AVY/SIyOUjWn+nakog0jznaVHapyeOcbme6RhRtrBkuRF5BCq8Zg==```
-
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 19:46 - 1405/02/12
-💡 منبع: @TirexNet
-
-```slipnet-enc://ASF2KoNVlj2uDxfu3tMsdwoURfxXHpgFQkiTHSq57T7qnAkmsEs26EVtWdYGbCL1qkN5GprOK/MqAV0WMcwozgScl4kKTd2nkSznKmqXcMbbRQmcuNVSIquc5AWfoLHJBO7r7jpq4c3IoZ4Nguv0O2LckIH08ksZ1/oKzogGe4bXWrG0k99VxPbqurBEzp+nc8AY1vxbhagRoz7sTuu44f9WZxJG8wNIG7Hdky10FfrHVYyTwWQ6MUzIHTWac+Xgpsex18vTm6u3dacDnav8KzFOHDyZ5KL7K9CaqvZGju8RJY2cIAMa196e3gZprZD3/5J+PzwImmQqmzVOisKMdpu7H4pzW9lWbvlCgtPZ3Hf7aEU6PhG2WMH/foC6S5e6R1VqVmPZQHv9gukskeqVVELO8U95tGTfynU0DxxTmZl06uTpTdMnpLFWoTXqEORzPKuwkAaEF4XLIuTRBTP+WlKqdzcYm3MbxrCv2jsQcccdTKe/X2sEZ27H1zKxBI1JGxq46Ry1vghgeY+yd7FbMqNyyvYHlrXdjF3hZaIHj4mxJkfah0lvG9emadR4Oy9SWXR/F1bi2IKSGCtk17mdubMES3DZhCLB```
+```vless://dabf84d3-95b5-4c56-847b-654009175a83@varzesh3.com:8080?path=%2F&security=none&encryption=none&host=ma.nexoratechcenter.ir&type=ws#TEL%3BFather_vpn```
