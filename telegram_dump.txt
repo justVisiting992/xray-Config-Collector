@@ -1,15 +1,76 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Iran 🇮🇷
+📶 پینگ: 153ms
 
-#NapsternetV #Config #File
+#Proxy #MTProto
 
-🕒 انتشار: 08:06 - 1405/02/15
-💡 منبع: گروه MahsaNet
+🕒 انتشار: 12:12 - 1405/02/15
+💡 منبع: @ehsawn8
 
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+```tg://proxy?server=195.254.165.249&port=25565&secret=dd79e344818749bd7ac519130220c25d09```
 
-#NapsternetV #Config #File
+📂 کانفیگ VLESS
+📍 لوکیشن: Ireland 🇮🇪
+📶 پینگ: 144ms
 
-🕒 انتشار: 05:34 - 1405/02/15
-💡 منبع: @Outline_ir
+#VLESS #VPN
+
+🕒 انتشار: 11:51 - 1405/02/15
+💡 منبع: @archivetell
+
+```vless://Telegram-Parsashonam@50.7.5.85:443?encryption=none&security=tls&sni=letsencrypt.org&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1&type=xhttp&host=mz-r8h73.netlify.app&path=%2Fp4r34m&mode=auto#%F0%9F%8C%90%20%40IR_NETLIFY%20%20letsencrypt.org%20%2050.7.5.85```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Ireland 🇮🇪
+📶 پینگ: 149ms
+
+#VLESS #VPN
+
+🕒 انتشار: 11:51 - 1405/02/15
+💡 منبع: @archivetell
+
+```vless://Telegram-Parsashonam@50.7.5.85:443?encryption=none&security=tls&sni=gateway-api.sigs.k8s.io&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1&type=xhttp&host=mz-r8h73.netlify.app&path=%2Fp4r34m&mode=auto#%F0%9F%8C%90%20%40IR_NETLIFY%20%20gateway-api.sigs.k8s.io%20%2050.7.5.85```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Ireland 🇮🇪
+📶 پینگ: 144ms
+
+#VLESS #VPN
+
+🕒 انتشار: 11:51 - 1405/02/15
+💡 منبع: @archivetell
+
+```vless://Telegram-Parsashonam@50.7.5.85:443?encryption=none&security=tls&sni=cluster-api.sigs.k8s.io&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1&type=xhttp&host=mz-r8h73.netlify.app&path=%2Fp4r34m&mode=auto#%F0%9F%8C%90%20%40IR_NETLIFY%20%20cluster-api.sigs.k8s.io%20%2050.7.5.85```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Ireland 🇮🇪
+📶 پینگ: 152ms
+
+#VLESS #VPN
+
+🕒 انتشار: 11:51 - 1405/02/15
+💡 منبع: @archivetell
+
+```vless://Telegram-Parsashonam@50.7.5.85:443?encryption=none&security=tls&sni=kubernetes.io&alpn=h2%2Chttp%2F1.1&insecure=1&allowInsecure=1&type=xhttp&host=mz-r8h73.netlify.app&path=%2Fp4r34m&mode=auto#%F0%9F%8C%90%20%40IR_NETLIFY%20%20kubernetes.io%20%2050.7.5.85```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 157ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 01:20 - 1405/02/15
+💡 منبع: @Father_vpn
+
+```tg://proxy?server=178.104.81.34&port=4455&secret=dd104462821249bd7ac519130220c25d09```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 114ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 10:07 - 1405/02/15
+💡 منبع: @PrivateVPNs
+
+```trojan://telegram-id-privatevpns@3.123.178.214:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
