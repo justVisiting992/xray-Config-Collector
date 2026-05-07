@@ -1,7 +1,21 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 147ms
 
-#NapsternetV #Config #File
+#VLESS #VPN
 
-🕒 انتشار: 00:14 - 1405/02/18
-💡 منبع: @GrizzlyVPN
+🕒 انتشار: 01:21 - 1405/02/18
+💡 منبع: گروه MahsaNet
+
+```vless://e9c11f71-7fb6-4d4d-ab91-b1f9490d6f00@185.143.234.235:80?encryption=none&host=login.deltars.ir&path=%2F&security=none&type=ws#NetMeli-Turbo1-10.00GB%25F0%259F%2593%258A-60D%25E2%258F%25B3```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 180ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 20:32 - 1405/02/16
+💡 منبع: @beshkan
+
+```https://t.me/proxy?server=204.168.153.162&port=8080&secret=dd104462821249bd7ac519130220c25d09```
