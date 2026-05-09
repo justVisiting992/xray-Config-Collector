@@ -1,18 +1,10 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 105ms
 
-#NapsternetV #Config #File
+#VLESS #VPN
 
-🕒 انتشار: 04:50 - 1405/02/19
+🕒 انتشار: 08:22 - 1405/02/19
 💡 منبع: گروه MahsaNet
 
-📊 **گزارش عملکرد ربات**
-
-📅 تاریخ: 1405/02/18
-✅ مجموع کل: 49
-
-⚙️ تعداد کانفیگ: 32
-🛡 تعداد پروکسی: 6
-📂 تعداد فایل: 11
-
-#آمار #گزارش
+```vless://f589c704-5bfc-4cdb-a699-594fc01ab9c3@snapp.ir:80?path=%2Fw&security=none&encryption=none&host=kia.pavps.ir&type=ws#@aloconfig_com```
