@@ -1,40 +1,153 @@
-📂 کانفیگ DNS
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#DNS #VPN
-
-🕒 انتشار: 02:27 - 1405/02/23
-💡 منبع: گروه MahsaNet
-
-```dns://eyJzY2hlbWEiOiJ3aGl0ZWRucy5wcm9maWxlIiwidmVyc2lvbiI6MSwicHJvZmlsZSI6eyJuYW1lIjoiMHgwIiwic2VydmVyIjp7ImRvbWFpbiI6InYuMHgwLmd1cnUiLCJlbmNyeXB0aW9uX2tleSI6IjMzODE1ZTFiY2I4ODg3M2YyMTk5YzczNTgyOGVhNzQ1IiwiZW5jcnlwdGlvbl9ZXRob2QiOjF9fX0```
-
-📂 کانفیگ DNS
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#DNS #VPN
-
-🕒 انتشار: 02:27 - 1405/02/23
-💡 منبع: گروه MahsaNet
-
-```dns://eyJzY2hlbWEiOiJ3aGl0ZWRucy5wcm9maWxlIiwidmVyc2lvbiI6MSwicHJvZmlsZSI6eyJuYW1lIjoiUzEiLCJzZXJ2ZXIiOnsiZG9tYWluIjoicy5vNHMuc2hvcCIsImVuY3J5cHRpb25fa2V5IjoiVGVsZWdyYW1DaGFubmVsQGxpbmtfZGFraGVsaV9hcHAiLCJlbmNyeXB0aW9uX21ldGhvZCI6MX19fQ```
-
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 85ms
+📶 پینگ: 124ms
 
 #VLESS #VPN
 
-🕒 انتشار: 01:28 - 1405/02/23
+🕒 انتشار: 06:17 - 1405/02/23
 💡 منبع: گروه MahsaNet
 
-```vless://f98904c7-fae5-4fb9-886f-96add8d987f5@arb2.nazincup.ir:2082?path=%2Fapi&security=none&encryption=none&host=arb2.nazincup.ir&type=ws#@pmoironn```
+```vless://48559872-76d9-4695-8960-0c58f15b2678@185.143.235.20:8880?security=none&type=ws&headerType=&path=%2F&host=tr-st.ge9.ir#@pmoironn```
 
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ MTPROTO
+📍 لوکیشن: فنلاند 🇫🇮
+📶 پینگ: 159ms
 
-#NapsternetV #Config #File
+#Proxy #MTProto
 
-🕒 انتشار: 00:33 - 1405/02/23
-💡 منبع: @ehsawn8
+🕒 انتشار: 14:30 - 1405/02/21
+💡 منبع: @free1_vpn
+
+```tg://proxy?server=65.108.50.120&port=443&secret=dd104462821249bd7ac519130220c25d09```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: فنلاند 🇫🇮
+📶 پینگ: 161ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 14:30 - 1405/02/21
+💡 منبع: @free1_vpn
+
+```tg://proxy?server=89.167.109.120&port=443&secret=dd104462821249bd7ac519130220c25d09```
+
+📊 **گزارش عملکرد ربات**
+
+📅 تاریخ: 1405/02/22
+✅ مجموع کل: 68
+
+⚙️ تعداد کانفیگ: 49
+🛡 تعداد پروکسی: 14
+📂 تعداد فایل: 5
+
+#آمار #گزارش
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Hong Kong 🇭🇰
+📶 پینگ: 213ms
+
+#VLESS #VPN
+
+🕒 انتشار: 03:31 - 1405/02/23
+💡 منبع: @V2rayconfigAmir
+
+```vless://360f1d71-f8dd-4c71-aa4f-347486312dca@hk.chinablog.xyz:8080?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=firefox&pbk=bXstTdAgEyOn8LEMM_K2gIOw7T2iKhr6l-lXcrF4PlM&sni=www.liblib.art#%40v2rayconfigamir%203513```
+
+📂 کانفیگ VMess
+📍 لوکیشن: Hong Kong 🇭🇰
+📶 پینگ: 208ms
+
+#VMess #VPN
+
+🕒 انتشار: 03:31 - 1405/02/23
+💡 منبع: @V2rayconfigAmir
+
+```vmess://eyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciA4ODU4IiwiYWRkIjoibjE3NTMzNDg3MzYubGllNWQuY3lvdSIsInBvcnQiOjQ0MywiaWQiOiJmMjY3ZWFjMy1kZmI0LTQ1YmUtYTQ4MC03ZTE4NDdjYTA0YWIiLCJhaWQiOjAsInNjeSI6ImF1dG8iLCJuZXQiOiJ3cyIsInR5cGUiOiJub25lIiwicGF0aCI6Ii8iLCJ0bHMiOiJ0bHMifQ==```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: سنگاپور 🇸🇬
+📶 پینگ: 224ms
+
+#VLESS #VPN
+
+🕒 انتشار: 03:31 - 1405/02/23
+💡 منبع: @V2rayconfigAmir
+
+```vless://981fca81-5be1-41f8-ac9b-d138e8109943@43.168.16.112:443?allow_insecure=0&host=babayaga-6i7.pages.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2&security=tls&sni=babayaga-6i7.pages.dev&type=ws#%40v2rayconfigamir%209892```
+
+📂 کانفیگ VMess
+📍 لوکیشن: Hong Kong 🇭🇰
+📶 پینگ: 211ms
+
+#VMess #VPN
+
+🕒 انتشار: 03:31 - 1405/02/23
+💡 منبع: @V2rayconfigAmir
+
+```vmess://eyJ2IjoiMiIsInBzIjoiQHYycmF5Y29uZmlnYW1pciAzODA4IiwiYWRkIjoibjE3NTMxMDEyNzcuNHU5bWEuaWN1IiwicG9ydCI6NDQzLCJpZCI6IjZlYTQ4ZGZlLTdkZTItNDVkYy05MjY3LWQ0ZDllZmZhZDlmYyIsImFpZCI6MCwic2N5IjoiYXV0byIsIm5ldCI6IndzIiwidHlwZSI6Im5vbmUiLCJwYXRoIjoiLyIsInRscyI6InRscyJ9```
+
+📂 کانفیگ VMess
+📍 لوکیشن: Hong Kong 🇭🇰
+📶 پینگ: 213ms
+
+#VMess #VPN
+
+🕒 انتشار: 03:31 - 1405/02/23
+💡 منبع: @V2rayconfigAmir
+
+```vmess://eyJhZGQiOiI0Ny4yNDMuMTM1Ljc0IiwicG9ydCI6IjU1MTg1IiwiaWQiOiIxMzc1OTg1ZS0zMzRhLTRjMjUtOGY2NC01MmExODJiYzgwMzciLCJhaWQiOiIwIiwic2N5IjoiYXV0byIsIm5ldCI6IndzIiwidiI6IjIiLCJwcyI6IkB2MnJheWNvbmZpZ2FtaXIgNTE2MCIsImhvc3QiOiIiLCJwYXRoIjoiL05vdGlmX0NoYXQiLCJ0bHMiOiIiLCJzbmkiOiIiLCJ0eXBlIjoibm9uZSIsInNlcnZlclBvcnQiOjAsIm5hdGlvbiI6IiJ9```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 84ms
+
+#VLESS #VPN
+
+🕒 انتشار: 03:06 - 1405/02/23
+💡 منبع: گروه MahsaNet
+
+```vless://4edb4119-c624-4cf8-8078-3d6cf38fc02e@Tapsi.ir:8080?path=%2Fcdn&security=&encryption=none&host=Za.movizdl.ir&type=ws#@pmoironn```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: Denmark 🇩🇰
+📶 پینگ: 96ms
+
+#VLESS #VPN
+
+🕒 انتشار: 23:30 - 1405/02/22
+💡 منبع: @V2rayconfigAmir
+
+```vless://e4fc4761-154f-490e-bbaa-b4fa193f1073@45.148.31.0:15855?type=ws&security=none&path=%2F#%40v2rayconfigamir%201868```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: Denmark 🇩🇰
+📶 پینگ: 94ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 23:30 - 1405/02/22
+💡 منبع: @V2rayconfigAmir
+
+```trojan://8r%3C%5B9%27l6hAO%238ZQi@77.37.96.247:443?security=tls&sni=Koma-YT.PAGeS.Dev&insecure=1&allowInsecure=1&type=ws&host=Koma-YT.PAGeS.Dev&path=%2FtrTelegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#%40v2rayconfigamir%201327```
+
+📂 کانفیگ SS
+📍 لوکیشن: Portugal 🇵🇹
+📶 پینگ: 108ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 19:30 - 1405/02/22
+💡 منبع: @V2rayconfigAmir
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@185.113.143.186:990#%40v2rayconfigamir%204252```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Iran 🇮🇷
+📶 پینگ: 88ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 15:30 - 1405/02/22
+💡 منبع: @V2rayconfigAmir
+
+```https://t.me/proxy?server=195.254.165.143&port=4455&secret=ee1603010200010001fc030386e24c3add63646e2e79656b74616e65742e636f6d```
