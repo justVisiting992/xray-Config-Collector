@@ -1,43 +1,32 @@
+📂 کانفیگ TROJAN
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 85ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 22:03 - 1405/02/25
+💡 منبع: @PrivateVPNs
+
+```trojan://telegram-id-privatevpns@15.237.55.229:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)🇨🇵t.me/PrivateVPNs```
+
 📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 113ms
+📍 لوکیشن: فنلاند 🇫🇮
+📶 پینگ: 114ms
 
 #Proxy #MTProto
 
-🕒 انتشار: 20:58 - 1405/02/25
-💡 منبع: @electvpn0
+🕒 انتشار: 21:11 - 1405/02/25
+💡 منبع: @ehsawn8
 
-```tg://proxy?server=204.168.129.90&port=443&secret=dd104462821249bd7ac519130220c25d09```
+```tg://proxy?server=65.109.0.17&port=8080&secret=dd104462821249bd7ac519130220c25d09```
 
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 1088ms
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 95ms
 
-#VLESS #VPN
+#Proxy #MTProto
 
-🕒 انتشار: 14:27 - 1405/02/25
-💡 منبع: @electvpn0
+🕒 انتشار: 20:22 - 1405/02/25
+💡 منبع: @Proxymelimon
 
-```vless://92b93f5d-af24-420e-95fb-0120f55b4481@men2.gafe-lorbad.ir:80?path=%2F&security=none&encryption=none&host=s2.fasrrapido.ir&type=ws#@electvpn0```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 1154ms
-
-#VLESS #VPN
-
-🕒 انتشار: 19:22 - 1405/02/25
-💡 منبع: گروه MahsaNet
-
-```vless://69ab00e0-9230-424b-b1be-eaf9ec776ce8@trex.docos.tech:443?security=tls&allowInsecure=0&encryption=none&type=ws&host=trex.docos.tech&path=/vless-ws&sni=trex.docos.tech&fp=chrome#@config_free2```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 128ms
-
-#VLESS #VPN
-
-🕒 انتشار: 17:46 - 1405/02/25
-💡 منبع: @prrofile_purple
-
-```vless://59bb1fa4-8c04-44af-bffb-efff394b75c2@Snapp.ir:8080?path=%2F&security=none&encryption=none&host=ir2.kokomokiyoo.ir&type=ws#%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%AA%D8%B5%D8%A7%D9%84%20%D8%AF%D8%A7%D8%A6%D9%85%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%F0%9F%97%BE%20prrofile_purple%40```
+```tg://proxy?server=91.98.231.23&port=443&secret=dd104462821249bd7ac519130220c25d09```
