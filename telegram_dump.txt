@@ -1,29 +1,21 @@
-📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 87ms
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 81ms
 
-#TROJAN #VPN
+#VLESS #VPN
 
-🕒 انتشار: 22:02 - 1405/02/27
-💡 منبع: @PrivateVPNs
+🕒 انتشار: 23:27 - 1405/02/27
+💡 منبع: گروه MahsaNet
 
-```trojan://telegram-id-privatevpns@13.38.225.194:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)🇨🇵t.me/PrivateVPNs```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 21:03 - 1405/02/27
-💡 منبع: @filtershekan_channel
+```vless://10923d83-0770-445f-ab44-077ae2d8c9e7@snapp.ir:80?encryption=none&type=ws&path=%2F&host=amg2.toll-ip.ir#Vpn_jet7```
 
 📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 119ms
+📍 لوکیشن: Iran 🇮🇷
+📶 پینگ: 94ms
 
 #Proxy #MTProto
 
-🕒 انتشار: 17:46 - 1405/02/27
-💡 منبع: @Proxymelimon
+🕒 انتشار: 23:08 - 1405/02/27
+💡 منبع: @ehsawn8
 
-```tg://proxy?server=62.238.27.70&port=443&secret=dd104462821249bd7ac519130220c25d09```
+```tg://proxy?server=195.254.165.252&port=25565&secret=dd79e344818749bd7ac519130220c25d09```
