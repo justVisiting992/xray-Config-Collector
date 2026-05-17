@@ -1,32 +1,164 @@
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 کانفیگ MTPROTO
+📍 لوکیشن: کانادا 🇨🇦
+📶 پینگ: 76ms
 
-#SLIPNET #VPN
+#Proxy #MTProto
 
-🕒 انتشار: 09:00 - 1405/02/27
-💡 منبع: @slipnet_chat
+🕒 انتشار: 11:31 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
 
-```slipnet-enc://Af5ntFSgIigv9nQ4nmHNStzWwOQ1rD+bjet3WvJqKezQWRzn33474iL99CsGzB44eR4xAWP3qo/MX0vlmeuKdl2N8g5j1Na5pt44iQ6b3oXOfOcMsGYcLOYEnLAmk89EkdV6Oi7jl3uvIDTYpZaI+QXpmXI08nReh+RuJM0Drt6Y427RfyCYVUG97f9YJ2Q4IPzM0yrNpnQcZMJHMsa/ljjckg0zlJ0FtMA2J5ofjwp1iCozM133bXzgLbrQvxxJrMJGypxG3jhPaS60LFSQ/UTfGEovcDaa++ReKWOOHRpHdlMtcCqYfcnl0SWJIbPQI5abqkoOonR3Z6X4zBZ2xmEU/n0nOS91euBKUKNwvCDjVQOFAXYJtmjx5UCuFSTLgt6c/rpbeCVh1RDBMeZBznNomDMY4oWelg+oVeL7Mbz1XVS4UutSfvDEbL5bbT90GCnD41YxtRVB+fYj41oIUa5rC5dkgpQowpdFsVlV0aGzHA37LnBzEInE44odagUeHtCXwNUotgbdx+TCq4ajDe9iMGNMr+9HdwvsUfKH5jxiNK8hJgYOU67TBFNdEGjmjDNZWD5r0+UUNNR2XCoKOnbme/ibDulQPiaQxMS5E9bM7uWxW1h+GuOpX0t45Rps0c6pMQpr2f3RiFetLAzRu1MS0CuEL7D/SZBCwRsP+7/N7fX6alzntEa3eqt5GD0vg8B6uF3YvakFJjjEXrbmV1Nfm/Agxj2sX4CCUfHp302qssJguoaZw688bmL6cZLzaCDP9/Aa5W94VFHofQSdsqE55Mt2zbyOTDY2FQ==```
+```https://t.me/proxy?server=209.127.228.162&port=443&secret=ee32b920dffb51643028e2f6b878d4eac16170706c652e636f6d```
 
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 کانفیگ VLESS
+📍 لوکیشن: Spain 🇪🇸
+📶 پینگ: 99ms
 
-#SLIPNET #VPN
+#VLESS #VPN
 
-🕒 انتشار: 08:48 - 1405/02/27
-💡 منبع: @slipnet_chat
+🕒 انتشار: 11:30 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
 
-```slipnet-enc://AWDeza3Xic9NXqjwOZ8b86iEO8QQypz8tyPUCz3gjs+ADTfXJ9ELEutcutk9A/6h32EsEYAGfGnqBzi2zxha6V1MQ811TO5jtvXRugiTJabOyMINIZTvKu2XhEF+f1933/PCX5hJ8kra/2h78QUbD7QF1VLyAuHvGamF9t7/9v4TMRgLE1LBG8b2dZfxPpEIYRuaUJDyxztQ26DOXxikYJCzeIYyQj2oXiCu84CMlJ+nAUf5GM47UA9OxSYZtk0mDUziB6xZlN60H/HcVqDFLOZE2so7UtzkqKMZBFPDInES53ggZp88y+zdpQ3VE3SvD4C3gWnzPC0NDU3X6JFW9EVpeKsiZh8DEGLitJFt4r9RlkpR7zxYdazcsYGB/H4mDYUyFA1+qdSD0ZHGcWkpmOHY7E7W9aYG5FZiwZL1O1VzI65Q2Ep4y2AUO8BC8pqJaI6TdR7G0G2wrSOc54aT1UVbbbky1XfnD8w0tZaK/KMGcMPyhWk5pfkFOK23F5fmcoQeBO9jJWfnOGmguJ8cIuA7ogLURGehw9RcxO/targNnJ6DCT0BzaNo4cVq0WMlnBUHcoTkFGh1wC/vsJ5R0t9y+dwv2LjwXwqEcKnH7Lv8xVJaKUlTT2fLFvlJzVdABUx3zYUwYY1o9jUC/jRy43cmy0JXy143AGIyXLmLowjeOeAYah7EDedt0wcwaLxXd8+GoZ5d5zyi2ld+zoK3zQqylfS0a6BIuOyEyH9xYLrIZYdUoRrh0wcMIxKCCuDIygzvgvkAKK4aBXOaabteNVuaMXAiDX6nqGjy```
+```vless://d428091c-e6eb-48f9-9a07-b44eb886ac90@2.27.26.36:443?security=reality&sni=www.google.com&fp=chrome&pbk=RrBMccWJkTEHyG-V4ETU4SLEPYgxMzMyKdNQ1vu_RQc&sid=655345236526&type=tcp&flow=xtls-rprx-vision&packetEncoding=xudp&encryption=none#%40v2rayconfigamir%207200```
 
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 کانفیگ VLESS
+📍 لوکیشن: Vietnam 🇻🇳
+📶 پینگ: 255ms
 
-#SLIPNET #VPN
+#VLESS #VPN
 
-🕒 انتشار: 08:48 - 1405/02/27
-💡 منبع: @slipnet_chat
+🕒 انتشار: 11:30 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
 
-```slipnet-enc://AcCfCBCzlhHZ5M51pExm7EX5/2lSNm/CqA7mBCBCkbBdApg1JhrSMfWFyRvXsYFJoRNsjdgAEpwhEHCn4avjnC/oIDLuDOp1wyracWDzphqkb5qTz54AQrDyQH7lY72y+nUjtITnTtWSFSZKAt2LNBaG6tyNv7Eh7Bw6ki5TRoNKskqGIses5xFHzMiXGQrvdi5KMGKjiSB/HEhOBkOcPabq41xwaaA8odByMnsF4G7EzkRUDauMNSg4FOTJeB7NJV13VrQuvv7kXcVNJ3G3b1eqeplCllEM+oVXxTuN+A+MchmtvQnTmnIUzB0Ec/ARIfyhuHZwpB0q6p0va+43IVvBKOGVxIxYRf4C7x2da8ActG8yWFzBCgj8rvu2CMx/R6hFlSN8+HyHJQFeG6IwgeOqPcFBDfFo+jwVjAUXv9woXhhBxCvuP1ZjDzUIlEifrrTxGKL0N0/5mmM+QYoQwVga20kdn+J/ikW1l9U2CEtiWFsCyofGm0FIUtL2luufxcfScp8+f5x1e8O4XZWsNYPy0IMdjs/+9C0pNg4D1JkpRjKwEexZtXOrTT77/mhsUlkL92PLupB3ofVc89j5s5UFzOk8xcltuK7Y4RrmprgYIfBx9zjjbFBI1merxpvPBibH9mIEwxIWoyiwtZ9RT4QQ3eLUg4xYuA1C5OxxxgcjN+trCkHB5l/HcPc2HQRSFqa0axKuxNYdBoKH73hcQIbGJlgOokmXpx0fmRqr71QeGY+SkpU4GvCEzaV+JG+RhEzvEWI46DKbvxL92ideY3NcYRNhYDYVLc7B2Sd9J2Gy0Sd5LS/TBNNXKhGxHzy8AZVp/GSglqt6Zs9EJQj3O0nz4lI=```
+```vless://981fca81-5be1-41f8-ac9b-d138e8109943@103.15.90.134:49678?encryption=none&security=tls&sni=babayaga-6i7.pages.dev&type=ws&host=babayaga-6i7.pages.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#%40v2rayconfigamir%208147```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 89ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 10:02 - 1405/02/27
+💡 منبع: @PrivateVPNs
+
+```trojan://telegram-id-privatevpns@3.64.141.142:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Unknown 🏁
+📶 پینگ: 2ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 07:31 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```https://t.me/proxy?server=bedebezanimcom.nokia.com.co.uk.do_yo.want_to.clash_with.this.microsoft.com.there_is_no.place_nano.localhost.bing.com.count_with_me.cyou.com.now_sudo.rm_rf.ddns.net.we_are_here.again_to_fight.with_everyone.i_am.the_internet.special.sadatnews.lflinkup.org&port=443&secret=ee1603010200010001fc030386e24c3add7777772e7370656564746573742e6e657```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: Unknown 🏁
+📶 پینگ: 1ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 07:31 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```https://t.me/proxy?server=bedebezanimcom.nokia.com.co.uk.do_yo.want_to.clash_with.this.microsoft.com.there_is_no.place_nano.localhost.bing.com.count_with_me.cyou.com.now_sudo.rm_rf.ddns.net.we_are_here.again_to_fight.with_everyone.i_am.the_internet.special.sadatnews.lflinkup.org&port=443&secret=ee1603010200010001fc030386e24c3add7777772e7370656564746573742e6e6574```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: فرانسه 🇫🇷
+📶 پینگ: 75ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 07:30 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```trojan://opentunnel.net-english30day@54.37.18.204:443?security=tls&headerType=none&type=tcp&sni=uplod.ir#%40v2rayconfigamir%209029```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: آمریکا 🇺🇸
+📶 پینگ: 86ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 07:30 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```trojan://opentunnel.net-usa30day@15.204.9.172:443?security=tls&headerType=none&type=tcp&sni=uplod.ir#%40v2rayconfigamir%205900```
+
+📂 کانفیگ VLESS
+📍 لوکیشن: South Africa 🇿🇦
+📶 پینگ: 220ms
+
+#VLESS #VPN
+
+🕒 انتشار: 07:30 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@139.84.235.99:443?type=ws&encryption=none&host=1-jk1.pages.dev&path=%2F&headerType=none&quicSecurity=none&serviceName=&security=tls&flow=&fp=chrome&insecure=1&sni=1-jk1.pages.dev#%40v2rayconfigamir%206237```
+
+📂 کانفیگ SS
+📍 لوکیشن: Seychelles 🇸🇨
+📶 پینگ: 233ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 07:30 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@154.205.150.157:990#%40v2rayconfigamir%208156```
+
+📂 کانفیگ SS
+📍 لوکیشن: South Africa 🇿🇦
+📶 پینگ: 220ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 07:30 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpYc3k4T3g0eU9WM3hMbHB4dGp6czNY@102.133.165.160:16233?type=tcp#%40v2rayconfigamir%205104```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: The Netherlands 🇳🇱
+📶 پینگ: 85ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 03:31 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```https://t.me/proxy?server=pika.proxytg.space&port=443&secret=ee09ca9424322894efa56ebc7e6c88f87b70696b612e70726f787974672e7370616365```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 117ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 03:31 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```tg://proxy?server=62.238.0.202&port=4455&secret=dd104462821249bd7ac519130220c25d09```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 96ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 03:31 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```tg://proxy?server=157.90.124.2&port=4455&secret=dd104462821249bd7ac519130220c25d09```
+
+📂 کانفیگ MTPROTO
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 03:31 - 1405/02/27
+💡 منبع: @V2rayconfigAmir
+
+```https://t.me/proxy?server=mash.drproxy.pro&port=443&secret=dda5a7b5711e648c7bd534e4e87de2241b```
