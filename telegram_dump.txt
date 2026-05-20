@@ -1,84 +1,10 @@
-📂 کانفیگ MTPROTO
+📂 کانفیگ TROJAN
 📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 156ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 09:02 - 1405/02/30
-💡 منبع: @Proxymelimon
-
-```tg://proxy?server=204.168.129.90&port=443&secret=dd104462821249bd7ac519130220c25d09```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 18ms
+📶 پینگ: 153ms
 
 #TROJAN #VPN
 
-🕒 انتشار: 08:28 - 1405/02/30
-💡 منبع: @V2rayRoom
+🕒 انتشار: 10:03 - 1405/02/30
+💡 منبع: @PrivateVPNs
 
-```trojan://humanity@104.19.229.21:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&type=ws&sni=www.multiplydose.com#%40v2rayRoom```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 18ms
-
-#VLESS #VPN
-
-🕒 انتشار: 08:28 - 1405/02/30
-💡 منبع: @V2rayRoom
-
-```vless://6202b230-417c-4d8e-b624-0f71afa9c75d@104.19.229.21:2096?path=%2F&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#%40v2rayRoom```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 125ms
-
-#VLESS #VPN
-
-🕒 انتشار: 08:28 - 1405/02/30
-💡 منبع: @V2rayRoom
-
-```vless://cb8ad1f0-85ef-4659-a65d-b4e01baf587d@sbb.4nel.ir:2052?path=%2F&security=none&encryption=none&host=sbb.4nel.ir&type=ws#%40v2rayRoom```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 126ms
-
-#VLESS #VPN
-
-🕒 انتشار: 08:28 - 1405/02/30
-💡 منبع: @V2rayRoom
-
-```vless://f9aeba2c-4c68-11f1-8d30-2ddfba49052f@185.143.234.235:8880?path=%2F%3Fed%3D2560&security=none&encryption=none&host=sv-1.jservices.ir&type=ws#%40v2rayRoom```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 18ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 08:23 - 1405/02/30
-💡 منبع: @V2rayRoom
-
-```trojan://humanity@sourceforge.net:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&host=www.calmloud.com&fp=chrome&type=ws&sni=www.calmloud.com#%40v2rayRoom```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 07:21 - 1405/02/30
-💡 منبع: @ehsawn8
-
-📂 کانفیگ SLIPNET
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
-
-#SLIPNET #VPN
-
-🕒 انتشار: 16:52 - 1405/02/29
-💡 منبع: @V2rayRoom
-
-```slipnet://Mjh8dmF5ZG5zX3NzaHzwn6uAQFZMaW5ld3N8dnMubTBuZDR5LW0wbmQ0eS5jb20ucGx8Mi4xODguMjEuMTMwOjUzOjAsMi4xODguMjEuMjAwOjUzOjAsMi4xODguMjEuOTA6NTM6MCwyLjE4OC4yMS4xOTA6NTM6MCwyLjE4OC4yMS4xMDA6NTM6MCwyLjE4OC4yMS4xMjA6NTM6MCwyLjE4OC4yMS4yNDA6NTM6MHwwfDUwMDB8YmJyfDEwODB8MTI3LjAuMC4xfDB8OGE1YjZjYWU5MDgyYmI0NjllOWJlOWY1MTI1ODkxZGE0YWFlOTRmNWZiNjMzMDExMjAwMWQxZWViYzdkZmU3NHxzcGFya3xUTUdtSUdScVZMTXRpR0JVfDF8c3Bhcmt8VE1HbUlHUnFWTE10aUdCVXwyMnwwfDEyNy4wLjAuMXwwfHx1ZHB8cGFzc3dvcmR8fHx8MHw0NDN8fHwwfHwwfDF8fDB8fDB8MHwxMDgwfDB8bnVsbHwxNTF8MC4wfDB8MHwwfDB8MnwwfHx8ODA4MHx8MHwvfDF8fHxmYW5vdXR8NXx8dGxzfHdzfC98fDQ0M3wxfHNuaV9zcGxpdHwzMDB8fDB8MHwwfDh8fDB8```
+```trojan://telegram-id-privatevpns@51.102.92.172:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
