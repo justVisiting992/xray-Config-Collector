@@ -1,43 +1,21 @@
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 138ms
+📂 کانفیگ TROJAN
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 107ms
 
-#VLESS #VPN
+#TROJAN #VPN
 
-🕒 انتشار: 05:01 - 1405/03/01
-💡 منبع: گروه MahsaNet
+🕒 انتشار: 10:03 - 1405/03/01
+💡 منبع: @PrivateVPNs
 
-```vless://f9aeba2c-4c68-11f1-8d30-2ddfba49052f@185.143.234.235:8880/?encryption=none&type=ws&path=%2F%3Fed%3D2560&host=sv-1.jservices.ir#server1%F0%9F%8D%8B%E2%80%8D%F0%9F%9F%A9```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 135ms
-
-#VLESS #VPN
-
-🕒 انتشار: 04:43 - 1405/03/01
-💡 منبع: @configV2rayForFree
-
-```vless://9dc1bebe-e059-4c96-b3a3-46a2936b1a53@Snapp.ir:80?path=%2F&security=none&encryption=none&host=B1.nexoratechcenter.ir&type=ws#Kinghooman```
+```trojan://telegram-id-privatevpns@63.183.106.71:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 136ms
+📶 پینگ: 1140ms
 
 #VLESS #VPN
 
-🕒 انتشار: 04:40 - 1405/03/01
-💡 منبع: @configV2rayForFree
+🕒 انتشار: 08:14 - 1405/03/01
+💡 منبع: @FREECONFIGSPLUS
 
-```vless://dad8cfaf-a8dc-491b-94ad-1fb57cfc6691@pisronovin.ir:80?path=%2F&security=none&encryption=none&type=ws#Kinghooman```
-
-📊 **گزارش عملکرد ربات**
-
-📅 تاریخ: 1405/02/31
-✅ مجموع کل: 53
-
-⚙️ تعداد کانفیگ: 27
-🛡 تعداد پروکسی: 15
-📂 تعداد فایل: 11
-
-#آمار #گزارش
+```vless://61a302fb-c328-4d55-bf64-db8cb87020ad@snapp.ir:80?path=%2F&security=none&encryption=none&host=derakhshan.molvliafor.ir&type=ws#%40FREECONFIGSPLUS%F0%9F%87%B8%F0%9F%87%AA```
