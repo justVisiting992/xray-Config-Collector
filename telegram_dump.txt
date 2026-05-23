@@ -1,10 +1,18 @@
-📂 کانفیگ SLIPNET-ENC
-📍 لوکیشن: نامشخص 🏁
-📶 پینگ: N/A ms
+📂 فایل کانفیگ NapsternetV
+📍 لوکیشن: نامشخص
 
-#SLIPNET #VPN
+#NapsternetV #Config #File
 
-🕒 انتشار: 15:38 - 1405/03/02
-💡 منبع: @slipnet_chat
+🕒 انتشار: 17:45 - 1405/03/02
+💡 منبع: گروه MahsaNet
 
-```slipnet-enc://Aby3l115ePcjcigRGivXVnrdoK2jdbnSCtSBZ0ZrWQwdYFojC/7XUXdF0j0sxfdWCjDnKzDNFEmUKQ0akanzOzqPyymN/yKydm3Fyi0DJEWWaaNFeCAKjCi6G41LZpJXQce+QsV4Gxo/i6CAoJyVF1H8h3M9v1aJKyWwV76rpnH/KJ7iICA6HU0R64hsfa9ZSNTh8yGg8pI8t9KfoqPZet4cQBsxV5Bv6PoN67sHdpe4PJtoP12pUt5wi6TwQrlQmf4FFXi7Hu11UlFcRGftktHvfOHzXsVM7bM7uzGnWXRZ0cMX1aFpzCS5sCnuLLc3Cxi+mcviyVjzSED7vFaxt1cwtm+cuKMpe0svjTCL5FpdNgjKItD5UQQcp1DKXfrHiseY29UmlodDN+gOYSbGmslZrxmFE6FiVCFNPYeIBIMaEs/JaISWFqE5gW4Jvm7tRZfz+j3JdQ/52v4hChguJ2LykDIHK3J3TWVaBHtAR6NCHXrDBThCgARE008t1AN/20FRYvFC93DEeaCtS1P/Z5OqQoxUspAV72mCHGnEXC1fhXmRVidwz5lqr7QSm7hQtxtZ+2w4eDt0NhQXFConv9qelHFqWPVyOh+xXp90h091qeRa1I41R1qaD8onsfbkvIjLwyJDr97sAMWjjm7bBNY41QrtjFXM0fVDINbJ8Yw=```
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 115ms
+
+#Proxy #MTProto
+
+🕒 انتشار: 16:10 - 1405/03/02
+💡 منبع: @InfoTech_VK
+
+```tg://proxy?server=204.168.129.90&port=443&secret=dd104462821249bd7ac519130220c25d09```
