@@ -1,48 +1,21 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 04:11 - 1405/03/28
-💡 منبع: @mitivpn
-
-📊 **گزارش عملکرد ربات**
-
-📅 تاریخ: 1405/03/27
-✅ مجموع کل: 155
-
-⚙️ تعداد کانفیگ: 124
-🛡 تعداد پروکسی: 15
-📂 تعداد فایل: 16
-
-#آمار #گزارش
-
-📂 کانفیگ VLESS
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 124ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:51 - 1405/03/28
-💡 منبع: گروه MahsaNet
-
-```vless://ff2418b7-8696-4dcb-a85f-4c241be58fc8@31.56.179.20:8569?type=tcp&encryption=none&security=reality&pbk=WcBqCGRtATszTpPPIXF3aIoB1fPyoChIJJS2XGkxhH0&fp=chrome&sni=www.canva.com&sid=508f4008&spx=%2F#Test```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 02:49 - 1405/03/28
-💡 منبع: گروه MahsaNet
-
-📂 کانفیگ MTPROTO
+📂 کانفیگ TROJAN
 📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 112ms
+📶 پینگ: 109ms
 
-#Proxy #MTProto
+#TROJAN #VPN
 
-🕒 انتشار: 13:43 - 1405/03/26
-💡 منبع: @InfoTech_VK
+🕒 انتشار: 10:03 - 1405/03/28
+💡 منبع: @PrivateVPNs
 
-```https://t.me/proxy?server=167.233.54.153&port=443&secret=ddf0eeb0bd9adc4fd4a93994ee3b2a216b```
+```trojan://telegram-id-privatevpns@3.77.229.95:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)🇩🇪t.me/PrivateVPNs```
+
+📂 کانفیگ SS
+📍 لوکیشن: The Netherlands 🇳🇱
+📶 پینگ: 103ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 06:38 - 1405/03/28
+💡 منبع: @flyv2ray
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpDSm1UQ0N4N0x0dWQ@108.181.58.239:8388#%40flyv2ray```
