@@ -214,7 +214,7 @@ func main() {
 		combined := append(newConfigs[p], historyConfigs[p]...)
 		unique := removeDuplicates(combined)
 
-		// --- FIX: keep only real Shadowsocks configs (discard mislabeled VLESS/Trojan URIs) ---
+		// --- FIX: Keep only genuine Shadowsocks URIs (base64-encoded method:password) ---
 		if p == "SS" {
 			var validSS []string
 			for _, cfg := range unique {
@@ -1220,36 +1220,54 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 	return u, nil
 }
 
-// isValidShadowsocks returns true if the config is a genuine Shadowsocks URI,
-// not a mislabeled VLESS or Trojan config.
+// isValidShadowsocks checks if an ss:// URI is a genuine Shadowsocks config:
+// - userinfo must be base64 and decode to "method:password" with a known method
+// - method cannot be empty or "none"
 func isValidShadowsocks(config string) bool {
-	// Strip fragment
 	base := strings.Split(config, "#")[0]
 	if !strings.HasPrefix(strings.ToLower(base), "ss://") {
 		return false
 	}
 	rest := strings.TrimPrefix(base, "ss://")
-
-	// Must have '@' separating userinfo and host
 	atIdx := strings.Index(rest, "@")
 	if atIdx == -1 {
 		return false
 	}
-
-	// Check for VLESS/Trojan-specific parameters that don't belong in SS
-	lower := strings.ToLower(rest)
-	// presence of 'pbk=' (public key), 'sid=', 'flow=' (xtls-rprx-vision) indicate VLESS/Trojan
-	if strings.Contains(lower, "pbk=") || strings.Contains(lower, "sid=") || strings.Contains(lower, "flow=") {
-		return false
-	}
-	// 'security=reality' is also not SS
-	if strings.Contains(lower, "security=reality") {
-		return false
-	}
-	// Additionally, ensure userinfo is not empty
 	userinfo := rest[:atIdx]
-	if userinfo == "" {
+	padded := userinfo + strings.Repeat("=", (4-len(userinfo)%4)%4)
+	decoded, err := base64.URLEncoding.DecodeString(padded)
+	if err != nil {
+		decoded, err = base64.StdEncoding.DecodeString(padded)
+		if err != nil {
+			return false
+		}
+	}
+	parts := strings.SplitN(string(decoded), ":", 2)
+	if len(parts) != 2 {
 		return false
 	}
-	return true
+	method := strings.ToLower(parts[0])
+	// require a real encryption method (must not be empty or "none")
+	if method == "" || method == "none" {
+		return false
+	}
+	// list of standard SS methods (add more if needed)
+	validMethods := map[string]bool{
+		"aes-128-gcm":      true,
+		"aes-256-gcm":      true,
+		"chacha20-ietf-poly1305": true,
+		"chacha20-poly1305": true,
+		"2022-blake3-aes-128-gcm": true,
+		"2022-blake3-aes-256-gcm": true,
+		"2022-blake3-chacha20-poly1305": true,
+	}
+	// also allow any method that contains typical cipher names (like "aes-128", "aes-256", "chacha", "2022")
+	if validMethods[method] {
+		return true
+	}
+	// fallback: accept if it contains known cipher words
+	if strings.Contains(method, "aes") || strings.Contains(method, "chacha") || strings.Contains(method, "2022") {
+		return true
+	}
+	return false
 }
