@@ -1,200 +1,200 @@
-trojan://tg-dns68@162.159.152.204:443?security=tls&type=ws&sni=vip.putata.eu.org&path=/?ed=2560&host=vip.putata.eu.org#🏴 Dynamic | TLS
-trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn-77.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=default.ssl.fastly.net#🇺🇸 USA | TLS • chrome
-trojan://humanity@104.19.229.21:443?path=%2F%2Fassignment&security=tls&insecure=0&host=www.multiplydose.com&type=ws&allowInsecure=0&sni=www.multiplydose.com#🏴 Dynamic | TLS
-trojan://mitivpn@27.50.48.49:443?path=%2Findex.html%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=gamingdll.ir&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🇸🇬 Singapore | TLS • chrome
-trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-6.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
-trojan://humanity@104.19.229.21:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
-trojan://mitivpn@208.103.161.33:443?path=%2F&security=tls&insecure=1&host=ir-sub.ir&fp=chrome&type=ws&allowInsecure=1&sni=ir-sub.ir#🇺🇸 USA | TLS • chrome
-trojan://MiTiVPN@45.131.4.118:443?alpn=http%2F1.1&fp=chrome&host=linkkon-w.ir&path=%2Fed%3Dmitivpn&sni=linkkon-w.ir&type=ws#🇳🇱 Netherlands | TLS • chrome
-trojan://humanity@104.19.229.21:443?security=tls&type=ws&sni=www.calmlunch.com&path=/assignment&host=www.calmlunch.com#🏴 Dynamic | TLS
-trojan://MiTiVPN@151.101.1.194:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=MiTiVPN-s2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
 trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
+trojan://humanity@104.19.229.21:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://humanity@104.19.229.21:443?security=tls&type=ws&sni=www.calmlunch.com&path=/assignment&host=www.calmlunch.com#🏴 Dynamic | TLS
+trojan://mitivpn@208.103.161.33:443?path=%2F&security=tls&insecure=1&host=ir-sub.ir&fp=chrome&type=ws&allowInsecure=1&sni=ir-sub.ir#🇺🇸 USA | TLS • chrome
+trojan://humanity@104.18.152.233:443?sni=www.calmloud.com#🏴 Dynamic | TLS
+trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
+trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-77.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=default.ssl.fastly.net#🇺🇸 USA | TLS • chrome
+trojan://MiTiVPN@151.101.1.194:443?path=%2Fed&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-s2.global.ssl.fastly.net&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS
+trojan://MiTiVPN@188.114.97.6:443?type=ws&security=tls&path=%2Fed%3Dmitivpn&host=my.95r.ir&sni=my.95r.ir&alpn=http%2F1.1&fp=chrome&insecure=1&allowInsecure=1#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
+trojan://%6D%69%74%69%76%70%6E@188.114.97.6:443?type=ws&serviceName=---Telegram%40------Telegram%40-----Telegram%40-----Telegram%40-----Telegram%40-----Telegram%40-----Telegram%40-----Telegram%40---&security=tls&path=%2Fed%3Dmitivpn&host=s1.mitivpn.de.ssl.global.fastly.com.iranpoems.ir&sni=s1.mitivpn.de.ssl.global.fastly.co.iranpoems.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@45.131.4.118:443?alpn=http%2F1.1&fp=chrome&host=linkkon-w.ir&path=%2Fed%3Dmitivpn&sni=linkkon-w.ir&type=ws#🇳🇱 Netherlands | TLS • chrome
+trojan://mitivpn@27.50.48.49:443?path=%2Findex.html%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=gamingdll.ir&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🇸🇬 Singapore | TLS • chrome
+trojan://humanity@45.130.125.126:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&fp=chrome&type=ws&sni=www.multiplydose.com#🇸🇨 Seychelles | TLS • chrome
+trojan://MiTiVPN@188.114.97.6:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=wwww.95r.ir&fp=chrome&type=ws&allowInsecure=0&sni=wwww.95r.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@151.101.1.194:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
 trojan://MiTiVPN@140.248.185.253:443?security=tls&sni=ssl.fastly.com&fp=chrome&alpn=http%2F1.1&insecure=1&allowInsecure=1&type=ws&host=mitivpn-s2.global.ssl.fastly.net&path=%2Fed%3Dmitivpn#🇺🇸 USA | TLS • chrome
 trojan://humanity@172.64.152.23:443?path=%2Fassignment&security=tls&fp=chrome&type=ws&sni=www.multiplydose.com#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-6.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
+trojan://MiTiVPN@151.101.1.194:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=MiTiVPN-s2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
+trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn-77.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=default.ssl.fastly.net#🇺🇸 USA | TLS • chrome
 trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn.global.ssl.fastly.net&type=ws&allowInsecure=0&sni=global.fastly.com#🇺🇸 USA | TLS
-trojan://humanity@104.18.152.233:443?sni=www.calmloud.com#🏴 Dynamic | TLS
-trojan://humanity@45.130.125.126:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&fp=chrome&type=ws&sni=www.multiplydose.com#🇸🇨 Seychelles | TLS • chrome
-trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
-trojan://MiTiVPN@151.101.1.194:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
-trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-77.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=default.ssl.fastly.net#🇺🇸 USA | TLS • chrome
 trojan://humanity@159.112.235.52:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.multiplydose.com#🇺🇸 USA | TLS • chrome
-trojan://MiTiVPN@151.101.110.219:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
-trojan://humanity@172.66.47.69:443?security=tls&type=ws&sni=www.multiplydose.com&path=/assignment&host=www.multiplydose.com#🏴 Dynamic | TLS
+trojan://6953ed5d9cff4c32895fecf21b1dfdc9@91.193.58.8:2087?mode=auto&path=%2F&security=tls&alpn=h2%2Chttp%2F1.1&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D&insecure=0&host=nab.velizor.ir&fp=chrome&type=xhttp&allowInsecure=0&sni=nab.velizor.ir#🇬🇧 UK | TLS • chrome
+trojan://MiTiVPN@108.162.196.190:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://tg-dns68@162.159.152.204:443?security=tls&type=ws&sni=vip.putata.eu.org&path=/?ed=2560&host=vip.putata.eu.org#🏴 Dynamic | TLS
 trojan://mitivpn@188.114.97.6:443?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&path=https%3A%2F%2Fchatgpt.com&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn.nl.sdsl.globdal.fastldy.com.mitivpn.site&fp=chrome&type=ws&allowInsecure=0&sni=mitivpn.sddde.ssddl.globddal.fassdtdly.cow.mitivpn.site#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@162.159.233.118:443?type=ws&security=tls&path=index.html%3Dmitivpn&host=linkkon-a.ir&sni=linkkon-a.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
-trojan://humanity@104.18.152.233:443?allowInsecure=0&sni=www.calmloud.com&ws=1&wspath=%2Fassignment#🏴 Dynamic | TLS
-trojan://humanity@45.130.125.126:443?path=%2Fassignment&security=tls&insecure=0&host=www.multiplydose.com&fp=chrome&type=ws&allowInsecure=0&sni=www.multiplydose.com#🇸🇨 Seychelles | TLS • chrome
-trojan://mitivpn@104.19.229.21:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@188.114.97.6:443?type=ws&security=tls&path=https%3A%2F%2Fchatgpt.com&sni=sadszdx.gjlobal.ssl.fastly.net.mitivpn.storen&alpn=http%2F1.1&fp=chrome&allowInjsecure=0https://t.me/PingSnapBot?start=131918947#🏴 Dynamic | TLS • chrome
-trojan://Watashi_VPN@104.18.38.122:8443?security=tls&type=ws&sni=t-watashi-r-jacket-o-people-jan.watashi-java.ir&path=/&host=t-watashi-r-jacket-o-people-jan.watashi-java.ir#🏴 Dynamic | TLS
-trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&type=ws&sni=www.creationlong.org#🏴 Dynamic | TLS
-trojan://humanity@216.24.57.1:443?type=ws&security=tls&path=%2Fassbignment&sni=www.gossipnglove.com&gallowInsecure=0&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8#🇺🇸 USA | TLS
-trojan://humanity@45.130.125.69:443?type=ws&security=tls&path=%2Fassignment&host=www.calmlunch.com&sni=www.calmlunch.com&allowInsecure=1#🇸🇨 Seychelles | TLS
-trojan://tg-dns68@162.159.153.13:443?security=tls&type=ws&sni=vip.putata.eu.org&path=/?ed=2560&host=vip.putata.eu.org#🏴 Dynamic | TLS
-trojan://MiTiVPN@199.181.197.176:443?type=ws&security=tls&path=%2Fcdn%3Dmitivpn&host=linkkon-w.ir&sni=linkkon-w.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🇺🇸 USA | TLS • chrome
-trojan://humanity@104.17.121.43:443?path=%2Fassignment&security=tls&host=www.calmlunch.com&type=ws&sni=www.calmlunch.com#🏴 Dynamic | TLS
-trojan://aa710f78-eddb-45b4-bd32-1f8692a754e5@104.19.229.21:443?host=s.blibli.com.cyylr.eu.cc&path=%2Fae-bo&sni=s.blibli.com.cyylr.eu.cc&type=ws#🏴 Dynamic | TLS
-trojan://humanity@185.18.250.252:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&fp=chrome&type=ws&sni=www.multiplydose.com#🇨🇭 Switzerland | TLS • chrome
-trojan://Config0plus@185.18.250.252:443?path=%2Fsg-melbi&security=tls&host=unnes.ac.id.cyylr.eu.cc&type=ws&sni=unnes.ac.id.cyylr.eu.cc#🇨🇭 Switzerland | TLS
-trojan://humanity@202.37.33.80:443?path=/assignment&security=tls&host=www.creationlong.org&type=ws&sni=www.creationlong.org#🇳🇿 New Zealand | TLS
-trojan://humanity@104.18.12.149:443?path=%2Fassignment&security=tls&insecure=0&host=www.gossipglove.com&type=ws&allowInsecure=0&sni=www.gossipglove.com#🏴 Dynamic | TLS
-trojan://mitivpn@188.114.97.6:443?allowInsecure=0&sni=www.ssl.global.digi.my.mitivpn.xyz&ws=1&wspath=%2Fed%3Dmitivpn#🏴 Dynamic | TLS
-trojan://f922fa0f-3311-4368-85ff-cf65e727c854@104.17.121.43:443?path=%2Fbr-orcl&security=tls&host=space.byu.id.yxls.eu.cc&type=ws&sni=space.byu.id.yxls.eu.cc#🏴 Dynamic | TLS
-trojan://humanity@216.24.57.6:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=0&host=www.creationlong.org&fp=chrome&type=ws&allowInsecure=0&sni=www.creationlong.org#🇺🇸 USA | TLS • chrome
-trojan://MiTiVPN@104.21.18.41:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=blog.95r.ir&fp=chrome&type=ws&allowInsecure=1&sni=blog.95r.ir#🏴 Dynamic | TLS • chrome
-trojan://MiTiVPN@45.131.4.118:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🇳🇱 Netherlands | TLS • chrome
-trojan://humanity@104.18.152.97:443?path=%2Fassignment&security=tls&host=www.ignitelimit.com&type=ws&sni=www.ignitelimit.com#🏴 Dynamic | TLS
-trojan://mitivpn@27.50.48.49:443?path=%2Findex.html%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=gamingdll.ir&fp=chrome&type=ws&allowIns#🇸🇬 Singapore | TLS • chrome
-trojan://MiTiVPN@140.248.185.253:443?path=%2Fed%3DMiTiVPN&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=ssl.fastly.com#🇺🇸 USA | TLS • chrome
-trojan://tg-dns68@162.159.152.36:443?security=tls&type=ws&sni=vip.putata.eu.org&path=/?ed=2560&host=vip.putata.eu.org#🏴 Dynamic | TLS
-trojan://5y@104.21.50.187:443?path=%2FeyJqdW5rIjoiQXNuUlk1RFRjMGlzYzAiLCJwcm90b2NvbCI6InRyIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119%3Fed%3D2560&security=tls&alpn=http%2F1.1&insecure=0&host=little-forest-5208.fdhf-jgkg.workers.dev&fp=chrome&type=ws&allowInsecure=0&sni=LIttLe-forESt-5208.fDHf-Jgkg.woRkERs.dev#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@199.232.78.159:443?path=%2F720f09dba195249b423f771661162528%2Fworkers%2Fservices%2Fview%2Fmitivpn%2Fproduction%2Fsettings&security=tls&alpn=http%2F1.1&insecure=0&host=miti1234.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
-trojan://MiTiVPN@151.101.1.194:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
-trojan://humanity@104.19.229.21:443?path=assignment&security=tls&insecure=0&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
-trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=1&host=www.calmloud.com&type=ws&allowInsecure=1&sni=www.calmloud.com#🏴 Dynamic | TLS
-trojan://humanity@104.18.8.83:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#🏴 Dynamic | TLS • chrome
-trojan://MiTiVPN@45.131.4.118:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&type=ws&allowInsecure=0&sni=linkkon-w.ir#🇳🇱 Netherlands | TLS
-trojan://MiTiVPN@104.16.71.213:443?alpn=http%2F1.1&ed=2560&eh=Sec-WebSocket-Protocol&fp=chrome&host=wwww.95r.ir&path=%2Fed%3Dmitivpn&sni=wwww.95r.ir&type=ws#🏴 Dynamic | TLS • chrome
-trojan://MiTiVPN@104.25.253.129:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://humanity@216.24.57.1:443?path=%2Fassignment&security=tls&insecure=0&ech=54.mk%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.calmloud.com#🇺🇸 USA | TLS
-trojan://MiTiVPN@104.24.17.0:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://45c47cfa-67da-47e0-b20b-5efa674e6a9b@104.16.75.127:443?path=%2Fus-gllc&security=tls&insecure=0&host=unnes.ac.id.r3xxe.eu.cc&type=ws&allowInsecure=0&sni=unnes.ac.id.r3xxe.eu.cc#🏴 Dynamic | TLS
-trojan://MiTiVPN@188.114.97.6:443?path=index.php%3Fmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=cdn.95r.ir&fp=chrome&type=ws&allowInsecure=0&sni=cdn.95r.ir#🏴 Dynamic | TLS • chrome
-trojan://humanity@216.24.57.1:443?type=ws&security=tls&path=%2Fasbsignment&sni=www.creationlong.org&allowgInsecure=0&ech=ip.ngs%2Budp%3A%2F%2F8.8.8.8#🇺🇸 USA | TLS
-trojan://humanity@188.114.96.3:443?encryption=none&security=tls&sni=www.gossipglove.com&type=ws&host=www.gossipglove.com&path=%2Fassignment#🏴 Dynamic | TLS
-trojan://MiTiVPN@172.67.210.215:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=1&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.19.229.21:443?path=%2F%2Fassignment&security=tls&insecure=0&host=www.multiplydose.com&type=ws&allowInsecure=0&sni=www.multiplydose.com#🏴 Dynamic | TLS
 trojan://humanity@172.64.152.23:443?path=%2Fassignment&security=tls&insecure=0&host=www.creationlong.org&type=ws&allowInsecure=0&sni=www.creationlong.org#🏴 Dynamic | TLS
 trojan://humanity@198.62.62.23:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#🇺🇸 USA | TLS • chrome
+trojan://MiTiVPN@45.131.4.118:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon#🇳🇱 Netherlands | TLS • chrome
+trojan://humanity@172.66.47.69:443?security=tls&type=ws&sni=www.multiplydose.com&path=/assignment&host=www.multiplydose.com#🏴 Dynamic | TLS
+trojan://mitivpn@162.159.233.118:443?type=ws&security=tls&path=index.html%3Dmitivpn&host=linkkon-a.ir&sni=linkkon-a.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
+trojan://humanity@45.130.125.126:443?path=%2Fassignment&security=tls&insecure=0&host=www.multiplydose.com&fp=chrome&type=ws&allowInsecure=0&sni=www.multiplydose.com#🇸🇨 Seychelles | TLS • chrome
+trojan://MiTiVPN@172.67.210.215:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=1&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://tg-dns68@162.159.152.138:443?security=tls&sni=vip.putata.eu.org&type=ws&host=vip.putata.eu.org#🏴 Dynamic | TLS
 trojan://humanity@104.18.16.216:443?encryption=none&security=tls&sni=www.calmloud.com&alpn=http%2F1.1&fp=ios&type=ws&path=%2Fassignment#🏴 Dynamic | TLS • ios
-trojan://fFj7MAGy1VlAWmB_gMBG_27oPYTSHvV6MX@185.137.157.59:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=www.lateralio.click#🇩🇪 Germany | TLS
-trojan://telegram-id-v2rayvpnchannel@13.37.68.185:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#🇫🇷 France | TLS
-trojan://tg-dns68@162.159.152.183:443?security=tls&sni=vip.putata.eu.org&type=ws&host=vip.putata.eu.org&path=%2F%3Fed%3D2560&fp=randomized&alpn=h3#🏴 Dynamic | TLS • randomized
-trojan://MiTiVPN@198.41.222.60:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@188.114.97.6:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=wwww.95r.ir&fp=chrome&type=ws&sni=wwww.95r.ir#🏴 Dynamic | TLS • chrome
 trojan://humanity@45.130.125.160:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#🇸🇨 Seychelles | TLS
-trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&insecure=0&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.creationlong.org#🏴 Dynamic | TLS
-trojan://humanity@185.18.250.252:443?path=%2Fassignment&security=tls&fp=chrome&type=ws&sni=www.multiplydose.com#🇨🇭 Switzerland | TLS • chrome
-trojan://mitivpn@188.114.97.6:443?path=https%3A%2F%2Fchatgpt.com&security=tls&alpn=http%2F1.1&insecure=0&host=smitivpn.global.ssl.b5r.ir&fp=chrome&type=ws&allowInsecure=0&sni=ssadszdx.global.ssl.fastly.net.b5r.ir#🏴 Dynamic | TLS • chrome
-trojan://humanity@198.62.62.23:443?host=www.calmlunch.com&path=%2Fassignment&sni=www.calmlunch.com&type=ws#🇺🇸 USA | TLS
 trojan://humanity@104.18.152.229:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=0&host=www.calmloud.com&fp=chrome&type=ws&allowInsecure=0&sni=www.calmloud.com#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@188.114.97.6:443?path=https%3A%2F%2Fchatgpt.com&security=tls&alpn=http%2F1.1&host=s-mitivpn.global.ssl.b5r.ir&fp=chrome&type=ws&sni=sadszdx.global.ssl.fastly.net.b5r.ir#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@104.16.72.70:443?path=%2Findex.php%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=gamingdll.ir&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🏴 Dynamic | TLS • chrome
-trojan://8r%3C%5B9%27l6hAO%238ZQi@27.50.48.253:443?allowInsecure=1&fp=chrome&host=Koma-YT.PAGeS.Dev&path=%2FtrTelegram%F0%9F%87%A8%F0%9F%87%B3+%40WangCai2&sni=Koma-YT.PAGeS.Dev&type=ws#🇸🇬 Singapore | TLS • chrome
+trojan://mitivpn@188.114.97.6:443?path=https%3A%2F%2Fchatgpt.com&security=tls&alpn=http%2F1.1&insecure=0&host=smitivpn.global.ssl.b5r.ir&fp=chrome&type=ws&allowInsecure=0&sni=ssadszdx.global.ssl.fastly.net.b5r.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@151.101.110.219:443?path=%2Fed&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn.global.ssl.fastly.net&type=ws&allowInsecure=0&sni=global.fastly.com#🇺🇸 USA | TLS
+trojan://humanity@104.16.174.12:443?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://mitivpn@104.19.229.21:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🏴 Dynamic | TLS • chrome
+trojan://humanity@45.130.125.69:443?type=ws&security=tls&path=%2Fassignment&host=www.calmlunch.com&sni=www.calmlunch.com&allowInsecure=1#🇸🇨 Seychelles | TLS
+trojan://MiTiVPN@198.41.222.60:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://humanity@198.62.62.23:443?host=www.calmlunch.com&path=%2Fassignment&sni=www.calmlunch.com&type=ws#🇺🇸 USA | TLS
+trojan://mitivpn@188.114.97.6:443?type=ws&security=tls&path=https%3A%2F%2Fchatgpt.com&sni=sadszdx.gjlobal.ssl.fastly.net.mitivpn.storen&alpn=http%2F1.1&fp=chrome&allowInjsecure=0https://t.me/PingSnapBot?start=131918947#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.19.229.21:443?path=%2Fassignment&security=tls&insecure=0&host=www.gossipglove.com&type=ws&allowInsecure=0&sni=www.gossipglove.com#🏴 Dynamic | TLS
+trojan://MiTiVPN@45.131.4.118:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=linkkon-w.ir&fp=chrome&type=ws&sni=linkkon-w.ir#🇳🇱 Netherlands | TLS • chrome
+trojan://MiTiVPN@151.101.1.194:443?allowInsecure=1&alpn=http%2F1.1&host=mitivpn-s2.global.ssl.fastly.net&path=%2Fed&sni=global.fastly.com&type=ws#🇺🇸 USA | TLS
+trojan://MiTiVPN@45.131.4.118:443?security=tls&sni=linkkon-w.ir&alpn=http%2F1.1&type=ws&host=linkkon-w.ir&path=%2Fed%3Dmitivpn#🇳🇱 Netherlands | TLS
+trojan://mitivpn@135.84.67.77:443?security=tls&sni=gamingdll.ir&fp=chrome&alpn=h2%2Chttp%2F1.1%2Ch3&insecure=0&allowInsecure=0&type=ws&host=cdn.gamingdll.ir&path=%2Fed%3Dmitivpn#🇺🇸 USA | TLS • chrome
+trojan://Watashi_VPN@104.18.38.122:8443?security=tls&type=ws&sni=t-watashi-r-jacket-o-people-jan.watashi-java.ir&path=/&host=t-watashi-r-jacket-o-people-jan.watashi-java.ir#🏴 Dynamic | TLS
 trojan://humanity@141.193.213.30:443?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=1&host=www.calmloud.com&fp=chrome&type=ws&allowInsecure=1&sni=www.calmloud.com#🇺🇸 USA | TLS • chrome
 trojan://MiTiVPN@104.24.50.97:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=1&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://humanity@104.21.40.34:443?path=/assignment&%3Bsecurity=tls&%3Bhost=www.gossipglove.com&%3Btype=ws&%3Bsni=www.gossipglove.com#🏴 Dynamic | TLS
-trojan://O4O8.Ew%2BujFX6GJBQ%3DxQr.heGwux0GYHqk@45.61.52.243:443?type=tcp&security=tls&headerType=none&sni=45.61.52.243&fp=chrome&insecure=1&allowInsecure=1#🇺🇸 USA | TLS • chrome
-trojan://humanity@104.18.152.187:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
-trojan://MiTiVPN@151.101.1.194:443?allowInsecure=1&alpn=http%2F1.1&host=mitivpn-s2.global.ssl.fastly.net&path=%2Fed&sni=global.fastly.com&type=ws#🇺🇸 USA | TLS
-trojan://mitivpn@188.114.97.6:443?path=%2F%3Fmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=s2.mitivpn.nl.ssl.global.fastly.ir.iranpoems.ir&fp=chrome&type=ws&allowInsecure=0&sni=s2.mitivpn.nl.ssl.global.fastly.dev.iranpoems.ir#🏴 Dynamic | TLS • chrome
-trojan://humanity@208.103.161.170:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&host=www.calmloud.com&fp=chrome&type=ws&sni=www.calmloud.com#🇺🇸 USA | TLS • chrome
-trojan://humanity@104.16.174.12:443?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
-trojan://mitivpn@104.16.72.70:443?type=ws&security=tls&path=%2Findex.html%2Fed%3Dmitivpn&host=gamingdll.ir&sni=gamingdll.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@45.130.125.220:443?path=index.html%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-a.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-a.ir#🇸🇨 Seychelles | TLS • chrome
-trojan://humanity@104.21.40.34:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&type=ws&sni=www.multiplydose.com#🏴 Dynamic | TLS
-trojan://MiTiVPN@104.25.253.129:443?allowInsecure=1&alpn=http%2F1.1&fp=chrome&host=linkkon-w.ir&path=%2Fed%3Dmitivpn&sni=linkkon-w.ir&type=ws#🏴 Dynamic | TLS • chrome
-trojan://humanity@104.16.174.121:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
-trojan://humanity@185.18.250.252:443?path=%2Fassignment&security=tls&type=ws&sni=www.multiplydose.com#🇨🇭 Switzerland | TLS
-trojan://humanity@188.114.97.6:443?type=ws&security=tls&path=%2Fassignment&host=www.calmloud.com&sni=www.calmloud.com&insecure=0&allowInsecure=0#🏴 Dynamic | TLS
-trojan://humanity@104.21.40.34:443?encryption=none&security=tls&sni=www.multiplydose.com&fp=chrome&type=ws&path=%2Fassignment#🏴 Dynamic | TLS • chrome
-trojan://MiTiVPN@172.67.210.215:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://humanity@104.18.152.97:443?host=www.ignitelimit.com&path=%2Fassignment&sni=www.ignitelimit.com&type=ws#🏴 Dynamic | TLS
-trojan://humanity@104.16.79.73:443?encryption=none&security=tls&sni=www.creationlong.org&type=ws&host=www.creationlong.org&path=%2Fassignment#🏴 Dynamic | TLS
-trojan://tg-dns68@162.159.153.230:443?security=tls&type=ws&sni=vip.putata.eu.org&host=vip.putata.eu.org#🏴 Dynamic | TLS
-trojan://humanity@141.101.90.101:443?encryption=none&security=tls&sni=www.ignitelimit.com&fp=ios&type=ws&host=www.ignitelimit.com&path=%2Fassignment#🏴 Dynamic | TLS • ios
-trojan://MiTiVPN@104.18.53.211:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://humanity@104.18.152.97:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
-trojan://MiTiVPN@104.21.18.41:443?path=%2Fcdn%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@188.114.97.6:443?type=ws&security=tls&path=https%3A%2F%2Fchatgpt.com&host=mitivpn.nl.sdsl.globdal.fastldy.com.mitivpn.site&sni=mitivpn.sddde.ssddl.globddal.fassdtdly.cow.mitivpn.site&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
-trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#🏴 Dynamic | TLS
-trojan://humanity@188.114.98.0:443?allowInsecure=0&sni=www.calmlunch.com&ws=1&wspath=%2Fassignment#🏴 Dynamic | TLS
-trojan://MiTiVPN@151.101.1.194:443?path=%2Fed&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-s2.global.ssl.fastly.net&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS
-trojan://MiTiVPN@188.114.97.6:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=wwww.95r.ir&fp=chrome&type=ws&allowInsecure=0&sni=wwww.95r.ir#🏴 Dynamic | TLS • chrome
-trojan://%6D%69%74%69%76%70%6E@188.114.97.6:443?type=ws&serviceName=---Telegram%40------Telegram%40-----Telegram%40-----Telegram%40-----Telegram%40-----Telegram%40-----Telegram%40-----Telegram%40---&security=tls&path=%2Fed%3Dmitivpn&host=s1.mitivpn.de.ssl.global.fastly.com.iranpoems.ir&sni=s1.mitivpn.de.ssl.global.fastly.co.iranpoems.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
-trojan://6953ed5d9cff4c32895fecf21b1dfdc9@91.193.58.8:2087?mode=auto&path=%2F&security=tls&alpn=h2%2Chttp%2F1.1&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D&insecure=0&host=nab.velizor.ir&fp=chrome&type=xhttp&allowInsecure=0&sni=nab.velizor.ir#🇬🇧 UK | TLS • chrome
-trojan://MiTiVPN@45.131.4.118:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon#🇳🇱 Netherlands | TLS • chrome
-trojan://MiTiVPN@108.162.196.190:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://MiTiVPN@103.31.4.213:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://O4O8.Ew%2BujFX6GJBQ%3DxQr.heGwux0GYHqk@45.61.58.89:443?type=tcp&security=tls&headerType=none&sni=45.61.58.89&fp=chrome&insecure=1&allowInsecure=1#🇺🇸 USA | TLS • chrome
 trojan://MiTiVPN@172.67.210.215:443?alpn=http%2F1.1&fp=chrome&host=linkkon-w.ir&path=%2Fed%3Dmitivpn&sni=linkkon-w.ir&type=ws#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@135.84.67.77:443?security=tls&sni=gamingdll.ir&fp=chrome&alpn=h2%2Chttp%2F1.1%2Ch3&insecure=0&allowInsecure=0&type=ws&host=cdn.gamingdll.ir&path=%2Fed%3Dmitivpn#🇺🇸 USA | TLS • chrome
-trojan://humanity@104.19.229.21:443?path=%2Fassignment&security=tls&insecure=0&host=www.gossipglove.com&type=ws&allowInsecure=0&sni=www.gossipglove.com#🏴 Dynamic | TLS
-trojan://tg-dns68@162.159.152.138:443?security=tls&sni=vip.putata.eu.org&type=ws&host=vip.putata.eu.org#🏴 Dynamic | TLS
-trojan://MiTiVPN@188.114.97.6:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=wwww.95r.ir&fp=chrome&type=ws&sni=wwww.95r.ir#🏴 Dynamic | TLS • chrome
-trojan://%6D%69%74%69%76%70%6E@188.114.97.6:443?type=ws&serviceName=&security=tls&path=%2Fed%3Dmitivpn&host=s1.mitivpn.de.ssl.global.fastly.com.iranpoems.ir&sni=s1.mitivpn.de.ssl.global.fastly.co.iranpoems.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
-trojan://MiTiVPN@45.131.4.118:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=linkkon-w.ir&fp=chrome&type=ws&sni=linkkon-w.ir#🇳🇱 Netherlands | TLS • chrome
+trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&insecure=0&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.creationlong.org#🏴 Dynamic | TLS
 trojan://humanity@208.103.161.170:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=0&host=www.calmloud.com&fp=chrome&type=ws&allowInsecure=0&sni=www.calmloud.com#🇺🇸 USA | TLS • chrome
-trojan://humanity@172.64.152.23:443?path=%2Fassignment&security=tls&host=www.creationlong.org&type=ws&sni=www.creationlong.org#🏴 Dynamic | TLS
-trojan://mitivpn@188.114.97.6:443?path=https%3A%2F%2Fchatgpt.com&security=tls&alpn=http%2F1.1&host=mitivpn.nl.sdsl.globdal.fastldy.com.mitivpn.site&fp=chrome&type=ws&sni=mitivpn.sddde.ssddl.globddal.fassdtdly.cow.mitivpn.site#🏴 Dynamic | TLS • chrome
-trojan://MiTiVPN@151.101.110.219:443?path=%2Fed&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn.global.ssl.fastly.net&type=ws&allowInsecure=0&sni=global.fastly.com#🇺🇸 USA | TLS
-trojan://MiTiVPN@104.21.18.41:443?alpn=http%2F1.1&fp=chrome&host=linkkon-w.ir&path=%2Fcdn%3Dmitivpn&sni=linkkon-w.ir&type=ws#🏴 Dynamic | TLS • chrome
-trojan://MiTiVPN@45.131.4.118:443?security=tls&sni=linkkon-w.ir&alpn=http%2F1.1&type=ws&host=linkkon-w.ir&path=%2Fed%3Dmitivpn#🇳🇱 Netherlands | TLS
-trojan://MiTiVPN@104.16.72.70:443?type=ws&security=tls&path=%2Fed%3Dmitivpn&host=linkkon-w.ir&sni=linkkon-w.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
+trojan://humanity@216.24.57.1:443?type=ws&security=tls&path=%2Fassbignment&sni=www.gossipnglove.com&gallowInsecure=0&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8#🇺🇸 USA | TLS
 trojan://559c3b5f-3dd1-47e4-94ad-017cb392a7ba@162.159.135.234:443?security=tls&type=ws&sni=de1.trojanvpn.de&path=/path/Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config-Alfred_Config&host=de1.trojanvpn.dE#🏴 Dynamic | TLS
-trojan://humanity@141.101.90.101:443?security=tls&type=ws&host=www.ignitelimit.com&path=/assignment&sni=www.ignitelimit.com&fp=chrome&allowInsecure=1#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@104.21.18.41:443?alpn=http%2F1.1&fp=chrome&host=linkkon-w.ir&path=%2Fcdn%3Dmitivpn&sni=linkkon-w.ir&type=ws#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.21.40.34:443?path=/assignment&%3Bsecurity=tls&%3Bhost=www.gossipglove.com&%3Btype=ws&%3Bsni=www.gossipglove.com#🏴 Dynamic | TLS
+trojan://mitivpn@104.16.72.70:443?path=%2Findex.php%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=gamingdll.ir&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@172.67.210.215:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://humanity@188.114.97.6:443?type=ws&security=tls&path=%2Fassignment&host=www.calmloud.com&sni=www.calmloud.com&insecure=0&allowInsecure=0#🏴 Dynamic | TLS
+trojan://humanity@104.18.152.233:443?allowInsecure=0&sni=www.calmloud.com&ws=1&wspath=%2Fassignment#🏴 Dynamic | TLS
 trojan://45c47cfa-67da-47e0-b20b-5efa674e6a9b@104.16.72.70:443?path=%2Fus-gllc&security=tls&insecure=0&host=unnes.ac.id.r3xxe.eu.cc&type=ws&allowInsecure=0&sni=unnes.ac.id.r3xxe.eu.cc#🏴 Dynamic | TLS
+trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&type=ws&sni=www.creationlong.org#🏴 Dynamic | TLS
+trojan://mitivpn@188.114.97.6:443?path=https%3A%2F%2Fchatgpt.com&security=tls&alpn=http%2F1.1&host=mitivpn.nl.sdsl.globdal.fastldy.com.mitivpn.site&fp=chrome&type=ws&sni=mitivpn.sddde.ssddl.globddal.fassdtdly.cow.mitivpn.site#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.21.40.34:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&type=ws&sni=www.multiplydose.com#🏴 Dynamic | TLS
+trojan://tg-dns68@162.159.153.13:443?security=tls&type=ws&sni=vip.putata.eu.org&path=/?ed=2560&host=vip.putata.eu.org#🏴 Dynamic | TLS
+trojan://mitivpn@188.114.97.6:443?path=%2F%3Fmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=s2.mitivpn.nl.ssl.global.fastly.ir.iranpoems.ir&fp=chrome&type=ws&allowInsecure=0&sni=s2.mitivpn.nl.ssl.global.fastly.dev.iranpoems.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@104.16.72.70:443?type=ws&security=tls&path=%2Fed%3Dmitivpn&host=linkkon-w.ir&sni=linkkon-w.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.16.174.121:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://humanity@172.64.152.23:443?path=%2Fassignment&security=tls&host=www.creationlong.org&type=ws&sni=www.creationlong.org#🏴 Dynamic | TLS
+trojan://mitivpn@188.114.97.6:443?path=https%3A%2F%2Fchatgpt.com&security=tls&alpn=http%2F1.1&host=s-mitivpn.global.ssl.b5r.ir&fp=chrome&type=ws&sni=sadszdx.global.ssl.fastly.net.b5r.ir#🏴 Dynamic | TLS • chrome
+trojan://%6D%69%74%69%76%70%6E@188.114.97.6:443?type=ws&serviceName=&security=tls&path=%2Fed%3Dmitivpn&host=s1.mitivpn.de.ssl.global.fastly.com.iranpoems.ir&sni=s1.mitivpn.de.ssl.global.fastly.co.iranpoems.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
+trojan://mitivpn@45.130.125.220:443?path=index.html%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-a.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-a.ir#🇸🇨 Seychelles | TLS • chrome
+trojan://8r%3C%5B9%27l6hAO%238ZQi@27.50.48.253:443?allowInsecure=1&fp=chrome&host=Koma-YT.PAGeS.Dev&path=%2FtrTelegram%F0%9F%87%A8%F0%9F%87%B3+%40WangCai2&sni=Koma-YT.PAGeS.Dev&type=ws#🇸🇬 Singapore | TLS • chrome
+trojan://tg-dns68@162.159.152.183:443?security=tls&sni=vip.putata.eu.org&type=ws&host=vip.putata.eu.org&path=%2F%3Fed%3D2560&fp=randomized&alpn=h3#🏴 Dynamic | TLS • randomized
+trojan://humanity@141.101.90.101:443?security=tls&type=ws&host=www.ignitelimit.com&path=/assignment&sni=www.ignitelimit.com&fp=chrome&allowInsecure=1#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@104.25.253.129:443?allowInsecure=1&alpn=http%2F1.1&fp=chrome&host=linkkon-w.ir&path=%2Fed%3Dmitivpn&sni=linkkon-w.ir&type=ws#🏴 Dynamic | TLS • chrome
 trojan://humanity@104.16.174.71:443?security=tls&type=ws&sni=www.ignitelimit.com&path=/assignment&host=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://humanity@104.21.40.34:443?encryption=none&security=tls&sni=www.multiplydose.com&fp=chrome&type=ws&path=%2Fassignment#🏴 Dynamic | TLS • chrome
 trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&host=www.calmlunch.com&type=ws&sni=www.calmlunch.com#🏴 Dynamic | TLS
+trojan://MiTiVPN@199.181.197.176:443?type=ws&security=tls&path=%2Fcdn%3Dmitivpn&host=linkkon-w.ir&sni=linkkon-w.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🇺🇸 USA | TLS • chrome
+trojan://humanity@185.18.250.252:443?path=%2Fassignment&security=tls&fp=chrome&type=ws&sni=www.multiplydose.com#🇨🇭 Switzerland | TLS • chrome
+trojan://humanity@185.18.250.252:443?path=%2Fassignment&security=tls&type=ws&sni=www.multiplydose.com#🇨🇭 Switzerland | TLS
+trojan://mitivpn@104.16.72.70:443?type=ws&security=tls&path=%2Findex.html%2Fed%3Dmitivpn&host=gamingdll.ir&sni=gamingdll.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.18.152.187:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://O4O8.Ew%2BujFX6GJBQ%3DxQr.heGwux0GYHqk@45.61.52.243:443?type=tcp&security=tls&headerType=none&sni=45.61.52.243&fp=chrome&insecure=1&allowInsecure=1#🇺🇸 USA | TLS • chrome
+trojan://O4O8.Ew%2BujFX6GJBQ%3DxQr.heGwux0GYHqk@45.61.58.89:443?type=tcp&security=tls&headerType=none&sni=45.61.58.89&fp=chrome&insecure=1&allowInsecure=1#🇺🇸 USA | TLS • chrome
+trojan://b810b5f0-6774-11f1-9361-1239d0255272@news.microsoft.com:443?security=tls&sni=uk1.test3.net&insecure=0&allowInsecure=0&type=ws&host=uk1.test3.net&path=%2Fhowdy#🇺🇸 USA | TLS
 trojan://tg-dns68@162.159.153.13:443?allowInsecure=0&sni=vip.putata.eu.org&ws=1&wspath=%2F%3Fed%3D2560#🏴 Dynamic | TLS
+trojan://humanity@208.103.161.170:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&host=www.calmloud.com&fp=chrome&type=ws&sni=www.calmloud.com#🇺🇸 USA | TLS • chrome
 trojan://humanity@104.18.12.149:443?allowInsecure=1&host=www.multiplydose.com&path=%2Fassignment&sni=www.multiplydose.com&type=ws#🏴 Dynamic | TLS
 trojan://Trojan-%48%71%762%72%61%79%4e%47@151.101.194.219:443?security=tls&type=ws&sni=speedtest.net&path=/hqv2rayng.host?ed=2048&host=dontskii.hqv2rayng.xyz#🇺🇸 USA | TLS
 trojan://MiTiVPN@104.24.50.97:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
 trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&host=www.calmloud.com&allowinsecure=0&type=ws&sni=www.calmloud.com#🏴 Dynamic | TLS
-trojan://mitivpn@27.50.48.49:443?path=%2Findex.html%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=gamingdll.ir&fp=chrome&type=ws&sni=gamingdll.ir#🇸🇬 Singapore | TLS • chrome
-trojan://oJRk-2%2BNoHJ3N4frj_O2.0CzT%2BWAgdcs7b@144.31.55.35:28126?type=tcp&security=tls&headerType=none&sni=www.game-bridge.click&fp=chrome&insecure=1&allowInsecure=1#🇺🇸 USA | TLS • chrome
-trojan://humanity@104.18.13.149:443?encryption=none&security=tls&sni=www.calmloud.com&fp=chrome&type=ws&host=www.calmloud.com&path=%2Fassignment#🏴 Dynamic | TLS • chrome
 trojan://MiTiVPN@172.67.210.215:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://mitivpn@27.50.48.49:443?path=%2Findex.html%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=gamingdll.ir&fp=chrome&type=ws&sni=gamingdll.ir#🇸🇬 Singapore | TLS • chrome
 trojan://humanity@45.130.125.160:443?path=%2Fassignment&security=tls&host=www.calmlunch.com&type=ws&sni=www.calmlunch.com#🇸🇨 Seychelles | TLS
-trojan://hF7uSJfeBPtSNXKtuYvTRNaBdGkkXHpKJfLRfbpaDWovomSL@3.8.238.251:443?path=%2Fuk1-uk1-gcjtze&security=tls&insecure=0&host=uk1.bw8848.org&type=ws&allowInsecure=0&sni=uk1.bw8848.org#🇬🇧 UK | TLS
-trojan://telegram-id-directvpn@35.181.86.50:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#🇫🇷 France | TLS
-trojan://telegram-id-directvpn@13.37.68.185:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#🇫🇷 France | TLS
-trojan://hF7uSJfeBPtSNXKtuYvTRNaBdGkkXHpKJfLRfbpaDWovomSL@3.8.238.251:443?path=%2Fuk1-uk1-gcjtze&security=tls&insecure=0&type=ws&allowInsecure=0&sni=uk1.bw8848.org#🇬🇧 UK | TLS
 trojan://PQ6rFC2WGc@188.114.97.6:443?path=%2F%3Fed%3D2048&security=tls&insecure=0&host=s5.aananas.ir&fp=chrome&type=ws&allowInsecure=0&sni=s5.aananas.ir#🏴 Dynamic | TLS • chrome
-trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&host=www.calmloud.com&type=ws&sni=www.calmloud.com#🏴 Dynamic | TLS
-trojan://humanity@172.66.44.211:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&type=ws&sni=www.multiplydose.com#🏴 Dynamic | TLS
-trojan://humanity@188.114.98.0:443?encryption=none&security=tls&sni=www.calmlunch.com&fp=chrome&type=ws&host=www.calmlunch.com&path=%2Fassignment#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.18.13.149:443?encryption=none&security=tls&sni=www.calmloud.com&fp=chrome&type=ws&host=www.calmloud.com&path=%2Fassignment#🏴 Dynamic | TLS • chrome
 trojan://humanity@141.193.213.30:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=1&host=www.calmloud.com&fp=chrome&type=ws&allowInsecure=1&sni=www.calmloud.com#🇺🇸 USA | TLS • chrome
+trojan://humanity@172.66.44.211:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&type=ws&sni=www.multiplydose.com#🏴 Dynamic | TLS
+trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&host=www.calmloud.com&type=ws&sni=www.calmloud.com#🏴 Dynamic | TLS
+trojan://humanity@188.114.98.0:443?encryption=none&security=tls&sni=www.calmlunch.com&fp=chrome&type=ws&host=www.calmlunch.com&path=%2Fassignment#🏴 Dynamic | TLS • chrome
 trojan://6202b230-417c-4d8e-b624-0f71afa9c75d@172.64.147.29:443?path=%2F%3Fproxyip%3Dip.111000.de5.net%253A443&security=tls&alpn=http%2F1.1&host=sni.111000.dynv6.net&fp=chrome&type=ws&sni=sni.111000.dynv6.net#🏴 Dynamic | TLS • chrome
-trojan://telegram-id-v2rayvpnchannel@35.181.86.50:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#🇫🇷 France | TLS
 trojan://humanity@188.114.97.6:443?type=ws&security=tls&path=%2Fassignbment&sni=www.creationlojng.org&allowInsecure=0&ech=ip.gs%2Budp%3jA%2F%2F8.8.8.8#🏴 Dynamic | TLS
+trojan://MiTiVPN@103.31.4.213:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
 trojan://mitivpn@216.24.57.15:443?path=%2Findex.html%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=gamingdll.ir&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🇺🇸 USA | TLS • chrome
 trojan://55zHQQIIKK@188.114.97.6:443?path=%2F%3Fed%3D2048&security=tls&insecure=0&host=s6.aananas.ir&fp=chrome&type=ws&allowInsecure=0&sni=s6.aananas.ir#🏴 Dynamic | TLS • chrome
 trojan://Mitivpn@208.103.161.33:443?path=%2F%3Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=www.hitgram.ir&fp=chrome&type=ws&allowInsecure=0&sni=www.hitgram.ir#🇺🇸 USA | TLS • chrome
-trojan://Telegram-Config0plus-983ced63-fcf0-4d15-b81b-432e32e9b932@141.193.213.11:443?host=api24-normal.tiktokv.com.r3xxe.eu.cc&path=%2Fus-gllc&sni=api24-normal.tiktokv.com.r3xxe.eu.cc&type=ws#🇺🇸 USA | TLS
 trojan://humanity@104.18.7.147:443?path=%2Fassignment&security=tls&fp=chrome&type=ws&sni=www.creationlong.org#🏴 Dynamic | TLS • chrome
-trojan://2eutknankxtbgkwcajzt@193.148.19.210:52794?allowInsecure=1&sni=www.vk.com#🇪🇸 Spain | TLS
+trojan://Telegram-Config0plus-983ced63-fcf0-4d15-b81b-432e32e9b932@141.193.213.11:443?host=api24-normal.tiktokv.com.r3xxe.eu.cc&path=%2Fus-gllc&sni=api24-normal.tiktokv.com.r3xxe.eu.cc&type=ws#🇺🇸 USA | TLS
 trojan://humanity@104.18.17.216:443?encryption=none&security=tls&sni=www.calmloud.com&alpn=http%2F1.1&fp=ios&type=ws&path=%2Fassignment#🏴 Dynamic | TLS • ios
 trojan://mitivpn@188.114.97.6:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=de.mitivpn.global.ssl.b5r.ir&fp=chrome&type=ws&sni=b5r.ir#🏴 Dynamic | TLS • chrome
 trojan://humanity@104.20.6.134:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.multiplydose.com#🏴 Dynamic | TLS • chrome
 trojan://MiTiVPN@172.64.50.27:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
 trojan://0ab59a11983d4ce7862d156c164d927d@188.114.96.3:443?path=%2FeyJqdW5rIjoicFlpMlNNRHl3bkdYOSIsInByb3RvY29sIjoidHIiLCJtb2RlIjoicHJlZml4IiwicGFuZWxJUHMiOlsiWzJhMDI6ODk4OjE0Njo2NDo6XSJdfQ%3D%3D%3Fed%3D2560&security=tls&alpn=http%2F1.1&insecure=0&host=faST-RoUtE-dd4E2D.FrEefiRemO7964.WoRkeRs.dEV&fp=chrome&type=ws&allowInsecure=0&sni=fasT-ROute-dd4e2D.fREEfIremo7964.WoRKerS.dev#🏴 Dynamic | TLS • chrome
-trojan://t5FsyeQXkNCY6eVGiqBXmPu4..jBEpNbak@38.60.220.65:443?type=tcp&security=tls&headerType=none&sni=38.60.220.65&fp=chrome&insecure=1&allowInsecure=1#🇰🇷 South Korea | TLS • chrome
-trojan://Mzp%2BsTklU5g1c_TH17Vl5np7HSQnAd7E-Q@130.94.104.148:443?type=tcp&security=tls&headerType=none&sni=130.94.104.148&fp=chrome&insecure=1&allowInsecure=1#🇨🇱 Chile | TLS • chrome
 trojan://6c862415-30d2-4813-8e49-42e99a0bd415@188.164.248.122:443?host=space.byu.id.yxls.eu.cc&path=%2Fus-gllc&sni=space.byu.id.yxls.eu.cc&type=ws#🇳🇱 Netherlands | TLS
-trojan://humanity@srv1.khatibirepair.ir:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#🇸🇨 Seychelles | TLS • chrome
 trojan://mitivpn@216.24.57.210:443?type=ws&security=tls&path=%2Fed%3Dmitivpn%2Findex.php&host=gamingdll.ir&sni=gamingdll.ir&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🇺🇸 USA | TLS • chrome
-trojan://humanity@198.62.62.23:443?path=%2Fassignment&security=tls&host=www.calmlunch.com&type=ws&sni=www.calmlunch.com#🇺🇸 USA | TLS
 trojan://humanity@104.16.174.36:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
 trojan://MiTiVPN@198.41.218.202:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://humanity@198.62.62.23:443?path=%2Fassignment&security=tls&host=www.calmlunch.com&type=ws&sni=www.calmlunch.com#🇺🇸 USA | TLS
+trojan://mitivpn@104.16.72.70:443?path=index.php%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-a.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-a.ir#🏴 Dynamic | TLS • chrome
 trojan://mitivpn@104.16.72.40:443?path=https%3A%2F%2Fchatgpt.com&security=tls&alpn=http%2F1.1&insecure=0&host=mItIvPN.glOBaL.ssl.mItIvPN.store&fp=chrome&type=ws&allowInsecure=0&sni=SaDszDx.glObaL.ssl.fastly.net.mItIvPN.store#🏴 Dynamic | TLS • chrome
 trojan://humanity@104.18.10.110:443?encryption=none&security=tls&sni=www.multiplydose.com&type=ws&host=www.multiplydose.com&path=%2F%2Fassignment#🏴 Dynamic | TLS
-trojan://mitivpn@104.16.72.70:443?path=index.php%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-a.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-a.ir#🏴 Dynamic | TLS • chrome
+trojan://PoSQBShqwNV9wKX4WHxDoLxbvp4eQYnD8v@130.94.78.17:443?type=tcp&security=tls&headerType=none&sni=130.94.78.17&fp=chrome&insecure=1&allowInsecure=1#🇬🇧 UK | TLS • chrome
+trojan://telegram-id-v2rayvpnchannel@13.37.68.185:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#🇫🇷 France | TLS
+trojan://fFj7MAGy1VlAWmB_gMBG_27oPYTSHvV6MX@185.137.157.59:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=www.lateralio.click#🇩🇪 Germany | TLS
+trojan://hF7uSJfeBPtSNXKtuYvTRNaBdGkkXHpKJfLRfbpaDWovomSL@3.8.238.251:443?path=%2Fuk1-uk1-gcjtze&security=tls&insecure=0&type=ws&allowInsecure=0&sni=uk1.bw8848.org#🇬🇧 UK | TLS
+trojan://hF7uSJfeBPtSNXKtuYvTRNaBdGkkXHpKJfLRfbpaDWovomSL@3.8.238.251:443?path=%2Fuk1-uk1-gcjtze&security=tls&insecure=0&host=uk1.bw8848.org&type=ws&allowInsecure=0&sni=uk1.bw8848.org#🇬🇧 UK | TLS
+trojan://telegram-id-directvpn@13.37.68.185:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#🇫🇷 France | TLS
+trojan://telegram-id-directvpn@35.181.86.50:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#🇫🇷 France | TLS
+trojan://oJRk-2%2BNoHJ3N4frj_O2.0CzT%2BWAgdcs7b@144.31.55.35:28126?type=tcp&security=tls&headerType=none&sni=www.game-bridge.click&fp=chrome&insecure=1&allowInsecure=1#🇺🇸 USA | TLS • chrome
+trojan://telegram-id-v2rayvpnchannel@35.181.86.50:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#🇫🇷 France | TLS
+trojan://t5FsyeQXkNCY6eVGiqBXmPu4..jBEpNbak@38.60.220.65:443?type=tcp&security=tls&headerType=none&sni=38.60.220.65&fp=chrome&insecure=1&allowInsecure=1#🇰🇷 South Korea | TLS • chrome
+trojan://2eutknankxtbgkwcajzt@193.148.19.210:52794?allowInsecure=1&sni=www.vk.com#🇪🇸 Spain | TLS
+trojan://Mzp%2BsTklU5g1c_TH17Vl5np7HSQnAd7E-Q@130.94.104.148:443?type=tcp&security=tls&headerType=none&sni=130.94.104.148&fp=chrome&insecure=1&allowInsecure=1#🇨🇱 Chile | TLS • chrome
 trojan://humanity@185.18.250.252:443?path=%2Fassignment&security=tls&insecure=0&host=www.multiplydose.com&fp=chrome&type=ws&allowInsecure=0&sni=www.multiplydose.com#🇨🇭 Switzerland | TLS • chrome
-trojan://MiTiVPN@172.67.210.215:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=linkkon-w.ir&fp=chrome&type=ws&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://5dc15e15-f285-4a9d-959b-0e4fbdd77b63@172.64.145.202:443?allowInsecure=1&fp=firefox&host=vless.lrdxw.club&path=%2F&sni=vless.lrdxw.club&type=ws#🏴 Dynamic | TLS • firefox
-trojan://MiTiVPN@104.21.18.41:443?path=%2Fcdn%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=1&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
-trojan://mitivpn@188.114.97.202:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=d.gamingdll.ir&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🏴 Dynamic | TLS • chrome
 trojan://humanity@104.17.121.43:443?host=www.calmlunch.com&path=%2Fassignment&sni=www.calmlunch.com&type=ws#🏴 Dynamic | TLS
-trojan://MiTiVPN@104.24.17.0:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=1&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@104.21.18.41:443?path=%2Fcdn%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=1&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
 trojan://mitivpn@188.114.97.6:443?sni=2.1.mitivpn.dee.srfsl.gleobal.fastl3y.n3et.mitivpn.site#🏴 Dynamic | TLS
-trojan://pvLSiyVj6wsERnbAOCzhdoSp0zzzEzdrsS@38.54.105.117:443?type=tcp&security=tls&headerType=none&sni=38.54.105.117&fp=chrome&insecure=1&allowInsecure=1#🇹🇷 Türkiye | TLS • chrome
+trojan://5dc15e15-f285-4a9d-959b-0e4fbdd77b63@172.64.145.202:443?allowInsecure=1&fp=firefox&host=vless.lrdxw.club&path=%2F&sni=vless.lrdxw.club&type=ws#🏴 Dynamic | TLS • firefox
+trojan://MiTiVPN@172.67.210.215:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&host=linkkon-w.ir&fp=chrome&type=ws&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@104.24.17.0:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=1&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://mitivpn@188.114.97.202:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=d.gamingdll.ir&fp=chrome&type=ws&allowInsecure=0&sni=gamingdll.ir#🏴 Dynamic | TLS • chrome
 trojan://MiTiVPN@172.64.50.27:443?alpn=http%2F1.1&host=linkkon-w.ir&path=%2Fed%3Dmitivpn&sni=linkkon-w.ir&type=ws#🏴 Dynamic | TLS
 trojan://humanity@188.114.96.3:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#🏴 Dynamic | TLS
-trojan://humanity@104.16.7.70:443?path=%2Fassignment&security=tls&insecure=1&host=www.creationlong.org&type=ws&allowInsecure=1&sni=www.creationlong.org#🏴 Dynamic | TLS
 trojan://86957ec0-b213-433b-a43b-51f2175e0ec3@45.130.125.126:443?path=%2Fau-do&security=tls&host=space.byu.id.yxls.eu.cc&type=ws&sni=space.byu.id.yxls.eu.cc#🇸🇨 Seychelles | TLS
 trojan://humanity@104.18.152.225:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://humanity@104.16.7.70:443?path=%2Fassignment&security=tls&insecure=1&host=www.creationlong.org&type=ws&allowInsecure=1&sni=www.creationlong.org#🏴 Dynamic | TLS
 trojan://humanity@104.16.174.12:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
-trojan://4f4d1167-ef14-4304-9bce-0740472503ef@103.177.136.45:48697?allowInsecure=1&sni=gh.01.naiun.bilibili.com#🇭🇰 Hong Kong | TLS
 trojan://GTCCjtvCtuy03-aV1mwF0OkG2q6yL%2BFc5K@207.126.167.241:443?type=tcp&security=tls&headerType=none&sni=207.126.167.241&fp=chrome&insecure=1&allowInsecure=1#🇺🇸 USA | TLS • chrome
-trojan://bNpSPq25FqLYblE9xl_Zpaq43o1iEmrcOW@130.94.97.140:443?type=tcp&security=tls&headerType=none&sni=www.static-optimizer.click&fp=chrome&insecure=1&allowInsecure=1#🇮🇶 Iraq | TLS • chrome
+trojan://humanity@141.101.90.101:443?encryption=none&security=tls&sni=www.ignitelimit.com&fp=ios&type=ws&host=www.ignitelimit.com&path=%2Fassignment#🏴 Dynamic | TLS • ios
+trojan://humanity@104.16.79.73:443?encryption=none&security=tls&sni=www.creationlong.org&type=ws&host=www.creationlong.org&path=%2Fassignment#🏴 Dynamic | TLS
+trojan://tg-dns68@162.159.153.230:443?security=tls&type=ws&sni=vip.putata.eu.org&host=vip.putata.eu.org#🏴 Dynamic | TLS
+trojan://humanity@104.18.152.97:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://MiTiVPN@104.21.18.41:443?path=%2Fcdn%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@104.18.53.211:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.18.152.97:443?host=www.ignitelimit.com&path=%2Fassignment&sni=www.ignitelimit.com&type=ws#🏴 Dynamic | TLS
+trojan://mitivpn@188.114.97.6:443?type=ws&security=tls&path=https%3A%2F%2Fchatgpt.com&host=mitivpn.nl.sdsl.globdal.fastldy.com.mitivpn.site&sni=mitivpn.sddde.ssddl.globddal.fassdtdly.cow.mitivpn.site&alpn=http%2F1.1&fp=chrome&insecure=0&allowInsecure=0#🏴 Dynamic | TLS • chrome
+trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#🏴 Dynamic | TLS
+trojan://humanity@188.114.98.0:443?allowInsecure=0&sni=www.calmlunch.com&ws=1&wspath=%2Fassignment#🏴 Dynamic | TLS
+trojan://humanity@104.17.121.43:443?path=%2Fassignment&security=tls&host=www.calmlunch.com&type=ws&sni=www.calmlunch.com#🏴 Dynamic | TLS
+trojan://aa710f78-eddb-45b4-bd32-1f8692a754e5@104.19.229.21:443?host=s.blibli.com.cyylr.eu.cc&path=%2Fae-bo&sni=s.blibli.com.cyylr.eu.cc&type=ws#🏴 Dynamic | TLS
+trojan://tg-dns68@162.159.152.36:443?security=tls&type=ws&sni=vip.putata.eu.org&path=/?ed=2560&host=vip.putata.eu.org#🏴 Dynamic | TLS
+trojan://Config0plus@185.18.250.252:443?path=%2Fsg-melbi&security=tls&host=unnes.ac.id.cyylr.eu.cc&type=ws&sni=unnes.ac.id.cyylr.eu.cc#🇨🇭 Switzerland | TLS
+trojan://humanity@202.37.33.80:443?path=/assignment&security=tls&host=www.creationlong.org&type=ws&sni=www.creationlong.org#🇳🇿 New Zealand | TLS
+trojan://humanity@185.18.250.252:443?path=%2Fassignment&security=tls&host=www.multiplydose.com&fp=chrome&type=ws&sni=www.multiplydose.com#🇨🇭 Switzerland | TLS • chrome
+trojan://humanity@104.18.12.149:443?path=%2Fassignment&security=tls&insecure=0&host=www.gossipglove.com&type=ws&allowInsecure=0&sni=www.gossipglove.com#🏴 Dynamic | TLS
+trojan://humanity@srv1.khatibirepair.ir:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#🇸🇨 Seychelles | TLS • chrome
+trojan://4f4d1167-ef14-4304-9bce-0740472503ef@103.177.136.45:48697?allowInsecure=1&sni=gh.01.naiun.bilibili.com#🇭🇰 Hong Kong | TLS
 trojan://4f4d1167-ef14-4304-9bce-0740472503ef@103.177.136.45:45553?security=tls&sni=ch.01.naiun.bilibili.com#🇭🇰 Hong Kong | TLS
-trojan://PoSQBShqwNV9wKX4WHxDoLxbvp4eQYnD8v@130.94.78.17:443?type=tcp&security=tls&headerType=none&sni=130.94.78.17&fp=chrome&insecure=1&allowInsecure=1#🇬🇧 UK | TLS • chrome
+trojan://mitivpn@188.114.97.6:443?allowInsecure=0&sni=www.ssl.global.digi.my.mitivpn.xyz&ws=1&wspath=%2Fed%3Dmitivpn#🏴 Dynamic | TLS
+trojan://f922fa0f-3311-4368-85ff-cf65e727c854@104.17.121.43:443?path=%2Fbr-orcl&security=tls&host=space.byu.id.yxls.eu.cc&type=ws&sni=space.byu.id.yxls.eu.cc#🏴 Dynamic | TLS
+trojan://MiTiVPN@140.248.185.253:443?path=%2Fed%3DMiTiVPN&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=ssl.fastly.com#🇺🇸 USA | TLS • chrome
+trojan://MiTiVPN@45.131.4.118:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🇳🇱 Netherlands | TLS • chrome
+trojan://humanity@104.18.152.97:443?path=%2Fassignment&security=tls&host=www.ignitelimit.com&type=ws&sni=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://humanity@216.24.57.6:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=0&host=www.creationlong.org&fp=chrome&type=ws&allowInsecure=0&sni=www.creationlong.org#🇺🇸 USA | TLS • chrome
+trojan://mitivpn@27.50.48.49:443?path=%2Findex.html%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=gamingdll.ir&fp=chrome&type=ws&allowIns#🇸🇬 Singapore | TLS • chrome
+trojan://MiTiVPN@104.16.71.213:443?alpn=http%2F1.1&ed=2560&eh=Sec-WebSocket-Protocol&fp=chrome&host=wwww.95r.ir&path=%2Fed%3Dmitivpn&sni=wwww.95r.ir&type=ws#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@104.21.18.41:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=blog.95r.ir&fp=chrome&type=ws&allowInsecure=1&sni=blog.95r.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@151.101.1.194:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=1&host=mitivpn-s2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
+trojan://mitivpn@199.232.78.159:443?path=%2F720f09dba195249b423f771661162528%2Fworkers%2Fservices%2Fview%2Fmitivpn%2Fproduction%2Fsettings&security=tls&alpn=http%2F1.1&insecure=0&host=miti1234.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=global.fastly.com#🇺🇸 USA | TLS • chrome
+trojan://5y@104.21.50.187:443?path=%2FeyJqdW5rIjoiQXNuUlk1RFRjMGlzYzAiLCJwcm90b2NvbCI6InRyIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119%3Fed%3D2560&security=tls&alpn=http%2F1.1&insecure=0&host=little-forest-5208.fdhf-jgkg.workers.dev&fp=chrome&type=ws&allowInsecure=0&sni=LIttLe-forESt-5208.fDHf-Jgkg.woRkERs.dev#🏴 Dynamic | TLS • chrome
+trojan://humanity@104.19.229.21:443?path=assignment&security=tls&insecure=0&type=ws&allowInsecure=0&sni=www.ignitelimit.com#🏴 Dynamic | TLS
+trojan://humanity@104.18.8.83:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#🏴 Dynamic | TLS • chrome
+trojan://humanity@188.114.97.6:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=1&host=www.calmloud.com&type=ws&allowInsecure=1&sni=www.calmloud.com#🏴 Dynamic | TLS
+trojan://humanity@216.24.57.1:443?path=%2Fassignment&security=tls&insecure=0&ech=54.mk%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.calmloud.com#🇺🇸 USA | TLS
+trojan://45c47cfa-67da-47e0-b20b-5efa674e6a9b@104.16.75.127:443?path=%2Fus-gllc&security=tls&insecure=0&host=unnes.ac.id.r3xxe.eu.cc&type=ws&allowInsecure=0&sni=unnes.ac.id.r3xxe.eu.cc#🏴 Dynamic | TLS
+trojan://humanity@216.24.57.1:443?type=ws&security=tls&path=%2Fasbsignment&sni=www.creationlong.org&allowgInsecure=0&ech=ip.ngs%2Budp%3A%2F%2F8.8.8.8#🇺🇸 USA | TLS
+trojan://MiTiVPN@104.24.17.0:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@188.114.97.6:443?path=index.php%3Fmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=cdn.95r.ir&fp=chrome&type=ws&allowInsecure=0&sni=cdn.95r.ir#🏴 Dynamic | TLS • chrome
+trojan://MiTiVPN@45.131.4.118:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&type=ws&allowInsecure=0&sni=linkkon-w.ir#🇳🇱 Netherlands | TLS
+trojan://MiTiVPN@104.25.253.129:443?path=%2Fed%3Dmitivpn&security=tls&alpn=http%2F1.1&insecure=0&host=linkkon-w.ir&fp=chrome&type=ws&allowInsecure=0&sni=linkkon-w.ir#🏴 Dynamic | TLS • chrome
+trojan://humanity@188.114.96.3:443?encryption=none&security=tls&sni=www.gossipglove.com&type=ws&host=www.gossipglove.com&path=%2Fassignment#🏴 Dynamic | TLS
