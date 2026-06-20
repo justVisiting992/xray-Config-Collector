@@ -214,6 +214,19 @@ func main() {
 		combined := append(newConfigs[p], historyConfigs[p]...)
 		unique := removeDuplicates(combined)
 
+		// --- FIX: keep only real Shadowsocks configs (discard mislabeled VLESS/Trojan URIs) ---
+		if p == "SS" {
+			var validSS []string
+			for _, cfg := range unique {
+				if isValidShadowsocks(cfg) {
+					validSS = append(validSS, cfg)
+				}
+			}
+			gologger.Info().Msgf("   ↳ Filtered to %d valid SS configs", len(validSS))
+			unique = validSS
+		}
+		// --- END FIX ---
+
 		gologger.Info().Msgf("   ↳ Testing %d unique configs...", len(unique))
 		healthy := fastPingTest(unique, p)
 		gologger.Info().Msgf("   ✅ Alive: %d", len(healthy))
@@ -1205,4 +1218,38 @@ func loadChannelsFromCSV(p string) ([]string, error) {
 		}
 	}
 	return u, nil
+}
+
+// isValidShadowsocks returns true if the config is a genuine Shadowsocks URI,
+// not a mislabeled VLESS or Trojan config.
+func isValidShadowsocks(config string) bool {
+	// Strip fragment
+	base := strings.Split(config, "#")[0]
+	if !strings.HasPrefix(strings.ToLower(base), "ss://") {
+		return false
+	}
+	rest := strings.TrimPrefix(base, "ss://")
+
+	// Must have '@' separating userinfo and host
+	atIdx := strings.Index(rest, "@")
+	if atIdx == -1 {
+		return false
+	}
+
+	// Check for VLESS/Trojan-specific parameters that don't belong in SS
+	lower := strings.ToLower(rest)
+	// presence of 'pbk=' (public key), 'sid=', 'flow=' (xtls-rprx-vision) indicate VLESS/Trojan
+	if strings.Contains(lower, "pbk=") || strings.Contains(lower, "sid=") || strings.Contains(lower, "flow=") {
+		return false
+	}
+	// 'security=reality' is also not SS
+	if strings.Contains(lower, "security=reality") {
+		return false
+	}
+	// Additionally, ensure userinfo is not empty
+	userinfo := rest[:atIdx]
+	if userinfo == "" {
+		return false
+	}
+	return true
 }
