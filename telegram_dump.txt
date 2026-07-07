@@ -1,330 +1,87 @@
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 135ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:17 - 1405/04/16
-💡 منبع: گروه MahsaNet
-
-```vless://6ed1dc4b-b3e5-48e2-9fba-ff1764f0cc0d@r.telewebion.ir.varzesh3.com.de:443?security=reality&alpn=http%2F1.1&encryption=none&pbk=JtA0d5K6Jnmg35oWP9SDOsc1ceuqaxOsNg33fiPHJQs&host=yahoo.com&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=yahoo.com&sid=e915#%40confing_star1%F0%9F%91%88%F0%9F%91%88%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%85%DB%8C%D8%AE%D9%88%D8%A7%DB%8C%20%D8%A8%DB%8C%D8%A7%20%D8%A7%DB%8C%D9%86%D8%AC%D8%A7```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 02:13 - 1405/04/16
-💡 منبع: گروه MahsaNet
-
 📂 کانفیگ VMess
-📍 لوکیشن: Malaysia 🇲🇾
-📶 پینگ: 186ms
+📍 لوکیشن: ژاپن 🇯🇵
+📶 پینگ: 109ms
 
 #VMess #VPN
 
-🕒 انتشار: 02:13 - 1405/04/16
-💡 منبع: @NamiraConfigs
+🕒 انتشار: 03:35 - 1405/04/16
+💡 منبع: @makvaslim
 
-```vmess://eyJhZGQiOiI0Ny4yNTAuNDUuMjM0IiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiI0Ny4yNTAuNDUuMjM0IiwiaWQiOiJjNzdmNDhmNS00YmUzLTQ0NjEtYjUyYi00OTk5OGU3Yjg5N2IiLCJpbnNlY3VyZSI6IjAiLCJuZXQiOiJ3cyIsInBhdGgiOiIvYXJraSIsInBvcnQiOiI0MzA2MyIsInBzIjoi4pyoIEBOYW1pcmFDb25maWdzIHwg4p2k77iPINmI2LXZhCDYtNiv24wg2KzZiNuM2YYg2LTZiCB8IOKaoSB8IPCfh7Lwn4e+Iiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9```
-
-📂 کانفیگ SS
-📍 لوکیشن: انگلیس 🇬🇧
-📶 پینگ: 142ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 02:08 - 1405/04/16
-💡 منبع: @NamiraConfigs
-
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.212:8080#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%94%92%20%7C%20%F0%9F%87%AC%F0%9F%87%A7```
-
-📂 کانفیگ SS
-📍 لوکیشن: انگلیس 🇬🇧
-📶 پینگ: 136ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 01:39 - 1405/04/16
-💡 منبع: @NamiraConfigs
-
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.17:8080#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%94%92%20%7C%20%F0%9F%87%AC%F0%9F%87%A7```
-
-📂 کانفیگ SS
-📍 لوکیشن: انگلیس 🇬🇧
-📶 پینگ: 136ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 01:34 - 1405/04/16
-💡 منبع: @NamiraConfigs
-
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.190:8080#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%94%92%20%7C%20%F0%9F%87%AC%F0%9F%87%A7```
-
-📂 کانفیگ SS
-📍 لوکیشن: انگلیس 🇬🇧
-📶 پینگ: 136ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 01:22 - 1405/04/16
-💡 منبع: @bored_vpn
-
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.211:8080#%40bored_vpn```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 17ms
-
-#VLESS #VPN
-
-🕒 انتشار: 01:22 - 1405/04/16
-💡 منبع: @bored_vpn
-
-```vless://c35050ce-01ab-45a9-91b8-54cec637d0a8@104.21.36.120:443?path=%2Fudfyfws&security=tls&encryption=none&insecure=0&host=octopusss5.info&fp=chrome&type=ws&allowInsecure=0&sni=octopusss5.info#%40bored_vpn```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 18ms
-
-#VLESS #VPN
-
-🕒 انتشار: 01:22 - 1405/04/16
-💡 منبع: @bored_vpn
-
-```vless://7e544a9d-7667-413b-bbb0-b3bb1aac6d77@104.16.72.101:443?path=%2Frsedgws&security=tls&encryption=none&insecure=0&host=shegeftihaaa.net&fp=chrome&type=ws&allowInsecure=0&sni=shegeftihaaa.net#%40bored_vpn```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Poland 🇵🇱
-📶 پینگ: 142ms
-
-#VLESS #VPN
-
-🕒 انتشار: 01:22 - 1405/04/16
-💡 منبع: @bored_vpn
-
-```vless://a18f7c2d-9e45-4b8a-af3c-1d5e7f9c8b2a@83.168.71.216:443?security=reality&encryption=none&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&host=%2F&headerType=none&fp=chrome&type=tcp&sni=ads.x5.ru&sid=2f49bccf11150ef2#%40bored_vpn```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: Seychelles 🇸🇨
-📶 پینگ: 18ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 01:22 - 1405/04/16
-💡 منبع: @bored_vpn
-
-```trojan://MITIVPN@45.130.125.2:443?path=%2F---%40M%2569T%2569VPN%2F---%40M%2569T%2569VPN%2F---%40M%2569T%2569VPN%2F---%40M%2569T%2569VPN%2F---%40M%2569T%2569VPN%3DGE&security=tls&alpn=http%2F1.1&insecure=1&host=De-e-d.App-Cloud.ir&fp=chrome&type=ws&allowInsecure=1&sni=deioej-ieid.App-Cloud.ir#%40bored_vpn```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 18ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 01:22 - 1405/04/16
-💡 منبع: @bored_vpn
-
-```trojan://MITIVPN@89.116.250.135:443?path=%2F---%40M%2569T%2569VPN%2F---%40M%2569T%2569VPN%2F---%40M%2569T%2569VPN%2F---%40M%2569T%2569VPN%2F---%40M%2569T%2569VPN%3DUSA&security=tls&alpn=http%2F1.1&insecure=1&host=Ussa-Si-ieo.App-Cloud.ir&fp=chrome&type=ws&allowInsecure=1&sni=ksidi-isid-d.App-Cloud.ir#%40bored_vpn```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 134ms
-
-#VLESS #VPN
-
-🕒 انتشار: 01:22 - 1405/04/16
-💡 منبع: @bored_vpn
-
-```vless://40601c06-6fbf-4f48-bcff-2a8d57038e37@las.dearhossein-taktaz.ir:47922?security=reality&encryption=none&pbk=-smckvxfg8A2QkVqkQpI3bPMcYJ_69fAxWS7u9VhND8&host=play.google.com&headerType=http&fp=chrome&spx=%2FC42p6dEeWp6gGTf&type=tcp&sni=www.yahoo.com&sid=09#%40bored_vpn```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 00:48 - 1405/04/16
-💡 منبع: گروه MahsaNet
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 00:43 - 1405/04/16
-💡 منبع: گروه MahsaNet
+```vmess://eyJ2IjoyLCJwcyI6Itin2q/ZhyDZhduM2K7ZiNin24wg2YLYt9i5INmG2LTbjCDYrNmI24zZhiDYtNmIIDogQGZhcnNpcHJveHkiLCJhZGQiOiJjYzI2LmdvaW5nc2lkZS5zaXRlIiwicG9ydCI6ODk5OCwiaWQiOiIzZDgyYzIyMi1jMzRhLTQ1MjItYjRlYy1jZGM5MGJjYzBiODQiLCJhaWQiOjAsInNjeSI6ImF1dG8iLCJuZXQiOiJ3cyIsInR5cGUiOm51bGwsImhvc3QiOiJjYzI2LmdvaW5nc2lkZS5zaXRlIiwicGF0aCI6Ii8iLCJ0bHMiOmZhbHNlLCJzbmkiOiIifQ==```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 17ms
+📶 پینگ: 9ms
 
 #VLESS #VPN
 
-🕒 انتشار: 00:41 - 1405/04/16
+🕒 انتشار: 03:29 - 1405/04/16
 💡 منبع: گروه MahsaNet
 
-```vless://%40MAconnectt@hayabusa.proxy.rlwy.net:45900?mode=stream-up&path=%2F&security=reality&encryption=none&extra=%7B%22mode%22%3A%22stream-up%22%2C%22xPaddingBytes%22%3A%22100-1000%22%7D&pbk=3Qrlf_ww96hYRMg-qo6s5PevYgW6ON_87kzZA1wtwRU&fp=firefox&spx=%2FBP4ElyUvrbooowl&type=xhttp&sni=is1-ssl.mzstatic.com&sid=7be33fb2c4#🔵@chillguy_vpn```
+```vless://0b0dd312-eecb-cb9d-fe12-6d0c1df30ae4@ansooyefilter6.up.railway.app:443?encryption=none&security=tls&type=ws&host=ansooyefilter6.up.railway.app&path=/ws/0b0dd312-eecb-cb9d-fe12-6d0c1df30ae4&sni=ansooyefilter6.up.railway.app&fp=chrome&alpn=http/1.1#RVG-%40ansooyefilter```
 
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
+📂 کانفیگ VLESS
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 9ms
 
-#NapsternetV #Config #File
+#VLESS #VPN
 
-🕒 انتشار: 00:28 - 1405/04/16
+🕒 انتشار: 03:01 - 1405/04/16
 💡 منبع: گروه MahsaNet
 
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 8ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:27 - 1405/04/16
-💡 منبع: گروه MahsaNet
-
-```vless://7943183f-5c33-4728-8d57-8f18efe6ce25@fast.motorbazan.com:443?security=tls&encryption=none&insecure=0&host=firsttime.global.ssl.fastly.net&type=ws&sni=ssl.fastly.com#🔵@chillguy_vpn```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 162ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:18 - 1405/04/16
-💡 منبع: @Outline_ir
-
-```vless://b1f66344-4d4a-49d9-9c3a-9fae78d408f8@italy-nm.serendpiti.ir:2060?mode=auto&path=%2Fpath&security=reality&encryption=none&extra=%7B%22scMaxEachPostBytes%22%3A1000000%2C%22scMaxConcurrentPosts%22%3A100%2C%22scMinPostsIntervalMs%22%3A30%2C%22xPaddingBytes%22%3A%22100-1000%22%2C%22noGRPCHeader%22%3Afalse%7D&pbk=G5_DckdgcTAbEubwJvlZDBwrncT1lOq6W5JRwINl1nE&host=hostname&fp=chrome&type=xhttp&sni=www.yahoo.com&sid=90cecfbf0c0a21ec#%40outline_ir```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: انگلیس 🇬🇧
-📶 پینگ: 223ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:16 - 1405/04/16
-💡 منبع: @Outline_ir
-
-```vless://3f298aca-2412-49ac-9f20-235f0e448d31@engelestanclouding.iranlast.com:7009?security=reality&encryption=none&pbk=f8TgqVBYK3tmhip3lJ-r8D0i6fqEF1Zy-zAfEhS-Cl8&headerType=none&fp=qq&type=tcp&sni=yahoo.com#%40outline_ir```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 00:16 - 1405/04/16
-💡 منبع: @flyv2ray
+```vless://175c6db9-4a69-4abc-8736-c3f72748b7a0@forallpanel.srtongston.ir:8880?path=%2F%3Fed%3D2082&security=none&encryption=none&host=aaAaa.postshup.ir&type=httpupgrade#🔵@chillguy_vpn```
 
 📂 کانفیگ SS
 📍 لوکیشن: انگلیس 🇬🇧
-📶 پینگ: 131ms
+📶 پینگ: 156ms
 
 #Shadowsocks #VPN
 
-🕒 انتشار: 00:13 - 1405/04/16
+🕒 انتشار: 02:38 - 1405/04/16
 💡 منبع: @NamiraConfigs
 
-```ss://YWVzLTI1Ni1nY206UmV4bkJnVTdFVjVBRHhH@94.156.250.148:7001#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%94%92%20%7C%20%F0%9F%87%AC%F0%9F%87%A7```
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.195:8080#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%94%92%20%7C%20%F0%9F%87%AC%F0%9F%87%A7```
 
-📂 کانفیگ TROJAN
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 132ms
+📂 کانفیگ SS
+📍 لوکیشن: انگلیس 🇬🇧
+📶 پینگ: 155ms
 
-#TROJAN #VPN
+#Shadowsocks #VPN
 
-🕒 انتشار: 00:07 - 1405/04/16
-💡 منبع: @PrivateVPNs
-
-```trojan://telegram-id-privatevpns@13.38.149.14:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)🇨🇵t.me/PrivateVPNs```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 00:04 - 1405/04/16
-💡 منبع: @mitivpn
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 148ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 23:27 - 1405/04/15
-💡 منبع: @mehrosaboran
-
-```https://t.me/proxy?server=api-web.asiaadomainsshatelhamrahaval.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ%3D%3D```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 148ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 23:27 - 1405/04/15
-💡 منبع: @mehrosaboran
-
-```https://t.me/proxy?server=ftp.asiaadomainsshatelhamrahaval.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ%3D%3D```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Unknown 🏁
-📶 پینگ: 9ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 23:27 - 1405/04/15
-💡 منبع: @mehrosaboran
-
-```https://t.me/proxy?server=moh.kingproxynewdomailasiatech.ink&port=25565&secret=FgMBAgABAAH8AxOG4kw63Q```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 167ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 23:27 - 1405/04/15
-💡 منبع: @mehrosaboran
-
-```https://t.me/proxy?server=wan.asiaadomainsshatelhamrahaval.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ%3D%3D```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Lithuania 🇱🇹
-📶 پینگ: 131ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 23:27 - 1405/04/15
-💡 منبع: @mehrosaboran
-
-```https://t.me/proxy?server=ocean.babysharkollah.co.uk&port=8443&secret=EERighJJvXrFGRMCIMJdCQ```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 23:23 - 1405/04/15
-💡 منبع: @MTproxy22_v2ray
-
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 9ms
-
-#VLESS #VPN
-
-🕒 انتشار: 23:11 - 1405/04/15
+🕒 انتشار: 02:33 - 1405/04/16
 💡 منبع: @NamiraConfigs
 
-```vless://cee8c30c-fb13-4a89-abb4-5a32cf716c97@assets.fiverr.com:443?path=%2Fapi-api&security=tls&alpn=http%2F1.1&encryption=none&insecure=0&host=api.mozestan.dpdns.org&fp=chrome&type=ws&allowInsecure=0&sni=api.mozestan.dpdns.org#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%9A%80%20%7C%20%F0%9F%87%BA%F0%9F%87%B8```
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.2:8080#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%94%92%20%7C%20%F0%9F%87%AC%F0%9F%87%A7```
 
-📂 کانفیگ VLESS
-📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 9ms
+📂 کانفیگ SS
+📍 لوکیشن: انگلیس 🇬🇧
+📶 پینگ: 149ms
 
-#VLESS #VPN
+#Shadowsocks #VPN
 
-🕒 انتشار: 23:06 - 1405/04/15
+🕒 انتشار: 02:28 - 1405/04/16
 💡 منبع: @NamiraConfigs
 
-```vless://cee8c30c-fb13-4a89-abb4-5a32cf716c97@api.fiverr.com:443?path=%2Fapi-api&security=tls&alpn=http%2F1.1&encryption=none&insecure=0&host=api.mozestan.dpdns.org&fp=chrome&type=ws&allowInsecure=0&sni=api.mozestan.dpdns.org#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%9A%80%20%7C%20%F0%9F%87%BA%F0%9F%87%B8```
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.204:8080#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%94%92%20%7C%20%F0%9F%87%AC%F0%9F%87%A7```
+
+📂 کانفیگ SS
+📍 لوکیشن: انگلیس 🇬🇧
+📶 پینگ: 155ms
+
+#Shadowsocks #VPN
+
+🕒 انتشار: 02:23 - 1405/04/16
+💡 منبع: @NamiraConfigs
+
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.207:8080#%E2%9C%A8%20@NamiraConfigs%20%7C%20%E2%9D%A4%EF%B8%8F%20%D9%88%D8%B5%D9%84%20%D8%B4%D8%AF%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%7C%20%F0%9F%94%92%20%7C%20%F0%9F%87%AC%F0%9F%87%A7```
+
+📊 **گزارش عملکرد ربات**
+
+📅 تاریخ: 1405/04/15
+✅ مجموع کل: 186
+
+⚙️ تعداد کانفیگ: 148
+🛡 تعداد پروکسی: 18
+📂 تعداد فایل: 20
+
+#آمار #گزارش
