@@ -1,68 +1,57 @@
 📂 کانفیگ VLESS
-📍 لوکیشن: سنگاپور 🇸🇬
-📶 پینگ: 220ms
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 110ms
 
 #VLESS #VPN
 
-🕒 انتشار: 02:54 - 1405/07/05
+🕒 انتشار: 05:31 - 1405/07/05
 💡 منبع: گروه MahsaNet
 
-```vless://bda35755-c838-49c3-a19e-3712f2d54275@163.128.99.14:443?security=reality&encryption=none&pbk=-LuhwN_cSgNr7nYIfCcu_XAjviKVSGwVGHxmB-s1AD0&host=%2F%3FTELEGRAM--MARAMBASHI--MARAMBASHI&headerType=none&fp=safari&type=tcp&flow=xtls-rprx-vision&sni=www.apple.com&sid=e3a4bdfe3d6fd8ec#%40HajmVPN_Config%20-%20%F0%9F%87%A9%F0%9F%87%AA```
+```vless://ff6d2dda-7b90-404e-9951-34b3124bfdfa@146.103.42.119:9543?encryption=none&type=tcp&flow=xtls-rprx-vision&security=reality&sni=storage.yandexcloud.net&fp=chrome&pbk=M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc&sid=123abcdf&allowInsecure=1#🇩🇪[@Amirhossein_Mahboobi]```
 
 📂 کانفیگ VLESS
-📍 لوکیشن: Cyprus 🇨🇾
-📶 پینگ: 194ms
+📍 لوکیشن: امارات 🇦🇪
+📶 پینگ: 112ms
 
 #VLESS #VPN
 
-🕒 انتشار: 02:54 - 1405/07/05
+🕒 انتشار: 05:31 - 1405/07/05
 💡 منبع: گروه MahsaNet
 
-```vless://5e679ccd-1586-4d5f-b87b-48251046cad8@5.253.28.240:2443?mode=gun&security=reality&encryption=none&authority=%2F%3FTelegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET&pbk=h85e28MxBgNyT9d9cNeOLVtWfHq6cT_1_oxZOTajtTg&fp=firefox&type=grpc&serviceName=rex-eb0bf76b710ce763&sni=deepl.com&sid=92c32de179e5d908#%40HajmVPN_Config%20-%20%F0%9F%87%A9%F0%9F%87%AA```
+```vless://02bd8b5a-170b-4a79-8e68-9cec710272c7@151.241.138.151:8444?&security=reality&flow=xtls-rprx-vision&pbk=sQ9CcspZ6urWlzGNjjmtfp8EuuDll5RVtcsVoq_EfUE&sid=a3f509aa7a4b41cc&fp=safari&sni=pl1.gursub.com&type=tcp&headerType=none&host=pl1.gursub.com&path=%2F#🇵🇱[@Amirhossein_Mahboobi]```
 
 📂 کانفیگ VLESS
-📍 لوکیشن: Cyprus 🇨🇾
-📶 پینگ: 203ms
+📍 لوکیشن: Moldova 🇲🇩
+📶 پینگ: 137ms
 
 #VLESS #VPN
 
-🕒 انتشار: 02:54 - 1405/07/05
+🕒 انتشار: 05:31 - 1405/07/05
 💡 منبع: گروه MahsaNet
 
-```vless://405b964e-a2d2-454f-aaaa-711cc218897c@5.253.28.240:40443?security=reality&encryption=none&pbk=cwmcqsfS7klQlkcoUNuATEk0NiPY-NnRb9z8rCJDQw0&host=%2F%3FTelegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=deepl.com&sid=88b6#%40HajmVPN_Config%20-%20%F0%9F%87%A9%F0%9F%87%AA```
+```vless://cd3bb7d9-7df3-4644-ac05-c260990ac277@md-new.failspace.top:443?flow=xtls-rprx-vision-udp443&fp=chrome&security=tls#🇲🇩[@Amirhossein_Mahboobi]```
 
-📂 کانفیگ TROJAN
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 1ms
+📂 کانفیگ SS
+📍 لوکیشن: South Africa 🇿🇦
+📶 پینگ: 231ms
 
-#TROJAN #VPN
+#Shadowsocks #VPN
 
-🕒 انتشار: 02:54 - 1405/07/05
+🕒 انتشار: 04:57 - 1405/07/05
 💡 منبع: گروه MahsaNet
 
-```trojan://MiTiVPN@151.101.56.255:443?path=%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2FNLSus---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn---nl--s---mitivpn-2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#%40HajmVPN_Config%20-%20%F0%9F%87%A9%F0%9F%87%AA```
+```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpYc3k4T3g0eU9WM3hMbHB4dGp6czNY@102.133.165.160:16233#🇿🇦🍁@Config_jo```
 
-📂 کانفیگ TROJAN
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 2ms
+📂 کانفیگ MTPROTO
+📍 لوکیشن: آلمان 🇩🇪
+📶 پینگ: 112ms
 
-#TROJAN #VPN
+#Proxy #MTProto
 
-🕒 انتشار: 02:54 - 1405/07/05
-💡 منبع: گروه MahsaNet
+🕒 انتشار: 17:16 - 1405/07/04
+💡 منبع: @mehrosaboran
 
-```trojan://MiTiVPN@151.101.56.7:443?path=%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2FNLSus---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn---nl--s---mitivpn-1.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#%40HajmVPN_Config%20-%20%F0%9F%87%A9%F0%9F%87%AA```
-
-📂 کانفیگ TROJAN
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 5ms
-
-#TROJAN #VPN
-
-🕒 انتشار: 02:54 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```trojan://MiTiVPN@167.82.76.7:443?path=%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2FNLSs---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN%2F---%40MiTiVPN---%40MiTiVPN&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn---us--s---mitivpn-2.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#%40HajmVPN_Config%20-%20%F0%9F%87%A9%F0%9F%87%AA```
+```https://t.me/proxy?server=ir.lv223.info&port=8443&secret=EERighJJvXrFGRMCIMjdCQ```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: آمریکا 🇺🇸
@@ -70,185 +59,18 @@
 
 #VLESS #VPN
 
-🕒 انتشار: 02:54 - 1405/07/05
-💡 منبع: گروه MahsaNet
+🕒 انتشار: 14:25 - 1405/07/03
+💡 منبع: @mehrosaboran
 
-```vless://9e9fd625-e4d7-4944-ae7e-4145342fa5db@199.232.78.159:443?path=%2F&security=tls&encryption=none&insecure=0&host=pan2e.global.ssl.fastly.net&type=ws&allowInsecure=0&sni=ssl.fastly.com#%40HajmVPN_Config%20-%20%F0%9F%87%A9%F0%9F%87%AA```
+```vless://%58pnTeam-31@199.232.78.160:443?path=%2F&security=tls&alpn=http%2F1.1&encryption=none&insecure=0&host=Appxdn.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#%40mehrosaboran```
 
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 4ms
+📊 **گزارش عملکرد ربات**
 
-#VLESS #VPN
+📅 تاریخ: 1405/07/04
+✅ مجموع کل: 105
 
-🕒 انتشار: 02:54 - 1405/07/05
-💡 منبع: گروه MahsaNet
+⚙️ تعداد کانفیگ: 72
+🛡 تعداد پروکسی: 23
+📂 تعداد فایل: 10
 
-```vless://9e9fd625-e4d7-4944-ae7e-4145342fa5db@199.232.78.159:443?path=%2F&security=tls&encryption=none&insecure=0&host=pannn1.global.ssl.fastly.net&type=ws&allowInsecure=0&sni=ssl.fastly.com#%40HajmVPN_Config%20-%20%F0%9F%87%A9%F0%9F%87%AA```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 01:02 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 111ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:59 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```vless://1e6d6af9-e89b-4576-928b-ebf52a3f49c7@178.104.115.225:34242?security=none&type=tcp&headerType=http&host=torobchesho.co.uk&encryption=none#%F0%9F%87%A9%F0%9F%87%AA```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 00:56 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 104ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```https://t.me/proxy?server=white.antony-gordon.co.uk&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 104ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```https://t.me/proxy?server=app.free-telegram.link&port=443&secret=ddfb47a1320fa86adfa6e63b425154ce1b```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 96ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```https://t.me/proxy?server=ajab.lolauth.info&port=8443&secret=1603010200010001fc030386e24c3add```
-
-📂 کانفیگ MTPROTO
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 113ms
-
-#Proxy #MTProto
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```https://t.me/proxy?server=91.107.154.250&port=8443&secret=3RBEYoISSb16xRkTAiDCXQk```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 116ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```vless://2e2d1f29-07b3-4a29-88e5-a936c3256756@49.12.212.19:2434?security=reality&encryption=none&pbk=yzCvRpbQ-cRePaJAuQkw42_xEf-R860gFsQwoPki2E0&headerType=none&fp=chrome&type=tcp&sni=icloud.com&sid=9de041877612a718#@mtproto_proserver```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 114ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```vless://2e2d1f29-07b3-4a29-88e5-a936c3256756@128.140.119.77:2434?security=reality&encryption=none&pbk=yzCvRpbQ-cRePaJAuQkw42_xEf-R860gFsQwoPki2E0&headerType=none&fp=chrome&type=tcp&sni=icloud.com&sid=9de041877612a718#@mtproto_proserver```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 116ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```vless://2e2d1f29-07b3-4a29-88e5-a936c3256756@91.99.223.99:2434?encryption=none&type=tcp&headerType=none&security=reality&fp=chrome&sni=icloud.com&pbk=yzCvRpbQ-cRePaJAuQkw42_xEf-R860gFsQwoPki2E0&sid=9de041877612a718#@mtproto_proserver```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 189ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```vless://f393d9f5-9d92-4b07-8728-d2edf2a5dbf5@194.146.68.109:49115?path=%2F&security=none&encryption=none&type=ws#@mtproto_proserver```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 3ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```vless://ebeabf86-9b3d-4fdd-8fee-bfd65ca1ae36@199.232.78.159:80?encryption=none&security=none&type=ws&host=yaSharClass.global.ssl.fastly.net&path=%2F#@mtproto_proserver```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 111ms
-
-#VLESS #VPN
-
-🕒 انتشار: 00:49 - 1405/07/05
-💡 منبع: گروه MahsaNet
-
-```vless://2e2d1f29-07b3-4a29-88e5-a936c3256756@49.12.247.134:2434?security=reality&encryption=none&pbk=yzCvRpbQ-cRePaJAuQkw42_xEf-R860gFsQwoPki2E0&headerType=none&fp=chrome&type=tcp&sni=icloud.com&sid=9de041877612a718#@mtproto_proserver```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: فرانسه 🇫🇷
-📶 پینگ: 101ms
-
-#VLESS #VPN
-
-🕒 انتشار: 23:26 - 1405/07/04
-💡 منبع: @PrivateVPNs
-
-```vless://e4514801-0d5a-42ba-869f-39bd605aef9e@13.37.167.120:22222?encryption=none&security=none&type=tcp#(S104)🇨🇵t.me/PrivateVPNs```
-
-📂 کانفیگ VMess
-📍 لوکیشن: Iran 🇮🇷
-📶 پینگ: 175ms
-
-#VMess #VPN
-
-🕒 انتشار: 23:06 - 1405/07/04
-💡 منبع: @free1_vpn
-
-```vmess://eyJhZGQiOiI0Ni4yOS4zNC4xNDgiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IiIsImlkIjoiYmE1MTBkNzUtZDZhMy00YWFiLWFkYmUtNWMwY2QzNjM2ZDlkIiwiaW5zZWN1cmUiOiIwIiwibmV0IjoidGNwIiwicGF0aCI6IiIsInBjcyI6IiIsInBvcnQiOiI5MDkwIiwicHMiOiJARmFyYXpWMnJheSIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiJub25lIiwidHlwZSI6Im5vbmUiLCJ2IjoiMiIsInZjbiI6IiJ9```
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 22:43 - 1405/07/04
-💡 منبع: @free1_vpn
+#آمار #گزارش
