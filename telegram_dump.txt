@@ -1,169 +1,142 @@
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 03:40 - 1405/07/13
-💡 منبع: گروه MahsaNet
-
-📂 فایل کانفیگ NapsternetV
-📍 لوکیشن: نامشخص
-
-#NapsternetV #Config #File
-
-🕒 انتشار: 03:15 - 1405/07/13
-💡 منبع: @makvaslim
-
-📂 کانفیگ VLESS
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 163ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:25 - 1405/07/13
-💡 منبع: @makvaslim
-
-```vless://df53b6c2-8005-475c-9eb9-74e1be785dc8@2.27.71.54:443?flow=xtls-rprx-vision&encryption=none&security=reality&sni=addons.mozilla.org&fp=randomized&pbk=-u9DSQ5RMebplY_ti-Vy4BJP9dEoQ1lTOvjoxK8CqS4&sid=10358810&type=tcp&headerType=none#%D8%A7%DA%AF%D9%87%20%D9%85%DB%8C%D8%AE%D9%88%D8%A7%DB%8C%20%D9%82%D8%B7%D8%B9%20%D9%86%D8%B4%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%3A%20%40farsiproxy```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 69ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:25 - 1405/07/13
-💡 منبع: @makvaslim
-
-```vless://ebaac78a-64f7-4d6a-8897-a4b420069378@nmeww50.senbilarsin.ir:36037?fp=random&headerType=none&pbk=CPJQWSLMkfQkTvuYnSTOof8wN3mCq9FdJ4uU1zXWOU8&encryption=mlkem768x25519plus.native.0rtt.Y2nFC29UaogbvV_wF4xoOCKOe1ddbWBRjMwTrUaIWxs&security=reality&sid=e60bf96c386ce46b&type=tcp&sni=play.google.com#%D8%A7%DA%AF%D9%87%20%D9%85%DB%8C%D8%AE%D9%88%D8%A7%DB%8C%20%D9%82%D8%B7%D8%B9%20%D9%86%D8%B4%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%3A%20%40farsiproxy```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 58ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:25 - 1405/07/13
-💡 منبع: @makvaslim
-
-```vless://67a544a2-bfc6-11f1-9c3e-52540030ba36@172.86.105.222:443?flow=xtls-rprx-vision&encryption=none&security=reality&sni=www.nvidia.com&fp=safari&pbk=n25FmewpAEsvLl9Vr0bRFcz044f4IE7orWeWOzu8rwk&type=tcp&headerType=none#%D8%A7%DA%AF%D9%87%20%D9%85%DB%8C%D8%AE%D9%88%D8%A7%DB%8C%20%D9%82%D8%B7%D8%B9%20%D9%86%D8%B4%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%3A%20%40farsiproxy```
-
 📂 کانفیگ VLESS
 📍 لوکیشن: کلودفلر ☁️
-📶 پینگ: 13ms
+📶 پینگ: 1ms
 
 #VLESS #VPN
 
-🕒 انتشار: 02:25 - 1405/07/13
-💡 منبع: @makvaslim
+🕒 انتشار: 09:31 - 1405/07/13
+💡 منبع: گروه MahsaNet
 
-```vless://1093ad8e-939b-4846-b82e-4411177929b4@104.21.33.154:443?alpn=h3%2Ch2%2Chttp%2F1.1&encryption=none&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%2C%22xmux%22%3A%7B%22cMaxReuseTimes%22%3A0%2C%22hKeepAlivePeriod%22%3A0%2C%22hMaxRequestTimes%22%3A%22600-900%22%2C%22hMaxReusableSecs%22%3A%221800-3000%22%2C%22maxConnections%22%3A%226%22%7D%7D&fm=%7B%22tcp%22%3A%5B%7B%22settings%22%3A%7B%22delay%22%3A%220%22%2C%22length%22%3A%221%22%2C%22maxSplit%22%3A%22%22%2C%22packets%22%3A%22tlshello%22%7D%2C%22type%22%3A%22fragment%22%7D%5D%7D&fp=chrome&host=1.ggnjfy020.dpdns.org&mode=auto&path=%2Fapi&security=tls&sni=1.ggnjfy020.dpdns.org&type=xhttp&x_padding_bytes=100-1000#%D8%A7%DA%AF%D9%87%20%D9%85%DB%8C%D8%AE%D9%88%D8%A7%DB%8C%20%D9%82%D8%B7%D8%B9%20%D9%86%D8%B4%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%3A%20%40farsiproxy```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 5ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:25 - 1405/07/13
-💡 منبع: @makvaslim
-
-```vless://191fd1b9-1ec2-4c13-9668-f89ad8e5e5ae@199.232.78.143:443?mode=auto&pcs=cd6e838b9bfe31cab8b3d5c858b0d6223fe84ece236c1fdb281be93c302e1e6e&path=%2F&security=tls&alpn=h2&encryption=none&insecure=0&host=Suporjaz.global.ssl.fastly.net&fp=edge&type=xhttp&allowInsecure=0&sni=edge.microsoft.com#%D8%A7%DA%AF%D9%87%20%D9%85%DB%8C%D8%AE%D9%88%D8%A7%DB%8C%20%D9%82%D8%B7%D8%B9%20%D9%86%D8%B4%DB%8C%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%3A%20%40farsiproxy```
+```vless://fe467f51-b2cc-4b16-b50b-a78865ed3dd9@188.114.97.6:8880?encryption=none&type=ws&host=crimson-wind-71bc.19-5fd.workers.dev&path=%2F&security=none#%40k2guard%20%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%F0%9F%91%88%F0%9F%8F%BB```
 
 📂 کانفیگ VLESS
 📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 140ms
+📶 پینگ: 1249ms
 
 #VLESS #VPN
 
-🕒 انتشار: 02:09 - 1405/07/13
-💡 منبع: @free1_vpn
+🕒 انتشار: 09:30 - 1405/07/13
+💡 منبع: گروه MahsaNet
 
-```vless://9eb6abc0-8423-4ff6-efb3-7603ddfb9636@kala.fortresshost.ir:443?mode=auto&path=%2FMeh%3Fdi%3D443&security=tls&alpn=h2&encryption=mlkem768x25519plus.native.0rtt.0Vh97j6xS7KWSt0KJUlPGDqvOnB6YEWo0xWQ3HQgYm4&insecure=0&host=kala.fortresshost.ir&fp=chrome&type=xhttp&allowInsecure=0&sni=kala.fortresshostir#%40FarazV2ray%20```
-
-📂 کانفیگ VLESS
-📍 لوکیشن: روسیه 🇷🇺
-📶 پینگ: 164ms
-
-#VLESS #VPN
-
-🕒 انتشار: 02:09 - 1405/07/13
-💡 منبع: @free1_vpn
-
-```vless://7610be85-9855-4010-8929-ce16d4993969@188.225.57.78:443?security=reality&encryption=none&pbk=NCW-zK60GXsiDdlbxww18Pqp4kz3zTG1URHWS_bnfDk&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=app4.betust.net&sid=3f7e0363#%40FarazV2ray%20```
-
-📂 کانفیگ SS
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 147ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 02:09 - 1405/07/13
-💡 منبع: @free1_vpn
-
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpRQ1hEeHVEbFRUTUQ3anRnSFVqSW9q@193.29.139.212:8080#%40FarazV2ray%20```
-
-📂 کانفیگ SS
-📍 لوکیشن: The Netherlands 🇳🇱
-📶 پینگ: 158ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 02:09 - 1405/07/13
-💡 منبع: @free1_vpn
-
-```ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.197:8080#%40FarazV2ray%20```
-
-📂 کانفیگ SS
-📍 لوکیشن: فنلاند 🇫🇮
-📶 پینگ: 153ms
-
-#Shadowsocks #VPN
-
-🕒 انتشار: 02:09 - 1405/07/13
-💡 منبع: @free1_vpn
-
-```ss://YWVzLTEyOC1nY206ZjkzMDBhOWJmMzlhZTAzNDdjM2EzYmZiYzRkZDc3NTQ@185.103.110.68:18283#%40FarazV2ray%20```
+```vless://38986695-66de-4878-a535-8fc679a70e64@136.243.216.75:20010?security=none&encryption=none&headerType=none&type=tcp#%40k2guard%20%20%D8%AC%D9%88%DB%8C%D9%86%20%D8%B4%D9%88%20%F0%9F%91%88%F0%9F%8F%BB```
 
 📂 کانفیگ VMess
-📍 لوکیشن: آمریکا 🇺🇸
-📶 پینگ: 59ms
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 1ms
 
 #VMess #VPN
 
-🕒 انتشار: 02:09 - 1405/07/13
-💡 منبع: @free1_vpn
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
 
-```vmess://eyJhZGQiOiJhaWRyaXZlcmNhdC5vcmciLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6ImFpZHJpdmVyY2F0Lm9yZyIsImlkIjoiMDNmY2M2MTgtYjkzZC02Nzk2LTZhZWQtOGEzOGM5NzVkNTgxIiwiaW5zZWN1cmUiOiIwIiwibmV0Ijoid3MiLCJwYXRoIjoiL2xpbmt2d3MiLCJwY3MiOiIiLCJwb3J0IjoiNDQzIiwicHMiOiJARmFyYXpWMnJheSIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoiLS0tIiwidiI6IjIiLCJ2Y24iOiIifQ==```
+```vmess://ewogICJhZGQiOiAid3d3LmRpZ2l0YWxvY2Vhbi5jb20iLAogICJhaWQiOiAwLAogICJob3N0IjogInd3dy5kaWdpdGFsb2NlYW4uY29tIiwKICAiaWQiOiAiM2EzZTI2M2QtMjIzZi00OWNjLWJiZGItZjdlMDdhNTVlNmZlIiwKICAibmV0IjogIndzIiwKICAicGF0aCI6ICIvMTExMTExLm9ubGluZSIsCiAgInBvcnQiOiA0NDMsCiAgInBzIjogIvCfjJ8gQE1UcHJveHkyMl92MnJheSIsCiAgInRscyI6ICJ0bHMiLAogICJ0eXBlIjogImF1dG8iLAogICJzZWN1cml0eSI6ICJhdXRvIiwKICAic2tpcC1jZXJ0LXZlcmlmeSI6IHRydWUsCiAgInNuaSI6ICIiCn0=```
 
-📂 کانفیگ VLESS
-📍 لوکیشن: آلمان 🇩🇪
-📶 پینگ: 141ms
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 1ms
 
-#VLESS #VPN
+#TROJAN #VPN
 
-🕒 انتشار: 02:09 - 1405/07/13
-💡 منبع: @free1_vpn
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
 
-```vless://9f44d517-29f2-4c6d-cc06-a1268f13da58@host.taghvimtime.ir:8443?mode=auto&path=%2FMeh%3Fdi%3D443&security=tls&encryption=none&insecure=0&fp=chrome&type=xhttp&allowInsecure=0&sni=host.taghvimtime.ir#%40FarazV2ray%20```
+```trojan://8800c518-e68a-4441-a45c-cd67855784c8@kr2.sanfen001.pics:443?security=tls&sni=kr1.sanfen001.pics#%F0%9F%8C%9F%20%40MTproxy22_v2ray```
 
-📂 کانفیگ VLESS
-📍 لوکیشن: Moldova 🇲🇩
-📶 پینگ: 181ms
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
 
-#VLESS #VPN
+#TROJAN #VPN
 
-🕒 انتشار: 00:01 - 1405/07/12
-💡 منبع: @free1_vpn
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
 
-```vless://2f35965a-9a9b-45fd-ba32-987296dfb6be@89.35.14.34:443?mode=gun&security=reality&encryption=none&pbk=99MRki6b93wC-hhDHe9yq3IXE3KtPGw4RkFAnpI-8gg&fp=chrome&type=grpc&serviceName=app.v1.PushService&sni=md5.univesalsrv.com&sid=aa9884f2982b7d3c#%40FarazV2ray%20```
+```trojan://8800c518-e68a-4441-a45c-cd67855784c8@jp2.sanfen001.pics:443?security=tls&sni=jp1.sanfen001.pics#%F0%9F%8C%9F%20%40MTproxy22_v2ray```
 
-📊 **گزارش عملکرد ربات**
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
 
-📅 تاریخ: 1405/07/12
-✅ مجموع کل: 126
+#TROJAN #VPN
 
-⚙️ تعداد کانفیگ: 89
-🛡 تعداد پروکسی: 23
-📂 تعداد فایل: 14
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
 
-#آمار #گزارش
+```trojan://8800c518-e68a-4441-a45c-cd67855784c8@hk1.sanfen001.pics:443?security=tls&sni=hk1.sanfen001.pics#%F0%9F%8C%9F%20%40MTproxy22_v2ray```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
+
+```trojan://8800c518-e68a-4441-a45c-cd67855784c8@kr1.sanfen001.pics:443?security=tls#%F0%9F%8C%9F%20%40MTproxy22_v2ray```
+
+📂 کانفیگ VMess
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
+
+#VMess #VPN
+
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
+
+```vmess://ewogICJhZGQiOiAiMTcyLjY0LjE1My4xNTAiLAogICJhaWQiOiAwLAogICJob3N0IjogImxnNS56aHVqaWNuMi5jb20iLAogICJpZCI6ICJiZjQ2MTllNC0wMWRjLTQ4Y2EtYmUwOC0wOTc2YjU0OTY4Y2UiLAogICJuZXQiOiAid3MiLAogICJwYXRoIjogIi9kb25ndGFpd2FuZy5jb20iLAogICJwb3J0IjogNDQzLAogICJwcyI6ICLwn4yfIEBNVHByb3h5MjJfdjJyYXkiLAogICJ0bHMiOiAidGxzIiwKICAidHlwZSI6ICJhdXRvIiwKICAic2VjdXJpdHkiOiAiYXV0byIsCiAgInNraXAtY2VydC12ZXJpZnkiOiB0cnVlLAogICJzbmkiOiAiIgp9```
+
+📂 کانفیگ VMess
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
+
+#VMess #VPN
+
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
+
+```vmess://ewogICJhZGQiOiAidjJyYXkub25saW5lIiwKICAiYWlkIjogMCwKICAiaG9zdCI6ICJQaG9lbml4LnYycmF5Lm9ubGluZSIsCiAgImlkIjogIjJGMDk0ODQ1LUUyQkQtRUJGNy1ERUI3LTk5NTk5MjQzNkZBRiIsCiAgIm5ldCI6ICJ3cyIsCiAgInBhdGgiOiAiL3NwZWVkdGVzdCIsCiAgInBvcnQiOiA0NDMsCiAgInBzIjogIvCfjJ8gQE1UcHJveHkyMl92MnJheSIsCiAgInRscyI6ICJ0bHMiLAogICJ0eXBlIjogImF1dG8iLAogICJzZWN1cml0eSI6ICJhdXRvIiwKICAic2tpcC1jZXJ0LXZlcmlmeSI6IHRydWUsCiAgInNuaSI6ICIiCn0=```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
+
+```trojan://humanity@172.67.149.60:443?security=tls#%F0%9F%8C%9F%20%40MTproxy22_v2ray```
+
+📂 کانفیگ TROJAN
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
+
+#TROJAN #VPN
+
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
+
+```trojan://MiTiVPN@104.16.71.213:443?security=tls#%F0%9F%8C%9F%20%40MTproxy22_v2ray```
+
+📂 کانفیگ VMess
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
+
+#VMess #VPN
+
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
+
+```vmess://ewogICJhZGQiOiAiMTA0LjE5LjUxLjIzMiIsCiAgImFpZCI6IDAsCiAgImhvc3QiOiAiaXAwMDUuMzE5Njc3Mi54eXoiLAogICJpZCI6ICIyOWVlYmI2MC1iMjdiLTRhOWQtYmJhNS05NDc3NjNkOTIwNWUiLAogICJuZXQiOiAid3MiLAogICJwYXRoIjogImdpdGh1Yi5jb20vQWx2aW45OTk5IiwKICAicG9ydCI6IDIwODYsCiAgInBzIjogIvCfjJ8gQE1UcHJveHkyMl92MnJheSIsCiAgInRscyI6ICIiLAogICJ0eXBlIjogImF1dG8iLAogICJzZWN1cml0eSI6ICJhdXRvIiwKICAic2tpcC1jZXJ0LXZlcmlmeSI6IGZhbHNlLAogICJzbmkiOiAiaXAwMDUuMzE5Njc3Mi54eXoiCn0=```
+
+📂 کانفیگ VMess
+📍 لوکیشن: کلودفلر ☁️
+📶 پینگ: 2ms
+
+#VMess #VPN
+
+🕒 انتشار: 08:31 - 1405/07/13
+💡 منبع: @MTproxy22_v2ray
+
+```vmess://ewogICJhZGQiOiAiMTk4LjQxLjIwOC4yMTYiLAogICJhaWQiOiAwLAogICJob3N0IjogImhraGdjLm1laXpoaXl1YW55YS54eXoiLAogICJpZCI6ICI1Y2ViNzE2YS05YTBjLTQ5M2EtOWEwYi1hMDVlMDhhMWIxZmMiLAogICJuZXQiOiAid3MiLAogICJwYXRoIjogIi9ndW9saWNoZW5nL2hraGdjP2VkPTIwNDgiLAogICJwb3J0IjogNDQzLAogICJwcyI6ICLwn4yfIEBNVHByb3h5MjJfdjJyYXkiLAogICJ0bHMiOiAidGxzIiwKICAidHlwZSI6ICJhdXRvIiwKICAic2VjdXJpdHkiOiAiYXV0byIsCiAgInNraXAtY2VydC12ZXJpZnkiOiB0cnVlLAogICJzbmkiOiAiIgp9```
