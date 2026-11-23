@@ -53,14 +53,11 @@ jobs:
         # main.go generates the raw text file (e.g., mixed_iran.txt)
         run: go run main.go
 
-      - name: Set up Go for Live Tester
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.x'
-
       - name: Live Test and Relabel by Exit IP
         run: |
-          go build -C livetest -o /tmp/livetest-bin ./cmd/livetest
+          curl -sL https://go.dev/dl/go1.25.5.linux-amd64.tar.gz -o /tmp/go.tgz
+          tar -C /tmp -xzf /tmp/go.tgz
+          /tmp/go/bin/go build -C livetest -o /tmp/livetest-bin ./cmd/livetest
           bash livetest/filter-lists.sh /tmp/livetest-bin
 
       # --- CUSTOM CONVERTER ---
