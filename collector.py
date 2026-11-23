@@ -15,6 +15,7 @@ GIST_TOKEN = os.environ.get('GIST_TOKEN')
 
 CHANNEL_USERNAME = 'persianvpnhub'
 OUTPUT_FILE = 'telegram_dump.txt'
+CHECKPOINT_FILE = 'telegram_checkpoint.txt'
 
 # --- Gist Helper Functions ---
 def get_checkpoints():
@@ -33,27 +34,6 @@ def get_checkpoints():
     except Exception as e:
         print(f"⚠️ Failed to load checkpoints: {e}")
     return {}
-
-def update_checkpoint(data):
-    if not GIST_ID or not GIST_TOKEN:
-        return
-    
-    headers = {
-        "Authorization": f"token {GIST_TOKEN}",
-        "Accept": "application/vnd.github.v3+json"
-    }
-    payload = {
-        "files": {
-            "checkpoints.json": {
-                "content": json.dumps(data, indent=2)
-            }
-        }
-    }
-    try:
-        requests.patch(f"https://api.github.com/gists/{GIST_ID}", headers=headers, json=payload)
-        print("💾 Checkpoint updated in Gist.")
-    except Exception as e:
-        print(f"❌ Failed to update Gist: {e}")
 
 async def main():
     print(f"--- Starting Stateful Python Collector for {CHANNEL_USERNAME} ---")
@@ -88,20 +68,34 @@ async def main():
             # 3. Save Text Dump
             with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
                 f.write("\n\n".join(messages_text))
-            
-            # 4. Update Gist if we found newer messages
+
+            # 4. Do NOT advance the Gist checkpoint here. The checkpoint
+            # used to be updated at this point — before the Go collector
+            # had read, processed or published the dump — so a failed Go
+            # step or git push lost those messages permanently. Instead,
+            # hand the highest observed message ID to the Go collector
+            # via a sidecar file; it merges the value into its checkpoint
+            # map and persists it to the Gist only at the end of a
+            # successful run, after all outputs are written.
+            with open(CHECKPOINT_FILE, 'w', encoding='utf-8') as f:
+                f.write(str(max_id))
             if max_id > last_id:
-                checkpoints[CHANNEL_USERNAME] = max_id
-                update_checkpoint(checkpoints)
+                print(f"💾 Checkpoint {max_id} handed to Go collector via {CHECKPOINT_FILE}.")
             else:
                 print("💤 No new messages found.")
 
     except FloodWaitError as e:
         print(f"⚠️ Telegram Rate Limit: Wait {e.seconds}s. Skipping...")
         open(OUTPUT_FILE, 'w').close()
+        # No advance: tell Go the checkpoint stays where it was.
+        with open(CHECKPOINT_FILE, 'w', encoding='utf-8') as f:
+            f.write(str(last_id))
     except Exception as e:
         print(f"⚠️ Unexpected error: {e}")
         open(OUTPUT_FILE, 'w').close()
+        # No advance: tell Go the checkpoint stays where it was.
+        with open(CHECKPOINT_FILE, 'w', encoding='utf-8') as f:
+            f.write(str(last_id))
 
 if __name__ == '__main__':
     asyncio.run(main())

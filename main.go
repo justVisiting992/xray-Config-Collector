@@ -90,6 +90,7 @@ func main() {
 	}
 
 	loadCheckpoints()
+	mergePythonCheckpoint()
 	loadChannelProtocols()
 
 	rawChannels, _ := loadChannelsFromCSV("channels.csv")
@@ -201,9 +202,6 @@ func main() {
 	}
 	wgScrape.Wait()
 
-	saveCheckpoints()
-	saveChannelProtocols()
-
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
 
 	var allMixed []string
@@ -248,6 +246,14 @@ func main() {
 
 	gologger.Info().Msg("🍹 Saving Mixed Configs...")
 	saveToFile("mixed_iran.txt", removeDuplicates(allMixed))
+
+	// Checkpoints are persisted only now — after every output file has
+	// been written — so a crash anywhere above leaves the Gist state at
+	// the previous run's values and the same messages are re-fetched
+	// next run instead of being skipped forever.
+	saveCheckpoints()
+	saveChannelProtocols()
+
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
 }
 
@@ -640,6 +646,32 @@ func loadCheckpoints() {
 			_ = json.Unmarshal([]byte(file.Content), &checkpoints)
 			gologger.Info().Msg("🧠 State loaded from Gist.")
 		}
+	}
+}
+
+// mergePythonCheckpoint folds the persianvpnhub checkpoint handed over
+// by collector.py (telegram_checkpoint.txt) into the in-memory
+// checkpoints. The Python collector no longer advances the Gist
+// checkpoint itself: it only records the highest message ID it dumped,
+// and the value is persisted by saveCheckpoints() at the end of this
+// run — after every output file has been written — so a failed run
+// re-fetches the same messages next time instead of losing them.
+// Only a strictly greater value is merged, so a stale sidecar file can
+// never move the checkpoint backwards or forwards on its own.
+func mergePythonCheckpoint() {
+	data, err := os.ReadFile("telegram_checkpoint.txt")
+	if err != nil {
+		return
+	}
+	id, err := strconv.Atoi(strings.TrimSpace(string(data)))
+	if err != nil {
+		return
+	}
+	checkpointsMu.Lock()
+	defer checkpointsMu.Unlock()
+	if id > checkpoints["persianvpnhub"] {
+		checkpoints["persianvpnhub"] = id
+		gologger.Info().Msgf("🐍 Python checkpoint for persianvpnhub merged: %d", id)
 	}
 }
 
