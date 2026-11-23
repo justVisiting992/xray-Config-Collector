@@ -104,6 +104,9 @@ func run() error {
 		}
 		passedLinks = append(passedLinks, link)
 	}
+	// Configs that ended up with the exact same remark are numbered
+	// (01, 02, ...) so every published entry is distinguishable.
+	passedLinks = livetest.NumberDuplicateRemarks(passedLinks)
 	sort.Strings(protos)
 	for _, p := range protos {
 		s := byProto[p]
