@@ -9,6 +9,7 @@ import (
 	"io"
 	"net"
 	"net/http"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -190,6 +191,15 @@ func TestOne(ctx context.Context, link string, opts Options) (res Result) {
 		}
 	}
 	return res
+}
+
+// SortByLatency orders results by ascending Latency, fastest first.
+// The sort is stable: results with equal latency keep their relative
+// order. It sorts in place.
+func SortByLatency(results []Result) {
+	sort.SliceStable(results, func(i, j int) bool {
+		return results[i].Latency < results[j].Latency
+	})
 }
 
 // TestAll live-tests links with a worker pool and returns one Result per

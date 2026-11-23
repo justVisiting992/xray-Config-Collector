@@ -77,7 +77,7 @@ func run() error {
 	type stat struct{ total, passed int }
 	byProto := map[string]*stat{}
 	var protos []string
-	passedLinks := make([]string, 0, len(results))
+	var passed []livetest.Result
 	totalPassed := 0
 	for _, r := range results {
 		s, ok := byProto[r.Protocol]
@@ -90,12 +90,19 @@ func run() error {
 		if r.OK {
 			s.passed++
 			totalPassed++
-			link := r.Link
-			if labeler != nil {
-				link = livetest.LabelWithExitIP(link, r.ExitIP, labeler)
-			}
-			passedLinks = append(passedLinks, link)
+			passed = append(passed, r)
 		}
+	}
+	// Fastest first: clients pick from the top of the list, so the
+	// best-measured configs belong there.
+	livetest.SortByLatency(passed)
+	passedLinks := make([]string, 0, len(passed))
+	for _, r := range passed {
+		link := r.Link
+		if labeler != nil {
+			link = livetest.LabelWithExitIP(link, r.ExitIP, labeler)
+		}
+		passedLinks = append(passedLinks, link)
 	}
 	sort.Strings(protos)
 	for _, p := range protos {

@@ -165,3 +165,28 @@ func TestTestAllOrderAndCount(t *testing.T) {
 		}
 	}
 }
+
+func TestSortByLatency(t *testing.T) {
+	results := []Result{
+		{Link: "slow", Latency: 900 * time.Millisecond},
+		{Link: "fast", Latency: 50 * time.Millisecond},
+		{Link: "mid-a", Latency: 300 * time.Millisecond},
+		{Link: "mid-b", Latency: 300 * time.Millisecond},
+		{Link: "zero"},
+	}
+	SortByLatency(results)
+	want := []string{"zero", "fast", "mid-a", "mid-b", "slow"}
+	if len(results) != len(want) {
+		t.Fatalf("got %d results, want %d", len(results), len(want))
+	}
+	for i, w := range want {
+		if results[i].Link != w {
+			t.Errorf("results[%d] = %q, want %q (stable ascending order)", i, results[i].Link, w)
+		}
+	}
+}
+
+func TestSortByLatencyEmpty(t *testing.T) {
+	SortByLatency(nil)
+	SortByLatency([]Result{})
+}
