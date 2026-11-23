@@ -128,15 +128,9 @@ func main() {
 	gologger.Info().Msg("🐍 Processing Python Collector Dump...")
 	pythonDump, err := os.ReadFile("telegram_dump.txt")
 	if err == nil && len(pythonDump) > 0 {
-		dumpText := string(pythonDump)
-		count := 0
-		for pName, reg := range myregex {
-			re := regexp.MustCompile(reg)
-			matches := re.FindAllString(dumpText, -1)
-			if len(matches) > 0 {
-				newConfigs[pName] = append(newConfigs[pName], matches...)
-				count += len(matches)
-			}
+		extracted, count := extractConfigsFromText(string(pythonDump))
+		for pName, matches := range extracted {
+			newConfigs[pName] = append(newConfigs[pName], matches...)
 		}
 		channelName := "persianvpnhub"
 		reports = append(reports, ChannelReport{
@@ -189,6 +183,34 @@ func main() {
 		}(channelURL)
 	}
 	wgScrape.Wait()
+
+	gologger.Info().Msg("🔗 Processing Subscription Sources...")
+	subURLs := loadSubscriptions("subscriptions.txt")
+	gologger.Info().Msgf("📋 Loaded %d Subscription Sources", len(subURLs))
+	for _, subURL := range subURLs {
+		extracted, count, ferr := fetchSubscription(subURL)
+		report := ChannelReport{Name: subURL}
+		if ferr != nil {
+			// A failed source is reported, never skipped silently.
+			report.Message = "❌ Fetch failed"
+			gologger.Warning().Msgf("⚠️ Subscription failed: %s (%v)", subURL, ferr)
+		} else {
+			for p, cfgs := range extracted {
+				if len(cfgs) > 0 {
+					newConfigs[p] = append(newConfigs[p], cfgs...)
+				}
+			}
+			report.Count = count
+			totalScraped += count
+			if count > 0 {
+				report.Message = fmt.Sprintf("✅ %d found", count)
+			} else {
+				report.Message = "💤 No configs"
+			}
+			gologger.Info().Msgf("✨ Extracted %d configs from subscription: %s", count, subURL)
+		}
+		reports = append(reports, report)
+	}
 
 	gologger.Info().Msgf("📦 Total Raw Configs Harvested: %d", totalScraped)
 
@@ -442,6 +464,89 @@ func getShortMethod(method string) string {
 	default:
 		return ""
 	}
+}
+
+// extractConfigsFromText runs every protocol regex over text and
+// returns the matches grouped by protocol plus the total count. It is
+// the single extraction path for channel pages, the Python dump and
+// subscription bodies, so all sources are parsed identically.
+func extractConfigsFromText(text string) (map[string][]string, int) {
+	results := make(map[string][]string)
+	total := 0
+	for pName, reg := range myregex {
+		matches := regexp.MustCompile(reg).FindAllString(text, -1)
+		if len(matches) > 0 {
+			results[pName] = append(results[pName], matches...)
+			total += len(matches)
+		}
+	}
+	return results, total
+}
+
+// loadSubscriptions reads subscription URLs from a plain-text file:
+// one URL per line, blank lines and lines starting with # ignored,
+// duplicates removed. A missing file simply yields no sources.
+func loadSubscriptions(path string) []string {
+	content, err := os.ReadFile(path)
+	if err != nil {
+		return nil
+	}
+	var urls []string
+	for _, line := range strings.Split(string(content), "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		urls = append(urls, line)
+	}
+	return removeDuplicates(urls)
+}
+
+// decodeSubscriptionBody returns the text to extract configs from. Most
+// subscription links serve the URI list base64-encoded; if the body is
+// not already a URI list, a base64 decode is attempted (standard and
+// URL-safe alphabets, padded or not) and used when it yields one.
+func decodeSubscriptionBody(body []byte) string {
+	text := strings.TrimSpace(string(body))
+	if strings.Contains(text, "://") {
+		return text
+	}
+	compact := strings.Join(strings.Fields(text), "")
+	for _, enc := range []*base64.Encoding{
+		base64.StdEncoding, base64.RawStdEncoding,
+		base64.URLEncoding, base64.RawURLEncoding,
+	} {
+		decoded, err := enc.DecodeString(compact)
+		if err == nil && strings.Contains(string(decoded), "://") {
+			return string(decoded)
+		}
+	}
+	return text
+}
+
+// fetchSubscription downloads one subscription URL and extracts its
+// configs exactly like any other source. The body is capped at 10 MiB
+// so a hostile or broken endpoint cannot exhaust memory.
+func fetchSubscription(rawURL string) (map[string][]string, int, error) {
+	req, err := http.NewRequest("GET", rawURL, nil)
+	if err != nil {
+		return nil, 0, err
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0")
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, 0, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		return nil, 0, fmt.Errorf("HTTP %d", resp.StatusCode)
+	}
+	body, err := io.ReadAll(io.LimitReader(resp.Body, 10<<20))
+	if err != nil {
+		return nil, 0, err
+	}
+	extracted, count := extractConfigsFromText(decodeSubscriptionBody(body))
+	return extracted, count, nil
 }
 
 func scrapeChannelStateful(channelName string) (map[string][]string, int) {

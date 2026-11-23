@@ -1,0 +1,8 @@
+# Subscription sources — one subscription URL per line.
+# Each URL must serve a plain-text list of proxy configs (one URI per
+# line) or the same list base64-encoded, as most subscription links do.
+# Blank lines and lines starting with # are ignored.
+# Configs fetched from here are merged with the Telegram channels,
+# deduplicated, tested and published exactly like channel configs.
+# A source that fails to load is reported in report.md, never skipped
+# silently.
