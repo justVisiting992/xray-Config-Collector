@@ -484,22 +484,27 @@ func extractConfigsFromText(text string) (map[string][]string, int) {
 }
 
 // loadSubscriptions reads subscription URLs from a plain-text file:
-// one URL per line, blank lines and lines starting with # ignored,
-// duplicates removed. A missing file simply yields no sources.
+// one URL per line, blank lines and lines starting with # ignored.
+// URLs are deduplicated by exact string match — deliberately NOT via
+// removeDuplicates, whose config fingerprinting can map two different
+// URLs to the same fingerprint and silently drop one. A missing file
+// simply yields no sources.
 func loadSubscriptions(path string) []string {
 	content, err := os.ReadFile(path)
 	if err != nil {
 		return nil
 	}
+	seen := make(map[string]bool)
 	var urls []string
 	for _, line := range strings.Split(string(content), "\n") {
 		line = strings.TrimSpace(line)
-		if line == "" || strings.HasPrefix(line, "#") {
+		if line == "" || strings.HasPrefix(line, "#") || seen[line] {
 			continue
 		}
+		seen[line] = true
 		urls = append(urls, line)
 	}
-	return removeDuplicates(urls)
+	return urls
 }
 
 // decodeSubscriptionBody returns the text to extract configs from. Most
