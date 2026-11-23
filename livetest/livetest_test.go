@@ -9,6 +9,7 @@ import (
 	"net"
 	"net/http"
 	"net/http/httptest"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -189,4 +190,30 @@ func TestSortByLatency(t *testing.T) {
 func TestSortByLatencyEmpty(t *testing.T) {
 	SortByLatency(nil)
 	SortByLatency([]Result{})
+}
+
+func TestTestOneRetriesTransientFailure(t *testing.T) {
+	var hits atomic.Int32
+	target := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if hits.Add(1) == 1 {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		w.WriteHeader(http.StatusNoContent)
+	}))
+	defer target.Close()
+
+	port := freePort(t)
+	startSSServer(t, port, e2ePassword)
+
+	res := TestOne(context.Background(), ssLink(port, e2ePassword), Options{
+		ProbeURL: target.URL,
+		Timeout:  5 * time.Second,
+	})
+	if !res.OK {
+		t.Fatalf("config failing only its first probe attempt should pass on retry; got %+v", res)
+	}
+	if hits.Load() != 2 {
+		t.Fatalf("probe target saw %d requests, want exactly 2 (one failed attempt + one retry)", hits.Load())
+	}
 }

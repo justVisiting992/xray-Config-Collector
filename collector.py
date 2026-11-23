@@ -53,9 +53,15 @@ async def main():
             max_id = last_id
             count = 0
             
-            # 2. Fetch messages NEWER than last_id (reverse=True gets oldest first, which is good for history but here we want newest range)
-            # Actually, min_id fetches messages with ID > min_id.
-            async for message in client.iter_messages(CHANNEL_USERNAME, min_id=last_id, limit=500):
+            # 2. Fetch messages NEWER than last_id, OLDEST first
+            # (reverse=True). Order matters because of the limit: with
+            # newest-first iteration, a backlog of more than 500 new
+            # messages would return the newest 500 and the checkpoint
+            # would jump past the older excess, skipping it forever.
+            # Oldest-first returns the first 500 after last_id, so the
+            # checkpoint handed to Go is the 500th message's ID and the
+            # next run continues exactly where this one stopped.
+            async for message in client.iter_messages(CHANNEL_USERNAME, min_id=last_id, limit=500, reverse=True):
                 if message.id > max_id:
                     max_id = message.id
                 

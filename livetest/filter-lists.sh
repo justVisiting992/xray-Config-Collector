@@ -11,10 +11,11 @@
 #
 # Failure policy: a tool failure on one file never aborts the run and never
 # empties a list — the original file is kept and a warning is echoed.
-# Safety guard: if a list of 10+ configs yields 0 passing, that is treated
+# Safety guard: if a non-empty list yields 0 passing, that is treated
 # as an environment failure (e.g. the runner cannot reach the proxies),
 # not a true result — the original list is kept and a warning is echoed.
-# Freshly scraped, TCP-verified lists never legitimately score exactly 0.
+# An empty published list would also drop those configs from the
+# history the next run re-tests, losing them permanently.
 
 set -uo pipefail
 
@@ -56,7 +57,7 @@ for f in "${LISTS[@]}"; do
     if "$BIN" -files "$f" -geo-db Country.mmdb -concurrency 200 -timeout 6s -out "$tmp"; then
         if [[ -f "$tmp" ]]; then
             after="$(count_lines "$tmp")"
-            if [[ "$after" -eq 0 && "$before" -ge 10 ]]; then
+            if [[ "$after" -eq 0 && "$before" -ge 1 ]]; then
                 echo "WARNING: $f — 0 of $before passed; treating as environment failure, original kept" >&2
                 rm -f "$tmp"
                 total_before=$((total_before + before))

@@ -26,6 +26,7 @@ func main() {
 	defer file.Close()
 
 	var proxies []Proxy
+	skipped := 0
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
@@ -37,16 +38,20 @@ func main() {
 		var p Proxy
 		var parseErr error
 
+		// Scheme matching is case-insensitive: the harvest regexes
+		// accept any case, so an upper-case scheme is a valid config,
+		// not a line to drop.
+		lowerLine := strings.ToLower(line)
 		switch {
-		case strings.HasPrefix(line, "vless://"):
+		case strings.HasPrefix(lowerLine, "vless://"):
 			p, parseErr = parseVless(line)
-		case strings.HasPrefix(line, "vmess://"):
+		case strings.HasPrefix(lowerLine, "vmess://"):
 			p, parseErr = parseVmess(line)
-		case strings.HasPrefix(line, "trojan://"):
+		case strings.HasPrefix(lowerLine, "trojan://"):
 			p, parseErr = parseTrojan(line)
-		case strings.HasPrefix(line, "ss://"):
+		case strings.HasPrefix(lowerLine, "ss://"):
 			p, parseErr = parseSS(line)
-		case strings.HasPrefix(line, "hysteria2://") || strings.HasPrefix(line, "hy2://"):
+		case strings.HasPrefix(lowerLine, "hysteria2://") || strings.HasPrefix(lowerLine, "hy2://"):
 			p, parseErr = parseHy2(line)
 		}
 
@@ -68,10 +73,17 @@ func main() {
 			}
 
 			proxies = append(proxies, p)
+		} else {
+			// Never drop a config silently: count it and report
+			// the total after the loop.
+			skipped++
 		}
 	}
 
 	writeClashYaml(outputFile, proxies)
+	if skipped > 0 {
+		fmt.Printf("⚠️ Skipped %d unparseable line(s) from %s\n", skipped, inputFile)
+	}
 }
 
 func sanitizeString(s string) string {

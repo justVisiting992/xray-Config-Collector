@@ -140,11 +140,28 @@ func parseTraceIP(body []byte) string {
 	return ""
 }
 
-// TestOne live-tests a single link: it converts the link to an Xray
-// outbound, starts an embedded core instance, and fetches the probe URL
-// through the proxy. OK is true only when real traffic came back with
-// HTTP 200 or 204.
-func TestOne(ctx context.Context, link string, opts Options) (res Result) {
+// TestOne live-tests a single link, with one retry: a config that
+// fails its first attempt for a transient reason (a slow handshake, a
+// dropped connection, a probe-target hiccup) gets a second full
+// attempt before it is declared dead, because a config dropped here
+// may never be seen again. The first failure's Result is returned
+// when both attempts fail.
+func TestOne(ctx context.Context, link string, opts Options) Result {
+	res := testOne(ctx, link, opts)
+	if res.OK {
+		return res
+	}
+	if retry := testOne(ctx, link, opts); retry.OK {
+		return retry
+	}
+	return res
+}
+
+// testOne makes a single live-test attempt: it converts the link to an
+// Xray outbound, starts an embedded core instance, and fetches the
+// probe URL through the proxy. OK is true only when real traffic came
+// back with HTTP 200 or 204.
+func testOne(ctx context.Context, link string, opts Options) (res Result) {
 	opts.applyDefaults()
 	res.Link = link
 	res.Protocol = ProtocolOf(link)

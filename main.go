@@ -29,6 +29,12 @@ type VMessConfig struct {
 	Add  string      `json:"add"`
 	Port interface{} `json:"port"`
 	Id   interface{} `json:"id"`
+	Aid  interface{} `json:"aid"`
+	Net  string      `json:"net"`
+	TLS  string      `json:"tls"`
+	Host string      `json:"host"`
+	Path string      `json:"path"`
+	SNI  string      `json:"sni"`
 }
 
 type ChannelReport struct {
@@ -63,7 +69,7 @@ var (
 
 	myregex = map[string]string{
 		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
-		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`,
+		"VMess":  `(?i)vmess://[A-Za-z0-9+/=_-]+`,
 		"Trojan": `(?i)trojan://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 		"VLess":  `(?i)vless://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 		"Hy2":    `(?i)(?:hysteria2|hy2)://[A-Za-z0-9./:=?#-_@!%&+=]+`,
@@ -449,6 +455,12 @@ func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 	maxIDFound := lastSeenID
 	totalExtracted := 0
 	pagesScraped := 0
+	// caughtUp records whether paging actually reached the previously
+	// seen messages. The checkpoint may only advance when it did:
+	// stopping early (page cap or a failed request) leaves a window of
+	// unfetched messages between lastSeenID and the oldest fetched
+	// page, and advancing past them would skip them forever.
+	caughtUp := false
 
 	for pagesScraped < 5 {
 		req, _ := http.NewRequest("GET", nextURL, nil)
@@ -505,11 +517,15 @@ func scrapeChannelStateful(channelName string) (map[string][]string, int) {
 			pagesScraped++
 			time.Sleep(2 * time.Second)
 		} else {
+			// This page reached messages at or below lastSeenID (or
+			// held nothing new): everything up to maxIDFound has now
+			// been seen, so advancing the checkpoint is safe.
+			caughtUp = true
 			break
 		}
 	}
 
-	if maxIDFound > lastSeenID {
+	if caughtUp && maxIDFound > lastSeenID {
 		checkpointsMu.Lock()
 		checkpoints[channelName] = maxIDFound
 		checkpointsMu.Unlock()
@@ -602,7 +618,14 @@ func fastPingTest(configs []string, protocol string) []string {
 			sem <- struct{}{}
 			defer func() { <-sem }()
 
-			if checkAlive(c, protocol) {
+			// One retry: a single 3s dial is at the mercy of transient
+			// congestion, and a config dropped here never comes back —
+			// its channel checkpoint has already advanced.
+			alive := checkAlive(c, protocol)
+			if !alive {
+				alive = checkAlive(c, protocol)
+			}
+			if alive {
 				mu.Lock()
 				healthy = append(healthy, labelWithGeo(c, len(healthy)+1))
 				mu.Unlock()
@@ -948,7 +971,13 @@ func getConfigFingerprint(config string) string {
 		}
 		var v VMessConfig
 		if err := json.Unmarshal(decoded, &v); err == nil {
-			return fmt.Sprintf("vmess|%s|%v|%v", strings.ToLower(v.Add), v.Port, v.Id)
+			// Transport fields are part of the identity: two configs
+			// sharing server, port and UUID but differing in network,
+			// TLS, host, path or SNI are different proxies (typical
+			// CDN variants) and must not dedupe into one.
+			return fmt.Sprintf("vmess|%s|%v|%v|%v|%s|%s|%s|%s|%s",
+				strings.ToLower(v.Add), v.Port, v.Id, v.Aid,
+				v.Net, v.TLS, v.Host, v.Path, v.SNI)
 		}
 		return ""
 	}
@@ -1130,6 +1159,14 @@ func isValidShadowsocks(config string) bool {
 		return false
 	}
 	userinfo := rest[:atIdx]
+	// Plain form: ss://method:password@host:port. It is a valid URI
+	// form — the live tester and the Clash converter both handle it —
+	// so accept it under the same method rules as the classic form
+	// below instead of discarding it. (A classic base64 userinfo never
+	// contains ':', so this branch cannot misfire on it.)
+	if idx := strings.Index(userinfo, ":"); idx > 0 && idx < len(userinfo)-1 {
+		return isKnownSSMethod(strings.ToLower(userinfo[:idx]))
+	}
 	padded := userinfo + strings.Repeat("=", (4-len(userinfo)%4)%4)
 	decoded, err := base64.URLEncoding.DecodeString(padded)
 	if err != nil {
@@ -1142,7 +1179,13 @@ func isValidShadowsocks(config string) bool {
 	if len(parts) != 2 {
 		return false
 	}
-	method := strings.ToLower(parts[0])
+	return isKnownSSMethod(strings.ToLower(parts[0]))
+}
+
+// isKnownSSMethod reports whether method is a real Shadowsocks
+// encryption method: a known cipher, or at least one containing a
+// known cipher family name. Empty and "none" are not encryption.
+func isKnownSSMethod(method string) bool {
 	// require a real encryption method (must not be empty or "none")
 	if method == "" || method == "none" {
 		return false
