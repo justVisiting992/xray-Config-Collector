@@ -254,15 +254,33 @@ func parseSS(raw string) (Proxy, error) {
 	p["server"] = u.Hostname()
 	p["port"] = u.Port()
 
-	user := u.User.Username()
-	pass, hasPass := u.User.Password()
-	if hasPass {
-		p["cipher"] = user
-		p["password"] = pass
-	} else {
-		p["cipher"] = "aes-256-gcm"
-		p["password"] = user
+	// Shadowsocks URIs come in two userinfo forms:
+	//   plain:   ss://cipher:password@host:port
+	//   classic: ss://base64(cipher:password)@host:port
+	// main.go's isValidShadowsocks() *requires* the classic form, and
+	// every entry in ss_iran.txt (198/198 at HEAD 16fe905) uses it, so
+	// treating the base64 blob as the password and hard-coding
+	// aes-256-gcm broke every SS proxy in clash.yaml. Decode the
+	// classic form; fall back to the old behaviour only if decoding
+	// fails, so unparseable lines degrade instead of erroring.
+	cipher, password := decodeSSUserinfo(raw)
+	if cipher == "" {
+		user := ""
+		if u.User != nil {
+			user = u.User.Username()
+		}
+		pass, hasPass := "", false
+		if u.User != nil {
+			pass, hasPass = u.User.Password()
+		}
+		if hasPass {
+			cipher, password = user, pass
+		} else {
+			cipher, password = "aes-256-gcm", user
+		}
 	}
+	p["cipher"] = cipher
+	p["password"] = password
 
 	if security := u.Query().Get("security"); security == "tls" {
 		p["tls"] = true
@@ -275,6 +293,49 @@ func parseSS(raw string) (Proxy, error) {
 	}
 
 	return p, nil
+}
+
+// decodeSSUserinfo returns the cipher and password from an ss:// URI.
+// Returns "", "" when the userinfo is not a decodable method:password pair.
+func decodeSSUserinfo(raw string) (string, string) {
+	base := strings.Split(raw, "#")[0]
+	base = strings.TrimPrefix(base, "ss://")
+	atIdx := strings.LastIndex(base, "@")
+	if atIdx == -1 {
+		return "", ""
+	}
+	userinfo := base[:atIdx]
+	// PathUnescape, not QueryUnescape: '+' is a valid base64 character
+	// in the userinfo and must not become a space.
+	if unescaped, err := url.PathUnescape(userinfo); err == nil {
+		userinfo = unescaped
+	}
+	// Plain form: ss://cipher:password@host:port
+	if parts := strings.SplitN(userinfo, ":", 2); len(parts) == 2 && parts[0] != "" {
+		return parts[0], parts[1]
+	}
+	// Classic form: ss://base64(cipher:password)@host:port.
+	// Try URL-safe and standard base64, with and without padding,
+	// mirroring main.go's isValidShadowsocks().
+	padded := userinfo + strings.Repeat("=", (4-len(userinfo)%4)%4)
+	for _, decode := range []func(string) ([]byte, error){
+		base64.RawURLEncoding.DecodeString,
+		base64.URLEncoding.DecodeString,
+		base64.RawStdEncoding.DecodeString,
+		base64.StdEncoding.DecodeString,
+	} {
+		decoded, err := decode(padded)
+		if err != nil {
+			decoded, err = decode(userinfo)
+			if err != nil {
+				continue
+			}
+		}
+		if parts := strings.SplitN(string(decoded), ":", 2); len(parts) == 2 && parts[0] != "" && parts[1] != "" {
+			return parts[0], parts[1]
+		}
+	}
+	return "", ""
 }
 
 func parseHy2(raw string) (Proxy, error) {
