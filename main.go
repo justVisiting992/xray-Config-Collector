@@ -32,10 +32,9 @@ type VMessConfig struct {
 }
 
 type ChannelReport struct {
-	Name      string
-	Protocols []string
-	Count     int
-	Message   string
+	Name    string
+	Count   int
+	Message string
 }
 
 type GistRequest struct {
@@ -62,10 +61,6 @@ var (
 	geoCache   = make(map[string]string)
 	geoCacheMu sync.Mutex
 
-	// Cumulative protocols per channel (for table column 2)
-	channelProtocols   = make(map[string]map[string]bool) // channelName -> protocol -> true
-	channelProtocolsMu sync.Mutex
-
 	myregex = map[string]string{
 		"SS":     `(?i)ss://[A-Za-z0-9./:=?#-_@!%&+=]+`,
 		"VMess":  `(?i)vmess://[A-Za-z0-9+/=]+`,
@@ -91,7 +86,6 @@ func main() {
 
 	loadCheckpoints()
 	mergePythonCheckpoint()
-	loadChannelProtocols()
 
 	rawChannels, _ := loadChannelsFromCSV("channels.csv")
 	channels := removeDuplicates(rawChannels)
@@ -130,27 +124,19 @@ func main() {
 	if err == nil && len(pythonDump) > 0 {
 		dumpText := string(pythonDump)
 		count := 0
-		foundProtos := make(map[string]bool)
 		for pName, reg := range myregex {
 			re := regexp.MustCompile(reg)
 			matches := re.FindAllString(dumpText, -1)
 			if len(matches) > 0 {
 				newConfigs[pName] = append(newConfigs[pName], matches...)
 				count += len(matches)
-				foundProtos[pName] = true
 			}
 		}
-		var pList []string
-		for p := range foundProtos {
-			pList = append(pList, p)
-		}
 		channelName := "persianvpnhub"
-		updateChannelProtocols(channelName, pList)
 		reports = append(reports, ChannelReport{
-			Name:      channelName,
-			Protocols: getChannelProtocols(channelName),
-			Count:     count,
-			Message:   fmt.Sprintf("✅ %d Configs via API", count),
+			Name:    channelName,
+			Count:   count,
+			Message: fmt.Sprintf("✅ %d Configs via API", count),
 		})
 		totalScraped += count
 		gologger.Info().Msgf("✨ Extracted %d configs from Python Dump", count)
@@ -176,16 +162,12 @@ func main() {
 
 			checkpointsMu.Lock()
 			report := ChannelReport{Name: name}
-			var thisRunProtos []string
 			for p, cfgs := range extracted {
 				if len(cfgs) > 0 {
 					newConfigs[p] = append(newConfigs[p], cfgs...)
-					thisRunProtos = append(thisRunProtos, p)
 					report.Count += len(cfgs)
 				}
 			}
-			updateChannelProtocols(name, thisRunProtos)
-			report.Protocols = getChannelProtocols(name) // cumulative for table
 			if report.Count > 0 {
 				report.Message = fmt.Sprintf("✅ %d found", report.Count)
 				totalScraped += report.Count
@@ -252,100 +234,8 @@ func main() {
 	// the previous run's values and the same messages are re-fetched
 	// next run instead of being skipped forever.
 	saveCheckpoints()
-	saveChannelProtocols()
 
 	gologger.Info().Msg("🎉 All Done! Mission Accomplished.")
-}
-
-// Cumulative per-channel functions
-func updateChannelProtocols(channel string, newProtos []string) {
-	channelProtocolsMu.Lock()
-	if _, ok := channelProtocols[channel]; !ok {
-		channelProtocols[channel] = make(map[string]bool)
-	}
-	for _, p := range newProtos {
-		channelProtocols[channel][p] = true
-	}
-	channelProtocolsMu.Unlock()
-}
-
-func getChannelProtocols(channel string) []string {
-	channelProtocolsMu.Lock()
-	protos := channelProtocols[channel]
-	channelProtocolsMu.Unlock()
-
-	var list []string
-	for p := range protos {
-		list = append(list, p)
-	}
-	sort.Strings(list)
-	return list
-}
-
-func loadChannelProtocols() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	req, _ := http.NewRequest("GET", "https://api.github.com/gists/"+gistID, nil)
-	req.Header.Set("Authorization", "token "+gistToken)
-	resp, err := client.Do(req)
-	if err != nil {
-		return
-	}
-	defer resp.Body.Close()
-
-	var gistResp GistResponse
-	if err := json.NewDecoder(resp.Body).Decode(&gistResp); err == nil {
-		if file, ok := gistResp.Files["channel_protocols.json"]; ok {
-			var saved map[string][]string
-			_ = json.Unmarshal([]byte(file.Content), &saved)
-			channelProtocolsMu.Lock()
-			for ch, ps := range saved {
-				if _, ok := channelProtocols[ch]; !ok {
-					channelProtocols[ch] = make(map[string]bool)
-				}
-				for _, p := range ps {
-					channelProtocols[ch][p] = true
-				}
-			}
-			channelProtocolsMu.Unlock()
-			gologger.Info().Msg("📋 Loaded per-channel cumulative protocols.")
-		}
-	}
-}
-
-func saveChannelProtocols() {
-	if gistID == "" || gistToken == "" {
-		return
-	}
-	channelProtocolsMu.Lock()
-	saved := make(map[string][]string)
-	for ch, protos := range channelProtocols {
-		var list []string
-		for p := range protos {
-			list = append(list, p)
-		}
-		sort.Strings(list)
-		saved[ch] = list
-	}
-	channelProtocolsMu.Unlock()
-
-	data, _ := json.Marshal(saved)
-
-	payload := GistRequest{
-		Files: map[string]GistFile{
-			"channel_protocols.json": {Content: string(data)},
-		},
-	}
-	body, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("PATCH", "https://api.github.com/gists/"+gistID, bytes.NewBuffer(body))
-	req.Header.Set("Authorization", "token "+gistToken)
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := client.Do(req)
-	if err == nil {
-		resp.Body.Close()
-		gologger.Info().Msg("💾 Saved per-channel cumulative protocols.")
-	}
 }
 
 // Fixed trait extraction - SS now handles extended format with query params
@@ -1152,44 +1042,18 @@ func generateReportStructure(reports []ChannelReport, stats map[string][2]int) s
 
 	sb.WriteString("\n- **Status:** ` Operational ` ✅\n\n")
 
-	// Cumulative all protocols line (informative)
-	channelProtocolsMu.Lock()
-	allProtos := make(map[string]bool)
-	for _, protos := range channelProtocols {
-		for p := range protos {
-			allProtos[p] = true
-		}
-	}
-	channelProtocolsMu.Unlock()
-
-	var protoList []string
-	for p := range allProtos {
-		protoList = append(protoList, p)
-	}
-	sort.Strings(protoList)
-	sb.WriteString("### 🌐 Cumulative Bypass Protocols Found (all runs):\n")
-	if len(protoList) > 0 {
-		sb.WriteString("`" + strings.Join(protoList, ", ") + "`\n\n")
-	} else {
-		sb.WriteString("— (none detected yet)\n\n")
-	}
-
 	sb.WriteString("### 📡 Source Analysis\n\n")
-	sb.WriteString("| Source Channel | Available Protocols | Harvest Status |\n")
-	sb.WriteString("| :--- | :--- | :--- |\n")
+	sb.WriteString("| Source Channel | Harvest Status |\n")
+	sb.WriteString("| :--- | :--- |\n")
 
 	for _, r := range reports {
-		protos := strings.Join(r.Protocols, ", ")
-		if protos == "" {
-			protos = "—"
-		}
 		linkName := r.Name
 		linkURL := "https://t.me/s/" + r.Name
 		if r.Name == "persianvpnhub" {
 			linkName = "persianvpnhub"
 			linkURL = "https://t.me/s/persianvpnhub"
 		}
-		sb.WriteString(fmt.Sprintf("| 📢 [%s](%s) | `%s` | %s |\n", linkName, linkURL, protos, r.Message))
+		sb.WriteString(fmt.Sprintf("| 📢 [%s](%s) | %s |\n", linkName, linkURL, r.Message))
 	}
 	sb.WriteString("\n---\n")
 	sb.WriteString("*Auto-generated by Xray Config Collector v2.0* 🛠️")
