@@ -131,3 +131,32 @@ func TestHysteria2OutboundShape(t *testing.T) {
 		t.Errorf("udpmasks = %v", masks)
 	}
 }
+
+// Regression test for the 2026-11-24 production panic: a VLESS XHTTP
+// link whose host= parameter decodes to a string that cannot be a URL
+// host made xray-core's SplitHTTP dialer re-parse a broken URL, get a
+// nil *url.URL and panic — killing the live test of a 53k-config list.
+// Conversion must reject such links with an error instead.
+func TestConvertXHTTPPoisonHostRejected(t *testing.T) {
+	poison := []string{
+		// host decodes to "bad host" (space)
+		"vless://dc7d45c9-c942-41e3-b880-9a7fd5b64e2f@203.0.113.10:443?security=tls&type=xhttp&host=bad%20host&path=%2F#x",
+		// host decodes to a URL with slashes
+		"vless://dc7d45c9-c942-41e3-b880-9a7fd5b64e2f@203.0.113.10:443?security=tls&type=splithttp&host=https%3A%2F%2Fevil.example%2Fp&path=%2F#x",
+		// host decodes to an unbalanced IPv6 bracket
+		"vless://dc7d45c9-c942-41e3-b880-9a7fd5b64e2f@203.0.113.10:443?security=reality&pbk=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&type=xhttp&host=%5B%3A%3A1&path=%2F#x",
+		// sni fallback: no host=, but an sni that cannot be a URL host
+		"vless://dc7d45c9-c942-41e3-b880-9a7fd5b64e2f@203.0.113.10:443?security=tls&sni=bad%20sni&type=xhttp&path=%2F#x",
+	}
+	for _, link := range poison {
+		if _, err := Convert(link); err == nil {
+			t.Errorf("Convert(poison xhttp) succeeded, want error:\n%s", link)
+		}
+	}
+
+	// A well-formed XHTTP link must still convert.
+	good := "vless://dc7d45c9-c942-41e3-b880-9a7fd5b64e2f@203.0.113.10:443?security=tls&type=xhttp&host=cdn.example.com&path=%2Fapi#x"
+	if _, err := Convert(good); err != nil {
+		t.Errorf("Convert(valid xhttp) failed: %v", err)
+	}
+}

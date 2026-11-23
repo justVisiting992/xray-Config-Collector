@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"encoding/base64"
 	"encoding/csv"
 	"encoding/json"
@@ -187,8 +188,32 @@ func main() {
 	gologger.Info().Msg("🔗 Processing Subscription Sources...")
 	subURLs := loadSubscriptions("subscriptions.txt")
 	gologger.Info().Msgf("📋 Loaded %d Subscription Sources", len(subURLs))
-	for _, subURL := range subURLs {
-		extracted, count, ferr := fetchSubscription(subURL)
+	// Fetch sources concurrently (10 at a time): fetching 200+
+	// sources one by one lets every slow or dead host add its full
+	// timeout to the run in series. Results land in per-source slots
+	// and are merged below in file order, so reports and totals are
+	// identical to the sequential version.
+	type subResult struct {
+		extracted map[string][]string
+		count     int
+		err       error
+	}
+	subResults := make([]subResult, len(subURLs))
+	var wgSubs sync.WaitGroup
+	semSubs := make(chan struct{}, 10)
+	for i, subURL := range subURLs {
+		wgSubs.Add(1)
+		semSubs <- struct{}{}
+		go func(i int, u string) {
+			defer wgSubs.Done()
+			defer func() { <-semSubs }()
+			extracted, count, ferr := fetchSubscription(u)
+			subResults[i] = subResult{extracted: extracted, count: count, err: ferr}
+		}(i, subURL)
+	}
+	wgSubs.Wait()
+	for i, subURL := range subURLs {
+		extracted, count, ferr := subResults[i].extracted, subResults[i].count, subResults[i].err
 		report := ChannelReport{Name: subURL}
 		if ferr != nil {
 			// A failed source is reported, never skipped silently.
@@ -718,7 +743,7 @@ func saveCheckpoints() {
 func fastPingTest(configs []string, protocol string) []string {
 	var wg sync.WaitGroup
 	var mu sync.Mutex
-	healthy := []string{}
+	raw := []string{}
 	sem := make(chan struct{}, 100)
 
 	for _, cfg := range configs {
@@ -737,12 +762,31 @@ func fastPingTest(configs []string, protocol string) []string {
 			}
 			if alive {
 				mu.Lock()
-				healthy = append(healthy, labelWithGeo(c, len(healthy)+1))
+				raw = append(raw, c)
 				mu.Unlock()
 			}
 		}(cfg)
 	}
 	wg.Wait()
+
+	// Labelling does a DNS lookup for every new host. It used to run
+	// inside the results lock above, which serialized all of those
+	// lookups behind one another — invisible at a few thousand
+	// configs, but at tens of thousands of unique hosts it dominated
+	// the whole run. Label in parallel instead, preserving order.
+	healthy := make([]string, len(raw))
+	var wgLabel sync.WaitGroup
+	semLabel := make(chan struct{}, 50)
+	for i, c := range raw {
+		wgLabel.Add(1)
+		semLabel <- struct{}{}
+		go func(i int, c string) {
+			defer wgLabel.Done()
+			defer func() { <-semLabel }()
+			healthy[i] = labelWithGeo(c, i+1)
+		}(i, c)
+	}
+	wgLabel.Wait()
 	return healthy
 }
 
@@ -783,7 +827,7 @@ func checkAlive(config string, protocol string) bool {
 		if tcpDial(u.Hostname(), u.Port()) {
 			return true
 		}
-		ips, err := net.LookupIP(u.Hostname())
+		ips, err := lookupIPs(u.Hostname())
 		return err == nil && len(ips) > 0
 	}
 	u, err := url.Parse(config)
@@ -848,7 +892,7 @@ func labelWithGeo(config string, index int) string {
 		}
 	}
 
-	ips, err := net.LookupIP(host)
+	ips, err := lookupIPs(host)
 	if err == nil && len(ips) > 0 {
 		sliceLen := min(3, len(ips))
 		for _, ip := range ips[:sliceLen] {
@@ -986,12 +1030,22 @@ func extractHost(config string) string {
 	return host
 }
 
+// lookupIPs resolves host with a hard 3s bound. The system resolver
+// can block far longer on a dead or slow nameserver, and these
+// lookups sit in per-config hot paths (the Hy2 liveness fallback and
+// geo labelling, which runs once per unique host).
+func lookupIPs(host string) ([]net.IP, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	return net.DefaultResolver.LookupIP(ctx, "ip", host)
+}
+
 func resolveToIP(host string) net.IP {
 	if ip := net.ParseIP(host); ip != nil {
 		return ip
 	}
 
-	ips, err := net.LookupIP(host)
+	ips, err := lookupIPs(host)
 	if err != nil || len(ips) == 0 {
 		return nil
 	}

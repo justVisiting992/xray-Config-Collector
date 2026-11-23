@@ -31,7 +31,20 @@ func run() error {
 	out := flag.String("out", "", "if set, write passing links to this file, one per line")
 	exitIP := flag.Bool("exit-ip", false, "also fetch each passing config's exit IP")
 	geoDB := flag.String("geo-db", "Country.mmdb", "path to the GeoIP country database used to label passing links by exit IP (only with -out)")
+	renumber := flag.String("renumber", "", "rewrite the given file with duplicate remarks numbered (no testing), then exit")
 	flag.Parse()
+
+	if *renumber != "" {
+		links, err := readLinks(*renumber)
+		if err != nil {
+			return err
+		}
+		content := strings.Join(livetest.NumberDuplicateRemarks(links), "\n")
+		if content != "" {
+			content += "\n"
+		}
+		return os.WriteFile(*renumber, []byte(content), 0o644)
+	}
 
 	var links []string
 	for _, name := range strings.Split(*filesFlag, ",") {

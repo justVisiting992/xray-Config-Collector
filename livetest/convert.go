@@ -163,8 +163,25 @@ func transportFromQuery(q url.Values) transport {
 	return t
 }
 
+// validURLHost reports whether host can be placed in a URL's host
+// position and survive a String/Parse round-trip unchanged. Xray's
+// SplitHTTP dialer builds its request URL from the configured host
+// and re-parses it with url.Parse, ignoring the error — a host with
+// spaces, slashes or bad percent-escapes makes Parse return nil and
+// the core then panics on a nil *url.URL, killing the whole process.
+// Rejecting such hosts at conversion time turns that poison into a
+// plain per-config failure.
+func validURLHost(host string) bool {
+	if host == "" {
+		return false
+	}
+	s := (&url.URL{Scheme: "https", Host: host, Path: "/"}).String()
+	u, err := url.Parse(s)
+	return err == nil && u.Host == host
+}
+
 // streamSettings builds the Xray streamSettings object for t.
-func (t transport) streamSettings() map[string]any {
+func (t transport) streamSettings() (map[string]any, error) {
 	network := t.network
 	if network == "" {
 		network = "tcp"
@@ -191,6 +208,16 @@ func (t transport) streamSettings() map[string]any {
 		}
 		ss["grpcSettings"] = g
 	case "xhttp", "splithttp":
+		// The SplitHTTP dialer re-parses a URL built from this host
+		// (or, when empty, from the TLS/Reality server name) and
+		// dereferences the result without checking the parse error:
+		// an invalid host panics the whole xray-core process. Reject
+		// such configs here instead (see validURLHost).
+		for _, h := range []string{t.host, t.sni} {
+			if h != "" && !validURLHost(h) {
+				return nil, fmt.Errorf("xhttp: invalid host %q", h)
+			}
+		}
 		x := map[string]any{}
 		if t.path != "" {
 			x["path"] = t.path
@@ -257,7 +284,7 @@ func (t transport) streamSettings() map[string]any {
 		ss["security"] = "reality"
 		ss["realitySettings"] = r
 	}
-	return ss
+	return ss, nil
 }
 
 func splitCSV(s string) []string {
@@ -294,6 +321,10 @@ func convertVLESS(link string) (map[string]any, error) {
 	if flow := q.Get("flow"); flow != "" {
 		user["flow"] = flow
 	}
+	ss, err := transportFromQuery(q).streamSettings()
+	if err != nil {
+		return nil, fmt.Errorf("vless: %w", err)
+	}
 	return map[string]any{
 		"protocol": "vless",
 		"settings": map[string]any{
@@ -303,7 +334,7 @@ func convertVLESS(link string) (map[string]any, error) {
 				"users":   []any{user},
 			}},
 		},
-		"streamSettings": transportFromQuery(q).streamSettings(),
+		"streamSettings": ss,
 	}, nil
 }
 
@@ -391,6 +422,10 @@ func convertVMess(link string) (map[string]any, error) {
 		// successor in current xray-core.
 		t.network = "xhttp"
 	}
+	ss, err := t.streamSettings()
+	if err != nil {
+		return nil, err
+	}
 	return map[string]any{
 		"protocol": "vmess",
 		"settings": map[string]any{
@@ -400,7 +435,7 @@ func convertVMess(link string) (map[string]any, error) {
 				"users":   []any{user},
 			}},
 		},
-		"streamSettings": t.streamSettings(),
+		"streamSettings": ss,
 	}, nil
 }
 
@@ -427,6 +462,10 @@ func convertVMessURL(link string) (map[string]any, error) {
 	if sec := strings.ToLower(q.Get("tls")); sec == "tls" || sec == "reality" {
 		t.security = sec
 	}
+	ss, err := t.streamSettings()
+	if err != nil {
+		return nil, err
+	}
 	return map[string]any{
 		"protocol": "vmess",
 		"settings": map[string]any{
@@ -436,7 +475,7 @@ func convertVMessURL(link string) (map[string]any, error) {
 				"users":   []any{user},
 			}},
 		},
-		"streamSettings": t.streamSettings(),
+		"streamSettings": ss,
 	}, nil
 }
 
@@ -460,6 +499,10 @@ func convertTrojan(link string) (map[string]any, error) {
 	if t.security == "" {
 		t.security = "tls" // Trojan defaults to TLS.
 	}
+	ss, err := t.streamSettings()
+	if err != nil {
+		return nil, err
+	}
 	return map[string]any{
 		"protocol": "trojan",
 		"settings": map[string]any{
@@ -470,7 +513,7 @@ func convertTrojan(link string) (map[string]any, error) {
 				"level":    0,
 			}},
 		},
-		"streamSettings": t.streamSettings(),
+		"streamSettings": ss,
 	}, nil
 }
 
