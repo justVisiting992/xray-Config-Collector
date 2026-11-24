@@ -11,7 +11,7 @@
 
 ## 🇬🇧 English Guide
 
-This project is a high-speed engine designed to automatically scrape, test, and filter VLESS, VMESS, Trojan, Shadowsocks, and Hysteria 2 configurations from reliable Telegram sources.
+This project is a high-speed engine designed to automatically scrape, test, and filter VLESS, VMESS, Trojan, Shadowsocks, and Hysteria 2 configurations from Telegram channels and hundreds of public subscription lists.
 
 > **Quality Assurance:** Every configuration must pass a **live traffic test** before being published: a real HTTP request is sent through the proxy using an embedded Xray core, so only configs that demonstrably carry traffic — not just ones with an open port — are listed. The lists are rebuilt automatically **every 2 hours**.
 
@@ -91,6 +91,7 @@ This project has been rewritten using a combination of Python and Go to ensure m
 1. **Dual Collection (API + Scraper):**
    - Uses **Telegram API** (Python) to directly extract messages from the largest config sources at high speed.
    - Uses a **Web Scraper** (Go) as a backup system to monitor over 100 additional Telegram channels.
+   - Also harvests **200+ public subscription lists** from `subscriptions.txt`, fetched in parallel every run and merged into the same pool as the Telegram harvest.
    - Collection is **lossless**: per-channel checkpoints only advance after a run has fully processed what it fetched, and paging always resumes exactly where the previous run stopped — no message is ever skipped silently.
 2. **Smart VMess Decoding:**
    - Unlike basic scripts, this code fully decodes VMess Base64 strings (including the URL-safe alphabet), analyzes the internal JSON, and verifies the address and port before testing.
@@ -99,7 +100,7 @@ This project has been rewritten using a combination of Python and Go to ensure m
    - This includes **Hysteria 2**, which is verified with a genuine Hysteria session (including Salamander obfuscation) — not a DNS lookup.
    - Every failed test is **retried once**, so a transient network hiccup never silently drops a working config.
 4. **Multi-threaded Health Checks:**
-   - Simultaneous testing of hundreds of configs using Go's Goroutines, completing the entire testing process in seconds.
+   - Simultaneous testing of tens of thousands of configs using Go's Goroutines.
 5. **Geo-IP Tagging by True Exit IP:**
    - Configs are labelled with the country of the proxy's **real exit IP** (via the MaxMind database), not the entry server's address — so the flag shows where your traffic actually comes out.
 6. **Full Hiddify & NapsternetV Compatibility:**
@@ -116,3 +117,8 @@ This project has been rewritten using a combination of Python and Go to ensure m
     - Configs are deduplicated by their full identity — server, credentials and transport settings — so transport variants of the same server (different TLS/SNI/path) are all kept, while true duplicates are removed.
 12. **Safety Guards:**
     - If a test run ever produces an impossible result (e.g. zero passing configs), the previous list is kept instead of publishing an empty one.
+13. **One Verified Pool:**
+    - The whole pool is live-tested once, as the mixed list. Each protocol list is then drawn from that same verified pool — a random 200 of the protocol's verified configs — so a config can only reach *any* list by passing the real-traffic test, and every verified config is eligible for its protocol list.
+14. **Informative Remarks & Transparent Report:**
+    - Each config's remark shows its exit country plus its transport and encryption traits (e.g. `WS • TLS`, `TCP • Reality • Vision`, the Shadowsocks cipher); configs that would share the exact same remark are numbered (`01`, `02`, …) so every entry is unique — including in `clash.yaml`.
+    - The status report names every source with a short linked name, and its live counts are the actual verified totals, so the per-protocol numbers add up exactly to the total.
