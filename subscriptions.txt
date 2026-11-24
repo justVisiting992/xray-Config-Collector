@@ -6,6 +6,7 @@
 # deduplicated, tested and published exactly like channel configs.
 # A source that fails to load is reported in report.md, never skipped
 # silently.
+https://edge-asset-sync.vrw542gsn.workers.dev/4whzc3jxbog05rc7/f8cab25b9d2484ec
 https://raw.githubusercontent.com/EEvanescence/4Diana/main/AllConfigsSub.txt
 https://raw.githubusercontent.com/EEvanescence/4Diana/main/By-protocol/vless.txt
 https://raw.githubusercontent.com/EEvanescence/4Diana/main/By-protocol/vmess.txt
