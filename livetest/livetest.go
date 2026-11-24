@@ -7,9 +7,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math/rand"
 	"net"
 	"net/http"
-	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -210,12 +210,18 @@ func testOne(ctx context.Context, link string, opts Options) (res Result) {
 	return res
 }
 
-// SortByLatency orders results by ascending Latency, fastest first.
-// The sort is stable: results with equal latency keep their relative
-// order. It sorts in place.
-func SortByLatency(results []Result) {
-	sort.SliceStable(results, func(i, j int) bool {
-		return results[i].Latency < results[j].Latency
+// ShuffleResults randomizes the order of results in place. List
+// order deliberately carries no quality signal: the latency the
+// tester measures is the latency from the machine running the test
+// (a GitHub Actions runner), which says nothing about how a config
+// performs for an actual user elsewhere. Ranking by it favoured
+// servers physically near the runner and starved distant — possibly
+// excellent — configs of a place in the capped protocol lists. A
+// shuffle gives every verified config an equal chance at those
+// slots, and the order is re-randomized on every run.
+func ShuffleResults(results []Result) {
+	rand.Shuffle(len(results), func(i, j int) {
+		results[i], results[j] = results[j], results[i]
 	})
 }
 

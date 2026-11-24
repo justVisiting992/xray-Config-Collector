@@ -106,9 +106,9 @@ func run() error {
 			passed = append(passed, r)
 		}
 	}
-	// Fastest first: clients pick from the top of the list, so the
-	// best-measured configs belong there.
-	livetest.SortByLatency(passed)
+	// Deliberately unranked: shuffle so list order carries no
+	// latency signal (see ShuffleResults).
+	livetest.ShuffleResults(passed)
 	passedLinks := make([]string, 0, len(passed))
 	for _, r := range passed {
 		link := r.Link

@@ -167,29 +167,53 @@ func TestTestAllOrderAndCount(t *testing.T) {
 	}
 }
 
-func TestSortByLatency(t *testing.T) {
-	results := []Result{
-		{Link: "slow", Latency: 900 * time.Millisecond},
-		{Link: "fast", Latency: 50 * time.Millisecond},
-		{Link: "mid-a", Latency: 300 * time.Millisecond},
-		{Link: "mid-b", Latency: 300 * time.Millisecond},
-		{Link: "zero"},
+func TestShuffleResults(t *testing.T) {
+	const n = 50
+	mk := func() []Result {
+		r := make([]Result, n)
+		for i := range r {
+			r[i] = Result{Link: string(rune('a')) + string(rune(i)), Latency: time.Duration(i) * time.Millisecond}
+		}
+		return r
 	}
-	SortByLatency(results)
-	want := []string{"zero", "fast", "mid-a", "mid-b", "slow"}
-	if len(results) != len(want) {
-		t.Fatalf("got %d results, want %d", len(results), len(want))
+	orig := mk()
+	shuffled := mk()
+	ShuffleResults(shuffled)
+	// Same multiset of results, nothing lost or duplicated.
+	if len(shuffled) != n {
+		t.Fatalf("got %d results, want %d", len(shuffled), n)
 	}
-	for i, w := range want {
-		if results[i].Link != w {
-			t.Errorf("results[%d] = %q, want %q (stable ascending order)", i, results[i].Link, w)
+	counts := map[string]int{}
+	for _, r := range shuffled {
+		counts[r.Link]++
+	}
+	for _, r := range orig {
+		if counts[r.Link] != 1 {
+			t.Fatalf("link %q appears %d times after shuffle, want 1", r.Link, counts[r.Link])
 		}
 	}
-}
-
-func TestSortByLatencyEmpty(t *testing.T) {
-	SortByLatency(nil)
-	SortByLatency([]Result{})
+	// The order must actually change (an identity shuffle of 50
+	// elements has probability 1/50!, so this cannot flake in
+	// practice) and must not be latency order.
+	changed := false
+	sorted := true
+	for i := range shuffled {
+		if shuffled[i].Link != orig[i].Link {
+			changed = true
+		}
+		if i > 0 && shuffled[i].Latency < shuffled[i-1].Latency {
+			sorted = false
+		}
+	}
+	if !changed {
+		t.Error("shuffle left the order unchanged")
+	}
+	if sorted {
+		t.Error("shuffle produced latency-sorted order; results must be unranked")
+	}
+	// Nil and empty inputs are safe.
+	ShuffleResults(nil)
+	ShuffleResults([]Result{})
 }
 
 func TestTestOneRetriesTransientFailure(t *testing.T) {

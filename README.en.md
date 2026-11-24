@@ -32,7 +32,7 @@ To use these, simply copy the desired URL and paste it into the "Subscription" o
 | 💥 **Clash** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/clash.yaml` | Clash / Mihomo format |
 
 ### ⚠️ Important Notes
-* 📱 **Categorized Lists (Top 200):** These lists contain only **live-verified** configs, **ranked fastest-first by measured test latency** and capped at 200. This optimization is specifically for mobile devices to prevent apps like **v2rayNG** or **V2Box** from lagging or crashing during updates.
+* 📱 **Categorized Lists (Top 200):** These lists contain only **live-verified** configs, capped at 200 and presented in **random order** — deliberately unranked, because the latency measured during testing only reflects the distance to the test server, not to you. This optimization is specifically for mobile devices to prevent apps like **v2rayNG** or **V2Box** from lagging or crashing during updates.
 * 🌈 **Mixed List (Unlimited):** This file contains **every** live-verified configuration, with no cap. **It is recommended to use this link only on desktop clients** (Windows/Linux/Mac), as PC hardware can handle this volume of data without performance drops.
 
 ***
@@ -108,8 +108,8 @@ This project has been rewritten using a combination of Python and Go to ensure m
    - The intelligent Python Collector automatically steps out of the loop if it hits Telegram's rate limits, allowing the rest of the script to continue without interruption.
 8. **Automatic Archiving (History Preservation):**
    - Old working configs are not deleted. They are re-tested with every update and remain in the list as long as they stay alive.
-9. **Latency Ranking:**
-   - Published lists are sorted **fastest-first** using the latency measured during the live test, so the best-performing configs sit at the top where clients pick first.
+9. **Random Order (No Latency Ranking):**
+   - Published lists are **shuffled**, not sorted. The latency measured during the live test is the latency from the test server (a GitHub runner), which says nothing about performance from a user's location — ranking by it would favour servers near the runner and starve distant ones. Every verified config gets an equal chance at the capped lists, re-randomized each run.
 10. **Clash / Mihomo Output:**
     - Every run also publishes `clash.yaml`, a ready-to-import Clash-format subscription built from the same live-verified configs.
 11. **Precise Deduplication:**

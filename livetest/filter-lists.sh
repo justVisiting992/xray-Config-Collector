@@ -179,9 +179,10 @@ filter_independent() {
 
 # derive_protocol_lists <verified-mixed-file>
 # Builds each protocol list from the verified mixed pool: the
-# protocol's own lines, in pool order (fastest-first within each
-# tested chunk), capped at LIST_CAP, remarks renumbered within the
-# list. Every derived config has passed the real-traffic test.
+# protocol's own lines, in pool order (the pool is shuffled by the
+# tester, so the cap takes a random sample of the verified configs),
+# capped at LIST_CAP, remarks renumbered within the list. Every
+# derived config has passed the real-traffic test.
 derive_protocol_lists() {
     local mixed="$1"
     local spec file pattern tmp n total
@@ -312,7 +313,7 @@ if mode == "derived" and mixed_filtered and mixed_lines is not None:
 
     report = re.sub(r"\*\*(VLess|VMess|Trojan|SS|Hy2):\*\* (\d+) found \(\d+ live\)", fix_proto_derived, report)
     report = re.sub(r"(\*\*Total Alive:\*\* `)\d+(`)", rf"\g<1>{mixed_count}\g<2>", report)
-    note = "\n> ℹ️ Live counts are verified totals from the mixed pool; each protocol list holds its 200 fastest verified configs."
+    note = "\n> ℹ️ Live counts are verified totals from the mixed pool; each protocol list holds a random 200 of its verified configs (list order is shuffled, not ranked)."
     report = re.sub(r"(\*\*Total Alive:\*\* `\d+`[^\n]*)", r"\g<1>" + note, report, count=1)
 else:
     def fix_proto(m):
