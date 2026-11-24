@@ -1201,17 +1201,24 @@ func printBanner() {
 // subscriptionDisplayName derives a short human-readable name for a
 // subscription source URL: the repository name for GitHub URLs
 // (raw.githubusercontent.com/<owner>/<repo>/... and
-// github.com/<owner>/<repo>/...), the host for anything else.
+// github.com/<owner>/<repo>/...), the host for anything else. The
+// result is capped at maxSourceNameLen runes — some repos and hosts
+// carry names of 60+ characters, which wreck the report table.
 func subscriptionDisplayName(rawURL string) string {
-	u, err := url.Parse(rawURL)
-	if err != nil || u.Host == "" {
-		return rawURL
+	const maxSourceNameLen = 24
+	name := rawURL
+	if u, err := url.Parse(rawURL); err == nil && u.Host != "" {
+		parts := strings.Split(strings.Trim(u.Path, "/"), "/")
+		if (u.Host == "raw.githubusercontent.com" || u.Host == "github.com") && len(parts) >= 2 && parts[1] != "" {
+			name = parts[1]
+		} else {
+			name = strings.TrimPrefix(u.Host, "www.")
+		}
 	}
-	parts := strings.Split(strings.Trim(u.Path, "/"), "/")
-	if (u.Host == "raw.githubusercontent.com" || u.Host == "github.com") && len(parts) >= 2 && parts[1] != "" {
-		return parts[1]
+	if r := []rune(name); len(r) > maxSourceNameLen {
+		name = string(r[:maxSourceNameLen]) + "…"
 	}
-	return strings.TrimPrefix(u.Host, "www.")
+	return name
 }
 
 func generateReportStructure(reports []ChannelReport, stats map[string][2]int) string {
