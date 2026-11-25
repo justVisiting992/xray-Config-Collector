@@ -42,32 +42,35 @@ To use these, simply copy the desired URL and paste it into the "Subscription" o
 ### 🤖 Android
 | Icon | Client Name | Key Features | Supported Protocols | Download |
 | :---: | :--- | :--- | :--- | :---: |
-| 🟢 | **v2rayNG** | Most stable & popular Android client. | Vless, Vmess, Trojan, SS | [Google Play](https://play.google.com/store/apps/details?id=com.v2ray.ang) |
+| 🟢 | **v2rayNG** | Most stable & popular Android client. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/2dust/v2rayNG/releases) |
 | 🔷 | **PattNG** | v2rayNG fork tuned for Iranian users, with an Aether core and extra TLS options. | Vless, Vmess, Trojan, SS, Hy2 | [GitHub](https://github.com/patterniha/PattNG/releases) |
-| 🟠 | **NekoBox** | Massive protocol support & custom routing. | All + Hysteria 2, SSH, TUIC | [GitHub](https://github.com/MatsuriDayo/NekoBoxForAndroid/releases) |
+| 🟠 | **Throne** | Successor to NekoBox on the sing-box core; massive protocol support & custom routing. | All + Hysteria 2, SSH, TUIC | [GitHub](https://github.com/throneproj/ThroneForAndroid/releases) |
 | 🛡️ | **Hiddify** | Minimalist UI with one-click connection. | All + Reality, Hysteria 2 | [GitHub](https://github.com/hiddify/hiddify-next/releases) |
 | ⚡ | **V2Box** | Easy sub management & modern interface. | Vless, Vmess, Reality | [Google Play](https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box) |
 | 🌐 | **CMFA** | Official Mihomo (Clash Meta) client by MetaCubeX, with TUN mode and rule-based routing. | All (Mihomo) | [GitHub](https://github.com/MetaCubeX/ClashMetaForAndroid/releases) |
 | 📦 | **Bettbox** | Mihomo client rebuilt from FlClash; smooth UI and low background power use, same app across desktop and Android TV. | All (Mihomo) | [GitHub](https://github.com/appshubcc/Bettbox/releases) |
+| 🌟 | **Karing** | Cross-platform sing-box client with a simple UI and broad subscription format support. | All (sing-box) | [GitHub](https://github.com/KaringX/karing/releases) |
 
 ### 🪟 Windows
 | Icon | Client Name | Key Features | Supported Protocols | Download |
 | :---: | :--- | :--- | :--- | :---: |
 | 🔵 | **v2rayN** | Powerful Windows tool with Xray core settings. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/2dust/v2rayN/releases) |
 | 🔶 | **PattN** | Cross-platform GUI client (Windows, Linux, macOS) with Xray & sing-box cores. | All + Hysteria 2, TUIC | [GitHub](https://github.com/patterniha/PattN/releases) |
-| 🟣 | **Nekoray** | Best for gaming and using TUN Mode. | All + Hysteria 2, Reality | [GitHub](https://github.com/MatsuriDayo/nekoray/releases) |
+| 🟣 | **Throne** | Successor to Nekoray on the sing-box core; best for gaming and using TUN Mode. | All + Hysteria 2, Reality | [GitHub](https://github.com/throneproj/Throne/releases) |
 | ⚙️ | **Hiddify-Next** | Modern, multi-language, cross-platform. | All + Hysteria 2, TUIC | [GitHub](https://github.com/hiddify/hiddify-next/releases) |
 | 🏗️ | **Clash Verge** | Advanced traffic management via Rules. | Vless, Vmess, Trojan | [GitHub](https://github.com/zzzgydi/clash-verge/releases) |
 | 📦 | **Bettbox** | Mihomo client rebuilt from FlClash; smooth UI and low background power use, same app across mobile and desktop. | All (Mihomo) | [GitHub](https://github.com/appshubcc/Bettbox/releases) |
+| 🌟 | **Karing** | Cross-platform sing-box client with a simple UI and broad subscription format support. | All (sing-box) | [GitHub](https://github.com/KaringX/karing/releases) |
 
 ### 🐧 Linux
 | Icon | Client Name | Key Features | Supported Protocols | Download |
 | :---: | :--- | :--- | :--- | :---: |
-| 💻 | **Nekoray** | Native Linux build with full TUN support. | All + Hysteria 2 | [GitHub](https://github.com/MatsuriDayo/nekoray/releases) |
+| 💻 | **Throne** | Successor to Nekoray; native Linux build with full TUN support. | All + Hysteria 2 | [GitHub](https://github.com/throneproj/Throne/releases) |
 | 🔶 | **PattN** | Cross-platform GUI client with Xray & sing-box cores. | All + Hysteria 2, TUIC | [GitHub](https://github.com/patterniha/PattN/releases) |
 | 🛠️ | **v2rayA** | Web-based UI that runs as a system service. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/v2rayA/v2rayA/releases) |
 | 🌀 | **Hiddify** | Easy installation & unified interface. | All + Hysteria 2 | [GitHub](https://github.com/hiddify/hiddify-next/releases) |
 | 📦 | **Bettbox** | Mihomo client rebuilt from FlClash; smooth UI and low background power use, same app across mobile and desktop. | All (Mihomo) | [GitHub](https://github.com/appshubcc/Bettbox/releases) |
+| 🌟 | **Karing** | Cross-platform sing-box client with a simple UI and broad subscription format support. | All (sing-box) | [GitHub](https://github.com/KaringX/karing/releases) |
 
 ### 🍏 iOS (iPhone & iPad)
 | Icon | Client Name | Key Features | Supported Protocols | Download |
@@ -77,6 +80,7 @@ To use these, simply copy the desired URL and paste it into the "Subscription" o
 | 🦊 | **FoXray** | Modern UI with native Reality/Hy2 support. | Vless, Vmess, Hy2, SS | [App Store](https://apps.apple.com/us/app/foxray/id6444898154) |
 | 📦 | **V2Box** | Extremely stable on newer iOS versions. | Vless, Vmess, Reality | [App Store](https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690) |
 | 🐱 | **Clash Mi** | Free, open-source Mihomo-core client by the KaringX team, with a built-in dashboard and full Meta features. | All (Mihomo) | [App Store](https://apps.apple.com/us/app/clash-mi/id6744321968) |
+| 🌟 | **Karing** | Cross-platform sing-box client with a simple UI and broad subscription format support. | All (sing-box) | [App Store](https://apps.apple.com/us/app/karing/id6472431552) |
 
 ### 🍎 macOS
 | Icon | Client Name | Key Features | Supported Protocols | Download |
@@ -87,6 +91,7 @@ To use these, simply copy the desired URL and paste it into the "Subscription" o
 | 💎 | **V2Free** | Native Mac client with very low resource usage. | Vless, Vmess, Trojan | [GitHub](https://github.com/v2free/v2free/releases) |
 | 📦 | **Bettbox** | Mihomo client rebuilt from FlClash; smooth UI and low background power use, same app across mobile and desktop. | All (Mihomo) | [GitHub](https://github.com/appshubcc/Bettbox/releases) |
 | 🐱 | **Clash Mi** | Free, open-source Mihomo-core client by the KaringX team, with a built-in dashboard and full Meta features. | All (Mihomo) | [GitHub](https://github.com/KaringX/clashmi/releases) |
+| 🌟 | **Karing** | Cross-platform sing-box client with a simple UI and broad subscription format support. | All (sing-box) | [GitHub](https://github.com/KaringX/karing/releases) |
 
 ***
 

@@ -44,32 +44,35 @@
 ### 🤖 اندروید (Android)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
 | :---: | :--- | :--- | :--- | :---: |
-| 🟢 | **v2rayNG** | پایدارترین و محبوب‌ترین کلاینت اندروید. | Vless, Vmess, Trojan, SS | [Google Play](https://play.google.com/store/apps/details?id=com.v2ray.ang) |
+| 🟢 | **v2rayNG** | پایدارترین و محبوب‌ترین کلاینت اندروید. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/2dust/v2rayNG/releases) |
 | 🔷 | **PattNG** | نسخه‌ی بهبودیافته‌ی v2rayNG برای کاربران ایرانی، با هسته‌ی Aether و گزینه‌های TLS بیشتر. | Vless, Vmess, Trojan, SS, Hy2 | [GitHub](https://github.com/patterniha/PattNG/releases) |
-| 🟠 | **NekoBox** | پشتیبانی از پروتکل‌های بسیار متنوع و شخصی‌سازی روتینگ. | All + Hysteria 2, SSH, TUIC | [GitHub](https://github.com/MatsuriDayo/NekoBoxForAndroid/releases) |
+| 🟠 | **Throne** | جانشین NekoBox با هسته‌ی sing-box؛ پشتیبانی از پروتکل‌های بسیار متنوع و شخصی‌سازی روتینگ. | All + Hysteria 2, SSH, TUIC | [GitHub](https://github.com/throneproj/ThroneForAndroid/releases) |
 | 🛡️ | **Hiddify** | محیط کاربری بسیار ساده و اتصال با یک کلیک. | All + Reality, Hysteria 2 | [GitHub](https://github.com/hiddify/hiddify-next/releases) |
 | ⚡ | **V2Box** | مدیریت آسان اشتراک‌ها و رابط کاربری مدرن. | Vless, Vmess, Reality | [Google Play](https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box) |
 | 🌐 | **CMFA** | کلاینت رسمی Mihomo (Clash Meta) از MetaCubeX، با حالت TUN و مسیریابی قانون‌محور. | All (Mihomo) | [GitHub](https://github.com/MetaCubeX/ClashMetaForAndroid/releases) |
 | 📦 | **Bettbox** | کلاینت Mihomo بازسازی‌شده از FlClash؛ رابط روان و مصرف پس‌زمینه‌ی کم، با یک اپ یکسان روی دسکتاپ و اندروید تی‌وی. | All (Mihomo) | [GitHub](https://github.com/appshubcc/Bettbox/releases) |
+| 🌟 | **Karing** | کلاینت چندسکویی sing-box با رابط کاربری ساده و پشتیبانی گسترده از فرمت‌های اشتراک. | All (sing-box) | [GitHub](https://github.com/KaringX/karing/releases) |
 
 ### 🪟 ویندوز (Windows)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
 | :---: | :--- | :--- | :--- | :---: |
 | 🔵 | **v2rayN** | قدرتمندترین ابزار ویندوز با قابلیت تنظیم هسته Xray. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/2dust/v2rayN/releases) |
 | 🔶 | **PattN** | کلاینت گرافیکی چندسکویی (ویندوز، لینوکس، مک) با هسته‌های Xray و sing-box. | All + Hysteria 2, TUIC | [GitHub](https://github.com/patterniha/PattN/releases) |
-| 🟣 | **Nekoray** | بهترین گزینه برای گیمینگ و استفاده از مود TUN. | All + Hysteria 2, Reality | [GitHub](https://github.com/MatsuriDayo/nekoray/releases) |
+| 🟣 | **Throne** | جانشین Nekoray با هسته‌ی sing-box؛ بهترین گزینه برای گیمینگ و استفاده از مود TUN. | All + Hysteria 2, Reality | [GitHub](https://github.com/throneproj/Throne/releases) |
 | ⚙️ | **Hiddify-Next** | مدرن، چندزبانه و سازگار با انواع فرمت‌های ساب. | All + Hysteria 2, TUIC | [GitHub](https://github.com/hiddify/hiddify-next/releases) |
 | 🏗️ | **Clash Verge** | مدیریت ترافیک پیشرفته بر اساس Ruleهای مختلف. | Vless, Vmess, Trojan | [GitHub](https://github.com/zzzgydi/clash-verge/releases) |
 | 📦 | **Bettbox** | کلاینت Mihomo بازسازی‌شده از FlClash؛ رابط روان و مصرف پس‌زمینه‌ی کم، با یک اپ یکسان روی موبایل و دسکتاپ. | All (Mihomo) | [GitHub](https://github.com/appshubcc/Bettbox/releases) |
+| 🌟 | **Karing** | کلاینت چندسکویی sing-box با رابط کاربری ساده و پشتیبانی گسترده از فرمت‌های اشتراک. | All (sing-box) | [GitHub](https://github.com/KaringX/karing/releases) |
 
 ### 🐧 لینوکس (Linux)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
 | :---: | :--- | :--- | :--- | :---: |
-| 💻 | **Nekoray** | نسخه Native لینوکس با پشتیبانی کامل از TUN Mode. | All + Hysteria 2 | [GitHub](https://github.com/MatsuriDayo/nekoray/releases) |
+| 💻 | **Throne** | جانشین Nekoray؛ نسخه Native لینوکس با پشتیبانی کامل از TUN Mode. | All + Hysteria 2 | [GitHub](https://github.com/throneproj/Throne/releases) |
 | 🔶 | **PattN** | کلاینت گرافیکی چندسکویی با هسته‌های Xray و sing-box. | All + Hysteria 2, TUIC | [GitHub](https://github.com/patterniha/PattN/releases) |
 | 🛠️ | **v2rayA** | رابط کاربری تحت وب که به صورت سرویس اجرا می‌شود. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/v2rayA/v2rayA/releases) |
 | 🌀 | **Hiddify** | نصب آسان و رابط کاربری یکپارچه با نسخه‌های دیگر. | All + Hysteria 2 | [GitHub](https://github.com/hiddify/hiddify-next/releases) |
 | 📦 | **Bettbox** | کلاینت Mihomo بازسازی‌شده از FlClash؛ رابط روان و مصرف پس‌زمینه‌ی کم، با یک اپ یکسان روی موبایل و دسکتاپ. | All (Mihomo) | [GitHub](https://github.com/appshubcc/Bettbox/releases) |
+| 🌟 | **Karing** | کلاینت چندسکویی sing-box با رابط کاربری ساده و پشتیبانی گسترده از فرمت‌های اشتراک. | All (sing-box) | [GitHub](https://github.com/KaringX/karing/releases) |
 
 ### 🍏 آی‌او‌اس (iPhone & iPad)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
@@ -79,6 +82,7 @@
 | 🦊 | **FoXray** | رابط کاربری مدرن با پشتیبانی نیتیو از Reality و Hy2. | Vless, Vmess, Hy2, SS | [App Store](https://apps.apple.com/us/app/foxray/id6444898154) |
 | 📦 | **V2Box** | بسیار پایدار روی نسخه‌های جدید iOS. | Vless, Vmess, Reality | [App Store](https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690) |
 | 🐱 | **Clash Mi** | کلاینت رایگان و متن‌باز هسته‌ی Mihomo از تیم KaringX، با داشبورد داخلی و پشتیبانی کامل از قابلیت‌های Meta. | All (Mihomo) | [App Store](https://apps.apple.com/us/app/clash-mi/id6744321968) |
+| 🌟 | **Karing** | کلاینت چندسکویی sing-box با رابط کاربری ساده و پشتیبانی گسترده از فرمت‌های اشتراک. | All (sing-box) | [App Store](https://apps.apple.com/us/app/karing/id6472431552) |
 
 ### 🍎 مک (macOS)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
@@ -89,6 +93,7 @@
 | 💎 | **V2Free** | کلاینت بومی مک با مصرف منابع بسیار پایین. | Vless, Vmess, Trojan | [GitHub](https://github.com/v2free/v2free/releases) |
 | 📦 | **Bettbox** | کلاینت Mihomo بازسازی‌شده از FlClash؛ رابط روان و مصرف پس‌زمینه‌ی کم، با یک اپ یکسان روی موبایل و دسکتاپ. | All (Mihomo) | [GitHub](https://github.com/appshubcc/Bettbox/releases) |
 | 🐱 | **Clash Mi** | کلاینت رایگان و متن‌باز هسته‌ی Mihomo از تیم KaringX، با داشبورد داخلی و پشتیبانی کامل از قابلیت‌های Meta. | All (Mihomo) | [GitHub](https://github.com/KaringX/clashmi/releases) |
+| 🌟 | **Karing** | کلاینت چندسکویی sing-box با رابط کاربری ساده و پشتیبانی گسترده از فرمت‌های اشتراک. | All (sing-box) | [GitHub](https://github.com/KaringX/karing/releases) |
 
 ***
 
