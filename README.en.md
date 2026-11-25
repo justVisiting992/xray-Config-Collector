@@ -23,16 +23,16 @@ To use these, simply copy the desired URL and paste it into the "Subscription" o
 
 | Protocol 🧩 | Subscription Link (Raw Version) 🔗 | Mobile Optimized 📱 |
 | :--- | :--- | :---: |
-| 🔵 **Vmess** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/vmess_iran.txt` | ✅ (Top 200) |
-| 🟢 **Vless** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/vless_iran.txt` | ✅ (Top 200) |
-| 🟡 **Trojan** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/trojan_iran.txt` | ✅ (Top 200) |
-| 🟠 **ShadowSocks** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/ss_iran.txt` | ✅ (Top 200) |
-| 🟣 **Hysteria 2** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/hy2_iran.txt` | ✅ (Top 200) |
+| 🔵 **Vmess** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/vmess_iran.txt` | ✅ (200) |
+| 🟢 **Vless** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/vless_iran.txt` | ✅ (200) |
+| 🟡 **Trojan** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/trojan_iran.txt` | ✅ (200) |
+| 🟠 **ShadowSocks** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/ss_iran.txt` | ✅ (200) |
+| 🟣 **Hysteria 2** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/hy2_iran.txt` | ✅ (200) |
 | 🌈 **Mixed** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/mixed_iran.txt` | ❌ (Unlimited) |
-| 💥 **Clash** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/clash.yaml` | Clash / Mihomo format |
+| 💥 **Clash** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/clash.yaml` | Clash / Mihomo format (500 configs) |
 
 ### ⚠️ Important Notes
-* 📱 **Categorized Lists (Top 200):** These lists contain only **live-verified** configs, capped at 200 and presented in **random order** — deliberately unranked, because the latency measured during testing only reflects the distance to the test server, not to you. This optimization is specifically for mobile devices to prevent apps like **v2rayNG** or **V2Box** from lagging or crashing during updates.
+* 📱 **Categorized Lists (200):** These lists contain only **live-verified** configs, capped at 200 and presented in **random order** — deliberately unranked, because the latency measured during testing only reflects the distance to the test server, not to you. This optimization is specifically for mobile devices to prevent apps like **v2rayNG** or **V2Box** from lagging or crashing during updates.
 * 🌈 **Mixed List (Unlimited):** This file contains **every** live-verified configuration, with no cap. **It is recommended to use this link only on desktop clients** (Windows/Linux/Mac), as PC hardware can handle this volume of data without performance drops.
 
 ***

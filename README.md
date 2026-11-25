@@ -25,16 +25,16 @@
 
 | پروتکل 🧩 | لینک اشتراک 🔗 | بهینه‌سازی شده برای موبایل 📱 |
 | :--- | :--- | :---: |
-| 🔵 **Vmess** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/vmess_iran.txt` | ✅ (۲۰۰ برتر) |
-| 🟢 **Vless** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/vless_iran.txt` | ✅ (۲۰۰ برتر) |
-| 🟡 **Trojan** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/trojan_iran.txt` | ✅ (۲۰۰ برتر) |
-| 🟠 **ShadowSocks** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/ss_iran.txt` | ✅ (۲۰۰ برتر) |
-| 🟣 **Hysteria 2** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/hy2_iran.txt` | ✅ (۲۰۰ برتر) |
+| 🔵 **Vmess** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/vmess_iran.txt` | ✅ (۲۰۰) |
+| 🟢 **Vless** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/vless_iran.txt` | ✅ (۲۰۰) |
+| 🟡 **Trojan** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/trojan_iran.txt` | ✅ (۲۰۰) |
+| 🟠 **ShadowSocks** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/ss_iran.txt` | ✅ (۲۰۰) |
+| 🟣 **Hysteria 2** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/hy2_iran.txt` | ✅ (۲۰۰) |
 | 🌈 **Mixed (ترکیبی)** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/mixed_iran.txt` | ❌ (نامحدود) |
-| 💥 **Clash** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/clash.yaml` | فرمت Clash / Mihomo |
+| 💥 **Clash** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/clash.yaml` | فرمت Clash / Mihomo (۵۰۰ کانفیگ) |
 
 ### ⚠️ نکات مهم
-* 📱 **لیست‌های تفکیک شده (۲۰۰ برتر):** این لیست‌ها فقط شامل کانفیگ‌هایی هستند که **تست ترافیک واقعی را پاس کرده‌اند**، به ۲۰۰ کانفیگ محدود می‌شوند و با **ترتیب تصادفی** ارائه می‌شوند — عمداً بدون رتبه‌بندی، چون تأخیر اندازه‌گیری‌شده هنگام تست فقط فاصله تا سرور تست را نشان می‌دهد، نه فاصله تا شما را. این کار مخصوصاً برای گوشی‌های موبایل انجام شده تا نرم‌افزارهایی مثل **v2rayNG** یا **V2Box** هنگام آپدیت کردن دچار لگ یا کرش نشوند.
+* 📱 **لیست‌های تفکیک شده (۲۰۰):** این لیست‌ها فقط شامل کانفیگ‌هایی هستند که **تست ترافیک واقعی را پاس کرده‌اند**، به ۲۰۰ کانفیگ محدود می‌شوند و با **ترتیب تصادفی** ارائه می‌شوند — عمداً بدون رتبه‌بندی، چون تأخیر اندازه‌گیری‌شده هنگام تست فقط فاصله تا سرور تست را نشان می‌دهد، نه فاصله تا شما را. این کار مخصوصاً برای گوشی‌های موبایل انجام شده تا نرم‌افزارهایی مثل **v2rayNG** یا **V2Box** هنگام آپدیت کردن دچار لگ یا کرش نشوند.
 * 🌈 **لیست ترکیبی (نامحدود):** این فایل شامل **تمامی** کانفیگ‌هایی است که تست واقعی را پاس کرده‌اند و سقف ندارد. **توصیه می‌شود این لینک را فقط در کلاینت‌های دسکتاپ (ویندوز/لینوکس) استفاده کنید**؛ چرا که سخت‌افزار کامپیوتر قدرت پردازش این حجم از داده را بدون افت سرعت دارد.
 
 ***
