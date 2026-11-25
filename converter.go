@@ -409,9 +409,14 @@ func writeProxiesYaml(filename string, proxies []Proxy) {
 // clash-proxies.yaml, referenced through the proxy-provider below, so
 // between runs only that file changes and this config stays identical.
 //
-// Rule providers: Chocolate4U (Iran domains/IPs, Persian ads,
-// malware, phishing, cryptominers) and MetaCubeX meta-rules-dat
-// (global ads, Google Play / Google / Microsoft / Apple / Xiaomi).
+// Rule providers: Chocolate4U (Iran domains/IPs and Iranian cloud
+// ranges, Persian ads, malware, phishing, cryptominers), MetaCubeX
+// meta-rules-dat (global ads, game domains, public trackers, Google
+// Play / Google / Microsoft / Apple / Xiaomi), coldwater-10/clash_rules
+// (censor — Iranian movie download sites, game processes, Xiaomi
+// block/white lists; 10ium's copies are byte-identical mirrors),
+// ACL4SSR (BanAD / BanProgramAD; 10ium's are YAML conversions), and
+// 10ium/mihomo_rule (Ponzi — 10ium's own list, no upstream found).
 // Country groups filter the provider by the flag emoji that starts
 // every proxy name (the exit-IP label); OTHER catches the rest via
 // exclude-filter.
@@ -710,6 +715,34 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.mrs"
     path: ./ruleset/iran-ips.mrs
     interval: 86400
+  arvancloud:
+    type: http
+    behavior: ipcidr
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/arvancloud.mrs"
+    path: ./ruleset/arvancloud.mrs
+    interval: 86400
+  derakcloud:
+    type: http
+    behavior: ipcidr
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/derakcloud.mrs"
+    path: ./ruleset/derakcloud.mrs
+    interval: 86400
+  iranserver:
+    type: http
+    behavior: ipcidr
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/iranserver.mrs"
+    path: ./ruleset/iranserver.mrs
+    interval: 86400
+  parspack:
+    type: http
+    behavior: ipcidr
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/parspack.mrs"
+    path: ./ruleset/parspack.mrs
+    interval: 86400
   ads-ir:
     type: http
     behavior: domain
@@ -744,6 +777,69 @@ rule-providers:
     format: mrs
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.mrs"
     path: ./ruleset/cryptominers.mrs
+    interval: 86400
+  censor:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/coldwater-10/clash_rules/main/censor.yaml"
+    path: ./ruleset/censor.yaml
+    interval: 86400
+  ban-ad:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
+    path: ./ruleset/ban-ad.list
+    interval: 86400
+  ban-program-ad:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
+    path: ./ruleset/ban-program-ad.list
+    interval: 86400
+  public-tracker:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-public-tracker.mrs"
+    path: ./ruleset/public-tracker.mrs
+    interval: 86400
+  ponzi:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/10ium/mihomo_rule/main/Ponzi.yaml"
+    path: ./ruleset/ponzi.yaml
+    interval: 86400
+  xiaomi-block-list:
+    type: http
+    behavior: domain
+    format: yaml
+    url: "https://raw.githubusercontent.com/coldwater-10/clash_rules/main/xiaomi_block_list.yaml"
+    path: ./ruleset/xiaomi-block-list.yaml
+    interval: 86400
+  xiaomi-white-list:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/coldwater-10/clash_rules/main/xiaomi_white_list.yaml"
+    path: ./ruleset/xiaomi-white-list.yaml
+    interval: 86400
+  game:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/coldwater-10/clash_rules/main/game.yaml"
+    path: ./ruleset/game.yaml
+    interval: 86400
+  category-games:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games.mrs"
+    path: ./ruleset/category-games.mrs
     interval: 86400
   google-play:
     type: http
@@ -786,6 +882,15 @@ rules:
   - RULE-SET,malware,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
+  - RULE-SET,censor,REJECT
+  - RULE-SET,ban-ad,REJECT
+  - RULE-SET,ban-program-ad,REJECT
+  - RULE-SET,public-tracker,REJECT
+  - RULE-SET,ponzi,REJECT
+  - RULE-SET,xiaomi-block-list,REJECT
+  - RULE-SET,game,🚀 PROXY
+  - RULE-SET,category-games,🚀 PROXY
+  - RULE-SET,xiaomi-white-list,🚀 PROXY
   - RULE-SET,google-play,DIRECT
   - RULE-SET,google,DIRECT
   - RULE-SET,microsoft,DIRECT
@@ -793,6 +898,10 @@ rules:
   - RULE-SET,xiaomi,DIRECT
   - RULE-SET,iran-domains,DIRECT
   - RULE-SET,iran-ips,DIRECT,no-resolve
+  - RULE-SET,arvancloud,DIRECT,no-resolve
+  - RULE-SET,derakcloud,DIRECT,no-resolve
+  - RULE-SET,iranserver,DIRECT,no-resolve
+  - RULE-SET,parspack,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
