@@ -2,7 +2,7 @@
 
 <div align="center">
 
-| [فارسی (Persian)](README.md) | [English](README.en.md) |
+| [پارسی (Persian)](README.md) | [English](README.en.md) |
 | :---: | :---: |
 
 </div>
