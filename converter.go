@@ -1,15 +1,26 @@
+//go:build ignore
+
+// This file is a standalone program: the workflow runs it as
+// `go run converter.go`, and go run with an explicitly named file
+// ignores build constraints, so that invocation is unaffected. The
+// constraint exists so package-level commands (go build ./...,
+// go vet ./..., go test ./...) see only main.go's main() instead of
+// failing on two mains in one package.
+
 package main
 
 import (
 	"bufio"
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"net/url"
 	"os"
 	"sort"
+	"strconv"
 	"strings"
 	"unicode/utf8"
+
+	"github.com/justVisiting992/xray-Config-Collector/internal/sharelink"
 )
 
 type Proxy map[string]interface{}
@@ -66,8 +77,13 @@ func main() {
 
 			delete(p, "plugin")
 			delete(p, "plugin-opts")
-			delete(p, "obfs")
-			delete(p, "obfs-password")
+			// obfs is a first-class field for hysteria2 (salamander
+			// servers cannot be reached without it); for every
+			// other protocol it is an unsupported leftover.
+			if p["type"] != "hysteria2" {
+				delete(p, "obfs")
+				delete(p, "obfs-password")
+			}
 
 			if name, ok := p["name"].(string); ok {
 				p["name"] = sanitizeString(name)
@@ -81,6 +97,7 @@ func main() {
 		}
 	}
 
+	proxies = dedupeProxies(proxies)
 	proxies = selectClashProxies(proxies)
 	writeProxiesYaml(providerFile, proxies)
 	writeClashConfig(configFile)
@@ -140,8 +157,14 @@ func parseVless(raw string) (Proxy, error) {
 				"public-key": pbk,
 				"short-id":   sid,
 			}
-			p["flow"] = "xtls-rprx-vision"
 		}
+	}
+
+	// The link's own flow is authoritative: hard-coding Vision for
+	// every reality link invented a flow some servers never had and
+	// dropped the flow of plain-TLS Vision links.
+	if flow := q.Get("flow"); flow != "" {
+		p["flow"] = flow
 	}
 
 	fp := q.Get("fp")
@@ -154,9 +177,11 @@ func parseVless(raw string) (Proxy, error) {
 	network := q.Get("type")
 	if network != "" {
 		p["network"] = network
-		if network == "ws" || network == "httpupgrade" || network == "grpc" {
-			p["tls"] = true
-		}
+		// TLS comes from the security parameter alone (set above).
+		// Forcing it on for ws/httpupgrade/grpc published a
+		// different config from the one the live test passed: a
+		// plaintext-WS link was tested without TLS and published
+		// with TLS + ALPN.
 		if network == "ws" || network == "httpupgrade" {
 			headers := map[string]string{}
 			if host := q.Get("host"); host != "" {
@@ -170,6 +195,20 @@ func parseVless(raw string) (Proxy, error) {
 			p["grpc-opts"] = map[string]interface{}{
 				"service-name": q.Get("serviceName"),
 			}
+		} else if network == "xhttp" {
+			opts := map[string]interface{}{}
+			if path := q.Get("path"); path != "" {
+				opts["path"] = path
+			}
+			if host := q.Get("host"); host != "" {
+				opts["host"] = host
+			}
+			if mode := q.Get("mode"); mode != "" {
+				opts["mode"] = mode
+			}
+			if len(opts) > 0 {
+				p["xhttp-opts"] = opts
+			}
 		}
 	} else {
 		p["network"] = "tcp"
@@ -180,17 +219,24 @@ func parseVless(raw string) (Proxy, error) {
 
 func parseVmess(raw string) (Proxy, error) {
 	data := strings.TrimPrefix(raw, "vmess://")
-	decoded, err := base64.StdEncoding.DecodeString(data)
+	// The shared loose decoder: this function's own two attempts
+	// never padded the input, so an unpadded VMess payload — common
+	// in the wild, and decoded fine by main.go and livetest — was
+	// silently skipped here.
+	decoded, err := sharelink.DecodeBase64Loose(data)
 	if err != nil {
-		decoded, err = base64.URLEncoding.DecodeString(data)
-		if err != nil {
-			return nil, err
-		}
+		return nil, err
 	}
 
 	var v map[string]interface{}
 	if err := json.Unmarshal(decoded, &v); err != nil {
 		return nil, err
+	}
+	if v["add"] == nil || v["id"] == nil || v["port"] == nil {
+		// Without server or UUID there is no proxy to publish;
+		// %v-rendering the missing values used to write literal
+		// "<nil>" entries into clash-proxies.yaml.
+		return nil, fmt.Errorf("vmess: missing add or id")
 	}
 
 	p := make(Proxy)
@@ -199,8 +245,29 @@ func parseVmess(raw string) (Proxy, error) {
 	p["server"] = v["add"]
 	p["port"] = v["port"]
 	p["uuid"] = v["id"]
-	p["alterId"] = 0
-	p["cipher"] = "auto"
+	// The link's own alterId and cipher are authoritative; both
+	// used to be hard-coded (0 / "auto"), which broke legacy
+	// servers that require alterId > 0 and hid the real cipher.
+	// aid arrives as a JSON number or string depending on the
+	// generator; Mihomo wants an int, and the old hard-coded 0 was
+	// at least always an int.
+	switch aid := v["aid"].(type) {
+	case float64:
+		p["alterId"] = int(aid)
+	case string:
+		n, _ := strconv.Atoi(aid)
+		p["alterId"] = n
+	default:
+		p["alterId"] = 0
+	}
+	if scy := fmt.Sprintf("%v", v["scy"]); v["scy"] != nil && scy != "" && scy != "<nil>" {
+		p["cipher"] = scy
+	} else {
+		p["cipher"] = "auto"
+	}
+	if sni := fmt.Sprintf("%v", v["sni"]); v["sni"] != nil && sni != "" && sni != "<nil>" {
+		p["servername"] = sni
+	}
 
 	net := fmt.Sprintf("%v", v["net"])
 	if net == "ws" {
@@ -216,6 +283,32 @@ func parseVmess(raw string) (Proxy, error) {
 			"service-name": v["path"],
 		}
 		p["tls"] = true
+	} else if net == "httpupgrade" {
+		p["network"] = "httpupgrade"
+		p["ws-opts"] = map[string]interface{}{
+			"path":    v["path"],
+			"headers": map[string]string{"Host": fmt.Sprintf("%v", v["host"])},
+		}
+	} else if net == "xhttp" || net == "http" {
+		// livetest maps the legacy VMess "http" transport to
+		// xhttp; publish what was tested.
+		p["network"] = "xhttp"
+		opts := map[string]interface{}{}
+		if path := fmt.Sprintf("%v", v["path"]); v["path"] != nil && path != "" && path != "<nil>" {
+			opts["path"] = path
+		}
+		if host := fmt.Sprintf("%v", v["host"]); v["host"] != nil && host != "" && host != "<nil>" {
+			opts["host"] = host
+		}
+		if len(opts) > 0 {
+			p["xhttp-opts"] = opts
+		}
+	} else if net == "h2" {
+		p["network"] = "h2"
+		p["h2-opts"] = map[string]interface{}{
+			"path": v["path"],
+			"host": []string{fmt.Sprintf("%v", v["host"])},
+		}
 	} else {
 		p["network"] = "tcp"
 	}
@@ -246,9 +339,54 @@ func parseTrojan(raw string) (Proxy, error) {
 	p["port"] = u.Port()
 	p["password"] = u.User.Username()
 	p["tls"] = true
-	p["network"] = "tcp"
 
-	fp := u.Query().Get("fp")
+	// This parser used to read nothing but fp from the query: the
+	// SNI and every transport were dropped, so a Trojan-over-WS
+	// link that passed the live test was published as plain
+	// TCP/TLS to the server host — the largest mangling gap the
+	// parser audit found. Mirror parseVless's transport handling.
+	q := u.Query()
+	if sni := q.Get("sni"); sni != "" {
+		p["servername"] = sni
+	} else if peer := q.Get("peer"); peer != "" {
+		p["servername"] = peer
+	}
+	network := q.Get("type")
+	if network == "" {
+		network = "tcp"
+	}
+	p["network"] = network
+	switch network {
+	case "ws", "httpupgrade":
+		headers := map[string]string{}
+		if host := q.Get("host"); host != "" {
+			headers["Host"] = host
+		}
+		p[network+"-opts"] = map[string]interface{}{
+			"path":    q.Get("path"),
+			"headers": headers,
+		}
+	case "grpc":
+		p["grpc-opts"] = map[string]interface{}{
+			"service-name": q.Get("serviceName"),
+		}
+	case "xhttp":
+		opts := map[string]interface{}{}
+		if path := q.Get("path"); path != "" {
+			opts["path"] = path
+		}
+		if host := q.Get("host"); host != "" {
+			opts["host"] = host
+		}
+		if mode := q.Get("mode"); mode != "" {
+			opts["mode"] = mode
+		}
+		if len(opts) > 0 {
+			p["xhttp-opts"] = opts
+		}
+	}
+
+	fp := q.Get("fp")
 	if fp != "" {
 		p["client-fingerprint"] = fp
 	} else {
@@ -291,7 +429,12 @@ func parseSS(raw string) (Proxy, error) {
 		if hasPass {
 			cipher, password = user, pass
 		} else {
-			cipher, password = "aes-256-gcm", user
+			// No decodable method:password anywhere in the link.
+			// This used to fabricate cipher aes-256-gcm with the
+			// raw userinfo blob as the password, publishing a
+			// wrong proxy instead of counting the line as
+			// skipped like every other parse failure.
+			return nil, fmt.Errorf("ss: no decodable method:password in userinfo")
 		}
 	}
 	p["cipher"] = cipher
@@ -311,7 +454,10 @@ func parseSS(raw string) (Proxy, error) {
 }
 
 // decodeSSUserinfo returns the cipher and password from an ss:// URI.
-// Returns "", "" when the userinfo is not a decodable method:password pair.
+// Returns "", "" when the userinfo is not a decodable method:password
+// pair. The userinfo logic itself lives in internal/sharelink, shared
+// with main.go's isValidShadowsocks, so the two programs can no
+// longer drift apart on what a valid SS userinfo is.
 func decodeSSUserinfo(raw string) (string, string) {
 	base := strings.Split(raw, "#")[0]
 	base = strings.TrimPrefix(base, "ss://")
@@ -319,38 +465,11 @@ func decodeSSUserinfo(raw string) (string, string) {
 	if atIdx == -1 {
 		return "", ""
 	}
-	userinfo := base[:atIdx]
-	// PathUnescape, not QueryUnescape: '+' is a valid base64 character
-	// in the userinfo and must not become a space.
-	if unescaped, err := url.PathUnescape(userinfo); err == nil {
-		userinfo = unescaped
+	method, password, ok := sharelink.DecodeSSUserinfo(base[:atIdx])
+	if !ok {
+		return "", ""
 	}
-	// Plain form: ss://cipher:password@host:port
-	if parts := strings.SplitN(userinfo, ":", 2); len(parts) == 2 && parts[0] != "" {
-		return parts[0], parts[1]
-	}
-	// Classic form: ss://base64(cipher:password)@host:port.
-	// Try URL-safe and standard base64, with and without padding,
-	// mirroring main.go's isValidShadowsocks().
-	padded := userinfo + strings.Repeat("=", (4-len(userinfo)%4)%4)
-	for _, decode := range []func(string) ([]byte, error){
-		base64.RawURLEncoding.DecodeString,
-		base64.URLEncoding.DecodeString,
-		base64.RawStdEncoding.DecodeString,
-		base64.StdEncoding.DecodeString,
-	} {
-		decoded, err := decode(padded)
-		if err != nil {
-			decoded, err = decode(userinfo)
-			if err != nil {
-				continue
-			}
-		}
-		if parts := strings.SplitN(string(decoded), ":", 2); len(parts) == 2 && parts[0] != "" && parts[1] != "" {
-			return parts[0], parts[1]
-		}
-	}
-	return "", ""
+	return method, password
 }
 
 func parseHy2(raw string) (Proxy, error) {
@@ -366,14 +485,60 @@ func parseHy2(raw string) (Proxy, error) {
 	p["password"] = u.User.Username()
 
 	q := u.Query()
+	if p["password"] == "" {
+		// Some links carry the auth only in the query; livetest
+		// accepts those, so publish them with the same password.
+		p["password"] = q.Get("auth")
+	}
+	if sni := q.Get("sni"); sni != "" {
+		p["sni"] = sni
+	}
 	if obfs := q.Get("obfs"); obfs != "" {
 		p["obfs"] = obfs
 	}
-	if brutal := q.Get("brutal"); brutal != "" {
-		p["brutal"] = brutal
+	if obfsPassword := q.Get("obfs-password"); obfsPassword != "" {
+		p["obfs-password"] = obfsPassword
 	}
+	// The non-standard "brutal" key this parser used to emit is
+	// gone: Mihomo does not read it (bandwidth belongs in up/down)
+	// and no other parser in the pipeline produces it.
 
 	return p, nil
+}
+
+// dedupeProxies drops proxies that are identical in everything but
+// name, keeping the first occurrence. The input list is normally
+// fingerprint-deduped upstream, but two distinct links can still
+// collapse into the same Clash proxy here (two Trojans differing
+// only in a field this converter does not carry, a hand-edited
+// mixed file, ...), and before this pass both landed in
+// clash-proxies.yaml, spending two of the 500 selection slots on
+// one endpoint. The key is a canonical serialisation of the proxy
+// map without its name: keys sorted, values via %v — the same
+// rendering writeProxiesYaml produces.
+func dedupeProxies(proxies []Proxy) []Proxy {
+	seen := make(map[string]bool, len(proxies))
+	out := proxies[:0]
+	for _, p := range proxies {
+		keys := make([]string, 0, len(p))
+		for k := range p {
+			if k != "name" {
+				keys = append(keys, k)
+			}
+		}
+		sort.Strings(keys)
+		var b strings.Builder
+		for _, k := range keys {
+			fmt.Fprintf(&b, "%s=%v;", k, p[k])
+		}
+		key := b.String()
+		if seen[key] {
+			continue
+		}
+		seen[key] = true
+		out = append(out, p)
+	}
+	return out
 }
 
 // clashCountryFlags are the exit countries that get their own group

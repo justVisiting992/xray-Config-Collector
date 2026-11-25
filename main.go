@@ -21,6 +21,7 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/justVisiting992/xray-Config-Collector/internal/sharelink"
 	"github.com/oschwald/geoip2-golang"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
@@ -536,7 +537,14 @@ func loadSubscriptions(path string) []string {
 // subscription links serve the URI list base64-encoded; if the body is
 // not already a URI list, a base64 decode is attempted (standard and
 // URL-safe alphabets, padded or not) and used when it yields one.
+// Bodies in the structured Clash YAML / sing-box JSON formats are
+// first converted to share URIs by subconvert.go — before the "://"
+// shortcut below, because a full Clash config contains "://" in its
+// DNS section while holding no extractable URIs at all.
 func decodeSubscriptionBody(body []byte) string {
+	if uris := structuredSubscriptionURIs(body); len(uris) > 0 {
+		return strings.Join(uris, "\n")
+	}
 	text := strings.TrimSpace(string(body))
 	if strings.Contains(text, "://") {
 		return text
@@ -990,13 +998,7 @@ func extractHost(config string) string {
 	if strings.HasPrefix(lower, "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		if i := len(b64) % 4; i != 0 {
-			b64 += strings.Repeat("=", 4-i)
-		}
-		decoded, err := base64.StdEncoding.DecodeString(b64)
-		if err != nil {
-			decoded, _ = base64.URLEncoding.DecodeString(b64)
-		}
+		decoded, _ := sharelink.DecodeBase64Loose(b64)
 		var v map[string]interface{}
 		if err := json.Unmarshal(decoded, &v); err == nil {
 			if add, ok := v["add"].(string); ok && add != "" {
@@ -1126,13 +1128,7 @@ func getConfigFingerprint(config string) string {
 	if strings.HasPrefix(lower, "vmess://") {
 		b64 := strings.TrimPrefix(config, "vmess://")
 		b64 = strings.TrimPrefix(b64, "VMess://")
-		if i := len(b64) % 4; i != 0 {
-			b64 += strings.Repeat("=", 4-i)
-		}
-		decoded, err := base64.StdEncoding.DecodeString(b64)
-		if err != nil {
-			decoded, _ = base64.URLEncoding.DecodeString(b64)
-		}
+		decoded, _ := sharelink.DecodeBase64Loose(b64)
 		var v VMessConfig
 		if err := json.Unmarshal(decoded, &v); err == nil {
 			// Transport fields are part of the identity: two configs
@@ -1355,54 +1351,21 @@ func isValidShadowsocks(config string) bool {
 		return false
 	}
 	userinfo := rest[:atIdx]
-	// Plain form: ss://method:password@host:port. It is a valid URI
-	// form — the live tester and the Clash converter both handle it —
-	// so accept it under the same method rules as the classic form
-	// below instead of discarding it. (A classic base64 userinfo never
-	// contains ':', so this branch cannot misfire on it.)
-	if idx := strings.Index(userinfo, ":"); idx > 0 && idx < len(userinfo)-1 {
-		return isKnownSSMethod(strings.ToLower(userinfo[:idx]))
-	}
-	padded := userinfo + strings.Repeat("=", (4-len(userinfo)%4)%4)
-	decoded, err := base64.URLEncoding.DecodeString(padded)
-	if err != nil {
-		decoded, err = base64.StdEncoding.DecodeString(padded)
-		if err != nil {
-			return false
-		}
-	}
-	parts := strings.SplitN(string(decoded), ":", 2)
-	if len(parts) != 2 {
+	// Both userinfo forms (plain method:password and the classic
+	// base64 form) are decoded by internal/sharelink, the same code
+	// converter.go uses, so a link cannot be valid here and
+	// unparseable there or the other way round.
+	method, _, ok := sharelink.DecodeSSUserinfo(userinfo)
+	if !ok {
 		return false
 	}
-	return isKnownSSMethod(strings.ToLower(parts[0]))
+	return isKnownSSMethod(strings.ToLower(method))
 }
 
 // isKnownSSMethod reports whether method is a real Shadowsocks
-// encryption method: a known cipher, or at least one containing a
-// known cipher family name. Empty and "none" are not encryption.
+// encryption method. The implementation lives in internal/sharelink
+// (sharelink.KnownSSMethod); this wrapper keeps the existing call
+// sites unchanged.
 func isKnownSSMethod(method string) bool {
-	// require a real encryption method (must not be empty or "none")
-	if method == "" || method == "none" {
-		return false
-	}
-	// list of standard SS methods (add more if needed)
-	validMethods := map[string]bool{
-		"aes-128-gcm":      true,
-		"aes-256-gcm":      true,
-		"chacha20-ietf-poly1305": true,
-		"chacha20-poly1305": true,
-		"2022-blake3-aes-128-gcm": true,
-		"2022-blake3-aes-256-gcm": true,
-		"2022-blake3-chacha20-poly1305": true,
-	}
-	// also allow any method that contains typical cipher names (like "aes-128", "aes-256", "chacha", "2022")
-	if validMethods[method] {
-		return true
-	}
-	// fallback: accept if it contains known cipher words
-	if strings.Contains(method, "aes") || strings.Contains(method, "chacha") || strings.Contains(method, "2022") {
-		return true
-	}
-	return false
+	return sharelink.KnownSSMethod(method)
 }
