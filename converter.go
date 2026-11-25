@@ -430,6 +430,8 @@ log-level: info
 ipv6: false
 unified-delay: true
 tcp-concurrent: true
+global-client-fingerprint: chrome
+find-process-mode: strict
 geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24
@@ -437,11 +439,27 @@ geox-url:
   geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
   mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
+profile:
+  store-selected: true
+  store-fake-ip: true
 dns:
   enable: true
   ipv6: false
+  prefer-h3: false
+  cache-algorithm: arc
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - "time.*.com"
+    - "ntp.*.com"
+    - "*.ir"
   default-nameserver:
     - 78.157.42.100
     - 185.51.200.2
@@ -452,6 +470,19 @@ dns:
     "geosite:ir":
       - 78.157.42.100
       - 185.51.200.2
+  direct-nameserver:
+    - 78.157.42.100
+    - 185.51.200.2
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 8443]
 proxy-providers:
   collector:
     type: http
