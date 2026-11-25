@@ -115,14 +115,27 @@ func RewriteRemark(link, label string) string {
 	return clean + "#" + label
 }
 
+// exitPlace returns the remark's place label for an exit IP: the CDN
+// name ("☁️ Cloudflare") when the exit is CDN anycast egress — its
+// geolocation is whatever edge served the test, not a real place —
+// and the country label otherwise. ok is false when neither applies.
+func exitPlace(exitIP string, g *GeoLabeler) (string, bool) {
+	if name, isCDN := CDNName(exitIP); isCDN {
+		return "☁️ " + name, true
+	}
+	return g.CountryLabel(exitIP)
+}
+
 // LabelWithExitIP rewrites a link's remark to
 // "<flag> <Country> | <PROTOCOL> | <traits>", where the country is
 // resolved from the exit IP observed through the proxy and traits
-// describe the transport and encryption (see TraitTag). On any
-// failure — missing or unknown exit IP, no labeler, no scheme — the
-// link is returned unchanged, so a config is never mislabelled.
+// describe the transport and encryption (see TraitTag). An exit IP
+// in a CDN's egress ranges is labelled with the CDN instead
+// ("☁️ <CDN> | ..."), because a CDN exit has no fixed country. On
+// any failure — missing or unknown exit IP, no labeler, no scheme —
+// the link is returned unchanged, so a config is never mislabelled.
 func LabelWithExitIP(link, exitIP string, g *GeoLabeler) string {
-	countryLabel, ok := g.CountryLabel(exitIP)
+	place, ok := exitPlace(exitIP, g)
 	if !ok {
 		return link
 	}
@@ -131,7 +144,7 @@ func LabelWithExitIP(link, exitIP string, g *GeoLabeler) string {
 		return link
 	}
 	proto := strings.ToUpper(link[:i])
-	label := fmt.Sprintf("%s | %s", countryLabel, proto)
+	label := fmt.Sprintf("%s | %s", place, proto)
 	if tag := TraitTag(link); tag != "" {
 		label += " | " + tag
 	}

@@ -377,11 +377,12 @@ func parseHy2(raw string) (Proxy, error) {
 }
 
 // clashCountryFlags are the exit countries that get their own group
-// in clash.yaml, in the config's group order. Only proxies whose
-// remark starts with one of these flags are eligible for
-// clash-proxies.yaml. Keep in sync with the country groups in the
-// clashConfig template below.
-var clashCountryFlags = []string{"🇺🇸", "🇳🇱", "🇩🇪", "🇯🇵", "🇫🇷", "🇨🇦", "🇷🇺", "🇸🇬", "🇪🇸", "🇬🇧", "🇨🇭", "🇭🇰", "🇫🇮", "🇸🇪", "🇵🇱", "🇰🇷"}
+// in clash.yaml, in the config's group order, plus the ☁️ marker of
+// CDN exits (see livetest's CDN labelling), which the Dynamic group
+// covers. Only proxies whose remark starts with one of these are
+// eligible for clash-proxies.yaml. Keep in sync with the groups in
+// the clashConfig template below.
+var clashCountryFlags = []string{"🇺🇸", "🇳🇱", "🇩🇪", "🇯🇵", "🇫🇷", "🇨🇦", "🇷🇺", "🇸🇬", "🇪🇸", "🇬🇧", "🇨🇭", "🇭🇰", "🇫🇮", "🇸🇪", "🇵🇱", "🇰🇷", "☁️"}
 
 // clashProtocols is the quota order for the clash selection.
 var clashProtocols = []string{"vless", "vmess", "trojan", "ss", "hysteria2"}
@@ -527,8 +528,8 @@ func writeProxiesYaml(filename string, proxies []Proxy) {
 // ACL4SSR (BanAD / BanProgramAD; 10ium's are YAML conversions), and
 // 10ium/mihomo_rule (Ponzi — 10ium's own list, no upstream found).
 // Country groups filter the provider by the flag emoji that starts
-// every proxy name (the exit-IP label); OTHER catches the rest via
-// exclude-filter.
+// every proxy name (the exit-IP label); the Dynamic group does the
+// same for CDN exits, whose names start with ☁️ instead of a flag.
 const clashConfig = `# xray-Config-Collector — Mihomo (Clash.Meta) subscription
 # Proxies live in clash-proxies.yaml (see proxy-providers below); only
 # that file changes between runs. This config is static.
@@ -623,6 +624,7 @@ proxy-groups:
       - "🇸🇪 Sweden"
       - "🇵🇱 Poland"
       - "🇰🇷 South Korea"
+      - "☁️ Dynamic"
       - DIRECT
   - name: "♻️ AUTO"
     type: url-test
@@ -756,6 +758,14 @@ proxy-groups:
     use:
       - collector
     filter: "^🇰🇷"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "☁️ Dynamic"
+    type: url-test
+    use:
+      - collector
+    filter: "^☁️"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50

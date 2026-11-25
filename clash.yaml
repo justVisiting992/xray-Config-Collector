@@ -92,6 +92,7 @@ proxy-groups:
       - "🇸🇪 Sweden"
       - "🇵🇱 Poland"
       - "🇰🇷 South Korea"
+      - "☁️ Dynamic"
       - DIRECT
   - name: "♻️ AUTO"
     type: url-test
@@ -225,6 +226,14 @@ proxy-groups:
     use:
       - collector
     filter: "^🇰🇷"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "☁️ Dynamic"
+    type: url-test
+    use:
+      - collector
+    filter: "^☁️"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
