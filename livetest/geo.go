@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net"
 	"net/url"
+	"regexp"
 	"strings"
 
 	"github.com/oschwald/geoip2-golang"
@@ -320,30 +321,53 @@ func remarkOf(link string) string {
 	return ""
 }
 
+// numberSuffix matches the " NN" sequence numbers NumberDuplicateRemarks
+// appends (one or more: " 01", or " 01 01" when an already-numbered list
+// is numbered again). Published labels never end in a number — they end
+// in a trait word ("TLS", "WS", "Reality") — so stripping a trailing run
+// of space-separated numbers can only remove numbering, never a label.
+var numberSuffix = regexp.MustCompile(`(?: \d{2,})+$`)
+
+// baseRemark returns a remark with any trailing sequence numbers
+// stripped, so remarks are grouped by their base label.
+func baseRemark(r string) string {
+	return numberSuffix.ReplaceAllString(r, "")
+}
+
 // NumberDuplicateRemarks makes every remark in links unique: links
 // whose remark appears more than once get a sequence number appended
 // in order — " 01", " 02", ..., " 10", " 11" — while remarks that are
 // already unique are left untouched. Link order is preserved. Links
 // without a remark are left as they are.
+//
+// Idempotent: remarks are grouped by their base label with any trailing
+// sequence numbers stripped first, so numbering an already-numbered
+// list changes nothing. This matters because the pipeline numbers
+// remarks more than once — once per live-test chunk (cmd/livetest
+// -files) and again over the merged file and each derived protocol
+// list (filter-lists.sh -renumber) — and grouping by the exact remark
+// made the later passes append a second number ("TLS 01 01") instead
+// of deduplicating, and let a freshly numbered bare pair collide with
+// a pre-existing chunk number ("TLS 01" twice).
 func NumberDuplicateRemarks(links []string) []string {
-	remarks := make([]string, len(links))
+	bases := make([]string, len(links))
 	counts := make(map[string]int)
 	for i, link := range links {
-		remarks[i] = remarkOf(link)
-		if remarks[i] != "" {
-			counts[remarks[i]]++
+		bases[i] = baseRemark(remarkOf(link))
+		if bases[i] != "" {
+			counts[bases[i]]++
 		}
 	}
 	out := make([]string, len(links))
 	seen := make(map[string]int)
 	for i, link := range links {
-		r := remarks[i]
-		if r == "" || counts[r] < 2 {
+		b := bases[i]
+		if b == "" || counts[b] < 2 {
 			out[i] = link
 			continue
 		}
-		seen[r]++
-		out[i] = RewriteRemark(link, fmt.Sprintf("%s %02d", r, seen[r]))
+		seen[b]++
+		out[i] = RewriteRemark(link, fmt.Sprintf("%s %02d", b, seen[b]))
 	}
 	return out
 }

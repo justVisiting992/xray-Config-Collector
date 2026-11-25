@@ -203,3 +203,74 @@ func TestNumberDuplicateRemarks(t *testing.T) {
 		seen[r] = true
 	}
 }
+
+// TestNumberDuplicateRemarksIdempotent covers numbering a list that was
+// already numbered — the 2026-11-24 published run stacked numbers
+// ("TLS 01 01", 4,774 of 7,104 mixed lines) because each live-test
+// chunk numbered its own output and the merged -renumber pass grouped
+// by the exact remark, and left 144 remarks duplicated. Stripping the
+// trailing number before grouping must fix both, and a second pass
+// must be a no-op.
+func TestNumberDuplicateRemarksIdempotent(t *testing.T) {
+	mkVless := func(host, remark string) string {
+		return "vless://u@" + host + ":443?security=reality#" + remark
+	}
+	base := "🇫🇷 France | TLS"
+	check := func(name string, links, want []string) {
+		t.Run(name, func(t *testing.T) {
+			out := NumberDuplicateRemarks(links)
+			if len(out) != len(links) {
+				t.Fatalf("length changed: %d -> %d", len(links), len(out))
+			}
+			for i, w := range want {
+				if got := remarkOf(out[i]); got != w {
+					t.Errorf("link %d remark = %q, want %q", i, got, w)
+				}
+			}
+			// A second pass must not change anything.
+			again := NumberDuplicateRemarks(out)
+			for i := range out {
+				if again[i] != out[i] {
+					t.Errorf("second pass changed link %d: %q -> %q", i, out[i], again[i])
+				}
+			}
+		})
+	}
+
+	// Already numbered once: stable.
+	check("numbered-once", []string{
+		mkVless("a.example", base+" 01"),
+		mkVless("b.example", base+" 02"),
+	}, []string{base + " 01", base + " 02"})
+
+	// Stacked by a second pass: collapse back to single numbers.
+	check("stacked", []string{
+		mkVless("a.example", base+" 01 01"),
+		mkVless("b.example", base+" 01 02"),
+		mkVless("c.example", base+" 01 03"),
+	}, []string{base + " 01", base + " 02", base + " 03"})
+
+	// Cross-chunk shape: two chunks each numbered their own copy 01.
+	check("cross-chunk", []string{
+		mkVless("a.example", base+" 01"),
+		mkVless("b.example", base+" 01"),
+		mkVless("c.example", base+" 02"),
+		mkVless("d.example", base+" 02"),
+	}, []string{base + " 01", base + " 02", base + " 03", base + " 04"})
+
+	// Bare and numbered copies of one base mix into one sequence.
+	check("bare-and-numbered", []string{
+		mkVless("a.example", base),
+		mkVless("b.example", base+" 01"),
+		mkVless("c.example", base+" 01 01"),
+	}, []string{base + " 01", base + " 02", base + " 03"})
+
+	// Remarks that are unique stay untouched, whether bare or numbered
+	// on their own — but note "TLS" and "TLS 07" are NOT unique: they
+	// share one base and are renumbered 01, 02 (see bare-and-numbered).
+	check("unique-untouched", []string{
+		mkVless("a.example", "🇸🇪 Sweden | TLS"),
+		mkVless("b.example", "🇳🇴 Norway | TLS"),
+		mkVless("c.example", "🇳🇴 Norway | TLS 07"),
+	}, []string{"🇸🇪 Sweden | TLS", "🇳🇴 Norway | TLS 01", "🇳🇴 Norway | TLS 02"})
+}
