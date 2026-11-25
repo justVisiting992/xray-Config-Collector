@@ -81,6 +81,7 @@ func main() {
 		}
 	}
 
+	proxies = selectClashProxies(proxies)
 	writeProxiesYaml(providerFile, proxies)
 	writeClashConfig(configFile)
 	if skipped > 0 {
@@ -375,6 +376,114 @@ func parseHy2(raw string) (Proxy, error) {
 	return p, nil
 }
 
+// clashCountryFlags are the exit countries that get their own group
+// in clash.yaml, in the config's group order. Only proxies whose
+// remark starts with one of these flags are eligible for
+// clash-proxies.yaml. Keep in sync with the country groups in the
+// clashConfig template below.
+var clashCountryFlags = []string{"🇺🇸", "🇳🇱", "🇩🇪", "🇯🇵", "🇫🇷", "🇨🇦", "🇷🇺", "🇸🇬", "🇪🇸", "🇬🇧", "🇨🇭", "🇭🇰", "🇫🇮", "🇸🇪", "🇵🇱", "🇰🇷"}
+
+// clashProtocols is the quota order for the clash selection.
+var clashProtocols = []string{"vless", "vmess", "trojan", "ss", "hysteria2"}
+
+const (
+	clashMaxProxies = 500 // total cap for clash-proxies.yaml
+	clashProtoQuota = 100 // per-protocol share before backfilling
+)
+
+// selectClashProxies picks the proxies published in
+// clash-proxies.yaml: only the clashConfig countries, at most
+// clashProtoQuota per protocol, spread across that protocol's
+// countries round-robin so every country present in the pool is
+// represented. A protocol that cannot fill its quota (hysteria2,
+// usually) hands its unused slots to the other protocols,
+// round-robin, up to clashMaxProxies in total. The result keeps
+// the input order.
+func selectClashProxies(proxies []Proxy) []Proxy {
+	// spread[proto] holds the protocol's candidate indexes ordered
+	// country-round-robin.
+	spread := map[string][]int{}
+	byProtoFlag := map[string]map[string][]int{}
+	for i, p := range proxies {
+		name, _ := p["name"].(string)
+		proto, _ := p["type"].(string)
+		flag := ""
+		for _, f := range clashCountryFlags {
+			if strings.HasPrefix(name, f) {
+				flag = f
+				break
+			}
+		}
+		if flag == "" {
+			continue
+		}
+		if byProtoFlag[proto] == nil {
+			byProtoFlag[proto] = map[string][]int{}
+		}
+		byProtoFlag[proto][flag] = append(byProtoFlag[proto][flag], i)
+	}
+	for proto, byFlag := range byProtoFlag {
+		for {
+			took := false
+			for _, f := range clashCountryFlags {
+				if q := byFlag[f]; len(q) > 0 {
+					spread[proto] = append(spread[proto], q[0])
+					byFlag[f] = q[1:]
+					took = true
+				}
+			}
+			if !took {
+				break
+			}
+		}
+	}
+
+	chosen := map[int]bool{}
+	pos := map[string]int{} // next spread index per protocol
+	take := func(proto string, n int) int {
+		got := 0
+		for got < n && pos[proto] < len(spread[proto]) {
+			chosen[spread[proto][pos[proto]]] = true
+			pos[proto]++
+			got++
+		}
+		return got
+	}
+	total := 0
+	for _, proto := range clashProtocols {
+		total += take(proto, clashProtoQuota)
+	}
+	for total < clashMaxProxies {
+		progressed := false
+		for _, proto := range clashProtocols {
+			if total >= clashMaxProxies {
+				break
+			}
+			if take(proto, 1) > 0 {
+				total++
+				progressed = true
+			}
+		}
+		if !progressed {
+			break
+		}
+	}
+
+	out := make([]Proxy, 0, total)
+	counts := map[string]int{}
+	for i, p := range proxies {
+		if chosen[i] {
+			out = append(out, p)
+			if t, ok := p["type"].(string); ok {
+				counts[t]++
+			}
+		}
+	}
+	fmt.Printf("🎯 Selected %d of %d proxies for clash (vless %d, vmess %d, trojan %d, ss %d, hysteria2 %d)\n",
+		len(out), len(proxies), counts["vless"], counts["vmess"], counts["trojan"], counts["ss"], counts["hysteria2"])
+	return out
+}
+
 func writeProxiesYaml(filename string, proxies []Proxy) {
 	f, err := os.Create(filename)
 	if err != nil {
@@ -505,24 +614,15 @@ proxy-groups:
       - "🇫🇷 France"
       - "🇨🇦 Canada"
       - "🇷🇺 Russia"
-      - "🇮🇱 Israel"
       - "🇸🇬 Singapore"
       - "🇪🇸 Spain"
       - "🇬🇧 UK"
       - "🇨🇭 Switzerland"
       - "🇭🇰 Hong Kong"
-      - "🇮🇶 Iraq"
-      - "🇮🇳 India"
-      - "🇦🇪 UAE"
       - "🇫🇮 Finland"
-      - "🇨🇿 Czechia"
       - "🇸🇪 Sweden"
-      - "🇰🇿 Kazakhstan"
       - "🇵🇱 Poland"
-      - "🇸🇨 Seychelles"
-      - "🇨🇾 Cyprus"
       - "🇰🇷 South Korea"
-      - "🌍 OTHER"
       - DIRECT
   - name: "♻️ AUTO"
     type: url-test
@@ -587,14 +687,6 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  - name: "🇮🇱 Israel"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇮🇱"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
   - name: "🇸🇬 Singapore"
     type: url-test
     use:
@@ -635,43 +727,11 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  - name: "🇮🇶 Iraq"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇮🇶"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🇮🇳 India"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇮🇳"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🇦🇪 UAE"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇦🇪"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
   - name: "🇫🇮 Finland"
     type: url-test
     use:
       - collector
     filter: "^🇫🇮"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🇨🇿 Czechia"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇨🇿"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -683,14 +743,6 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  - name: "🇰🇿 Kazakhstan"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇰🇿"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
   - name: "🇵🇱 Poland"
     type: url-test
     use:
@@ -699,35 +751,11 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  - name: "🇸🇨 Seychelles"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇸🇨"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🇨🇾 Cyprus"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇨🇾"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
   - name: "🇰🇷 South Korea"
     type: url-test
     use:
       - collector
     filter: "^🇰🇷"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🌍 OTHER"
-    type: url-test
-    use:
-      - collector
-    exclude-filter: "^🇺🇸|^🇳🇱|^🇩🇪|^🇯🇵|^🇫🇷|^🇨🇦|^🇷🇺|^🇮🇱|^🇸🇬|^🇪🇸|^🇬🇧|^🇨🇭|^🇭🇰|^🇮🇶|^🇮🇳|^🇦🇪|^🇫🇮|^🇨🇿|^🇸🇪|^🇰🇿|^🇵🇱|^🇸🇨|^🇨🇾|^🇰🇷"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50

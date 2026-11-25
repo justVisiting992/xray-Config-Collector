@@ -83,24 +83,15 @@ proxy-groups:
       - "🇫🇷 France"
       - "🇨🇦 Canada"
       - "🇷🇺 Russia"
-      - "🇮🇱 Israel"
       - "🇸🇬 Singapore"
       - "🇪🇸 Spain"
       - "🇬🇧 UK"
       - "🇨🇭 Switzerland"
       - "🇭🇰 Hong Kong"
-      - "🇮🇶 Iraq"
-      - "🇮🇳 India"
-      - "🇦🇪 UAE"
       - "🇫🇮 Finland"
-      - "🇨🇿 Czechia"
       - "🇸🇪 Sweden"
-      - "🇰🇿 Kazakhstan"
       - "🇵🇱 Poland"
-      - "🇸🇨 Seychelles"
-      - "🇨🇾 Cyprus"
       - "🇰🇷 South Korea"
-      - "🌍 OTHER"
       - DIRECT
   - name: "♻️ AUTO"
     type: url-test
@@ -165,14 +156,6 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  - name: "🇮🇱 Israel"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇮🇱"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
   - name: "🇸🇬 Singapore"
     type: url-test
     use:
@@ -213,43 +196,11 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  - name: "🇮🇶 Iraq"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇮🇶"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🇮🇳 India"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇮🇳"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🇦🇪 UAE"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇦🇪"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
   - name: "🇫🇮 Finland"
     type: url-test
     use:
       - collector
     filter: "^🇫🇮"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🇨🇿 Czechia"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇨🇿"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -261,14 +212,6 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  - name: "🇰🇿 Kazakhstan"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇰🇿"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
   - name: "🇵🇱 Poland"
     type: url-test
     use:
@@ -277,35 +220,11 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-  - name: "🇸🇨 Seychelles"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇸🇨"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🇨🇾 Cyprus"
-    type: url-test
-    use:
-      - collector
-    filter: "^🇨🇾"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
   - name: "🇰🇷 South Korea"
     type: url-test
     use:
       - collector
     filter: "^🇰🇷"
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-  - name: "🌍 OTHER"
-    type: url-test
-    use:
-      - collector
-    exclude-filter: "^🇺🇸|^🇳🇱|^🇩🇪|^🇯🇵|^🇫🇷|^🇨🇦|^🇷🇺|^🇮🇱|^🇸🇬|^🇪🇸|^🇬🇧|^🇨🇭|^🇭🇰|^🇮🇶|^🇮🇳|^🇦🇪|^🇫🇮|^🇨🇿|^🇸🇪|^🇰🇿|^🇵🇱|^🇸🇨|^🇨🇾|^🇰🇷"
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
