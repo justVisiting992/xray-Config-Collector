@@ -16,7 +16,8 @@ type Proxy map[string]interface{}
 
 func main() {
 	inputFile := "mixed_iran.txt"
-	outputFile := "clash.yaml"
+	providerFile := "clash-proxies.yaml"
+	configFile := "clash.yaml"
 
 	file, err := os.Open(inputFile)
 	if err != nil {
@@ -80,7 +81,8 @@ func main() {
 		}
 	}
 
-	writeClashYaml(outputFile, proxies)
+	writeProxiesYaml(providerFile, proxies)
+	writeClashConfig(configFile)
 	if skipped > 0 {
 		fmt.Printf("⚠️ Skipped %d unparseable line(s) from %s\n", skipped, inputFile)
 	}
@@ -373,7 +375,7 @@ func parseHy2(raw string) (Proxy, error) {
 	return p, nil
 }
 
-func writeClashYaml(filename string, proxies []Proxy) {
+func writeProxiesYaml(filename string, proxies []Proxy) {
 	f, err := os.Create(filename)
 	if err != nil {
 		fmt.Printf("❌ Error creating output file: %v\n", err)
@@ -400,6 +402,412 @@ func writeClashYaml(filename string, proxies []Proxy) {
 
 	w.Flush()
 	fmt.Printf("✅ Wrote %d proxies to %s\n", len(proxies), filename)
+}
+
+// clashConfig is the static Mihomo subscription config written to
+// clash.yaml on every run. The proxies themselves live in
+// clash-proxies.yaml, referenced through the proxy-provider below, so
+// between runs only that file changes and this config stays identical.
+//
+// Rule providers: Chocolate4U (Iran domains/IPs, Persian ads,
+// malware, phishing, cryptominers) and MetaCubeX meta-rules-dat
+// (global ads, Google Play / Google / Microsoft / Apple / Xiaomi).
+// Country groups filter the provider by the flag emoji that starts
+// every proxy name (the exit-IP label); OTHER catches the rest via
+// exclude-filter.
+const clashConfig = `# xray-Config-Collector — Mihomo (Clash.Meta) subscription
+# Proxies live in clash-proxies.yaml (see proxy-providers below); only
+# that file changes between runs. This config is static.
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+    - 78.157.42.100
+    - 185.51.200.2
+  nameserver:
+    - "https://dns.google/dns-query"
+    - "https://cloudflare-dns.com/dns-query"
+  nameserver-policy:
+    "geosite:ir":
+      - 78.157.42.100
+      - 185.51.200.2
+proxy-providers:
+  collector:
+    type: http
+    url: "https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/clash-proxies.yaml"
+    path: ./clash-proxies.yaml
+    interval: 7200
+    health-check:
+      enable: true
+      url: "https://www.gstatic.com/generate_204"
+      interval: 300
+proxy-groups:
+  - name: "🚀 PROXY"
+    type: select
+    proxies:
+      - "♻️ AUTO"
+      - "🇺🇸 USA"
+      - "🇳🇱 Netherlands"
+      - "🇩🇪 Germany"
+      - "🇯🇵 Japan"
+      - "🇫🇷 France"
+      - "🇨🇦 Canada"
+      - "🇷🇺 Russia"
+      - "🇮🇱 Israel"
+      - "🇸🇬 Singapore"
+      - "🇪🇸 Spain"
+      - "🇬🇧 UK"
+      - "🇨🇭 Switzerland"
+      - "🇭🇰 Hong Kong"
+      - "🇮🇶 Iraq"
+      - "🇮🇳 India"
+      - "🇦🇪 UAE"
+      - "🇫🇮 Finland"
+      - "🇨🇿 Czechia"
+      - "🇸🇪 Sweden"
+      - "🇰🇿 Kazakhstan"
+      - "🇵🇱 Poland"
+      - "🇸🇨 Seychelles"
+      - "🇨🇾 Cyprus"
+      - "🇰🇷 South Korea"
+      - "🌍 OTHER"
+      - DIRECT
+  - name: "♻️ AUTO"
+    type: url-test
+    use:
+      - collector
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇺🇸 USA"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇺🇸"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇳🇱 Netherlands"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇳🇱"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇩🇪 Germany"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇩🇪"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇯🇵 Japan"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇯🇵"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇫🇷 France"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇫🇷"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇨🇦 Canada"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇨🇦"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇷🇺 Russia"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇷🇺"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇮🇱 Israel"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇮🇱"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇸🇬 Singapore"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇸🇬"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇪🇸 Spain"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇪🇸"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇬🇧 UK"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇬🇧"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇨🇭 Switzerland"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇨🇭"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇭🇰 Hong Kong"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇭🇰"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇮🇶 Iraq"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇮🇶"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇮🇳 India"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇮🇳"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇦🇪 UAE"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇦🇪"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇫🇮 Finland"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇫🇮"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇨🇿 Czechia"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇨🇿"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇸🇪 Sweden"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇸🇪"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇰🇿 Kazakhstan"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇰🇿"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇵🇱 Poland"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇵🇱"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇸🇨 Seychelles"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇸🇨"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇨🇾 Cyprus"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇨🇾"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🇰🇷 South Korea"
+    type: url-test
+    use:
+      - collector
+    filter: "^🇰🇷"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+  - name: "🌍 OTHER"
+    type: url-test
+    use:
+      - collector
+    exclude-filter: "^🇺🇸|^🇳🇱|^🇩🇪|^🇯🇵|^🇫🇷|^🇨🇦|^🇷🇺|^🇮🇱|^🇸🇬|^🇪🇸|^🇬🇧|^🇨🇭|^🇭🇰|^🇮🇶|^🇮🇳|^🇦🇪|^🇫🇮|^🇨🇿|^🇸🇪|^🇰🇿|^🇵🇱|^🇸🇨|^🇨🇾|^🇰🇷"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+rule-providers:
+  iran-domains:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.mrs"
+    path: ./ruleset/iran-domains.mrs
+    interval: 86400
+  iran-ips:
+    type: http
+    behavior: ipcidr
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.mrs"
+    path: ./ruleset/iran-ips.mrs
+    interval: 86400
+  ads-ir:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.mrs"
+    path: ./ruleset/ads-ir.mrs
+    interval: 86400
+  ads-global:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs"
+    path: ./ruleset/ads-global.mrs
+    interval: 86400
+  malware:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.mrs"
+    path: ./ruleset/malware.mrs
+    interval: 86400
+  phishing:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.mrs"
+    path: ./ruleset/phishing.mrs
+    interval: 86400
+  cryptominers:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.mrs"
+    path: ./ruleset/cryptominers.mrs
+    interval: 86400
+  google-play:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"
+    path: ./ruleset/google-play.mrs
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"
+    path: ./ruleset/google.mrs
+    interval: 86400
+  microsoft:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"
+    path: ./ruleset/microsoft.mrs
+    interval: 86400
+  apple:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"
+    path: ./ruleset/apple.mrs
+    interval: 86400
+  xiaomi:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/xiaomi.mrs"
+    path: ./ruleset/xiaomi.mrs
+    interval: 86400
+rules:
+  - RULE-SET,ads-ir,REJECT
+  - RULE-SET,ads-global,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,google-play,DIRECT
+  - RULE-SET,google,DIRECT
+  - RULE-SET,microsoft,DIRECT
+  - RULE-SET,apple,DIRECT
+  - RULE-SET,xiaomi,DIRECT
+  - RULE-SET,iran-domains,DIRECT
+  - RULE-SET,iran-ips,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - MATCH,🚀 PROXY
+`
+
+// writeClashConfig writes the static subscription config (clashConfig)
+// to filename, byte-identical on every run.
+func writeClashConfig(filename string) {
+	if err := os.WriteFile(filename, []byte(clashConfig), 0644); err != nil {
+		fmt.Printf("❌ Error writing config file: %v\n", err)
+		return
+	}
+	fmt.Printf("✅ Wrote static config to %s\n", filename)
 }
 
 func formatValue(v interface{}) string {
