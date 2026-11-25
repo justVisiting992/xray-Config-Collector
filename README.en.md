@@ -11,7 +11,7 @@
 
 ## 🇬🇧 English Guide
 
-This repo collects VLESS, VMess, Trojan, Shadowsocks and Hysteria 2 configs from Telegram channels and hundreds of public subscription lists, tests every single one, and publishes only the ones that actually work. The lists rebuild themselves every 2 hours — you just grab a link below and import it.
+This repo collects VLESS, VMess, Trojan, Shadowsocks and Hysteria 2 configs from Telegram channels and hundreds of public subscription lists, tests every single one, and publishes only the ones that actually work. The lists rebuild themselves every 12 hours — you just grab a link below and import it.
 
 > **How we test:** an open port proves nothing, so every config has to pass a real traffic test first. An embedded Xray core sends an actual HTTP request through the proxy, and only the configs that carry it make the list.
 
