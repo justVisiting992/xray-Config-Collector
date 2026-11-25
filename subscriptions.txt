@@ -6,13 +6,6 @@
 # deduplicated, tested and published exactly like channel configs.
 # A source that fails to load is reported in report.md, never skipped
 # silently.
-https://sub.shadowproxy66.workers.dev/sub/736218dc-3cdf-4e93-bb5b-1d726418e43e#ShadowProxy66(1)
-https://sub.shadowproxy66.workers.dev/sub/e298329f-2274-4b24-8d7c-84183c77dba8#ShadowProxy66(2)
-https://sub.shadowproxy66.workers.dev/sub/e7c122fa-35f6-4962-9ff4-70ab55e6fbac#ShadowProxy66(3)
-https://kral.shadowproxy66.cc.cd#ShadowProxy66(4)
-https://sub.shadowproxy66.workers.dev/sub/70f84810-e855-4618-9385-37b5eb7d55ad#ShadowProxy66(5)
-https://sub.shadowproxy66.workers.dev/sub/b4c40561-2ede-41c7-afa4-42d8fd76694e#ShadowProxy66(6)
-https://edge-asset-sync.vrw542gsn.workers.dev/4whzc3jxbog05rc7/f8cab25b9d2484ec
 https://raw.githubusercontent.com/EEvanescence/4Diana/main/AllConfigsSub.txt
 https://raw.githubusercontent.com/EEvanescence/4Diana/main/By-protocol/vless.txt
 https://raw.githubusercontent.com/EEvanescence/4Diana/main/By-protocol/vmess.txt
@@ -34,7 +27,6 @@ https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/26.
 https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/14.2.txt
 https://raw.githubusercontent.com/ThomasJasperthecat/sub/main/sublist1.txt
 https://raw.githubusercontent.com/Ali-Anv1/C-Meta/refs/heads/main/C-Meta.txt
-https://raw.githubusercontent.com/iampedii/whitedns-sub/refs/heads/main/base64.txt
 https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
 https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
 https://mifa.world/axe
@@ -53,7 +45,6 @@ https://raw.githubusercontent.com/Alirewa/V2ray-Configs/main/sub2.txt
 https://raw.githubusercontent.com/Created-By/Telegram--Eag1e_YT/refs/heads/main/Hiddify-Next
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt
 https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt
-https://raw.githubusercontent.com/SeyedNG/proxy/refs/heads/main/configs/proxy_configs_tested.txt
 https://raw.githubusercontent.com/SeyedNG/proxy/refs/heads/main/configs/proxy_configs_tested.txt
 https://raw.githubusercontent.com/SeyedNG/proxy/refs/heads/main/configs/fragment_fingerprint.txt
 https://raw.githubusercontent.com/BlueKnightNet/blueknight_net-sub-link/refs/heads/blue-knight-net/BlueKnight.txt
@@ -79,7 +70,6 @@ https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector
 https://raw.githubusercontent.com/hiztin/VLESS-PO-GRIBI/main/deploy/subscriptions/1.txt
 https://github.com/ksenkovsolo/HardVPN-bypass-WhiteLists-/raw/refs/heads/main/vpn-lte/WHITELIST-ALL.txt
 https://raw.githubusercontent.com/bobrinaw/vlessforu/refs/heads/main/working_configs.txt
-https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt
 https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/Splitted-By-Protocol/ss.txt
 https://raw.githubusercontent.com/VOID-Anonymity/V.O.I.D-VPN_Bypass/refs/heads/main/url_work.txt
 https://raw.githubusercontent.com/PrinceVSFX/Adapt-Configs/main/Configs/Black_list.txt
@@ -88,7 +78,6 @@ https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt
 https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt
 https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt
 https://raw.githubusercontent.com/NiREvil/vless/refs/heads/main/sub/SSTime
-https://github.com/nikita29a/FreeProxyList/raw/refs/heads/main/mirror/1.txt
 https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output_iran/iran_top100_checked.txt
 https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt
 https://github.com/Argh94/Proxy-List/raw/refs/heads/main/All_Config.txt
@@ -97,12 +86,8 @@ https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/Best-Results
 https://raw.githubusercontent.com/ShadowException/VPN/refs/heads/main/configs/VPN-cat
 https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt
 https://raw.githubusercontent.com/JavidnamanIran-at-Telegram/x-ray_sub/refs/heads/main/x-ray_sub.txt
-https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
-https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/all
 https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/refs/heads/main/output/base64/mix-uri
-https://gh-proxy.com/raw.githubusercontent.com/Ruk1ng001/freeSub/main/v2ray
 https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt
-https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt
 https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub
 https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN%2FKvRuVPN.txt
 https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/Reality
@@ -114,15 +99,10 @@ https://raw.githubusercontent.com/rango-cfs/NewCollector/refs/heads/main/v2ray_l
 https://raw.githubusercontent.com/MrBihal/Hddify/refs/heads/main/HDDIFY
 https://raw.githubusercontent.com/MrBihal/Channel-Hddify/refs/heads/main/ROSE
 https://raw.githubusercontent.com/MrBihal/Channel-Hddify/refs/heads/main/cooking
-https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt
 https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes
 https://sub.irys.dpdns.org/auto
 https://rahi-eq3.pages.dev/api/configs?limit=all
 https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt
-https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt
-https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes
-https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt
-https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt
 https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/1.txt
 https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt
 https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/4.txt
@@ -165,9 +145,7 @@ https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Proto
 https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/refs/heads/main/mix/sub.html
 https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/refs/heads/main/vless.html
 https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/vmess.txt
-https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/ss.txt
 https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/Protocols/vless.txt
-https://raw.githubusercontent.com/Mahdi0024/ProxyCollector/master/sub/proxies.txt
 https://raw.githubusercontent.com/10ium/free-config/refs/heads/main/HighSpeed.txt
 https://github.com/4n0nymou3/multi-proxy-config-fetcher/raw/refs/heads/main/configs/proxy_configs.txt
 https://sub.amiralter.com/config-lite
@@ -202,7 +180,6 @@ https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main
 https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/V2Ray-Config-By-EbraSha.txt
 https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vmess_configs.txt
 https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Vmess.txt
-https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Hysteria2.txt
 https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Germany.txt
 https://raw.githubusercontent.com/Stinsonysm/GO_V2rayCollector/refs/heads/main/trojan_iran.txt
 https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Mix/mix.txt
@@ -236,7 +213,6 @@ https://raw.githubusercontent.com/mshojaei77/v2rayAuto/refs/heads/main/subs/hy2
 https://raw.githubusercontent.com/ndsphonemy/proxy-sub/refs/heads/main/speed.txt
 https://raw.githubusercontent.com/ndsphonemy/proxy-sub/refs/heads/main/hys-tuic.txt
 https://trojanvmess.pages.dev/cmcm?b64#cmcm?b64
-https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/Reality
 https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/Vless
 https://raw.githubusercontent.com/AzadNetCH/Clash/refs/heads/main/AzadNet_iOS.txt
 https://raw.githubusercontent.com/Proxydaemitelegram/Proxydaemi44/refs/heads/main/Proxydaemi44
@@ -247,4 +223,3 @@ https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub7.txt
 https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub8.txt
 https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub9.txt
 https://azadnet05.pages.dev/sub/4d794980-54c0-4fcb-8def-c2beaecadbad#EN-Normal
-https://raw.githubusercontent.com/rango-cfs/NewCollector/refs/heads/main/v2ray_links.txt
