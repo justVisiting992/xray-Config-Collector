@@ -44,7 +44,7 @@
 
 ### 🤖 اندروید (Android)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
-| :---: | :--- | :--- | :--- | :---: |
+| :---: | :--- | ---: | :--- | :---: |
 | 🟢 | **v2rayNG** | پایدارترین و محبوب‌ترین کلاینت اندروید. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/2dust/v2rayNG/releases) |
 | 🔷 | **PattNG** | نسخه‌ی بهبودیافته‌ی v2rayNG برای کاربران ایرانی، با هسته‌ی Aether و گزینه‌های TLS بیشتر. | Vless, Vmess, Trojan, SS, Hy2 | [GitHub](https://github.com/patterniha/PattNG/releases) |
 | 🟠 | **Throne** | جانشین NekoBox با هسته‌ی sing-box؛ پشتیبانی از پروتکل‌های بسیار متنوع و شخصی‌سازی روتینگ. | All + Hysteria 2, SSH, TUIC | [GitHub](https://github.com/throneproj/ThroneForAndroid/releases) |
@@ -56,7 +56,7 @@
 
 ### 🪟 ویندوز (Windows)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
-| :---: | :--- | :--- | :--- | :---: |
+| :---: | :--- | ---: | :--- | :---: |
 | 🔵 | **v2rayN** | قدرتمندترین ابزار ویندوز با قابلیت تنظیم هسته Xray. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/2dust/v2rayN/releases) |
 | 🔶 | **PattN** | کلاینت گرافیکی چندسکویی (ویندوز، لینوکس، مک) با هسته‌های Xray و sing-box. | All + Hysteria 2, TUIC | [GitHub](https://github.com/patterniha/PattN/releases) |
 | 🟣 | **Throne** | جانشین Nekoray با هسته‌ی sing-box؛ بهترین گزینه برای گیمینگ و استفاده از مود TUN. | All + Hysteria 2, Reality | [GitHub](https://github.com/throneproj/Throne/releases) |
@@ -67,7 +67,7 @@
 
 ### 🐧 لینوکس (Linux)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
-| :---: | :--- | :--- | :--- | :---: |
+| :---: | :--- | ---: | :--- | :---: |
 | 💻 | **Throne** | جانشین Nekoray؛ نسخه Native لینوکس با پشتیبانی کامل از TUN Mode. | All + Hysteria 2 | [GitHub](https://github.com/throneproj/Throne/releases) |
 | 🔶 | **PattN** | کلاینت گرافیکی چندسکویی با هسته‌های Xray و sing-box. | All + Hysteria 2, TUIC | [GitHub](https://github.com/patterniha/PattN/releases) |
 | 🛠️ | **v2rayA** | رابط کاربری تحت وب که به صورت سرویس اجرا می‌شود. | Vless, Vmess, Trojan, SS | [GitHub](https://github.com/v2rayA/v2rayA/releases) |
@@ -77,7 +77,7 @@
 
 ### 🍏 آی‌او‌اس (iPhone & iPad)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
-| :---: | :--- | :--- | :--- | :---: |
+| :---: | :--- | ---: | :--- | :---: |
 | 💠 | **FairVPN** | ساده، رایگان و عالی برای کاربران تازه‌وارد. | Vless, Vmess, Trojan | [App Store](https://apps.apple.com/us/app/fair-vpn/id1533873488) |
 | 🚀 | **Shadowrocket** | (غیررایگان) قدرتمندترین کلاینت برای iOS. | **تمام پروتکل‌ها** | [App Store](https://apps.apple.com/us/app/shadowrocket/id932747118) |
 | 🦊 | **FoXray** | رابط کاربری مدرن با پشتیبانی نیتیو از Reality و Hy2. | Vless, Vmess, Hy2, SS | [App Store](https://apps.apple.com/us/app/foxray/id6444898154) |
@@ -87,7 +87,7 @@
 
 ### 🍎 مک (macOS)
 |  | نام نرم‌افزار | ویژگی‌های کلیدی | پروتکل‌های پشتیبانی شده | لینک دانلود |
-| :---: | :--- | :--- | :--- | :---: |
+| :---: | :--- | ---: | :--- | :---: |
 | 🦊 | **FoXray** | بهینه شده برای پردازنده‌های Apple Silicon (M1/M2/M3). | Vless, Vmess, Reality | [App Store](https://apps.apple.com/us/app/foxray/id6444898154) |
 | 🔶 | **PattN** | کلاینت گرافیکی چندسکویی با هسته‌های Xray و sing-box. | All + Hysteria 2, TUIC | [GitHub](https://github.com/patterniha/PattN/releases) |
 | ⚙️ | **Hiddify** | اتصال تک‌کلیک و طراحی شیک هماهنگ با مک. | All + Hysteria 2 | [GitHub](https://github.com/hiddify/hiddify-next/releases) |
