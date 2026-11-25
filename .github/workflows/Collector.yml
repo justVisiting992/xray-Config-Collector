@@ -2,7 +2,7 @@ name: Xray Config Collector
 
 on:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 */12 * * *'
   workflow_dispatch:
 
 jobs:
@@ -69,11 +69,32 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          # Stage all changes including mixed_iran.txt and clash.yaml
-          git add .
-          git stash || echo "Nothing to stash"
-          git pull --rebase origin main
-          git stash pop || echo "Nothing to pop"
+          # Commit this run's output first, then rebase that commit
+          # onto whatever main is now and push, retrying the whole
+          # fetch/rebase/push cycle a few times. The old sequence
+          # (stash, an unguarded git pull --rebase, stash pop, one
+          # unguarded git push) failed the entire run whenever a
+          # single git command hiccuped.
           git add .
           git commit -m "Update configs $(date +'%Y-%m-%d %H:%M')" || exit 0
-          git push origin main
+          for attempt in 1 2 3 4 5; do
+            if ! git fetch origin main; then
+              echo "Fetch failed (attempt $attempt); retrying"
+              sleep 5
+              continue
+            fi
+            if ! git rebase origin/main; then
+              # Conflicting hunks are regenerated files on both
+              # sides; this run's fresh versions win.
+              git checkout --theirs -- . || true
+              git add .
+              GIT_EDITOR=true git rebase --continue || git rebase --abort || true
+            fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt $attempt failed; fetching and retrying"
+            sleep 5
+          done
+          echo "Could not push after 5 attempts"
+          exit 1
