@@ -756,7 +756,6 @@ log-level: info
 ipv6: false
 unified-delay: true
 tcp-concurrent: true
-global-client-fingerprint: chrome
 find-process-mode: strict
 geodata-mode: true
 geo-auto-update: true
@@ -1162,6 +1161,8 @@ rule-providers:
     path: ./ruleset/xiaomi.mrs
     interval: 86400
 rules:
+  - AND,((NETWORK,udp),(DST-PORT,3478/5349/19302)),REJECT
+  - DOMAIN-KEYWORD,stun.,REJECT
   - RULE-SET,ads-ir,REJECT
   - RULE-SET,ads-global,REJECT
   - RULE-SET,malware,REJECT
