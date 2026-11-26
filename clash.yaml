@@ -413,6 +413,9 @@ rule-providers:
     path: ./ruleset/xiaomi.mrs
     interval: 86400
 rules:
+  - DST-PORT,3478,REJECT
+  - DST-PORT,5349,REJECT
+  - DST-PORT,19302,REJECT
   - AND,((NETWORK,udp),(DST-PORT,3478/5349/19302)),REJECT
   - DOMAIN-KEYWORD,stun.,REJECT
   - RULE-SET,ads-ir,REJECT
