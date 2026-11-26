@@ -164,6 +164,12 @@ func parseVless(raw string) (Proxy, error) {
 	// every reality link invented a flow some servers never had and
 	// dropped the flow of plain-TLS Vision links.
 	if flow := q.Get("flow"); flow != "" {
+		// The udp443 suffix is an Xray client-side spelling of the
+		// same Vision flow; mihomo registers only the bare name and
+		// rejects "xtls-rprx-vision-udp443" as an unknown flow.
+		if flow == "xtls-rprx-vision-udp443" {
+			flow = "xtls-rprx-vision"
+		}
 		p["flow"] = flow
 	}
 
@@ -260,11 +266,7 @@ func parseVmess(raw string) (Proxy, error) {
 	default:
 		p["alterId"] = 0
 	}
-	if scy := fmt.Sprintf("%v", v["scy"]); v["scy"] != nil && scy != "" && scy != "<nil>" {
-		p["cipher"] = scy
-	} else {
-		p["cipher"] = "auto"
-	}
+	p["cipher"] = mihomoVMessCipher(fmt.Sprintf("%v", v["scy"]))
 	if sni := fmt.Sprintf("%v", v["sni"]); v["sni"] != nil && sni != "" && sni != "<nil>" {
 		p["servername"] = sni
 	}
@@ -460,6 +462,20 @@ func parseSS(raw string) (Proxy, error) {
 	}
 
 	return p, nil
+}
+
+// mihomoVMessCipher returns the VMess security mihomo accepts for the
+// link's scy value. VMess JSON generators write scy inconsistently —
+// absent, empty, even a literal JSON null that stringifies to "null" —
+// and mihomo rejects anything outside its five registered securities
+// with "unsupported security type: null". Absent or unrecognized values
+// mean the protocol default, which is "auto".
+func mihomoVMessCipher(scy string) string {
+	switch strings.ToLower(scy) {
+	case "aes-128-gcm", "chacha20-poly1305", "none", "zero":
+		return strings.ToLower(scy)
+	}
+	return "auto"
 }
 
 // mihomoSSCipher translates a Shadowsocks cipher name from the share-link
