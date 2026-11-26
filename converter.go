@@ -437,7 +437,16 @@ func parseSS(raw string) (Proxy, error) {
 			return nil, fmt.Errorf("ss: no decodable method:password in userinfo")
 		}
 	}
-	p["cipher"] = cipher
+	normalized := mihomoSSCipher(cipher)
+	if normalized == "" {
+		// The decoded "cipher" is not one mihomo can run — most often
+		// an undecodable userinfo blob that slipped through as a plain
+		// user:password pair. Publishing it produced proxies mihomo
+		// rejects at load ("unknown method: <blob>"); count the line
+		// as skipped like every other parse failure instead.
+		return nil, fmt.Errorf("ss: cipher not supported by mihomo: %q", cipher)
+	}
+	p["cipher"] = normalized
 	p["password"] = password
 
 	if security := u.Query().Get("security"); security == "tls" {
@@ -451,6 +460,32 @@ func parseSS(raw string) (Proxy, error) {
 	}
 
 	return p, nil
+}
+
+// mihomoSSCipher translates a Shadowsocks cipher name from the share-link
+// world into the name mihomo registers, or returns "" when mihomo cannot
+// run it at all. The pool is live-tested with Xray, whose registry calls
+// the AEAD ChaCha cipher "chacha20-poly1305"; mihomo only knows it as
+// "chacha20-ietf-poly1305" and rejects the Xray name at load time with
+// "unknown method". The 2022-blake3 names are spelled identically in
+// both registries and must not be rewritten — matching is exact, never
+// substring.
+func mihomoSSCipher(cipher string) string {
+	switch strings.ToLower(cipher) {
+	case "chacha20-poly1305":
+		return "chacha20-ietf-poly1305"
+	case "xchacha20-poly1305":
+		return "xchacha20-ietf-poly1305"
+	case "aes-128-gcm", "aes-192-gcm", "aes-256-gcm",
+		"chacha20-ietf-poly1305", "xchacha20-ietf-poly1305",
+		"2022-blake3-aes-128-gcm", "2022-blake3-aes-256-gcm",
+		"2022-blake3-chacha20-poly1305",
+		"aes-128-ctr", "aes-192-ctr", "aes-256-ctr",
+		"aes-128-cfb", "aes-192-cfb", "aes-256-cfb",
+		"rc4-md5", "chacha20", "chacha20-ietf", "xchacha20", "salsa20":
+		return strings.ToLower(cipher)
+	}
+	return ""
 }
 
 // decodeSSUserinfo returns the cipher and password from an ss:// URI.
