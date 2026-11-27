@@ -11,7 +11,7 @@
 
 ## 🇬🇧 English Guide
 
-This repo collects VLESS, VMess, Trojan, Shadowsocks and Hysteria 2 configs from Telegram channels and hundreds of public subscription lists, tests every single one, and publishes only the ones that actually work. The lists rebuild themselves every 12 hours — you just grab a link below and import it.
+This repo collects VLESS, VMess, Trojan, Shadowsocks and Hysteria 2 configs from Telegram channels and hundreds of public subscription lists, tests every single one, and publishes only the ones that actually work. The lists rebuild themselves every 12 hours. You just grab a link below and import it.
 
 > **How we test:** an open port proves nothing, so every config has to pass a real traffic test first. An embedded Xray core sends an actual HTTP request through the proxy, and only the configs that carry it make the list.
 
@@ -32,9 +32,9 @@ Copy the link for the protocol you want and paste it into your client's Subscrip
 | 💥 **Clash** | `https://raw.githubusercontent.com/justVisiting992/xray-Config-Collector/main/clash.yaml` | Clash / Mihomo format (500 configs) |
 
 ### ⚠️ Important Notes
-* 📱 **Per-protocol lists (200 each):** Only configs that passed the live test, capped at 200 so mobile apps like **v2rayNG** and **V2Box** don't choke when they update. The order is random on purpose — the ping we measure is the distance to our test server, not to you, so ranking by it would be meaningless.
-* 🌈 **Mixed list (unlimited):** Every verified config in one file, no cap. Great on desktop — on a phone it can get heavy, so stick to the per-protocol lists there.
-* 💥 **Clash / Mihomo config:** A full Mihomo profile, ready to import — not just a bare proxy list. You get **500 verified configs**, roughly 100 of each protocol (VLESS, VMess, Trojan, Shadowsocks, Hysteria2), sorted into **country groups**: 🇺🇸 USA, 🇳🇱 Netherlands, 🇩🇪 Germany, 🇯🇵 Japan, 🇫🇷 France, 🇨🇦 Canada, 🇷🇺 Russia, 🇸🇬 Singapore, 🇪🇸 Spain, 🇬🇧 UK, 🇨🇭 Switzerland, 🇭🇰 Hong Kong, 🇫🇮 Finland, 🇸🇪 Sweden, 🇵🇱 Poland and 🇰🇷 South Korea, plus an auto-pick group that grabs a fast one for you. The routing is set up for Iran out of the box: Iranian sites, IPs and cloud ranges go direct; ads (Persian and global), malware, phishing, crypto miners, public trackers, Ponzi scam sites, Xiaomi telemetry and the free censored-movie download sites are blocked; Google Play, Google, Microsoft, Apple and Xiaomi services connect directly; and games go through the proxy.
+* 📱 **Per-protocol lists (200 each):** Only configs that passed the live test, capped at 200 so mobile apps like **v2rayNG** and **V2Box** don't choke when they update. The order is random on purpose. The ping we measure is the distance to our test server, not to you, so ranking by it would be meaningless.
+* 🌈 **Mixed list (unlimited):** Every verified config in one file, no cap. Great on desktop. On a phone it can get heavy, so stick to the per-protocol lists there.
+* 💥 **Clash / Mihomo config:** A full Mihomo profile, ready to import, not just a bare proxy list. You get **500 verified configs**, roughly 100 of each protocol (VLESS, VMess, Trojan, Shadowsocks, Hysteria2), sorted into **country groups**: 🇺🇸 USA, 🇳🇱 Netherlands, 🇩🇪 Germany, 🇯🇵 Japan, 🇫🇷 France, 🇨🇦 Canada, 🇷🇺 Russia, 🇸🇬 Singapore, 🇪🇸 Spain, 🇬🇧 UK, 🇨🇭 Switzerland, 🇭🇰 Hong Kong, 🇫🇮 Finland, 🇸🇪 Sweden, 🇵🇱 Poland and 🇰🇷 South Korea, plus an auto-pick group that grabs a fast one for you. The routing is set up for Iran out of the box: Iranian sites, IPs and cloud ranges go direct; ads (Persian and global), malware, phishing, crypto miners, public trackers, Ponzi scam sites, Xiaomi telemetry and the free censored-movie download sites are blocked; Google Play, Google, Microsoft, Apple and Xiaomi services connect directly; and games go through the proxy.
 
 ***
 
@@ -111,27 +111,27 @@ Under the hood it's a mix of Python and Go. Here's what it does, and why:
 3. **A real traffic test, not a ping:**
    - Anything that passes the first quick screen is tested again by an **embedded Xray core** that pushes a real HTTP request *through* the proxy. If traffic doesn't flow, the config doesn't get published.
    - **Hysteria 2** gets a real Hysteria session too (Salamander obfuscation included), not just a DNS lookup.
-   - Every failed test is **retried once** — a momentary network glitch shouldn't kill a good config.
+   - Every failed test is **retried once**. A momentary network glitch shouldn't kill a good config.
 4. **Testing is parallel:**
    - Tens of thousands of configs are tested at the same time using Go goroutines.
 5. **The flag is the exit country:**
-   - Configs are labelled with the country of the proxy's **real exit IP** (MaxMind database), not the address you connect to — so the flag shows where your traffic actually comes out.
+   - Configs are labelled with the country of the proxy's **real exit IP** (MaxMind database), not the address you connect to, so the flag shows where your traffic actually comes out.
 6. **Names that don't break clients:**
    - Remark formats are cleaned up automatically so popular clients like Hiddify Next don't choke on them.
 7. **Telegram rate limits don't break the run:**
    - If Telegram throttles the Python collector, it backs off gracefully and lets the rest of the pipeline carry on.
 8. **Old configs stick around:**
    - Working configs aren't thrown away. They're re-tested on every run and stay listed as long as they're alive.
-9. **Shuffled, not ranked — on purpose:**
+9. **Shuffled, not ranked, on purpose:**
    - The latency we measure during testing is the distance from a GitHub runner to the server, which tells you nothing about how fast it'll be from your home or phone. Sorting by it would just favour whatever happens to sit near the runner. So the lists are shuffled, and every verified config gets an equal shot at the capped lists, re-randomized each run.
 10. **Clash / Mihomo output:**
     - Every run also builds `clash.yaml`, a ready-to-import Mihomo profile made from the same verified configs.
 11. **No duplicates:**
-    - Configs are deduplicated by their full identity — server, credentials and transport settings. Variants of the same server with different TLS/SNI/path are different configs and all stay; only exact copies are removed.
+    - Configs are deduplicated by their full identity: server, credentials and transport settings. Variants of the same server with different TLS/SNI/path are different configs and all stay; only exact copies are removed.
 12. **A safety net:**
     - If a run ever produces a nonsense result (say, zero working configs), the previous lists stay up instead of an empty file being published.
 13. **One pool, tested once:**
-    - The mixed list is live-tested as a whole, and each protocol list is then drawn from that same verified pool — a random 200 of the protocol's verified configs. A config can't reach any list without passing the real-traffic test first.
+    - The mixed list is live-tested as a whole, and each protocol list is then drawn from that same verified pool, a random 200 of the protocol's verified configs. A config can't reach any list without passing the real-traffic test first.
 14. **Remarks that tell you something:**
-    - Each remark shows the exit country plus the transport and encryption traits (`WS • TLS`, `TCP • Reality • Vision`, the Shadowsocks cipher, and so on). Configs that would end up with the exact same name are numbered (`01`, `02`, …) so every entry stays unique — including in `clash.yaml`.
-    - The status report lists every source by a short linked name, and its counts are the real verified totals — the per-protocol numbers add up to the total exactly.
+    - Each remark shows the exit country plus the transport and encryption traits (`WS • TLS`, `TCP • Reality • Vision`, the Shadowsocks cipher, and so on). Configs that would end up with the exact same name are numbered (`01`, `02`, …) so every entry stays unique, including in `clash.yaml`.
+    - The status report lists every source by a short linked name, and its counts are the real verified totals. The per-protocol numbers add up to the total exactly.
